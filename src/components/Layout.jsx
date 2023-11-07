@@ -1,13 +1,16 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
+import Nav from "./Nav";
 
-const Layout = () => (
-    <div>
-        <main className="container">
-            <div>
-                <Outlet />
-            </div>
-        </main>
+const Layout = () => {
+  return (
+    <div className="container-fluid">
+      <Nav/>
+
+      <main>
+        <Outlet/>
+      </main>
     </div>
-);
+  );
+};
 
 export default Layout;
