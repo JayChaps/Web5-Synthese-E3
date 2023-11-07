@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fetchJsonp from "fetch-jsonp";
+import { db } from "../config/firebase";
+import { collection, setDoc, doc, arrayUnion } from "firebase/firestore";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -30,6 +32,26 @@ const RechercheDeezer = () => {
             });
     };
 
+
+    const addToPlaylist = async (song) => {
+        try {
+            const playlistRef = doc(db, "playlists", "playlist3");
+
+            const songToAdd = {
+                id: song.id,
+                title: song.title,
+            };
+
+            await setDoc(playlistRef, {
+                songs: arrayUnion(songToAdd)
+                // songs: arrayUnion(song)
+            });
+            console.log("Document successfully updated!");
+        } catch (e) {
+            console.error("Error updating document: ", e);
+        }
+    }
+
     return (
         <div>
             <h1>Recherche sur Deezer</h1>
@@ -47,7 +69,7 @@ const RechercheDeezer = () => {
                         <h2>{result.title}</h2>
                         <p>{result.artist.name}</p>
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
-                        <button>Ajouter à la playlist (la seule)</button>
+                        <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
                     </li>
                 ))}
             </ul>
