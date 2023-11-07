@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fetchJsonp from "fetch-jsonp";
+import LayoutAuth from "../components/LayoutAuth";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -32,6 +33,7 @@ const RechercheDeezer = () => {
 
     return (
         <div>
+            <LayoutAuth/>
             <h1>Recherche sur Deezer</h1>
             <input
                 type="text"
