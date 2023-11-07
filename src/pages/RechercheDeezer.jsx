@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import fetchJsonp from "fetch-jsonp";
 import { db } from "../config/firebase";
-import { collection, setDoc, doc, arrayUnion, getDocs } from "firebase/firestore";
+import { collection, setDoc, doc, arrayUnion, getDocs, addDoc } from "firebase/firestore";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -9,6 +9,7 @@ const RechercheDeezer = () => {
 
     const [playlist, setPlaylist] = useState([]);
     const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
+    const [newPlaylistName, setNewPlaylistName] = useState('');
 
     useEffect(() => {
         if (searchTerm) {
@@ -42,7 +43,7 @@ const RechercheDeezer = () => {
             setPlaylist(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         };
         fetchPlaylist();
-    }, []);
+    }, [newPlaylistName]);
 
     // const addToPlaylist = async (song) => {
     //     try {
@@ -77,6 +78,31 @@ const RechercheDeezer = () => {
         }
     }
 
+    // Ajout d'une nouvelle playlist
+    const createNewPlaylist = async () => {
+        if (newPlaylistName.trim() !== '') {
+            await addDoc(collection(db, "playlists"), {
+                name: newPlaylistName,
+                songs: []
+            });
+            setNewPlaylistName(''); // Reset le nom après création
+        }
+    };
+
+    // // Fetch the lyrics using https://www.deezer.com/ajax/gw-light.php?method=song.getLyrics&api_version=1.0&api_token=_TESoTTYiz5BU7nrOONE1DJjaoQml8.p&sng_id=[SONG_ID] :
+    // const fetchLyrics = async (songId) => {
+    //     const url = `https://www.deezer.com/ajax/gw-light.php?method=song.getLyrics&api_version=1.0&api_token=_TESoTTYiz5BU7nrOONE1DJjaoQml8.p&sng_id=${songId}`;
+    //     console.log("url " + url);
+    //     const response = await fetch(url);
+    //     console.log("response " + response);
+    //     const data = await response.json();
+    //     console.log("data " + data);
+    //     const lyrics = data.results.LYRICS_TEXT;
+    //     console.log("lyrics " + lyrics);
+    //     return lyrics;
+    // }
+
+
     return (
         <div>
             <h1>Recherche sur Deezer</h1>
@@ -99,7 +125,16 @@ const RechercheDeezer = () => {
                 ))}
             </select>
 
-
+            {/* Création d'une nouvelle playlist */}
+            <div>
+                <input
+                    type="text"
+                    value={newPlaylistName}
+                    onChange={(e) => setNewPlaylistName(e.target.value)}
+                    placeholder="Nom de la nouvelle playlist"
+                />
+                <button onClick={createNewPlaylist}>Créer une playlist</button>
+            </div>
 
             <ul>
                 {searchResults.map((result, index) => (
@@ -108,6 +143,7 @@ const RechercheDeezer = () => {
                         <p>{result.artist.name}</p>
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
                         <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
+                        {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
                     </li>
                 ))}
             </ul>
