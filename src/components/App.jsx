@@ -4,6 +4,7 @@ import LayoutAuth from './LayoutAuth';
 import RechercheDeezer from '../pages/RechercheDeezer';
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from 'react';
+import Playlist from '../pages/Playlist';
 
 
 const Routes = () =>{
@@ -43,14 +44,11 @@ const Routes = () =>{
                 },
                 {
                     path: 'search',
-                    element: <RechercheDeezer/>
-                },
-                {
+                    element: <RechercheDeezer />,
+                }, {
                     path: 'playlist',
-                    element: (
-                        <h1>Playlist</h1>
-                    )
-                }
+                    element: <Playlist />,
+                }, 
             ]
         },
         {
