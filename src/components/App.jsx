@@ -11,7 +11,7 @@ const Routes = () =>{
     const {isConnected,loading} = useAuth();
     if(loading) return <div>loading...</div>
 
-      const routes = [
+    const routes = [
         !isConnected &&{
             path: '',
             element: <Layout />,
@@ -64,7 +64,7 @@ const Routes = () =>{
 
 const App = () => {
     
-  
+
 
     return (
         <AuthProvider>
