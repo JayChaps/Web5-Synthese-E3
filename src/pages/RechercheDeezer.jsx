@@ -47,6 +47,7 @@ const RechercheDeezer = () => {
                         <h2>{result.title}</h2>
                         <p>{result.artist.name}</p>
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
+                        <button>Ajouter à la playlist (la seule)</button>
                     </li>
                 ))}
             </ul>
