@@ -1,6 +1,7 @@
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './Layout';
 import RechercheDeezer from '../pages/RechercheDeezer';
+import Playlist from '../pages/Playlist';
 
 const App = () => {
 
@@ -15,7 +16,9 @@ const App = () => {
                 }, {
                     path: 'search',
                     element: <RechercheDeezer />,
-                    
+                }, {
+                    path: 'playlist',
+                    element: <Playlist />,
                 }, 
             ]
         },
