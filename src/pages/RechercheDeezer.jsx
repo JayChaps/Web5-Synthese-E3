@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import fetchJsonp from "fetch-jsonp";
 import { db } from "../config/firebase";
-import { collection, setDoc, doc, arrayUnion } from "firebase/firestore";
+import { collection, setDoc, doc, arrayUnion, getDocs } from "firebase/firestore";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+
+    const [playlist, setPlaylist] = useState([]);
+    const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
 
     useEffect(() => {
         if (searchTerm) {
@@ -33,21 +36,43 @@ const RechercheDeezer = () => {
     };
 
 
-    const addToPlaylist = async (song) => {
-        try {
-            const playlistRef = doc(db, "playlists", "playlist3");
+    useEffect(() => {
+        const fetchPlaylist = async () => {
+            const querySnapshot = await getDocs(collection(db, "playlists"));
+            setPlaylist(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        };
+        fetchPlaylist();
+    }, []);
 
-            const songToAdd = {
-                id: song.id,
-                title: song.title,
-            };
+    // const addToPlaylist = async (song) => {
+    //     try {
+    //         const playlistRef = doc(db, "playlists", "playlist3");
+
+    //         const songToAdd = { id: song.id, title: song.title, };
+
+    //         // await setDoc(playlistRef, {
+    //         //     songs: arrayUnion(song)
+    //         // });
+    //         await setDoc(playlistRef, {
+    //             songs: arrayUnion(songToAdd)
+    //         }, { merge: true });
+    //         console.log("Document successfully updated!");
+    //     } catch (e) {
+    //         console.error("Error updating document: ", e);
+    //     }
+    // }
+
+    const addToPlaylist = async (song) => {
+        if (selectedPlaylistId) {
+            const playlistRef = doc(db, "playlists", selectedPlaylistId);
+
+            const songToAdd = { id: song.id, title: song.title, };
 
             await setDoc(playlistRef, {
                 songs: arrayUnion(songToAdd)
-                // songs: arrayUnion(song)
-            });
+            }, { merge: true });
             console.log("Document successfully updated!");
-        } catch (e) {
+        } else {
             console.error("Error updating document: ", e);
         }
     }
@@ -62,6 +87,19 @@ const RechercheDeezer = () => {
                 onChange={handleInputChange}
             />
             <button onClick={handleSearch}>Rechercher</button>
+
+
+            <select 
+                value={selectedPlaylistId}
+                onChange={(e) => setSelectedPlaylistId(e.target.value)}
+            >
+                <option value="">Choisir une playlist</option>
+                {playlist.map((playlist) => (
+                    <option key={playlist.id} value={playlist.id}>{playlist.name}</option>
+                ))}
+            </select>
+
+
 
             <ul>
                 {searchResults.map((result, index) => (
