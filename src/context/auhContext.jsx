@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from '../firebase';
+import { auth } from '../config/firebase'
 
 
 const authContext = React.createContext({
-    // login: async (email, password) => {},
-    // register: async(email, password) => {},
     googleSignIn: () => { },
-    // logout: () => {},
     logOut: () => { },
     user: null,
+    isConnected:false,
     _v: 0
 });
 
@@ -17,32 +15,31 @@ const authContext = React.createContext({
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
-    const googleSignIn = () => {
-        const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider);
-    }
+    const [isConnected,setIsConnected] = useState(false);
+    const [loading,setLoading] = useState(true);
 
-    const logOut = () => {
-        signOut(auth);
+    const googleSignIn = async () => {
+        setLoading(true);
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        // setIsConnected(true);
+    }
+    const logOut = async () => {
+        await signOut(auth);
+        // setIsConnected(false)
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setIsConnected(!!currentUser);
+            setLoading(false);
             console.log('User', currentUser)
         });
-        return () => {
-            unsubscribe();
-        }
+        return unsubscribe;
     }, [])
 
-
-    // const login = async (email, password) => {};
-    // const register = async (email, password) => {};
-    // const logout = () => {};
-
-    // return <authContext.Provider value={{ googleSignIn ,login, register, logout,logOut, user, _v: 1 }}>
-    return <authContext.Provider value={{ googleSignIn, logOut, user, _v: 1 }}>
+    return <authContext.Provider value={{ googleSignIn, logOut, user, isConnected,loading, _v: 1 }}>
         {children}
     </authContext.Provider>;
 };

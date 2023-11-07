@@ -33,7 +33,6 @@ const RechercheDeezer = () => {
 
     return (
         <div>
-            <LayoutAuth/>
             <h1>Recherche sur Deezer</h1>
             <input
                 type="text"
