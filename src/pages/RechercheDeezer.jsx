@@ -3,6 +3,7 @@ import fetchJsonp from "fetch-jsonp";
 import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc } from "firebase/firestore";
+import { useAudio } from "../context/audiotim";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -11,12 +12,17 @@ const RechercheDeezer = () => {
     const [playlist, setPlaylist] = useState([]);
     const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
     const [newPlaylistName, setNewPlaylistName] = useState('');
+    const [filter,setFilter] = useState("");
+
+    const { changeSource, play, pause } = useAudio();
+
+    const searchFilters = ["artist","album","track"]
 
     useEffect(() => {
         if (searchTerm) {
             handleSearch();
         }
-    }, [searchTerm]);
+    }, [searchTerm,filter]);
 
     const handleInputChange = event => {
         setSearchTerm(event.target.value);
@@ -24,7 +30,9 @@ const RechercheDeezer = () => {
 
     const handleSearch = () => {
         const encodedSearchTerm = encodeURIComponent(searchTerm);
-        const url = `https://api.deezer.com/search?q=${encodedSearchTerm}&output=jsonp`;
+        const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
+        console.log(url);
+
 
         fetchJsonp(url)
             .then(response => response.json())
@@ -90,6 +98,12 @@ const RechercheDeezer = () => {
         }
     };
 
+    const filters = (e) => {
+        setFilter("");
+        setFilter(e.target.value);
+        console.log(e.target.value);
+    }
+
     // // Fetch the lyrics using https://www.deezer.com/ajax/gw-light.php?method=song.getLyrics&api_version=1.0&api_token=_TESoTTYiz5BU7nrOONE1DJjaoQml8.p&sng_id=[SONG_ID] :
     // const fetchLyrics = async (songId) => {
     //     const url = `https://www.deezer.com/ajax/gw-light.php?method=song.getLyrics&api_version=1.0&api_token=_TESoTTYiz5BU7nrOONE1DJjaoQml8.p&sng_id=${songId}`;
@@ -107,16 +121,22 @@ const RechercheDeezer = () => {
     return (
         <div>
             <h1>Recherche sur Deezer</h1>
-            <input
-                type="text"
-                placeholder="Rechercher un titre/artiste/album"
-                value={searchTerm}
-                onChange={handleInputChange}
-            />
-            <button onClick={handleSearch}>Rechercher</button>
+            <button value={searchFilters[0]} onClick={filters}>Artistes</button>
+            <button value={searchFilters[1]} onClick={filters}>Albums</button>
+            <button value={searchFilters[2]} onClick={filters}>Titres</button>
+
+            <div>
+                <input
+                    type="text"
+                    placeholder="Rechercher un titre/artiste/album"
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                />
+                <button onClick={handleSearch}>Rechercher</button>
+            </div>
 
 
-            <select 
+            <select
                 value={selectedPlaylistId}
                 onChange={(e) => setSelectedPlaylistId(e.target.value)}
             >
@@ -145,6 +165,7 @@ const RechercheDeezer = () => {
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
                         <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
                         {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
+                        <button onClick={() => changeSource(result.preview)}>Lire</button> {/* Ajoutez cette ligne */}
                     </li>
                 ))}
             </ul>
