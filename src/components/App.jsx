@@ -5,6 +5,7 @@ import RechercheDeezer from '../pages/RechercheDeezer';
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from 'react';
 import Playlist from '../pages/Playlist';
+import { AudioProvider, useAudio } from '../context/audiotim';
 
 
 const Routes = () =>{
@@ -67,9 +68,11 @@ const App = () => {
 
 
     return (
-        <AuthProvider>
-            <Routes/>
-        </AuthProvider>
+        <AudioProvider>
+            <AuthProvider>
+                <Routes/>
+            </AuthProvider>
+        </AudioProvider>
     );
 
 };
