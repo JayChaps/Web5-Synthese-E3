@@ -56,7 +56,7 @@ const Playbar = () => {
 
                     <div className="playbar__inner__center__progress">
                         <div className="playbar__inner__center__progress__time">
-                            <span>{progress * duration}</span>
+                            <span>0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}{(progress * duration).toFixed(0)}</span>
                         </div>
                         <div className="playbar__inner__center__progress__bar"
                             style={{ width: `${duration / duration * 100}%` }}
