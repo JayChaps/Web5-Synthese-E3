@@ -92,9 +92,9 @@ const Playlist = () => {
                                 <button 
                                 onClick={() => deletePlaylist(playlist.id)} 
                                 style={
-                                    { marginLeft: '10px',backgroundColor: 'darkred', color: 'white', 
+                                    { marginLeft: '0px',backgroundColor: 'darkred', color: 'white', 
                                     borderRadius: '5px', border: 'none', cursor: 'pointer', 
-                                    scale: '100%', height: '100%',}} >
+                                    scale: '50%', height: '50%',}} >
                                     Supprimer Playlist
                                 </button>
                                 </h2>
