@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { collection, getDocs, doc, updateDoc, deleteField, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, deleteField, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
@@ -19,19 +19,32 @@ const Playlist = () => {
     // Suppression d'une chanson d'une playlist
     const removeSongFromPlaylist = async (playlistId, song) => {
         const playlistRef = doc(db, "playlists", playlistId);
-        await updateDoc(playlistRef, {
-            songs: deleteField(song)
-        });
-        // Mettre à jour l'état après suppression
-        setPlaylists(playlists.map(playlist => {
-            if (playlist.id === playlistId) {
-                return {
-                    ...playlist,
-                    songs: playlist.songs.filter((s) => s.id !== song.id)
-                };
-            }
-            return playlist;
-        }));
+        
+        // Obtenir la playlist correspondante
+        const playlistSnapshot = await getDoc(playlistRef);
+        if (playlistSnapshot.exists()) {
+            const playlistData = playlistSnapshot.data();
+            console.log("Bonjour"+playlistData);
+
+            // Filtrer les chansons pour exclure celle que vous souhaitez supprimer
+            const newSongs = (playlistData.songs || []).filter((s) => s.id !== song.id);
+
+            // Mettre à jour la playlist avec les nouvelles chansons
+            await updateDoc(playlistRef, {
+                songs: newSongs
+            });
+
+            // Mettre à jour l'état après suppression
+            setPlaylists(playlists.map(playlist => {
+                if (playlist.id === playlistId) {
+                    return {
+                        ...playlist,
+                        songs: newSongs
+                    };
+                }
+                return playlist;
+            }));
+        }
     };
 
     // Suppression d'une playlist
@@ -77,7 +90,7 @@ const Playlist = () => {
                             <div {...provided.droppableProps} ref={provided.innerRef}>
                                 <h2>{playlist.name}
                                 <button 
-                                // onClick={() => deletePlaylist(playlist.id)} 
+                                onClick={() => deletePlaylist(playlist.id)} 
                                 style={
                                     { marginLeft: '10px',backgroundColor: 'darkred', color: 'white', 
                                     borderRadius: '5px', border: 'none', cursor: 'pointer', 
