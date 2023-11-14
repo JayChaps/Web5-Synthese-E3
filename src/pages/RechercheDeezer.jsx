@@ -3,6 +3,7 @@ import fetchJsonp from "fetch-jsonp";
 import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc } from "firebase/firestore";
+import { useAudio } from "../context/audiotim";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -12,19 +13,26 @@ const RechercheDeezer = () => {
     const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
     const [newPlaylistName, setNewPlaylistName] = useState('');
 
+    const { changeSource, play, pause } = useAudio();
+
+
+    // Recherche d'une chanson au changement de la valeur de searchTerm
     useEffect(() => {
         if (searchTerm) {
             handleSearch();
         }
     }, [searchTerm]);
 
+    // Gestion de la recherche (changement de la valeur de searchTerm)
     const handleInputChange = event => {
         setSearchTerm(event.target.value);
     };
 
+    // Recherche d'une chanson
     const handleSearch = () => {
         const encodedSearchTerm = encodeURIComponent(searchTerm);
-        const url = `https://api.deezer.com/search?q=${encodedSearchTerm}&output=jsonp`;
+        const url = `https://api.deezer.com/search?q=\"${encodedSearchTerm}\"&output=jsonp`;
+        console.log(url);
 
         fetchJsonp(url)
             .then(response => response.json())
@@ -37,7 +45,7 @@ const RechercheDeezer = () => {
             });
     };
 
-
+    // Récupération des playlists
     useEffect(() => {
         const fetchPlaylist = async () => {
             const querySnapshot = await getDocs(collection(db, "playlists"));
@@ -46,24 +54,7 @@ const RechercheDeezer = () => {
         fetchPlaylist();
     }, [newPlaylistName]);
 
-    // const addToPlaylist = async (song) => {
-    //     try {
-    //         const playlistRef = doc(db, "playlists", "playlist3");
-
-    //         const songToAdd = { id: song.id, title: song.title, };
-
-    //         // await setDoc(playlistRef, {
-    //         //     songs: arrayUnion(song)
-    //         // });
-    //         await setDoc(playlistRef, {
-    //             songs: arrayUnion(songToAdd)
-    //         }, { merge: true });
-    //         console.log("Document successfully updated!");
-    //     } catch (e) {
-    //         console.error("Error updating document: ", e);
-    //     }
-    // }
-
+    // Ajout d'une chanson à une playlist
     const addToPlaylist = async (song) => {
         if (selectedPlaylistId) {
             const playlistRef = doc(db, "playlists", selectedPlaylistId);
@@ -107,6 +98,7 @@ const RechercheDeezer = () => {
     return (
         <div>
             <h1>Recherche sur Deezer</h1>
+            
             <input
                 type="text"
                 placeholder="Rechercher un titre/artiste/album"
@@ -145,6 +137,7 @@ const RechercheDeezer = () => {
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
                         <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
                         {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
+                        <button onClick={() => changeSource(result.preview)}>Lire</button> {/* Ajoutez cette ligne */}
                     </li>
                 ))}
             </ul>
