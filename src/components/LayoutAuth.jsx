@@ -1,22 +1,27 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
+import Playbar from "./Playbar";
+import { SongInfoProvider } from "../context/SongInfoContext";
 
 const LayoutAuth = () => {
   return (
-    <div className="container-fluid">
-      <Nav
-        links={[
-          { name: "Accueil", url: "/home" },
-          { name: "Profil", url: "/profil" },
-          { name: "Recherche", url: "/search" },
-          { name: "Vos playlists", url: "/playlist" },
-        ]}
-      />
+    <SongInfoProvider>
+      <div className="container-fluid">
+        <Nav
+          links={[
+            { name: "Accueil", url: "/home" },
+            { name: "Profil", url: "/profil" },
+            { name: "Recherche", url: "/search" },
+            { name: "Vos playlists", url: "/playlist" },
+          ]}
+          />
 
-      <main>
-        <Outlet/>
-      </main>
-    </div>
+        <main>
+          <Outlet/>
+          <Playbar/>
+        </main>
+      </div>
+    </SongInfoProvider>
   );
 };
 

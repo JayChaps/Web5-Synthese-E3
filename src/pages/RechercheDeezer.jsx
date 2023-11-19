@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import fetchJsonp from "fetch-jsonp";
 import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc } from "firebase/firestore";
 import { useAudio } from "../context/audiotim";
+import { SongInfoContext } from "../context/SongInfoContext";
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -15,6 +16,7 @@ const RechercheDeezer = () => {
     const [filter,setFilter] = useState("");
 
     const { changeSource, play, pause } = useAudio();
+    const { songInfo, updateSongInfo } = useContext(SongInfoContext);
 
     const searchFilters = ["artist","album","track"]
 
@@ -33,7 +35,6 @@ const RechercheDeezer = () => {
         const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
         console.log(url);
 
-
         fetchJsonp(url)
             .then(response => response.json())
             .then(data => {
@@ -45,6 +46,14 @@ const RechercheDeezer = () => {
             });
     };
 
+    const handlePlaySong = (song) => {
+        changeSource(song.preview); // Définit la source de la chanson
+        updateSongInfo({
+            title: song.title,
+            artist: song.artist.name,
+            coverUrl: song.album.cover
+        });
+    };
 
     useEffect(() => {
         const fetchPlaylist = async () => {
@@ -165,7 +174,7 @@ const RechercheDeezer = () => {
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
                         <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
                         {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
-                        <button onClick={() => changeSource(result.preview)}>Lire</button> {/* Ajoutez cette ligne */}
+                        <button onClick={() => handlePlaySong(result)}>Lire</button>
                     </li>
                 ))}
             </ul>
