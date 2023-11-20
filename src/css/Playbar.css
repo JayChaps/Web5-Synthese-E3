@@ -1,0 +1,133 @@
+.playbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #282828;
+    color: #fff;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.playbar__inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.playbar__inner__left {
+    display: flex;
+    align-items: center;
+}
+.playbar__inner__left__cover {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+.playbar__inner__left__cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.playbar__inner__left__song {
+    display: flex;
+    flex-direction: column;
+}
+.playbar__inner__left__song__title {
+    font-size: 14px;
+    font-weight: 700;
+}
+.playbar__inner__left__song__artist {
+    font-size: 12px;
+    font-weight: 400;
+}
+.playbar__inner__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.playbar__inner__center__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.playbar__inner__center__buttons button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.playbar__inner__center__buttons button:hover {
+    background-color: #fff;
+    color: #000;
+}
+.playbar__inner__center__buttons button:focus {
+    outline: none;
+}
+.playbar__inner__center__buttons button:first-child {
+    margin-left: 0;
+}
+.playbar__inner__center__buttons button:last-child {
+    margin-right: 0;
+}
+.playbar__inner__center__buttons button b {
+    font-size: 14px;
+}
+.playbar__inner__center__progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.playbar__inner__center__progress__time {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0 10px;
+}
+.playbar__inner__center__progress__bar {
+    width: 100%;
+    height: 4px;
+    background-color: #535353;
+    position: relative;
+    border-radius: 2px;
+}
+.playbar__inner__center__progress__bar__inner {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 2px;
+}
+.playbar__inner__center__progress__bar__inner::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.playbar__inner__center__progress__bar__inner::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
