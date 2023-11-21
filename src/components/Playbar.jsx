@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import "../css/Playbar.css";
-import { useAudio, useAudioProgress } from "../context/audiotim";
+import { useAudio, useAudioProgress, useAudioVisual } from "../context/audiotim";
 import { SongInfoContext } from "../context/SongInfoContext";
+import { motion, useAnimation } from 'framer-motion';
+import AnimatedCircle from "./AnimatedCircle";
 
 const Playbar = () => {
 
-    const { play, pause, isPaused, changeSource, isReady, 
-        stop, togglePause, duration, volume, changeVolume } = useAudio();
+    const visualInfos = useAudioVisual();
+    const controls = useAnimation();
+    const { play, pause, isPaused, changeSource, isReady,
+        stop, togglePause, duration, volume, changeVolume, } = useAudio();
 
-    const { progress , changeProgress} = useAudioProgress();
+    const { progress, changeProgress } = useAudioProgress();
     const { songInfo, updateSongInfo } = useContext(SongInfoContext);
     const [isDragging, setIsDragging] = useState(false);
 
@@ -40,11 +44,11 @@ const Playbar = () => {
         const progressBar = e.currentTarget;
         const progressBarRect = progressBar.getBoundingClientRect();
         const newProgress = (e.pageX - progressBarRect.left) / progressBarRect.width;
-        changeProgress(Math.min(Math.max(newProgress, 0), 1)); 
+        changeProgress(Math.min(Math.max(newProgress, 0), 1));
     };
-    
 
-    
+
+
 
     return (
         <div className="playbar">
@@ -62,13 +66,17 @@ const Playbar = () => {
                         </div>
                     </div>
                 </div>
+                <div className="circle-container">
+                    <AnimatedCircle songInfo={songInfo} />
+                </div>
                 <div className="playbar__inner__center">
                     <div className="playbar__inner__center__buttons">
+
                         <button className="playbar__inner__center__buttons__previous">
                             <b className="fas fa-step-backward">{"⏮"}</b>
                         </button>
                         <button className="playbar__inner__center__buttons__play" onClick={handlePlayPause}>
-                        <b className="fas fa-play">{isPaused ? "▶️" : "⏸"}</b>
+                            <b className="fas fa-play">{isPaused ? "▶️" : "⏸"}</b>
                         </button>
                         <button className="playbar__inner__center__buttons__next">
                             <b className="fas fa-step-forward">{"⏭"}</b>
@@ -82,11 +90,11 @@ const Playbar = () => {
                     </div>
 
                     <div className="playbar__inner__center__progress"
-                     onClick={handleProgressChange} 
-                     onMouseDown={handleMouseDown}
-                     onMouseMove={handleMouseMove}
-                     onMouseLeave={handleMouseUp} // Ajouté pour s'assurer que le glissement s'arrête si la souris quitte la barre
-                     onMouseUp={handleMouseUp}>
+                        onClick={handleProgressChange}
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseUp}
+                        onMouseUp={handleMouseUp}>
                         <div className="playbar__inner__center__progress__time">
                             <span>0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}{(progress * duration).toFixed(0)}</span>
                         </div>
@@ -94,12 +102,12 @@ const Playbar = () => {
                             style={{ width: `${duration / duration * 100}%` }}
                         >--------------------------------------
                             <div className="playbar__inner__center__progress__bar__inner "
-                           
-                            style={{ width: `${progress * 100}%` }}></div>
-                            
+
+                                style={{ width: `${progress * 100}%` }}></div>
+
                         </div>
                         <div className="playbar__inner__center__progress__time">
-                            <span>{duration}</span>
+                            <span>0:{Math.round(duration).toFixed(0) < 10 ? "0" : ""}{(duration).toFixed(0)}</span>
                         </div>
                     </div>
                 </div>
