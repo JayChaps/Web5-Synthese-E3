@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from 'react';
 import Playlist from '../pages/Playlist';
 import { AudioProvider, useAudio } from '../context/audiotim';
+import Profil from './Profil';
 
 
 const Routes = () =>{
@@ -39,9 +40,7 @@ const Routes = () =>{
                 },
                 {
                     path: 'profil',
-                    element: (
-                        <h1>Profil</h1>
-                    )
+                    element: <Profil/>
                 },
                 {
                     path: 'search',
