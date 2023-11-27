@@ -7,7 +7,7 @@ const sectionsoustitre = () => {
     return (
         <section className="containersectionsoustitre">
             <div>
-                <h1 className="titresectionsoustitre">titresection</h1>
+                <h2 className="titresectionsoustitre">titrealbum</h2>
             </div>
 
         </section>

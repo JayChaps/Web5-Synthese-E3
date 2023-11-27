@@ -4,13 +4,15 @@
     margin-left: auto;
     margin-right: auto;
     height: 300px;
-    width: 400px;
-    background-color: #222C32;
+    width: 430px;
+    background-color: var(--grisFonce);
     border-radius: 20px;
   
 }
 
 .titresectiontitre{
+    font-family: 'Gotham';
+    font-weight: 900;
     padding: 20px;
     color: white;
 }

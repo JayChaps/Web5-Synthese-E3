@@ -4,6 +4,7 @@ import "../assets/scss/pages/tableaudebord.scss";
 
 import SectionTitre from "../components/tableaudebord/sectiontitre";
 import SectionSousTitre from "../components/tableaudebord/sectionsoustitre";
+import SectionAutreSousTitre from "../components/tableaudebord/sectionautresoustitre";
 
 const PageTableauDeBord = () => {
   
@@ -12,6 +13,9 @@ const PageTableauDeBord = () => {
         <SectionTitre />
         <SectionSousTitre />
         <SectionSousTitre />
+        <SectionAutreSousTitre />
+        <SectionAutreSousTitre />
+        <SectionAutreSousTitre />
       </div>
     );
   };

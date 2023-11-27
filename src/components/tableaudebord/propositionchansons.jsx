@@ -6,9 +6,9 @@ import "../../assets/scss/components/tableaudebord/propositionchansons.scss"
 const propositionchansons = () => {
   
     return (
-      <div>
-          <h2>propositionchansons</h2>
-      </div>
+      <section className="propositionchansons">
+        <h2>proposition</h2>
+      </section>
     );
   };
 

@@ -10,8 +10,7 @@ const sectiontitre = () => {
     return (
         <section className="containersectiontitre">
             <div>
-                <h1 className="titresectiontitre">titresection</h1>
-                <PropositionChansons />
+                <h1 className="titresectiontitre">titrealbum</h1>
                 <PropositionChansons />
                 <PropositionChansons />
             </div>
