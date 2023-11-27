@@ -6,7 +6,7 @@ import { SongInfoProvider } from "../context/SongInfoContext";
 const LayoutAuth = () => {
   return (
     <SongInfoProvider>
-      <div className="container-fluid">
+      <div className="interface">
         <Nav
           links={[
             { name: "Accueil", url: "/home" },
