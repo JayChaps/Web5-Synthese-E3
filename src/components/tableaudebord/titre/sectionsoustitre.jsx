@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../assets/scss/components/tableaudebord/sectionsoustitre.scss"
+import "../../../assets/scss/components/tableaudebord/sectionsoustitre.scss"
 
 const sectionsoustitre = () => {
   

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../assets/scss/components/tableaudebord/propositionchansons.scss"
+import "../../../assets/scss/components/tableaudebord/propositionchansons.scss"
 
 
 const propositionchansons = () => {

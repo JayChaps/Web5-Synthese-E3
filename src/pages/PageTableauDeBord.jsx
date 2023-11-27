@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../assets/scss/pages/tableaudebord.scss";
 
-import SectionTitre from "../components/tableaudebord/sectiontitre";
-import SectionSousTitre from "../components/tableaudebord/sectionsoustitre";
-import SectionAutreSousTitre from "../components/tableaudebord/sectionautresoustitre";
+import SectionTitre from "../components/tableaudebord/titre/sectiontitre";
+import SectionSousTitre from "../components/tableaudebord/titre/sectionsoustitre";
+import SectionAutreSousTitre from "../components/tableaudebord/titre/sectionautresoustitre";
+import SectionPopulaires from "../components/tableaudebord/populaires/sectionpopulaires";
 
 const PageTableauDeBord = () => {
   
@@ -16,6 +17,7 @@ const PageTableauDeBord = () => {
         <SectionAutreSousTitre />
         <SectionAutreSousTitre />
         <SectionAutreSousTitre />
+        <SectionPopulaires />
       </div>
     );
   };

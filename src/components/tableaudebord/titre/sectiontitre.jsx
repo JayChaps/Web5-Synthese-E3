@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../assets/scss/components/tableaudebord/sectiontitre.scss"
+import "../../../assets/scss/components/tableaudebord/sectiontitre.scss"
 
-import PropositionChansons from "../tableaudebord/propositionchansons";
+import PropositionChansons from "../titre/propositionchansons";
 
 
 const sectiontitre = () => {
