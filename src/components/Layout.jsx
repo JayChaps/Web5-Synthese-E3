@@ -4,10 +4,10 @@ import Nav from "./Nav";
 const Layout = () => {
   return (
     <div className="container-fluid">
-      <Nav/>
+      <Nav />
 
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
     </div>
   );

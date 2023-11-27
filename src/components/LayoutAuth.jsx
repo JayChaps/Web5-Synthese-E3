@@ -14,11 +14,11 @@ const LayoutAuth = () => {
             { name: "Recherche", url: "/search" },
             { name: "Vos playlists", url: "/playlist" },
           ]}
-          />
+        />
 
         <main>
-          <Outlet/>
-          <Playbar/>
+          <Outlet />
+          <Playbar />
         </main>
       </div>
     </SongInfoProvider>
