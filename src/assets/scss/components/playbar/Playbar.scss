@@ -1,3 +1,5 @@
+@import "playbarfull.scss";
+
 .playbar {
   position: fixed;
   bottom: 0;
@@ -7,8 +9,24 @@
   width: 100%;
 
   background-color: var(--noir);
+  
+  &::before{
+    content: "";
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 4px;
+    
+    background-color: var(--rose);
+    box-shadow: 0 -1px 6px 1px rgba(0, 0, 0, 0.274);
 
-  & > .playbar__inner {
+    transform: translateY(-100%);
+  }
+
+  &>.playbar__inner {
     position: relative;
 
     display: grid;
@@ -18,39 +36,79 @@
 
     padding: 0 0.5rem;
 
-    & > section {
+    &>section {
       display: flex;
       align-items: center;
       justify-content: center;
 
       &.playbar__inner__left {
+        position: relative;
+
         display: flex;
         align-items: center;
         justify-content: left;
-        gap: 0.5rem;
 
         & .playbar__inner__left__cover {
           width: 4rem;
           aspect-ratio: 1;
           object-fit: cover;
 
-          border-radius: 50%;
+
+          box-shadow: 0 0 0 1px var(--blanc);
         }
 
         & .playbar__inner__left__info {
+          position: absolute;
+          top: 50%;
+          left: 4.5rem;
+          z-index: -1;
+
           display: flex;
           flex-direction: column;
 
+          width: 100%;
+          
           font-family: "Gotham";
           font-weight: 400;
-          font-size: 1.125rem;
+          font-size: 1rem;
 
-          & :nth-child(1) {
-            color: var(--blanc);
+          overflow: hidden;
+
+          transform: translateY(-50%);
+
+          &::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            transform: translateY(-50%);
+
+            background-image: linear-gradient(to left, var(--noir) 50%, rgba(0, 0, 0, 0));
           }
 
+          & :nth-child(1) {
+            position: relative;
+
+            left: -50%;
+            z-index: -1;
+            
+            white-space: nowrap;
+            color: var(--blanc);
+
+            transition: all 0.5s ease-in-out;
+          }
+          
           & :nth-child(2) {
+
+            font-size: .8rem;
+            font-weight: 300;
             color: var(--gris);
+            white-space: nowrap;
           }
         }
       }
@@ -59,7 +117,7 @@
         justify-self: right;
       }
 
-      &.playbar__inner__center > :first-child{
+      &.playbar__inner__center> :first-child {
         transform: rotate(180deg);
       }
 
@@ -72,22 +130,23 @@
         position: absolute;
         top: 0;
         left: 50%;
+
         width: 100%;
 
-        transform: translateX(-50%) ;
+        transform: translateX(-50%);
 
         & span:first-child {
           text-align: right;
         }
 
-        & span{
+        & span {
           font-family: "Gotham";
           font-weight: 400;
           font-size: 0.75rem;
           color: var(--gris);
         }
 
-        & > .playbar__inner__center__progress__bar{
+        &>.playbar__inner__center__progress__bar {
           position: relative;
           top: -10px;
           left: 0;
@@ -96,9 +155,10 @@
           height: 10px;
 
           border-radius: 1rem;
-          background-color: var(--rose);
+          border: 1px solid var(--blanc);
+          background-color: var(--blanc);
 
-          & .playbar__inner__center__progress__bar__inner{
+          & .playbar__inner__center__progress__bar__inner {
             position: absolute;
             top: 0;
             left: 0;
@@ -107,9 +167,9 @@
             height: 100%;
 
             border-radius: 1rem;
-            background-color: var(--blanc);
 
-            &::after{
+
+            &::after {
               content: "";
               position: absolute;
               top: 0;
@@ -119,11 +179,10 @@
               height: 100%;
 
               border-radius: 1rem;
-              background-color: var(--blanc);
-              background-image: linear-gradient(to left, var(--blanc), var(--gris));
+              background-color: var(--rose);
             }
 
-            &::before{
+            &::before {
               content: "";
               position: absolute;
               z-index: 1;

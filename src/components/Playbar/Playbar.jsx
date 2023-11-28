@@ -3,8 +3,8 @@ import { FaPlayCircle } from "react-icons/fa";
 import { BiSolidSkipNextCircle } from "react-icons/bi";
 import { BiHeart } from "react-icons/bi";
 import { GrAddCircle } from "react-icons/gr";
-import { useAudio, useAudioProgress } from "../context/audiotim";
-import { SongInfoContext } from "../context/SongInfoContext";
+import { useAudio, useAudioProgress } from "../../context/audiotim";
+import { SongInfoContext } from "../../context/SongInfoContext";
 
 const Playbar = () => {
   const {
