@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../assets/scss/components/tableaudebord/sectionsoustitre.scss"
 import { FaPlayCircle } from "react-icons/fa";
 
 const sectionsoustitre = () => {

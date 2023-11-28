@@ -1,7 +1,5 @@
 .titrealbumspopulaire{
-    font-family: 'Gotham';
-    font-weight: 600;
-    font-size: 20px;
+    @include p;
     padding: 20px;
     color: var(--grisFonce);
 }

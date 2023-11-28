@@ -1,21 +1,18 @@
-.titrelistedelecture{
-  z-index: 2;
-  padding: 20px;
-  color: var(--grisFonce);
-  @include h4;
-}
-
 .container-listes-de-lecture{
-    position: relative;
-    display: inline-block;
-    margin: 20px;
-    height: 200px;
-    width: 200px;
-    background-color: var(--blanc);
-    border-radius: 20px;
-}
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  height: 200px;
+  width: 200px;
+  background-color: var(--blanc);
+  border-radius: 20px;
 
-.image-container {
+  .titre-liste{
+    @include p;
+    padding: 20px;
+    color: var(--grisFonce);
+  }
+  .image-container-liste {
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -31,11 +28,12 @@
     height: 100%;
     object-fit: cover; 
   }
+}
 
-  .play-icon-listes-de-lecture{
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-  }
+
+.play-icon-listes-de-lecture{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}

@@ -1,5 +1,4 @@
 .titre-listesdelecture{
-    font-family: 'Gotham';
-    font-weight: 900;
+    @include h2;
     text-align: center;
 }

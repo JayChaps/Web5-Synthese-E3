@@ -11,8 +11,7 @@
 }
 
 .titresectiontitre{
-    font-family: 'Gotham';
-    font-weight: 900;
+    @include h3;
     padding: 20px;
     color: white;
 }

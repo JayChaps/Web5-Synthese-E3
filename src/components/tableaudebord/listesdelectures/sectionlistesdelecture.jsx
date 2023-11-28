@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../assets/scss/components/tableaudebord/sectionlistesdelecture.scss"
 import ListesdeLecture from "../listesdelectures/listesdelecture";
 
 const sectionlistesdelecture = () => {

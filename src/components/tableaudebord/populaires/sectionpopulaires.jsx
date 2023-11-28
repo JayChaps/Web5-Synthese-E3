@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../assets/scss/components/tableaudebord/sectionpopulaires.scss"
 
 import AlbumsPopulaires from "../populaires/albumspopulaires";
 

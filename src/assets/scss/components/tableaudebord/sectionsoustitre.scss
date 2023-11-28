@@ -10,8 +10,7 @@
 }
 
 .titresectionsoustitre{
-    font-family: 'Gotham';
-    font-weight: 300;
+    @include h4;
     padding: 20px;
     color: white;
 }

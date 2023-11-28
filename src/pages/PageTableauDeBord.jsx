@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/scss/pages/tableaudebord.scss";
+
 
 import SectionTitre from "../components/tableaudebord/titre/sectiontitre";
 import SectionSousTitre from "../components/tableaudebord/titre/sectionsoustitre";
