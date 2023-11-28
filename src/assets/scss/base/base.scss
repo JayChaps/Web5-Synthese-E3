@@ -5,15 +5,13 @@
 html {
   height: 100%;
   box-sizing: border-box;
-  font-family: [typo et son plan «B»];
   font-size: 16px;
 }
 body {
   height: 100%;
 }
 div.interface {
-  /* Ou autre balise englobant la page */
-  min-height: 100%;
+  min-height: 100vh;
 }
 *,
 *::before,
@@ -21,4 +19,12 @@ div.interface {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+img,
+picture,
+svg,
+video {
+  max-width: 100%;
+  display: block;
 }

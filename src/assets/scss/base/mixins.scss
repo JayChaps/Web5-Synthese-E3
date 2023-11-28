@@ -3,3 +3,39 @@
     @content;
   }
 }
+
+@mixin h1 {
+  font-family: "Gotham";
+  font-weight: 900;
+  font-size: 5.625rem;
+}
+
+@mixin h2 {
+  font-family: "Gotham";
+  font-weight: 700;
+  font-size: 4.375rem;
+}
+
+@mixin h3 {
+  font-family: "Gotham";
+  font-weight: 500;
+  font-size: 3rem;
+}
+
+@mixin h4 {
+  font-family: "Gotham";
+  font-weight: 500;
+  font-size: 2.25rem;
+}
+
+@mixin navbouton {
+  font-family: "Gotham";
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+@mixin p {
+  font-family: "Gotham";
+  font-weight: 400;
+  font-size: 1.125rem;
+}
