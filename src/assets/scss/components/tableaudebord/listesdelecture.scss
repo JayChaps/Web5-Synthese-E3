@@ -1,10 +1,8 @@
 .titrelistedelecture{
-    z-index: 2;
-    font-family: 'Gotham';
-    font-weight: 600;
-    font-size: 20px;
-    padding: 20px;
-    color: var(--grisFonce);
+  z-index: 2;
+  padding: 20px;
+  color: var(--grisFonce);
+  @include h4;
 }
 
 .container-listes-de-lecture{
@@ -17,7 +15,7 @@
     border-radius: 20px;
 }
 
-.image-container-liste {
+.image-container {
     position: relative;
     overflow: hidden;
     width: 100%;
