@@ -35,27 +35,23 @@ const Playbar = () => {
           <div className="playbar__inner__left__cover">
             <img src={songInfo.coverUrl} alt="cover" />
           </div>
-          <span>{songInfo.title}</span>
-          <span>{songInfo.artist}</span>
+          <div className="playbar__inner__left__info">
+            <span>{songInfo.title}</span>
+            <span>{songInfo.artist}</span>
+          </div>
         </section>
         <section className="playbar__inner__center">
-          <button className="playbar__inner__center__buttons__previous">
-            <BiSolidSkipNextCircle />
-          </button>
-          <button className="playbar__inner__center__buttons__play">
-            <FaPlayCircle />
-          </button>
-          <button className="playbar__inner__center__buttons__next">
-            <BiSolidSkipNextCircle />
-          </button>
+          <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
+          <FaPlayCircle
+            onClick={handlePlayPause}
+            size={"4rem"}
+            color="var(--blanc)"
+          />
+          <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
-          <button className="playbar__inner__right__buttons__like">
-            <BiHeart />
-          </button>
-          <button className="playbar__inner__right__buttons__add">
-            <GrAddCircle />
-          </button>
+          <BiHeart size={"3.5rem"} color="var(--rose)" />
+          <GrAddCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__center__progress">
           <span>
