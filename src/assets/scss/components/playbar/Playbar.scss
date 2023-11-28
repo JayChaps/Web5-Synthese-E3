@@ -1,3 +1,5 @@
+@import "playbarfull.scss";
+
 .playbar {
   position: fixed;
   bottom: 0;
@@ -7,6 +9,22 @@
   width: 100%;
 
   background-color: var(--noir);
+  
+  &::before{
+    content: "";
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 4px;
+    
+    background-color: var(--rose);
+    box-shadow: 0 -1px 6px 1px rgba(0, 0, 0, 0.274);
+
+    transform: translateY(-100%);
+  }
 
   &>.playbar__inner {
     position: relative;
@@ -112,6 +130,7 @@
         position: absolute;
         top: 0;
         left: 50%;
+
         width: 100%;
 
         transform: translateX(-50%);
@@ -136,7 +155,8 @@
           height: 10px;
 
           border-radius: 1rem;
-          background-color: var(--rose);
+          border: 1px solid var(--blanc);
+          background-color: var(--blanc);
 
           & .playbar__inner__center__progress__bar__inner {
             position: absolute;
@@ -147,7 +167,7 @@
             height: 100%;
 
             border-radius: 1rem;
-            background-color: var(--blanc);
+
 
             &::after {
               content: "";

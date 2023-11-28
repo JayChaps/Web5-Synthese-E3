@@ -1,7 +1,13 @@
 const PlaybarFull = () => {
 
 
-    return <div>Page playbar</div>
+    return (
+        <div className="playbarfull">
+            <div className="playbarfull__inner">
+                
+            </div>
+        </div>
+    )
 }
 
 export default PlaybarFull
