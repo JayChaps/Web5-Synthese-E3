@@ -1,0 +1,24 @@
+.containersectiontitre{
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    width: 430px;
+    background-color: var(--grisFonce);
+    border-radius: 20px;
+  
+}
+
+.titresectiontitre{
+    @include h3;
+    padding: 20px;
+    color: white;
+}
+
+.play-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+  }

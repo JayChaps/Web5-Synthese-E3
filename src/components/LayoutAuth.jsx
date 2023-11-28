@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
-import Playbar from "./Playbar";
+import Playbar from "./Playbar/Playbar";
 import { SongInfoProvider } from "../context/SongInfoContext";
 
 const LayoutAuth = () => {
   return (
     <SongInfoProvider>
-      <div className="container-fluid">
+      <div className="interface">
         <Nav
           links={[
             { name: "Accueil", url: "/home" },
@@ -14,11 +14,11 @@ const LayoutAuth = () => {
             { name: "Recherche", url: "/search" },
             { name: "Vos playlists", url: "/playlist" },
           ]}
-          />
+        />
 
         <main>
-          <Outlet/>
-          <Playbar/>
+          <Outlet />
+          <Playbar />
         </main>
       </div>
     </SongInfoProvider>
