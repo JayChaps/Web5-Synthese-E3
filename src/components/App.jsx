@@ -1,4 +1,4 @@
-import { Navigate, RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter, useNavigate,Link, Outlet } from 'react-router-dom';
 import Layout from './Layout';
 import LayoutAuth from './LayoutAuth';
 import RechercheDeezer from '../pages/RechercheDeezer';
@@ -6,7 +6,9 @@ import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from 'react';
 import Playlist from '../pages/Playlist';
 import { AudioProvider, useAudio } from '../context/audiotim';
+import { PlaylistsProvider } from '../context/playlistsContext';
 import Profil from './Profil';
+import DecouverteArtiste from './DecouverteArtiste';
 
 
 const Routes = () =>{
@@ -35,7 +37,14 @@ const Routes = () =>{
                 {
                     path: 'home',
                     element: (
-                        <h1>Home</h1>
+                        <>
+                            <h1>Home</h1>
+                            <Link to={`/artist/13`}>
+                                <h1>redirect</h1>
+                            </Link>
+                        </>
+                        
+                        
                     )
                 },
                 {
@@ -49,6 +58,16 @@ const Routes = () =>{
                     path: 'playlist',
                     element: <Playlist />,
                 }, 
+                {
+                    path: 'artist',
+                    element: <Outlet/>,
+                    children:[
+                        {
+                            path:':idArtist',
+                            element:<DecouverteArtiste/>,
+                        }
+                    ]
+                },
             ]
         },
         {
@@ -68,9 +87,11 @@ const App = () => {
 
     return (
         <AudioProvider>
-            <AuthProvider>
-                <Routes/>
-            </AuthProvider>
+            <PlaylistsProvider>
+                <AuthProvider>
+                    <Routes/>
+                </AuthProvider>
+            </PlaylistsProvider>
         </AudioProvider>
     );
 
