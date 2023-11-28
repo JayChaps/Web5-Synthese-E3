@@ -14,6 +14,7 @@ const sectiontitre = () => {
                 <FaPlayCircle
                     size={"4rem"}
                     color="var(--blanc)"
+                    className="play-icon"
                 />
                 <h1 className="titresectiontitre">titrealbum</h1>
                 <PropositionChansons />

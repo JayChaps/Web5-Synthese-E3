@@ -11,6 +11,7 @@ const sectionsoustitre = () => {
             <FaPlayCircle
                     size={"3rem"}
                     color="var(--blanc)"
+                    className="play-icon-sous-titre"
             />
                 <h2 className="titresectionsoustitre">titrealbum</h2>
             </div>

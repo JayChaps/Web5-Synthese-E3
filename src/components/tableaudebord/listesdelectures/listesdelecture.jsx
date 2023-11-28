@@ -1,27 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../assets/scss/components/tableaudebord/albumspopulaires.scss"
+
+import "../../../assets/scss/components/tableaudebord/listesdelecture.scss"
+
 import { FaPlayCircle } from "react-icons/fa";
 
-
-const albumspopulaires = () => {
+const listesdelectures = () => {
   
     return (
-        <section className="container-albums-populaires">
+        <section className="container-listes-de-lecture">
             <div>
-                <h2 className="titrealbumspopulaire">Chanson/Album</h2>
+                <h2 className="titrelistedelecture">Liste de lecture</h2>
             </div>
             <div>
                 <FaPlayCircle
                     size={"3rem"}
                     color="var(--noir)"
-                    className="play-icon-populaires"
+                    className="play-icon-listes-de-lecture"
                 />
             </div>
-            <div className="image-container">
+            <div className="image-container-liste">
                 <img
                     src="src\assets\jpg\placeholder.jpg" // Changer ici
-                    alt="populaires"
+                    alt="listedelecture"
                     className="cover-mask"
                />
       </div>
@@ -31,4 +32,4 @@ const albumspopulaires = () => {
   };
 
 
-export default albumspopulaires;
+export default listesdelectures;
