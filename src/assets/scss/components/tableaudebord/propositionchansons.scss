@@ -1,0 +1,20 @@
+.propositionchansons{
+    position: relative;
+    width: 200px;
+    margin: 20px;
+    padding: 0.2rem;
+    border-radius: 20px;
+    background-color: var(--blanc);
+
+    h2{
+        @include h4;
+    }
+}
+
+.play-icon-propositions{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+  }

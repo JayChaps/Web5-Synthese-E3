@@ -2,6 +2,7 @@ import { Navigate, RouterProvider, createBrowserRouter, useNavigate } from 'reac
 import Layout from './Layout';
 import LayoutAuth from './LayoutAuth';
 import RechercheDeezer from '../pages/RechercheDeezer';
+import PageTableauDeBord from '../pages/PageTableauDeBord';
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from 'react';
 import Playlist from '../pages/Playlist';
@@ -33,9 +34,8 @@ const Routes = () =>{
                 },
                 {
                     path: 'home',
-                    element: (
-                        <h1>Home</h1>
-                    )
+                    element: <PageTableauDeBord />,
+                    
                 },
                 {
                     path: 'profil',
