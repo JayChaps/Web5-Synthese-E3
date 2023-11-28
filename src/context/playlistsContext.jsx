@@ -40,6 +40,7 @@ const PlaylistsProvider = ({ children }) => {
 
     // Ajout d'une chanson à une playlist
     const addToPlaylist = async (song) => {
+        console.log(selectedPlaylistId, song);
         if (selectedPlaylistId && selectedPlaylistId.trim() !== '') {
             const playlistRef = doc(db, "playlists", selectedPlaylistId);
 
@@ -47,11 +48,12 @@ const PlaylistsProvider = ({ children }) => {
             console.log("SongToAdd: "+songToAdd);
             // const songToAdd = selectedSong;
 
-            await setDoc(playlistRef, {
-                songs: arrayUnion(songToAdd)
-            }, { merge: true });
+            // await setDoc(playlistRef, {
+            //     songs: arrayUnion(songToAdd)
+            // }, { merge: true });
             console.log("Document successfully updated!");
-        } else {
+        } 
+        else {
             console.error("Error updating document");
         }
     }
