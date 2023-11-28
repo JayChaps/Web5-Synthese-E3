@@ -8,8 +8,15 @@ const albumspopulaires = () => {
     return (
         <section className="container-albums-populaires">
             <div>
-                <h2 className="titrealbumspopulaire">Populaires</h2>
+                <h2 className="titrealbumspopulaire">Chanson/Album</h2>
             </div>
+            <div className="image-container">
+                <img
+                    src="src\assets\jpg\placeholder.jpg" // Changer ici
+                    alt="populaires"
+                    className="cover-mask"
+               />
+      </div>
 
         </section>
     );
