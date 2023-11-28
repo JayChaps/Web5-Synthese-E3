@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaPlayCircle } from "react-icons/fa";
+import { FaPauseCircle } from "react-icons/fa";
+import { BsShuffle } from "react-icons/bs";
+import { RxLoop } from "react-icons/rx";
 import { BiSolidSkipNextCircle } from "react-icons/bi";
 import { BiHeart } from "react-icons/bi";
 import { GrAddCircle } from "react-icons/gr";
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
 
+import PlaybarFull from "./PlaybarFull";
 const Playbar = () => {
   const {
     play,
@@ -30,8 +34,20 @@ const Playbar = () => {
 
   return (
     <aside className="playbar">
+
+      {/* Mettre le composant PlaybarFull si on clique quelque part */}
+      <PlaybarFull />
       <div className="playbar__inner">
+
+
         <section className="playbar__inner__left">
+          <div className="iconeShuffleLoop">
+            <BsShuffle size={"2rem"} color="var(--noir)" />
+          </div>
+          <div className="iconeShuffleLoop">
+            <RxLoop size={"2rem"} color="var(--noir)" />
+          </div>
+
           <div className="playbar__inner__left__cover">
             <img src={songInfo.coverUrl} alt="cover" />
           </div>
@@ -42,6 +58,8 @@ const Playbar = () => {
         </section>
         <section className="playbar__inner__center">
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
+
+          {/* changer icone si en play ou en pause */}
           <FaPlayCircle
             onClick={handlePlayPause}
             size={"4rem"}
