@@ -62,11 +62,14 @@ const Playbar = () => {
             className="playbar__inner__center__progress__bar"
             style={{ width: `${(duration / duration) * 100}%` }}
           >
-            --------------------------------------
             <div
               className="playbar__inner__center__progress__bar__inner"
               style={{ width: `${progress * 100}%` }}
-            ></div>
+            >
+              <div className="draggable">
+
+              </div>
+            </div>
           </div>
           <span>{duration}</span>
         </section>
