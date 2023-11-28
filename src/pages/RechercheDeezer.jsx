@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import {Link} from 'react-router-dom';
 import fetchJsonp from "fetch-jsonp";
 import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
@@ -167,16 +168,21 @@ const RechercheDeezer = () => {
             </div>
 
             <ul>
-                {searchResults.map((result, index) => (
-                    <li key={index}>
+                {searchResults.map((result, index) => {
+                    return(
+                        <li key={index}>
                         <h2>{result.title}</h2>
-                        <p>{result.artist.name}</p>
+                        <Link to={`/artist/${result.artist.id}`}>
+                            <p>{result.artist.name}</p>
+                        </Link>
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
                         <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
                         {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
                         <button onClick={() => handlePlaySong(result)}>Lire</button>
                     </li>
-                ))}
+                    )
+                    
+                    })}
             </ul>
         </div>
     );

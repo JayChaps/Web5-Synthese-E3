@@ -1,0 +1,7 @@
+.topSongs{
+    display: flex;
+}
+.topSongs img{
+    width: 3%;
+    height: 3%;
+}
