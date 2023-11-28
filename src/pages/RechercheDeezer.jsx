@@ -1,23 +1,38 @@
+// RechercheDeezer.jsx : 
 import React, { useState, useEffect, useContext } from "react";
 import {Link} from 'react-router-dom';
 import fetchJsonp from "fetch-jsonp";
-import LayoutAuth from "../components/LayoutAuth";
+// import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc } from "firebase/firestore";
-import { useAudio } from "../context/audiotim";
+// import { useAudio } from "../context/audiotim";
 import { SongInfoContext } from "../context/SongInfoContext";
+// import { useSongInfo } from "../context/SongInfoContext";
+import { PlaylistsContext } from "../context/playlistsContext";
+import { PlaylistSelector } from "../components/PlaylistSelector";
+
+
 
 const RechercheDeezer = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
-    const [playlist, setPlaylist] = useState([]);
-    const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
-    const [newPlaylistName, setNewPlaylistName] = useState('');
-    const [filter,setFilter] = useState("");
+    const [filter, setFilter] = useState("");
+    // const { estActif, setActif } = PlaylistSelector();
+    const [selectorActif, setSelectorActif] = useState(false);
 
-    const { changeSource, play, pause } = useAudio();
-    const { songInfo, updateSongInfo } = useContext(SongInfoContext);
+
+    // const { changeSource, play, pause } = useAudio();
+    const { handlePlaySong } = useContext(SongInfoContext);
+    const { createNewPlaylist, deletePlaylist, 
+            addToPlaylist, removeSongFromPlaylist, 
+            newPlaylistName, setNewPlaylistName, 
+            selectedPlaylistId, setSelectedPlaylistId,
+            fetchPlaylists, fetchPlaylist, 
+            playlists, setPlaylists, 
+            playlist, setPlaylist,
+            selectedSong, setSelectedSong,
+            createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
 
     const searchFilters = ["artist","album","track"]
 
@@ -47,66 +62,15 @@ const RechercheDeezer = () => {
             });
     };
 
-    const handlePlaySong = (song) => {
-        changeSource(song.preview); // Définit la source de la chanson
-        updateSongInfo({
-            title: song.title,
-            artist: song.artist.name,
-            coverUrl: song.album.cover
-        });
-    };
+    // useEffect(() => {
+    //     console.log("SelectedSong: "+ {selectedSong});
+    // }, [selectedSong, selectorActif]);
 
+    // Récupération de la playlist
     useEffect(() => {
-        const fetchPlaylist = async () => {
-            const querySnapshot = await getDocs(collection(db, "playlists"));
-            setPlaylist(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        };
         fetchPlaylist();
-    }, [newPlaylistName]);
-
-    // const addToPlaylist = async (song) => {
-    //     try {
-    //         const playlistRef = doc(db, "playlists", "playlist3");
-
-    //         const songToAdd = { id: song.id, title: song.title, };
-
-    //         // await setDoc(playlistRef, {
-    //         //     songs: arrayUnion(song)
-    //         // });
-    //         await setDoc(playlistRef, {
-    //             songs: arrayUnion(songToAdd)
-    //         }, { merge: true });
-    //         console.log("Document successfully updated!");
-    //     } catch (e) {
-    //         console.error("Error updating document: ", e);
-    //     }
-    // }
-
-    const addToPlaylist = async (song) => {
-        if (selectedPlaylistId) {
-            const playlistRef = doc(db, "playlists", selectedPlaylistId);
-
-            const songToAdd = { id: song.id, title: song.title, };
-
-            await setDoc(playlistRef, {
-                songs: arrayUnion(songToAdd)
-            }, { merge: true });
-            console.log("Document successfully updated!");
-        } else {
-            console.error("Error updating document: ", e);
-        }
-    }
-
-    // Ajout d'une nouvelle playlist
-    const createNewPlaylist = async () => {
-        if (newPlaylistName.trim() !== '') {
-            await addDoc(collection(db, "playlists"), {
-                name: newPlaylistName,
-                songs: []
-            });
-            setNewPlaylistName(''); // Reset le nom après création
-        }
-    };
+    }, [newPlaylistName, playlists, createNewPlaylist]);
+    
 
     const filters = (e) => {
         setFilter("");
@@ -114,19 +78,13 @@ const RechercheDeezer = () => {
         console.log(e.target.value);
     }
 
-    // // Fetch the lyrics using https://www.deezer.com/ajax/gw-light.php?method=song.getLyrics&api_version=1.0&api_token=_TESoTTYiz5BU7nrOONE1DJjaoQml8.p&sng_id=[SONG_ID] :
-    // const fetchLyrics = async (songId) => {
-    //     const url = `https://www.deezer.com/ajax/gw-light.php?method=song.getLyrics&api_version=1.0&api_token=_TESoTTYiz5BU7nrOONE1DJjaoQml8.p&sng_id=${songId}`;
-    //     console.log("url " + url);
-    //     const response = await fetch(url);
-    //     console.log("response " + response);
-    //     const data = await response.json();
-    //     console.log("data " + data);
-    //     const lyrics = data.results.LYRICS_TEXT;
-    //     console.log("lyrics " + lyrics);
-    //     return lyrics;
-    // }
-
+    const handlePlaylistSelector = (song) => {
+        setSelectorActif(!selectorActif);
+        if (!selectorActif) {
+            setSelectedSong(song);
+        }
+        console.log(selectedSong);
+    }
 
     return (
         <div>
@@ -145,28 +103,6 @@ const RechercheDeezer = () => {
                 <button onClick={handleSearch}>Rechercher</button>
             </div>
 
-
-            <select
-                value={selectedPlaylistId}
-                onChange={(e) => setSelectedPlaylistId(e.target.value)}
-            >
-                <option value="">Choisir une playlist</option>
-                {playlist.map((playlist) => (
-                    <option key={playlist.id} value={playlist.id}>{playlist.name}</option>
-                ))}
-            </select>
-
-            {/* Création d'une nouvelle playlist */}
-            <div>
-                <input
-                    type="text"
-                    value={newPlaylistName}
-                    onChange={(e) => setNewPlaylistName(e.target.value)}
-                    placeholder="Nom de la nouvelle playlist"
-                />
-                <button onClick={createNewPlaylist}>Créer une playlist</button>
-            </div>
-
             <ul>
                 {searchResults.map((result, index) => {
                     return(
@@ -176,7 +112,15 @@ const RechercheDeezer = () => {
                             <p>{result.artist.name}</p>
                         </Link>
                         <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
-                        <button onClick={() => addToPlaylist(result)}>Ajouter à la playlist</button>
+                        <button onClick={() => handlePlaylistSelector(result)}>Ajouter à la playlist</button>
+                        {selectorActif && (
+                                <PlaylistSelector 
+                                    estActif = {selectorActif} 
+                                    setActif = {setSelectorActif}
+                                    theSong = {result}
+                                />
+                            )
+                        }
                         {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
                         <button onClick={() => handlePlaySong(result)}>Lire</button>
                     </li>
