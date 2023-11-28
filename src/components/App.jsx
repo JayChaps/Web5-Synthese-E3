@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from 'react';
 import Playlist from '../pages/Playlist';
 import { AudioProvider, useAudio } from '../context/audiotim';
+import { PlaylistsProvider } from '../context/playlistsContext';
 import Profil from './Profil';
 
 
@@ -68,9 +69,11 @@ const App = () => {
 
     return (
         <AudioProvider>
-            <AuthProvider>
-                <Routes/>
-            </AuthProvider>
+            <PlaylistsProvider>
+                <AuthProvider>
+                    <Routes/>
+                </AuthProvider>
+            </PlaylistsProvider>
         </AudioProvider>
     );
 
