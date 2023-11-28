@@ -1,13 +1,17 @@
 const PlaybarFull = () => {
+  return (
+    <div className="playbarfull">
+      <div className="playbarfull__inner">
+        <section className="infoChanson">
+          {/* Redirection album */}
+          <h2 className="titreChanson">Titre</h2>
+          {/* redirection découvert artiste */}
+          <h2 className="artisteChanson">Album</h2>
+        </section>
+        <section className="aniamtionLecteur"></section>
+      </div>
+    </div>
+  );
+};
 
-
-    return (
-        <div className="playbarfull">
-            <div className="playbarfull__inner">
-                
-            </div>
-        </div>
-    )
-}
-
-export default PlaybarFull
+export default PlaybarFull;

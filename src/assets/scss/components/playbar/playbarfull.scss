@@ -1,7 +1,32 @@
-.playbarfull{
+.playbarfull {
     position: relative;
     z-index: 1;
     width: 100%;
 
-    background-color: var(--mauve);
+    background-color: var(--blanc);
+
+    & .infoChanson {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1rem 1rem 0 2rem;
+
+        & .titreChanson {
+            @include h2;
+
+            padding: 0;
+            margin: 0;
+
+            color: var(--mauve);
+        }
+
+        & .artisteChanson {
+            @include h4;
+
+            padding: 0;
+            margin: 0;
+
+            color: var(--gris);
+        }
+    }
 }
