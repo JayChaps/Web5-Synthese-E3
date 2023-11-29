@@ -35,7 +35,7 @@ const Playbar = () => {
   return (
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
-      {/* <PlaybarFull /> */}
+      <PlaybarFull />
       <div className="playbar__inner">
         <section className="playbar__inner__left">
           <div className="iconeShuffleLoop">
