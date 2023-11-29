@@ -1,0 +1,23 @@
+.containersectionsoustitre{
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+    height: 200px;
+    width: 200px;
+    background-color: #222C32;
+    border-radius: 20px;
+  
+}
+
+.titresectionsoustitre{
+    @include h4;
+    padding: 20px;
+    color: white;
+}
+
+.play-icon-sous-titre {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 15px;
+  }

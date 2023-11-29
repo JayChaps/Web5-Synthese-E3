@@ -1,0 +1,75 @@
+.playbarfull {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+
+    background-color: var(--blanc);
+
+    & .infoChanson {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1rem 1rem 0 2rem;
+
+        & .titreChanson {
+            @include h2;
+
+            padding: 0;
+            margin: 0;
+
+            color: var(--mauve);
+        }
+
+        & .artisteChanson {
+            @include h4;
+
+            padding: 0;
+            margin: 0;
+
+            color: var(--gris);
+        }
+    }
+
+    & .animationLecteur {
+        position: relative;
+
+        & > span {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 2px;
+
+            &:nth-child(1) {
+                z-index: 10;
+                background-color: var(--rose);
+            }
+
+            &:nth-child(2) {
+                z-index: 9;
+                background-color: var(--mauve);
+            }
+
+            &:nth-child(3) {
+                z-index: 8;
+                background-color: var(--gris);
+            }
+
+            &:nth-child(4) {
+                z-index: 7;
+                background-color: var(--blanc);
+            }
+
+            &:nth-child(5) {
+                z-index: 6;
+                background-color: var(--mauve);
+            }
+
+            &:nth-child(6) {
+                z-index: 5;
+                background-color: var(--rose);
+            }
+        }
+    }
+}

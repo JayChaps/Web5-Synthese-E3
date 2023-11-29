@@ -3,11 +3,11 @@ import Nav from "./Nav";
 
 const Layout = () => {
   return (
-    <div className="container-fluid">
-      <Nav/>
+    <div className="interface">
+      <Nav />
 
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
     </div>
   );
