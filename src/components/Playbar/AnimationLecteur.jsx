@@ -28,7 +28,7 @@ const AnimationLecteur = () => {
     audioLoader.load(music, function (buffer) {
       sound.setBuffer(buffer);
       sound.setLoop(true);
-      sound.setVolume(0.5);
+      sound.setVolume(200);
     });
 
     window.addEventListener("click", () => {
