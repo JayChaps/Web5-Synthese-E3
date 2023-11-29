@@ -35,6 +35,7 @@ const Playbar = () => {
   return (
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
+      {/* A enlever pour voir */}
       <PlaybarFull />
       <div className="playbar__inner">
         <section className="playbar__inner__left">

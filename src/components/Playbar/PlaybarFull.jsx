@@ -1,4 +1,5 @@
 import AnimationLecteur from "./AnimationLecteur";
+import ChansonsSuivantes from "./ChansonsSuivantes";
 
 const PlaybarFull = () => {
   return (
@@ -10,9 +11,8 @@ const PlaybarFull = () => {
           {/* redirection découvert artiste */}
           <h2 className="artisteChanson">Album</h2>
         </section>
-        <section className="animationLecteur">
-          <AnimationLecteur />
-        </section>
+        <AnimationLecteur />
+        <ChansonsSuivantes />
       </div>
     </div>
   );
