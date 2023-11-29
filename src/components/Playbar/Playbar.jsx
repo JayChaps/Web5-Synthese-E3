@@ -34,12 +34,9 @@ const Playbar = () => {
 
   return (
     <aside className="playbar">
-
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
-      <PlaybarFull />
+      {/* <PlaybarFull /> */}
       <div className="playbar__inner">
-
-
         <section className="playbar__inner__left">
           <div className="iconeShuffleLoop">
             <BsShuffle size={"2rem"} color="var(--noir)" />
@@ -84,9 +81,7 @@ const Playbar = () => {
               className="playbar__inner__center__progress__bar__inner"
               style={{ width: `${progress * 100}%` }}
             >
-              <div className="draggable">
-
-              </div>
+              <div className="draggable"></div>
             </div>
           </div>
           <span>{duration}</span>
