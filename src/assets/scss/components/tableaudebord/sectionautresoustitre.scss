@@ -1,0 +1,24 @@
+.containersectionautresoustitre{
+    position: relative;
+    display: inline-block;
+    height: 125px;
+    width: 125px;
+    margin: 17px;
+    background-color: #222C32;
+    border-radius: 20px;
+  
+}
+
+.titresectionautresoustitre{
+    @include p;
+    padding: 20px;
+    color: white;
+    
+}
+
+.play-icon-autre-sous-titre{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}

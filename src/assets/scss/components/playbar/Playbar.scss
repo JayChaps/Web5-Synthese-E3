@@ -4,16 +4,16 @@
   display: grid;
   grid-template-rows: 1fr auto;
 
-
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 1000000;
 
   width: 100%;
 
   &:has(.playbarfull) {
     height: 100vh;
-    .iconeShuffleLoop{
+    .iconeShuffleLoop {
       display: inline-block !important;
     }
     & .playbar__inner__center__progress {
@@ -22,11 +22,11 @@
 
     & .playbar__inner__left {
       justify-self: center;
-      gap: .5rem;
+      gap: 0.5rem;
 
-      & > div{
-        padding: .5rem;
-        
+      & > div {
+        padding: 0.5rem;
+
         border-radius: 50%;
         background-color: var(--blanc);
       }
@@ -38,8 +38,7 @@
     }
   }
 
-
-  &>.playbar__inner {
+  & > .playbar__inner {
     position: relative;
     z-index: 10;
     display: grid;
@@ -51,8 +50,7 @@
 
     background-color: var(--noir);
 
-
-    & .iconeShuffleLoop{
+    & .iconeShuffleLoop {
       display: none;
     }
     &::before {
@@ -71,7 +69,7 @@
       transform: translateY(-100%);
     }
 
-    &>section {
+    & > section {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -84,13 +82,11 @@
         display: flex;
         align-items: center;
         justify-content: left;
-        
 
         & .playbar__inner__left__cover {
           width: 4rem;
           aspect-ratio: 1;
           object-fit: cover;
-
 
           box-shadow: 0 0 0 1px var(--blanc);
         }
@@ -142,8 +138,7 @@
           }
 
           & :nth-child(2) {
-
-            font-size: .8rem;
+            font-size: 0.8rem;
             font-weight: 300;
             color: var(--gris);
             white-space: nowrap;
@@ -156,15 +151,14 @@
         justify-self: right;
       }
 
-      &.playbar__inner__center> :first-child {
+      &.playbar__inner__center > :first-child {
         transform: rotate(180deg);
       }
-
 
       &.playbar__inner__center__progress {
         display: grid;
         grid-template-columns: 1fr 70% 1fr;
-        gap: .5rem;
+        gap: 0.5rem;
 
         position: absolute;
         top: 0;
@@ -185,7 +179,7 @@
           color: var(--gris);
         }
 
-        &>.playbar__inner__center__progress__bar {
+        & > .playbar__inner__center__progress__bar {
           position: relative;
           top: -10px;
           left: 0;
@@ -206,7 +200,6 @@
             height: 100%;
 
             border-radius: 1rem;
-
 
             &::after {
               content: "";
