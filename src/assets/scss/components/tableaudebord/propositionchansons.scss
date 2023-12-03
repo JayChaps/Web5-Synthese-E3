@@ -1,20 +1,67 @@
-.propositionchansons{
+.propositionchansons {
     position: relative;
-    width: 200px;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
     margin: 20px;
-    padding: 0.2rem;
-    border-radius: 20px;
-    background-color: var(--blanc);
-
-    h2{
-        @include h4;
+    padding: 0.1rem;
+    background-color: var(--noir);
+    align-items: center;
+  
+    .left {
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+  
+      img {
+        margin-left: 10px;
+        width: 25px;
+        height: 25px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
     }
-}
-
-.play-icon-propositions{
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 5px;
+  
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+      height: 100%;
+  
+      .song-name {
+        @include p;
+        font-weight: bold;
+        margin: auto 0;
+      }
+  
+      .artist-name {
+        @include p;
+        color: var(--grisClair);
+        margin: auto 0;
+      }
+  
+      .play-icon-propositions {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 2.5px;
+      }
+    }
+  
+    .right {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+  
+      .like-icon,
+      .add-icon {
+        margin: 2.5px;
+        cursor: pointer;
+      }
+    }
   }
+  
+  
+  
