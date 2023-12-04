@@ -30,8 +30,13 @@ const Nav = ({ links }) => {
             <Link to={url}>{name}</Link>
           </li>
         ))}
+        {user === null && (
+          <div>
+            <p>composant page</p>
+          </div>
+        )}
         <button onClick={user === null ? googleSignIn : logOut}>
-          {user === null ? "Se connecter" : "Se déconnecter"}
+          {user === null ? "Se connecter avec Google" : "Se déconnecter"}
         </button>
       </ul>
     </nav>
