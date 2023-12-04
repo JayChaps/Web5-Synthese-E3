@@ -9,7 +9,6 @@ const LayoutAuth = () => {
       <div className="container-fluid">
         <Nav
           links={[
-            { name: "Accueil", url: "/home" },
             { name: "Profil", url: "/profil" },
             { name: "Recherche", url: "/search" },
             { name: "Vos playlists", url: "/playlist" },

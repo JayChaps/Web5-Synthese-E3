@@ -8,6 +8,7 @@ import Playlist from '../pages/Playlist';
 import { AudioProvider, useAudio } from '../context/audiotim';
 import Profil from './Profil';
 import DecouverteArtiste from './DecouverteArtiste';
+import DecouverteAlbum from './DecouverteAlbum';
 
 
 const Routes = () =>{
@@ -31,20 +32,7 @@ const Routes = () =>{
             children: [
                 {
                     index: true,
-                    element: <Navigate to="/home" />
-                },
-                {
-                    path: 'home',
-                    element: (
-                        <>
-                            <h1>Home</h1>
-                            <Link to={`/artist/13`}>
-                                <h1>redirect</h1>
-                            </Link>
-                        </>
-                        
-                        
-                    )
+                    element: <Navigate to="/profil" />
                 },
                 {
                     path: 'profil',
@@ -67,6 +55,16 @@ const Routes = () =>{
                         }
                     ]
                 },
+                {
+                    path: 'album',
+                    element: <Outlet/>,
+                    children:[
+                        {
+                            path:':idAlbum',
+                            element:<DecouverteAlbum/>,
+                        }
+                    ]
+                }
             ]
         },
         {

@@ -4,6 +4,7 @@ import { useAudio, useAudioProgress, useAudioVisual } from "../context/audiotim"
 import { SongInfoContext } from "../context/SongInfoContext";
 import { motion, useAnimation } from 'framer-motion';
 import AnimatedCircle from "./AnimatedCircle";
+import { Link } from "react-router-dom";
 
 const Playbar = () => {
 
@@ -59,7 +60,9 @@ const Playbar = () => {
                     </div>
                     <div className="playbar__inner__left__song">
                         <div className="playbar__inner__left__song__title">
-                            <span>{songInfo.title}</span>
+                            {/* <Link to={songInfo.}> */}
+                                <span>{songInfo.title}</span>
+                            {/* </Link> */}
                         </div>
                         <div className="playbar__inner__left__song__artist">
                             <span>{songInfo.artist}</span>
