@@ -3,6 +3,8 @@ import { Link, useLocation,useNavigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect} from 'react';
 
+import Acceuil from "../components/PageAcceuil/Acceuil";
+
 const Nav = ({ links }) => {
   const { user,googleSignIn,logOut } = useAuth();
   const location = useLocation();
@@ -32,7 +34,7 @@ const Nav = ({ links }) => {
         ))}
         {user === null && (
           <div>
-            <p>composant page</p>
+            <Acceuil/>
           </div>
         )}
         <button onClick={user === null ? googleSignIn : logOut}>

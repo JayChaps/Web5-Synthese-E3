@@ -1,16 +1,16 @@
 import React from "react";
 
+
+import TitreAcceuil from "../PageAcceuil/titreacceuil"
+
+
 const Acceuil = () => {
   
-    return (
-        <section className="containersectionautresoustitre">
-            <div>
-                <h1>lool</h1>
-            </div>
-
-        </section>
-    );
-  };
-
+  return (
+    <div>
+        <TitreAcceuil/>
+    </div>
+  );
+};
 
 export default Acceuil;
