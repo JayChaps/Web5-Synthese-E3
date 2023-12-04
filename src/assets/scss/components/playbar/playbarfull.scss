@@ -4,44 +4,73 @@
     width: 100%;
 
     background-color: var(--blanc);
+    & .playbarfull__inner {
+        width: 100%;
+        & .infoChanson {
+            display: flex;
+            flex-direction: column;
 
-    & .infoChanson {
-        display: flex;
-        flex-direction: column;
+            padding: 1rem 1rem 0 2rem;
 
-        padding: 1rem 1rem 0 2rem;
+            & .titreChanson {
+                @include h2;
 
-        & .titreChanson {
-            @include h2;
+                padding: 0;
+                margin: 0;
 
-            padding: 0;
-            margin: 0;
+                color: var(--mauve);
+            }
 
-            color: var(--mauve);
+            & .artisteChanson {
+                @include h4;
+
+                padding: 0;
+                margin: 0;
+
+                color: var(--gris);
+            }
         }
 
-        & .artisteChanson {
-            @include h4;
-
-            padding: 0;
-            margin: 0;
-
-            color: var(--gris);
-        }
-    }
-
-    & .animationLecteur {
-        position: relative;
-        height: 200px;
-        & .frequence {
+        & .animationLecteur {
             position: relative;
-            top: 0;
-            left: 0;
+            height: 15vh;
+            & .frequence {
+                position: relative;
+                top: 0;
+                left: 0;
 
-            width: 100vw;
-            height: 100px;
+                width: 100vw;
+                height: 100px;
 
-            background-color: var(--mauve);
+                background-color: var(--mauve);
+            }
+        }
+
+        & .cover {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            z-index: 2000;
+
+            // display: flex;
+            display: none;
+            justify-content: center;
+            align-items: center;
+
+            width: 150%;
+            aspect-ratio: 1;
+
+            transform: translateX(-50%) translateY(80%);
+
+            border-radius: 50% 50% 0 0;
+
+            overflow: hidden;
+
+            & img {
+                width: 100vw;
+                height: 100%;
+                object-fit: cover;
+            }
         }
     }
 }

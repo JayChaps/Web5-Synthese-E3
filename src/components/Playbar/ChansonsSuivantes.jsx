@@ -5,6 +5,7 @@ const ChansonsSuivantes = () => {
   const settings = {
     slidesToShow: 3,
     draggable: true,
+    
   };
   return (
     <section className="chansonssuivantes">

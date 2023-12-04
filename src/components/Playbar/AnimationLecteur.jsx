@@ -16,29 +16,39 @@ const AnimationLecteur = () => {
 
   const linesRef = useRef();
 
-  useEffect(() => {
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
+  // useEffect(() => {
+  //   const camera = new THREE.PerspectiveCamera(
+  //     75,
+  //     window.innerWidth / window.innerHeight,
+  //     0.1,
+  //     1000
+  //   );
 
-    const audioLoader = new THREE.AudioLoader();
-    audioLoader.load(music, function (buffer) {
-      sound.setBuffer(buffer);
-      sound.setLoop(true);
-      sound.setVolume(0.5);
-    });
+  //   const audioLoader = new THREE.AudioLoader();
+  //   audioLoader.load(music, function (buffer) {
+  //     sound.setBuffer(buffer);
+  //     sound.setLoop(true);
+  //     sound.setVolume(0.5);
+  //   });
 
-    window.addEventListener("click", () => {
-      if (sound.isPlaying) {
-        sound.pause();
-      } else {
-        sound.play();
-      }
-    });
-  }, []);
+  //   window.addEventListener("click", () => {
+  //     if (sound.isPlaying) {
+  //       sound.pause();
+  //     } else {
+  //       sound.play();
+  //     }
+  //   });
+
+  //   return () => {
+  //     window.removeEventListener("click", () => {
+  //       if (sound.isPlaying) {
+  //         sound.pause();
+  //       } else {
+  //         sound.play();
+  //       }
+  //     });
+  //   };
+  // }, []);
   return <div className="animationLecteur"></div>;
 };
 
