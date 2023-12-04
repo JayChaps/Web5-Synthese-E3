@@ -70,7 +70,7 @@ const AudioProvider = ({ children }) => {
     analyserRef.current = {
       analyser: mediaAnalyser,
       data: dataArray,
-      ctx
+      ctx,
     };
   };
 
@@ -159,7 +159,7 @@ const useAudio = (stopOnUnmount = false) => {
       return;
     }
     if (audio.paused) {
-      if (visual.ctx.state === 'suspended') {
+      if (visual.ctx.state === "suspended") {
         visual.ctx.resume();
       }
       audio.play();
@@ -230,7 +230,7 @@ const useAudioEnded = (endedCallback) => {
         audioElement.removeEventListener("ended", endedCallback);
       }
     };
-  }, [audio]);
+  }, [audio, endedCallback]);
 };
 
 const useAudioProgress = () => {
