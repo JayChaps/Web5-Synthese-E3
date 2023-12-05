@@ -1,6 +1,7 @@
 import { useParams,  Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 import { useEffect, useState } from "react";
+import '../css/DecouverteArtiste.css'
 
 // const encodedSearchTerm = encodeURIComponent(searchTerm);
 // const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
