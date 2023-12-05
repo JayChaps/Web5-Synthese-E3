@@ -33,10 +33,11 @@
     margin-top: 30px;
     margin-bottom: 60px;
     width: 400px;
-    height: 250px;
+    height: 300px;
     background-color: var(--rose);
     border-radius: 40px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   
     .content-container-acceuil {
       display: flex;
@@ -48,7 +49,7 @@
 
     .text-container{
       text-align: center;
-      margin-left: 40px;
+      margin-left: 50px;
     }
   
     .image-container-acceuil {
@@ -59,15 +60,15 @@
       justify-content: center;
   
       .img-acceuil {
-        transform: scale(3);
-        margin-left: 55px;
+        transform: scale(4);
+        margin-left: 60px;
       }
     }
 
 
     .titre-acceuil {
-        @include h4;
-        width: 250px;
+        @include h3;
+        width: 2px;
         color: var(--blanc);
         margin: 0;
         margin-top: 35px;
@@ -89,7 +90,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-left: 40px;
+      margin-left: 50px;
   
       button {
         width: 175px;
@@ -99,6 +100,7 @@
         background-color: var(--mauve);
         border: none;
         cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
   
       .button-acceuil-connexion {
