@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams,  Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 import { useEffect, useState,useContext } from "react";
 import '../css/DecouverteArtiste.css'
@@ -12,24 +12,40 @@ const DecouverteArtiste = () => {
     const { handlePlaySong } = useContext(SongInfoContext);
 
 
-  const topRelatedArtist = () => {
-    const url = `https://api.deezer.com/artist/${idArtist}/related?output=jsonp`;
-    console.log(url);
+    const topRelatedArtist = () => {
+        setRelatedArtist([]);
+        const url = `https://api.deezer.com/artist/${idArtist}/related?output=jsonp`
 
-    fetchJsonp(url)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setRelatedArtist(data.data || []);
-        console.log(data.data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la recherche:", error);
-      });
-  };
+        fetchJsonp(url)
+            .then(resp => resp.json())
+            .then(data => {
+                setRelatedArtist(data.data || []);
 
-  const topSongs = () => {
-    const url = `https://api.deezer.com/artist/${idArtist}/top?&output=jsonp`;
-    console.log(url);
+            })
+            .catch(error => {
+                console.error("Erreur lors de la recherche:", error);
+            })
+    };
+
+    const allAlbums = () => {
+        setAlbums([]);
+        const url = `https://api.deezer.com/artist/${idArtist}/albums?output=jsonp`
+
+        fetchJsonp(url)
+            .then(resp => resp.json())
+            .then(data => {
+                setAlbums(data.data || []);
+
+            })
+            .catch(error => {
+                console.error("Erreur lors de la recherche:", error);
+            })
+    };
+
+
+    const topSongs = () => {
+        setPopularSongs([]);
+        const url = `https://api.deezer.com/artist/${idArtist}/top?&output=jsonp`
 
         fetchJsonp(url)
             .then(resp => resp.json())
@@ -85,20 +101,24 @@ const DecouverteArtiste = () => {
                 }
             </div>
 
-      <h1 className="h1">Les fans aiment aussi</h1>
-      <div className="relatedArtist">
-        {relatedArtist.map((data, id) => {
-          console.log(data);
-          return (
-            <div cla>
-              <img src={data.picture} alt="" />
-              <h2>{data.name}</h2>
+            <h1 className="h1">Les fans aiment aussi</h1>
+            <div className="relatedArtist">
+                {
+                    relatedArtist.map((data, id) => {
+                        return (
+                            <Link to={`/artist/${data.id}`} key={id}>
+                                <div >
+                                    <img src={data.picture} alt="" />
+                                    <h2>{data.name}</h2>
+                                </div>
+                            </Link>
+                        )
+                    }
+                    )}
             </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
+        </div>
+    )
+}
+
 
 export default DecouverteArtiste;
