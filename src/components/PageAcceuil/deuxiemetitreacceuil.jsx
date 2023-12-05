@@ -12,7 +12,7 @@ const DeuxiemeTitreAcceuil = () => {
             <h1 className="titre-bas">Lecteur audio</h1>
         </div>
         <div>
-            <h1>Lignes a Nico ici</h1>
+            <h1 className="lignes-nico">Lignes à Nico ici</h1>
         </div>
         <div className="container-info">
         <div className="deuxiemetitres-info">

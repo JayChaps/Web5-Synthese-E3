@@ -16,7 +16,7 @@
     
     .titre-haut{
         @include h3;
-        color: white;
+        color: var(--blanc);
         text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
     }
     .titre-milieu{
@@ -25,7 +25,7 @@
     }
     .titre-bas{
         @include h3;
-        color: white;
+        color: var(--blanc);
         text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
     }
 
@@ -54,4 +54,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.lignes-nico{
+    text-align: center;
+    margin: 75px;
 }
