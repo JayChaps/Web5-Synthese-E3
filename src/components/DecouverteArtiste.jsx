@@ -1,13 +1,15 @@
 import { useParams,  Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import '../css/DecouverteArtiste.css'
+import { SongInfoContext } from '../context/SongInfoContext';
 
 const DecouverteArtiste = () => {
     const [popularSongs, setPopularSongs] = useState([]);
     const [relatedArtist, setRelatedArtist] = useState([]);
     const [albums, setAlbums] = useState([]);
     const { idArtist } = useParams();
+    const { handlePlaySong } = useContext(SongInfoContext);
 
 
     const topRelatedArtist = () => {
@@ -64,21 +66,20 @@ const DecouverteArtiste = () => {
         }
     }, [idArtist]);
 
-
-
-
     return (
         <div>
             <h1>Populaire</h1>
             {
                 popularSongs.map((data, id) => {
+                  // console.log(data);
+
                     return (
 
                         <div className="topSongs" key={id}>
                             <img src={data.album.cover} alt="" />
                             <h2>{data.title}</h2>
+                            <button onClick={() => handlePlaySong(data)}>Lire</button>
                         </div>
-
                     )
                 })
             }

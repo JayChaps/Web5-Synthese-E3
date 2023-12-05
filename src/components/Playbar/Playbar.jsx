@@ -24,13 +24,39 @@ const Playbar = () => {
     changeVolume,
   } = useAudio();
 
-  const { progress } = useAudioProgress();
+  const { progress, changeProgress } = useAudioProgress();
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
 
   // Fonction pour jouer ou mettre en pause la chanson
   const handlePlayPause = () => {
     togglePause();
+    console.log(songInfo);
   };
+
+  const handleMouseDown = (e) => {
+    e.preventDefault(); // Empêcher le comportement de sélection du texte ou autre
+    setIsDragging(true);
+    handleProgressChange(e);
+  };
+
+  const handleMouseUp = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (isDragging) {
+      handleProgressChange(e);
+    }
+  };
+  const handleProgressChange = (e) => {
+    const progressBar = e.currentTarget;
+    const progressBarRect = progressBar.getBoundingClientRect();
+    const newProgress = (e.pageX - progressBarRect.left) / progressBarRect.width;
+    changeProgress(Math.min(Math.max(newProgress, 0), 1));
+  };
+
 
   return (
     <aside className="playbar">
@@ -68,13 +94,19 @@ const Playbar = () => {
           <BiHeart size={"3.5rem"} color="var(--rose)" />
           <GrAddCircle size={"3rem"} color="var(--blanc)" />
         </section>
-        <section className="playbar__inner__center__progress">
+        <section className="playbar__inner__center__progress"
+        >
           <span>
             0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
             {(progress * duration).toFixed(0)}
           </span>{" "}
           <div
             className="playbar__inner__center__progress__bar"
+            onClick={handleProgressChange}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseUp}
+            onMouseUp={handleMouseUp}
             style={{ width: `${(duration / duration) * 100}%` }}
           >
             <div

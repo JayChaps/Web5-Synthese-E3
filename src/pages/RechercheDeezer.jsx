@@ -1,6 +1,6 @@
 // RechercheDeezer.jsx : 
 import React, { useState, useEffect, useContext } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import fetchJsonp from "fetch-jsonp";
 // import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
@@ -24,23 +24,23 @@ const RechercheDeezer = () => {
 
     // const { changeSource, play, pause } = useAudio();
     const { handlePlaySong } = useContext(SongInfoContext);
-    const { createNewPlaylist, deletePlaylist, 
-            addToPlaylist, removeSongFromPlaylist, 
-            newPlaylistName, setNewPlaylistName, 
-            selectedPlaylistId, setSelectedPlaylistId,
-            fetchPlaylists, fetchPlaylist, 
-            playlists, setPlaylists, 
-            playlist, setPlaylist,
-            selectedSong, setSelectedSong,
-            createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
+    const { createNewPlaylist, deletePlaylist,
+        addToPlaylist, removeSongFromPlaylist,
+        newPlaylistName, setNewPlaylistName,
+        selectedPlaylistId, setSelectedPlaylistId,
+        fetchPlaylists, fetchPlaylist,
+        playlists, setPlaylists,
+        playlist, setPlaylist,
+        selectedSong, setSelectedSong,
+        createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
 
-    const searchFilters = ["artist","album","track"]
+    const searchFilters = ["artist", "album", "track"]
 
     useEffect(() => {
         if (searchTerm) {
             handleSearch();
         }
-    }, [searchTerm,filter]);
+    }, [searchTerm, filter]);
 
     const handleInputChange = event => {
         setSearchTerm(event.target.value);
@@ -70,7 +70,7 @@ const RechercheDeezer = () => {
     useEffect(() => {
         fetchPlaylist();
     }, [newPlaylistName, playlists, createNewPlaylist]);
-    
+
 
     const filters = (e) => {
         setFilter("");
@@ -105,28 +105,31 @@ const RechercheDeezer = () => {
 
             <ul>
                 {searchResults.map((result, index) => {
-                    return(
+                    console.log(result);
+                    return (
                         <li key={index}>
-                        <h2>{result.title}</h2>
-                        <Link to={`/artist/${result.artist.id}`}>
-                            <p>{result.artist.name}</p>
-                        </Link>
-                        <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
-                        <button onClick={() => handlePlaylistSelector(result)}>Ajouter à la playlist</button>
-                        {selectorActif && (
-                                <PlaylistSelector 
-                                    estActif = {selectorActif} 
-                                    setActif = {setSelectorActif}
-                                    theSong = {result}
+                            <Link to={`/album/${result.album.id}`}>
+                                <h2>{result.title}</h2>
+                                <img src={result.album.cover} alt={`Couverture de l'album ${result.album.title}`} />
+                            </Link>
+                            <Link to={`/artist/${result.artist.id}`}>
+                                <p>{result.artist.name}</p>
+                            </Link>
+                            <button onClick={() => handlePlaylistSelector(result)}>Ajouter à la playlist</button>
+                            {selectorActif && (
+                                <PlaylistSelector
+                                    estActif={selectorActif}
+                                    setActif={setSelectorActif}
+                                    theSong={result}
                                 />
                             )
-                        }
-                        {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
-                        <button onClick={() => handlePlaySong(result)}>Lire</button>
-                    </li>
+                            }
+                            {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
+                            <button onClick={() => handlePlaySong(result)}>Lire</button>
+                        </li>
                     )
-                    
-                    })}
+
+                })}
             </ul>
         </div>
     );
