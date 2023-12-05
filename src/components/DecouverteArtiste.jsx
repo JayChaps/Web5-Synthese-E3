@@ -3,20 +3,6 @@ import fetchJsonp from "fetch-jsonp";
 import { useEffect, useState } from "react";
 import '../css/DecouverteArtiste.css'
 
-// const encodedSearchTerm = encodeURIComponent(searchTerm);
-// const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
-// console.log(url);
-
-// fetchJsonp(url)
-//     .then(response => response.json())
-//     .then(data => {
-//         setSearchResults(data.data || []);
-//         console.log(data.data);
-//     })
-//     .catch(error => {
-//         console.error("Erreur lors de la recherche:", error);
-//     });
-
 const DecouverteArtiste = () => {
     const [popularSongs, setPopularSongs] = useState([]);
     const [relatedArtist, setRelatedArtist] = useState([]);

@@ -41,12 +41,12 @@ const Routes = () => {
       children: [
         {
           index: true,
-          element: <Navigate to="/home" />,
+          element: <Navigate to="/profil" />,
         },
-        {
-          path: "home",
-          element: <PageTableauDeBord />,
-        },
+        // {
+        //   path: "home",
+        //   element: <PageTableauDeBord />,
+        // },
         {
           path: "profil",
           element: <Profil />,
