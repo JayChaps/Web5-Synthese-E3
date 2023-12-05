@@ -1,11 +1,18 @@
 .chansonssuivantes {
+    position: absolute;
+    right: 0;
+
     width: calc(100vw - 20px);
 
     overflow-x: hidden !important;
+
+    @include breakpoint-min(1200) {
+        width: calc(65vw - 20px) !important;
+        margin-left: auto !important;
+    }
+
     // glider
     & .glider-contain {
-        
-        
         overflow-x: hidden !important;
         ::-webkit-scrollbar {
             display: none;
@@ -16,7 +23,11 @@
             overflow-x: scroll;
             overflow-y: hidden;
 
-            padding: 2rem;
+            padding: 0 3rem;
+
+            @include breakpoint-min(1200) {
+                padding-left: 100px;
+            }
 
             &:has(*.center) .glider-track > .chansonsuivante.center {
                 z-index: 90;
@@ -27,9 +38,15 @@
             }
 
             .glider-track {
-                height: 280px;
-                
+                height: 320px;
+
                 gap: 1rem;
+                justify-content: start !important;
+
+                @include breakpoint-min(1200) {
+                   height: 450px;
+                   grid-area: 1rem;
+                }
 
                 & .chansonsuivante {
                     position: relative;
@@ -46,6 +63,7 @@
                         opacity 0.3s ease-in-out,
                         transform 0.3s ease-in-out;
                     z-index: 0.5s ease-in-out;
+
 
                     &:has(+ .chansonsuivante.center[data-gslide="1"]) {
                         z-index: 100;
@@ -73,6 +91,13 @@
                         border-radius: 2rem;
 
                         overflow: hidden;
+
+
+                        box-shadow: -2px 4px 10px 0px rgba(0, 0, 0, 0.726);
+
+                        @include breakpoint-min(1200) {
+                            max-width: 275px;
+                        }
 
                         .chansonsuivante__cover {
                             position: absolute;

@@ -26,6 +26,10 @@
     & > .playbar__inner {
       background-color: hsla(238, 76%, 8%, 0.66);
 
+      @include breakpoint-min(1200){
+        background-color: var(--noir);
+      }
+
       & .playbar__inner__right {
         justify-self: center;
       }
@@ -92,6 +96,9 @@
         display: flex;
         align-items: center;
         justify-content: left;
+
+        width: 100%;
+        max-width: 300px;
 
         & .playbar__inner__left__cover {
           width: 4rem;

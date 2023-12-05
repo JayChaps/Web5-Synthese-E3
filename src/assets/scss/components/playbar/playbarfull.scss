@@ -11,7 +11,23 @@
             display: flex;
             flex-direction: column;
 
-            padding: 1rem 1rem 0 2rem;
+            padding: 1rem 1rem 0 3rem;
+
+            width: 100%;
+
+            @include breakpoint-min(768){
+                padding: 1rem 1rem 0 4rem;
+            }
+
+            @include breakpoint-min(1024){
+                padding: 1rem 1rem 0 6rem;
+            }
+
+            @include breakpoint-min(1200){
+                width: calc(58vw - 20px);
+                margin-left: auto;
+                padding: 1rem 0 0 0;
+            }
 
             & .titreChanson {
                 @include h2;
