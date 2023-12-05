@@ -1,6 +1,6 @@
 // playlistsContext.jsx :
 import React, { createContext, useEffect, useState } from "react";
-import { db } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc, getDoc, deleteDoc, updateDoc } from "firebase/firestore";
 
 // Créer le contexte
@@ -16,8 +16,34 @@ const PlaylistsProvider = ({ children }) => {
 
     // Récupération des playlists
     const fetchPlaylists = async () => {
-        const querySnapshot = await getDocs(collection(db, "playlists"));
-        setPlaylists(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+
+        // Récupération du uuid 
+        const userId = auth.currentUser.uid;
+
+        // Obtenir le document de l'utilisateur
+        const userRef = doc(db, "users", userId);
+        const userSnapshot = await getDoc(userRef);
+
+        if (userSnapshot.exists()) {
+            const userData = userSnapshot.data();
+            const userPlaylistsIds = userData.playlistsIds || [];
+
+            // Récupérer les playlists correspondant aux IDs
+            const playlistsPromises = userPlaylistsIds.map(playlistId => {
+                const playlistRef = doc(db, "playlists", playlistId);
+                return getDoc(playlistRef);
+            });
+
+            const playlistsSnapshot = await Promise.all(playlistsPromises);
+            const userPlaylists = playlistsSnapshot.map(snap => ({
+                id: snap.id,
+                ...snap.data()
+            }));
+            
+            setPlaylists(userPlaylists);
+        }
+        // const querySnapshot = await getDocs(collection(db, "playlists"));
+        // setPlaylists(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     };
 
     // Récupération d'une playlist
@@ -29,10 +55,21 @@ const PlaylistsProvider = ({ children }) => {
     // Ajout d'une nouvelle playlist
     const createNewPlaylist = async (name) => {
         if (newPlaylistName.trim() !== '') {
+            const userId = auth.currentUser.uid;
+            console.log("userId: "+userId);
+            // Création de la nouvelle playlist
             const docRef = await addDoc(collection(db, "playlists"), {
                 name: name,
                 songs: [],
+                createdBy: userId,
             });
+
+            // Mise à jour du document de l'utilisateur pour inclure l'ID de la nouvelle playlist
+            const userRef = doc(db, "users", userId);
+            await updateDoc(userRef, {
+                playlistsIds: arrayUnion(docRef.id)
+            });
+
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
         }
@@ -48,9 +85,9 @@ const PlaylistsProvider = ({ children }) => {
             console.log("SongToAdd: "+songToAdd);
             // const songToAdd = selectedSong;
 
-            // await setDoc(playlistRef, {
-            //     songs: arrayUnion(songToAdd)
-            // }, { merge: true });
+            await setDoc(playlistRef, {
+                songs: arrayUnion(songToAdd)
+            }, { merge: true });
             console.log("Document successfully updated!");
         } 
         else {
@@ -92,10 +129,20 @@ const PlaylistsProvider = ({ children }) => {
     // Créer une nouvelle playlist ET ajouter une chanson
     const createNewPlaylistAndAddSong = async (name, song) => {
         if (newPlaylistName.trim() !== '') {
+            const userId = auth.currentUser.uid;
+            // Création de la nouvelle playlist
             const docRef = await addDoc(collection(db, "playlists"), {
                 name: name,
                 songs: [song],
+                createdBy: userId,
             });
+
+            // Mise à jour du document de l'utilisateur pour inclure l'ID de la nouvelle playlist
+            const userRef = doc(db, "users", userId);
+            await updateDoc(userRef, {
+                playlistsIds: arrayUnion(docRef.id)
+            });
+
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
             console.log("Playlist created and song added!");

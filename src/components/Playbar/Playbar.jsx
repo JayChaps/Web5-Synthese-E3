@@ -8,6 +8,7 @@ import { BiHeart } from "react-icons/bi";
 import { GrAddCircle } from "react-icons/gr";
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
+import { useFavorites } from "../../context/FavoritesContext";
 
 import PlaybarFull from "./PlaybarFull";
 const Playbar = () => {
@@ -31,6 +32,17 @@ const Playbar = () => {
   const handlePlayPause = () => {
     togglePause();
   };
+
+  const { addToFavorites } = useFavorites();
+
+  // Fonction pour ajouter la chanson aux favoris
+  const handleAddToFavorites = () => {
+    addToFavorites(songInfo);
+    console.log("Song added to favorites : " + songInfo);
+  };
+
+
+
 
   return (
     <aside className="playbar">
@@ -65,7 +77,7 @@ const Playbar = () => {
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
-          <BiHeart size={"3.5rem"} color="var(--rose)" />
+          <BiHeart size={"3.5rem"} color="var(--rose)" onClick={handleAddToFavorites} />
           <GrAddCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__center__progress">

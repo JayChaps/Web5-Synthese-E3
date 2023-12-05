@@ -1,6 +1,8 @@
+// authContext.jsx :
 import React, { useContext, useEffect, useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from '../config/firebase'
+import { auth, db } from '../config/firebase'
+import { getDoc, setDoc, updateDoc, doc } from '@firebase/firestore';
 
 
 const authContext = React.createContext({
@@ -36,9 +38,33 @@ const AuthProvider = ({ children }) => {
             setIsConnected(!!currentUser);
             setLoading(false);
             console.log('User', currentUser)
+
+            if (currentUser) 
+            {
+                updateUserDocument(currentUser); // Crée ou met à jour le document utilisateur
+            }
         });
         return unsubscribe;
     }, [])
+
+
+    const updateUserDocument = async (user) => {
+        if (!user) return;
+
+        const userRef = doc(db, 'users', user.uid);
+        const userSnapshot = await getDoc(userRef);
+
+        if (!userSnapshot.exists()) {
+            await setDoc(userRef, {
+                uid: user.uid,
+                email: user.email,
+                playlistsIds: []
+            });
+        }
+
+    }
+
+
 
     return <authContext.Provider value={{ googleSignIn, logOut, user, isConnected,loading, _v: 1 }}>
         {children}
