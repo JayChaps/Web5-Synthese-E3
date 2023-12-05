@@ -1,60 +1,66 @@
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(to bottom right, var(--mauve), var(--rose));
-  color: #fff;
+@mixin h2 {
+  font-family: "Gotham";
+  font-weight: 700;
+  font-size: 4.375rem;
+}
+
+@mixin p {
+  font-family: "Gotham";
+  font-weight: 400;
+  font-size: 1.125rem;
+}
+
+.logo-google {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .login-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  @include h2;
+  margin-top: 100px;
+  text-align: center;
 }
 
-.login-options {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+.login-title2,
+.login-title3,
+.login-title4 {
+  @include h2;
+  text-align: center;
+  color: var(--blanc);
+  text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+  opacity: 0.5;
+}
+
+.login-title3 {
+  opacity: 0.25;
+}
+.login-title4 {
+  opacity: 0.1;
+}
+
+.login {
+  text-align: center;
+}
+
+.button-wrapper {
+  height: 700px;
+  background-color: var(--mauve);
+  padding: 94px; // Adjust padding as needed
+  border-top-left-radius: 200px; // Adjust the border radius as needed
+  text-align: center; // Center the content horizontally
+  overflow: hidden;
 }
 
 .login-button {
-  background-color: #fff;
-  color: var(--mauve);
+  @include p;
+  background-color: var(--blanc);
+  color: var(--noir);
   padding: 0.75rem;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
-
-  &.google {
-    &:hover {
-      background-color: lighten(#7e35e3, 10%);
-    }
-  }
-
-  &:hover {
-    transform: translateY(-3px);
-  }
-}
-
-.confirmation-button {
-  background-color: var(--rose);
-  color: #fff;
-  border: none;
-  padding: 1rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border-radius: 5px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center; // Center the content horizontally
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.3s;
-
-  &:hover {
-    background-color: darken(#fc5571, 10%);
-    transform: translateY(-3px);
-  }
+  margin-top: 20px; // Adjust the margin-top value
 }
-

@@ -121,9 +121,11 @@
 
 .welcome-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-bottom: 20px;
   gap: 0.8rem;
+
+  overflow: hidden;
 
     .big-title {
       @include h3;
