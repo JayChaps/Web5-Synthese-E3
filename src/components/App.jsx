@@ -1,9 +1,3 @@
-import { Navigate, RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
-import Layout from './Layout';
-import LayoutAuth from './LayoutAuth';
-import RechercheDeezer from '../pages/RechercheDeezer';
-import PageTableauDeBord from '../pages/PageTableauDeBord';
-import PageAuthentification from '../pages/PageAuthentification';
 import {
   Navigate,
   RouterProvider,
@@ -16,6 +10,7 @@ import Layout from "./Layout";
 import LayoutAuth from "./LayoutAuth";
 import RechercheDeezer from "../pages/RechercheDeezer";
 import PageTableauDeBord from "../pages/PageTableauDeBord";
+import PageAuthentification from '../pages/PageAuthentification';
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from "react";
 import Playlist from "../pages/Playlist";
@@ -37,48 +32,55 @@ const Routes = () => {
           index: true,
           element: <Navigate to="/" replace />,
         },
-        isConnected &&{
-            path: '',
-            element: <LayoutAuth />,
-            children: [
-                {
-                    index: true,
-                    element: <Navigate to="/home" />
-                },
-                {
-                    path: 'home',
-                    element: <PageTableauDeBord />,
-                    
-                },
-                {
-                    path: 'profil',
-                    element: (
-                        <h1>Profil</h1>
-                    )
-                },
-                {
-                    path: 'search',
-                    element: <RechercheDeezer />,
-                }, {
-                    path: 'playlist',
-                    element: <Playlist />,
+      ],
+    },
+    isConnected && {
+      path: "",
+      element: <LayoutAuth />,
+      children: [
+        {
+          index: true,
+          element: <Navigate to="/home" />,
+        },
+        {
+          path: "home",
+          element: <PageTableauDeBord />,
+        },
+        {
+          path: "profil",
+          element: <Profil />,
+        },
+        {
+          path: "search",
+          element: <RechercheDeezer />,
+        },
+        {
+          path: "playlist",
+          element: <Playlist />,
                 },
                 {
                     path: 'authentification',
                     element: <PageAuthentification />,
-                }, 
-            ]
         },
         {
-            path: '*',
-            element: <Navigate to="/" replace />
-        }
-
-    ];
-    return <RouterProvider router={createBrowserRouter(routes)} />
-}
-
-
+          path: "artist",
+          element: <Outlet />,
+          children: [
+            {
+              path: ":idArtist",
+              element: <DecouverteArtiste />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      path: "*",
+      element: <Navigate to="/" replace />,
+    },
+  ];
+  return <RouterProvider router={createBrowserRouter(routes)} />;
+};
 
 const App = () => {
   return (
