@@ -18,6 +18,7 @@
 
 .login-title {
   @include h2;
+  color: var(--blanc);
   margin-top: 100px;
   text-align: center;
 }
@@ -27,29 +28,51 @@
 .login-title4 {
   @include h2;
   text-align: center;
-  color: var(--blanc);
-  text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+  text-shadow: 2px 2px var(--blanc), -2px -2px var(--blanc), 2px -2px var(--blanc), -2px 2px var(--blanc);
   opacity: 0.5;
 }
 
 .login-title3 {
   opacity: 0.25;
 }
+
 .login-title4 {
   opacity: 0.1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -5px;
+  z-index: 0;
 }
 
 .login {
   text-align: center;
+  position: relative;
+
+  overflow: hidden;
+
+  &::before{
+    position: absolute;
+    top: -50%;
+    left: 0;
+    z-index: -1;
+    content: "";
+    width: 100vw;
+    height: 1000vh;
+
+    background-color: var(--rose);
+  }
 }
 
 .button-wrapper {
   height: 700px;
   background-color: var(--mauve);
-  padding: 94px; // Adjust padding as needed
-  border-top-left-radius: 200px; // Adjust the border radius as needed
-  text-align: center; // Center the content horizontally
+  padding: 94px;
+  border-top-left-radius: 200px;
+  text-align: center;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .login-button {
@@ -60,7 +83,7 @@
   border-radius: 20px;
   display: flex;
   align-items: center;
-  justify-content: center; // Center the content horizontally
+  justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 20px; // Adjust the margin-top value
+  margin-top: 20px;
 }
