@@ -1,0 +1,85 @@
+.sliderplaylist {
+
+    width: calc(100vw - 20px);
+
+    & .glider-contain {
+        overflow-x: hidden !important;
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        & .glider {
+            height: 100% !important;
+
+            overflow-x: scroll;
+            overflow-y: hidden;
+
+            padding: 3rem;
+
+            .glider-track {
+                height: 300px;
+
+                gap: 1rem;
+                justify-content: start !important;
+
+                .itemplaylist {
+                    & .wrapperitem {
+
+                        height: 100% !important;
+                        position: relative;
+
+                        height: 100% !important;
+                        width: 300px !important;
+
+                        overflow: hidden;
+
+                        border-radius: 2rem;
+
+                        &>* {
+                            position: absolute;
+                        }
+
+                        & img:nth-of-type(1) {
+                            top: 0;
+                            left: 0;
+
+                            width: 50%;
+                            aspect-ratio: 1;
+                            object-fit: cover;
+                        }
+
+                        & img:nth-of-type(2) {
+                            top: 0;
+                            right: 0;
+
+                            width: 50%;
+                            aspect-ratio: 1;
+                            object-fit: cover;
+                        }
+
+                        & img:nth-of-type(3) {
+                            bottom: 0;
+                            left: 0;
+
+                            width: 50%;
+                            aspect-ratio: 1;
+                            object-fit: cover;
+                        }
+
+                        & img:nth-of-type(4) {
+                            bottom: 0;
+                            right: 0;
+
+                            width: 50%;
+                            aspect-ratio: 1;
+                            object-fit: cover;
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}

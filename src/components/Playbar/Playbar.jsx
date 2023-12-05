@@ -41,17 +41,22 @@ const Playbar = () => {
       return;
     }
   };
-
+  const urlImg = "src/assets/img/jpg/placeholder.jpg";
   return (
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
       {/* A enlever pour voir */}
       {isFullbarOpen && (
-        <PlaybarFull
-          songInfo={songInfo}
-          progress={progress}
-          duration={duration}
-        />
+        <>
+          <PlaybarFull
+            songInfo={songInfo}
+            progress={progress}
+            duration={duration}
+          />
+          <div className="cover">
+            <img src={urlImg} alt="" />
+          </div>
+        </>
       )}
       <div className="playbar__inner" onClick={handleClick}>
         <section className="playbar__inner__left">
@@ -92,7 +97,6 @@ const Playbar = () => {
           </span>{" "}
           <div
             className="playbar__inner__center__progress__bar"
-            // style={{ width: `${(duration / duration) * 100}%` }}
           >
             <div
               className="playbar__inner__center__progress__bar__inner"
@@ -102,6 +106,7 @@ const Playbar = () => {
             </div>
           </div>
           <span>{duration}</span>
+
         </section>
       </div>
     </aside>

@@ -17,7 +17,7 @@ const SliderPlaybarFul = ({ progress, duration }) => {
 
   const mathValue = value <= 50 ? 50 - value : value - 50;
 
-  const width = windowDimensions.width < 800 ? windowDimensions.width : 800; // Meme valeur que dans le css(width: 95vw)
+  const width = windowDimensions.width < 800 ? windowDimensions.width : 800;
   const heightSlider = 40; // Meme valeur que dans le css(height: 20px)
   const widthSliderknob = 30;
   const radius = width / 2;

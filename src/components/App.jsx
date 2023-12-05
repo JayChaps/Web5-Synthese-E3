@@ -14,6 +14,7 @@ import PageAuthentification from '../pages/PageAuthentification';
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from "react";
 import Playlist from "../pages/Playlist";
+import LesPlaylist from "../pages/LesPlaylist";
 import { AudioProvider, useAudio } from "../context/audiotim";
 import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
@@ -56,11 +57,11 @@ const Routes = () => {
         },
         {
           path: "playlist",
-          element: <Playlist />,
-                },
-                {
-                    path: 'authentification',
-                    element: <PageAuthentification />,
+          element: <LesPlaylist />,
+        },
+        {
+          path: 'authentification',
+          element: <PageAuthentification />,
         },
         {
           path: "artist",
