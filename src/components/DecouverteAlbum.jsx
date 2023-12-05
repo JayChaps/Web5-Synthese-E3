@@ -11,12 +11,25 @@ const DecouverteAlbum = () => {
 
     const titleAlbum = async () => {
         const url = `https://api.deezer.com/album/${idAlbum}/tracks?output=jsonp`;
+
         try {
             const resp = await fetchJsonp(url);
             const data = await resp.json();
             setSongs(data.data || []);
 
             let tempContributors = {};
+
+            // const tracksPromise = data.data.map(track => {
+            //     return fetchJsonp(`https://api.deezer.com/track/${track.id}?output=jsonp`)
+            //     .then(response => response.json())
+            // });
+
+            // Promise.all(tracksPromise).then(results => {
+            //     console.log(results);
+            // });
+
+
+
             for (let track of data.data) {
                 const response = await fetchJsonp(`https://api.deezer.com/track/${track.id}?output=jsonp`);
                 const dataTrack = await response.json();
