@@ -10,6 +10,7 @@ import Layout from "./Layout";
 import LayoutAuth from "./LayoutAuth";
 import RechercheDeezer from "../pages/RechercheDeezer";
 import PageTableauDeBord from "../pages/PageTableauDeBord";
+import PageAuthentification from '../pages/PageAuthentification';
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from "react";
 import Playlist from "../pages/Playlist";
@@ -56,6 +57,10 @@ const Routes = () => {
         {
           path: "playlist",
           element: <Playlist />,
+                },
+                {
+                    path: 'authentification',
+                    element: <PageAuthentification />,
         },
         {
           path: "artist",
