@@ -28,11 +28,11 @@ const TitreAcceuil = () => {
       </div>
     </div>
     <div className="welcome-container">
-        <h1 className="big-title">Bienvenue!</h1>
         <h1 className="big-title-displaced">Bienvenue!</h1>
+        <h1 className="big-title">Bienvenue!</h1>
         <h1 className="big-title-displaced2">Bienvenue!</h1>
-        <h2 className="small-title">Voici ce qu'Apollon a à offrir:</h2>
-      </div>
+    </div>
+    <h2 className="small-title">Voici ce qu'Apollon a à offrir:</h2>
     </section>
   );
 };
