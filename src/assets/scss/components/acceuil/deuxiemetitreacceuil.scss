@@ -1,0 +1,57 @@
+@mixin h3 {
+    font-family: "Gotham";
+    font-weight: 900;
+    font-size: 3rem;
+  }
+
+  @mixin p {
+    font-family: "Gotham";
+    font-weight: 400;
+    font-size: 1.125rem;
+  }
+
+.deuxiemetitres-container {
+    margin-top: 100px;
+    text-align: center;
+    
+    .titre-haut{
+        @include h3;
+        color: white;
+        text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+    }
+    .titre-milieu{
+        @include h3;
+        color: var(--noir);
+    }
+    .titre-bas{
+        @include h3;
+        color: white;
+        text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+    }
+
+}
+
+.deuxiemetitres-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    margin: 50px;
+    border-radius: 50px;
+    background-color: var(--rose);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    p{
+        @include p;
+        text-align: center;
+        padding: 20px;
+        color: var(--blanc);
+    }
+}
+
+.container-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
