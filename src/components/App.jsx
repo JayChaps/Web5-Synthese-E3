@@ -23,6 +23,8 @@ import { AudioProvider, useAudio } from "../context/audiotim";
 import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
+import DecouverteAlbum from './DecouverteAlbum';
+
 
 const Routes = () => {
   const { isConnected, loading } = useAuth();
@@ -37,48 +39,61 @@ const Routes = () => {
           index: true,
           element: <Navigate to="/" replace />,
         },
-        isConnected &&{
-            path: '',
-            element: <LayoutAuth />,
-            children: [
-                {
-                    index: true,
-                    element: <Navigate to="/home" />
-                },
-                {
-                    path: 'home',
-                    element: <PageTableauDeBord />,
-                    
-                },
-                {
-                    path: 'profil',
-                    element: (
-                        <h1>Profil</h1>
-                    )
-                },
-                {
-                    path: 'search',
-                    element: <RechercheDeezer />,
-                }, {
-                    path: 'playlist',
-                    element: <Playlist />,
-                },
-                {
-                    path: 'authentification',
-                    element: <PageAuthentification />,
-                }, 
-            ]
+      ],
+    },
+    isConnected && {
+      path: "",
+      element: <LayoutAuth />,
+      children: [
+        {
+          index: true,
+          element: <Navigate to="/home" />,
         },
         {
-            path: '*',
-            element: <Navigate to="/" replace />
+          path: "home",
+          element: <PageTableauDeBord />,
+        },
+        {
+          path: "profil",
+          element: <Profil />,
+        },
+        {
+          path: "search",
+          element: <RechercheDeezer />,
+        },
+        {
+          path: "playlist",
+          element: <Playlist />,
+        },
+        {
+          path: "artist",
+          element: <Outlet />,
+          children: [
+            {
+              path: ":idArtist",
+              element: <DecouverteArtiste />,
+            },
+          ],
+        },
+        {
+            path: 'album',
+            element: <Outlet/>,
+            children:[
+                {
+                    path:':idAlbum',
+                    element:<DecouverteAlbum/>,
+                }
+            ]
         }
-
-    ];
-    return <RouterProvider router={createBrowserRouter(routes)} />
-}
-
-
+      ],
+    },
+    {
+      path: "*",
+      element: <Navigate to="/" replace />,
+    },
+  ];
+  return <RouterProvider router={createBrowserRouter(routes)} />;
+};
 
 const App = () => {
   return (
