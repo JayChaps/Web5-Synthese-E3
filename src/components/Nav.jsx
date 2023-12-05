@@ -10,15 +10,15 @@ const Nav = ({ links }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(user !== null){
-        navigate('/home');
-    }
-    else
-    {
-        navigate('/')
-    } 
-},[user])
+//   useEffect(()=>{
+//     if(user !== null){
+//         navigate('/home');
+//     }
+//     else
+//     {
+//         navigate('/')
+//     } 
+// },[user])
 
   return (
     <nav>
@@ -32,11 +32,7 @@ const Nav = ({ links }) => {
             <Link to={url}>{name}</Link>
           </li>
         ))}
-        {user === null && (
-          <div>
-            <Acceuil/>
-          </div>
-        )}
+      
         <button onClick={user === null ? googleSignIn : logOut}>
           {user === null ? "Se connecter avec Google" : "Se déconnecter"}
         </button>

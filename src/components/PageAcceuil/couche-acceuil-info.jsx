@@ -4,6 +4,8 @@ import { BiSolidPlaylist } from "react-icons/bi";
 import { BiSearch } from "react-icons/bi";
 import { IoVolumeHigh } from "react-icons/io5";
 
+import PetitsPoints from "../petitspoints";
+
 
 const CoucheAcceuil1 = () => {
   

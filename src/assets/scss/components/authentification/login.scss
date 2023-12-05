@@ -36,12 +36,6 @@
     }
   }
 
-  &.facebook {
-    &:hover {
-      background-color: lighten(#7e35e3, 5%);
-    }
-  }
-
   &:hover {
     transform: translateY(-3px);
   }
