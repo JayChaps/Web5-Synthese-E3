@@ -4,25 +4,19 @@ import { FaPlayCircle } from "react-icons/fa";
 
 import PropositionChansons from "../titre/propositionchansons";
 
+const SectionTitre = () => {
+  return (
+    <section className="containersectiontitre">
+      <div className="content">
+        <FaPlayCircle size={"4rem"} color="var(--blanc)" className="play-icon" />
+        <h1 className="titresectiontitre">Album Title</h1>
+        <PropositionChansons />
+        <PropositionChansons />
+        <div className="small-image"><img src="src\assets\jpg\placeholder.jpg" alt="" /></div>
+      </div>
+    </section>
+  );
+};
 
-const sectiontitre = () => {
-  
-    return (
-        <section className="containersectiontitre">
-            <div>
-                <FaPlayCircle
-                    size={"4rem"}
-                    color="var(--blanc)"
-                    className="play-icon"
-                />
-                <h1 className="titresectiontitre">titrealbum</h1>
-                <PropositionChansons />
-                <PropositionChansons />
-            </div>
+export default SectionTitre;
 
-        </section>
-    );
-  };
-
-
-export default sectiontitre;

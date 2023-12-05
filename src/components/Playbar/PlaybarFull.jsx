@@ -1,6 +1,9 @@
 import AnimationLecteur from "./AnimationLecteur";
+import ChansonsSuivantes from "./ChansonsSuivantes";
+import SliderPlaybarFull from "./SliderPlaybarFull";
 
-const PlaybarFull = () => {
+const PlaybarFull = ({ songInfo, progress, duration }) => {
+  const urlImg = "src/assets/img/jpg/placeholder.jpg";
   return (
     <div className="playbarfull">
       <div className="playbarfull__inner">
@@ -10,9 +13,13 @@ const PlaybarFull = () => {
           {/* redirection découvert artiste */}
           <h2 className="artisteChanson">Album</h2>
         </section>
-        <section className="animationLecteur">
-          <AnimationLecteur />
-        </section>
+        <AnimationLecteur />
+        <ChansonsSuivantes />
+        <SliderPlaybarFull progress={progress} duration={duration} />
+
+        <div className="cover">
+          <img src={urlImg} alt="" />
+        </div>
       </div>
     </div>
   );
