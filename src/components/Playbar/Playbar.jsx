@@ -24,6 +24,8 @@ const Playbar = () => {
     changeVolume,
   } = useAudio();
 
+  const [isFullbarOpen, setIsFullbarOpen] = useState(false);
+
   const { progress } = useAudioProgress();
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
 
@@ -32,11 +34,26 @@ const Playbar = () => {
     togglePause();
   };
 
+  const handleClick = (e) => {
+    if (e.target.classList.contains("playbar__inner")) {
+      setIsFullbarOpen(!isFullbarOpen);
+    } else {
+      return;
+    }
+  };
+
   return (
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
-      <PlaybarFull />
-      <div className="playbar__inner">
+      {/* A enlever pour voir */}
+      {isFullbarOpen && (
+        <PlaybarFull
+          songInfo={songInfo}
+          progress={progress}
+          duration={duration}
+        />
+      )}
+      <div className="playbar__inner" onClick={handleClick}>
         <section className="playbar__inner__left">
           <div className="iconeShuffleLoop">
             <BsShuffle size={"2rem"} color="var(--noir)" />
@@ -75,7 +92,7 @@ const Playbar = () => {
           </span>{" "}
           <div
             className="playbar__inner__center__progress__bar"
-            style={{ width: `${(duration / duration) * 100}%` }}
+            // style={{ width: `${(duration / duration) * 100}%` }}
           >
             <div
               className="playbar__inner__center__progress__bar__inner"

@@ -4,71 +4,97 @@
     width: 100%;
 
     background-color: var(--blanc);
+    & .playbarfull__inner {
+        width: 100%;
+        height: 100%;
+        & .infoChanson {
+            display: flex;
+            flex-direction: column;
 
-    & .infoChanson {
-        display: flex;
-        flex-direction: column;
-
-        padding: 1rem 1rem 0 2rem;
-
-        & .titreChanson {
-            @include h2;
-
-            padding: 0;
-            margin: 0;
-
-            color: var(--mauve);
-        }
-
-        & .artisteChanson {
-            @include h4;
-
-            padding: 0;
-            margin: 0;
-
-            color: var(--gris);
-        }
-    }
-
-    & .animationLecteur {
-        position: relative;
-
-        & > span {
-            position: absolute;
-            top: 0;
-            left: 0;
+            padding: 1rem 1rem 0 3rem;
 
             width: 100%;
-            height: 2px;
 
-            &:nth-child(1) {
-                z-index: 10;
-                background-color: var(--rose);
+            @include breakpoint-min(768){
+                padding: 1rem 1rem 0 4rem;
             }
 
-            &:nth-child(2) {
-                z-index: 9;
+            @include breakpoint-min(1024){
+                padding: 1rem 1rem 0 6rem;
+            }
+
+            @include breakpoint-min(1200){
+                width: calc(58vw - 20px);
+                margin-left: auto;
+                padding: 1rem 0 0 0;
+            }
+
+            & .titreChanson {
+                @include h2;
+
+                padding: 0;
+                margin: 0;
+
+                color: var(--mauve);
+            }
+
+            & .artisteChanson {
+                @include h4;
+
+                padding: 0;
+                margin: 0;
+
+                color: var(--gris);
+            }
+        }
+
+        & .animationLecteur {
+            position: relative;
+            height: 15vh;
+            & .frequence {
+                position: relative;
+                top: 0;
+                left: 0;
+
+                width: 100vw;
+                height: 100px;
+
                 background-color: var(--mauve);
             }
+        }
 
-            &:nth-child(3) {
-                z-index: 8;
-                background-color: var(--gris);
+        & .cover {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            z-index: 2000;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            width: 150%;
+            aspect-ratio: 1;
+            max-width: 1200px;
+
+            transform: translateX(-50%) translateY(-10%);
+
+            border-radius: 50% 50%;
+
+            overflow: hidden;
+
+            @include breakpoint-min(1200){
+                top: 50%;
+                left:0;
+                right: 100%;
+                transform: translateX(-70%) translateY(-50%);
             }
 
-            &:nth-child(4) {
-                z-index: 7;
-                background-color: var(--blanc);
-            }
-
-            &:nth-child(5) {
-                z-index: 6;
-                background-color: var(--mauve);
-            }
-
-            &:nth-child(6) {
-                z-index: 5;
-                background-color: var(--rose);
+            & img {
+                width: 100vw;
+                height: 100%;
+                object-fit: cover;
             }
         }
     }
