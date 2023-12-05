@@ -27,7 +27,8 @@
             }
 
             .glider-track {
-                height: 100%;
+                height: 280px;
+                
                 gap: 1rem;
 
                 & .chansonsuivante {
@@ -36,6 +37,9 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+
+                    height: 100% !important;
+                    aspect-ratio: 1/1 !important;
 
                     opacity: 0.5;
                     transition:
@@ -64,6 +68,7 @@
                         position: relative;
                         width: 100% !important;
                         aspect-ratio: 1/1;
+                        max-width: 200px;
 
                         border-radius: 2rem;
 

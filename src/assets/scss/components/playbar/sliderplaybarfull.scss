@@ -1,13 +1,28 @@
 .sliderplaybarfull {
     position: absolute;
-    z-index: 1000;
+    top: 100%;
     left: 50%;
-    bottom: 0;
+    z-index: 2000;
 
-    width: calc(150vw + 200px);
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: calc(150% + 150px);
     aspect-ratio: 1;
+    max-width: 1350px;
 
-    transform: translateX(-50%) translateY(90%);
+    transform: translateX(-50%) translateY(calc(-10% - 37.5px));
+
+    border-radius: 50%;
+
+    @include breakpoint-min(1200){
+        top: 50%;
+        left:0;
+        right: 50%;
+        transform: translateX(calc(-70% + 37.5px)) translateY(-50%) rotate(90deg);
+    }
 
     .radial-slider {
         position: relative;
@@ -21,14 +36,15 @@
             position: absolute;
             z-index: 4;
 
-            top: calc(15vw);
+            top: 0;
             left: 50%;
 
             width: 85vw;
+            max-width: 680px;
 
             user-select: none;
 
-            opacity: 50%;
+            opacity: 0;
             &::-moz-range-thumb {
                 -webkit-appearance: none;
                 appearance: none;
@@ -66,18 +82,14 @@
 
         & .radial-slider__tail {
             position: absolute;
-            top: 0;
+            top: 50%;
             left: 50%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
             width: 100%;
             height: 100%;
 
             border-radius: 50%;
-            transform: translateX(-50%) rotate(-90deg);
+            transform: translateY(-50%) translateX(-50%) rotate(-90deg);
 
             user-select: none;
 
@@ -106,9 +118,9 @@
 
         & .radial-slider__thumb-container {
             position: absolute;
-            top: calc(15vw - 15px);
+            top: 0;
             left: 50%;
-            z-index: 100000;
+            z-index: 1;
             user-select: none;
 
             translate: -50% 0;

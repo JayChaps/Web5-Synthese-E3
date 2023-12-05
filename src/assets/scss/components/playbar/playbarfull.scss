@@ -6,6 +6,7 @@
     background-color: var(--blanc);
     & .playbarfull__inner {
         width: 100%;
+        height: 100%;
         & .infoChanson {
             display: flex;
             flex-direction: column;
@@ -48,23 +49,31 @@
 
         & .cover {
             position: absolute;
-            bottom: 0;
+            top: 100%;
             left: 50%;
             z-index: 2000;
 
-            // display: flex;
-            display: none;
+            display: flex;
+
             justify-content: center;
             align-items: center;
 
             width: 150%;
             aspect-ratio: 1;
+            max-width: 1200px;
 
-            transform: translateX(-50%) translateY(80%);
+            transform: translateX(-50%) translateY(-10%);
 
-            border-radius: 50% 50% 0 0;
+            border-radius: 50% 50%;
 
             overflow: hidden;
+
+            @include breakpoint-min(1200){
+                top: 50%;
+                left:0;
+                right: 100%;
+                transform: translateX(-70%) translateY(-50%);
+            }
 
             & img {
                 width: 100vw;
