@@ -17,6 +17,8 @@ import { AudioProvider, useAudio } from "../context/audiotim";
 import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
+import DecouverteAlbum from './DecouverteAlbum';
+
 
 const Routes = () => {
   const { isConnected, loading } = useAuth();
@@ -67,6 +69,16 @@ const Routes = () => {
             },
           ],
         },
+        {
+            path: 'album',
+            element: <Outlet/>,
+            children:[
+                {
+                    path:':idAlbum',
+                    element:<DecouverteAlbum/>,
+                }
+            ]
+        }
       ],
     },
     {
