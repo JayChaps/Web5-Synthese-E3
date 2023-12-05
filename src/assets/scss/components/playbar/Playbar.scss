@@ -1,4 +1,8 @@
 @import "playbarfull.scss";
+@import "animationlecteur.scss";
+@import "chansonsuivante.scss";
+@import "animationtitrelecteur.scss";
+@import "sliderplaybarfull.scss";
 
 .playbar {
   display: grid;
@@ -19,21 +23,31 @@
     & .playbar__inner__center__progress {
       display: none !important;
     }
+    & > .playbar__inner {
+      background-color: hsla(238, 76%, 8%, 0.66);
 
-    & .playbar__inner__left {
-      justify-self: center;
-      gap: 0.5rem;
-
-      & > div {
-        padding: 0.5rem;
-
-        border-radius: 50%;
-        background-color: var(--blanc);
+      @include breakpoint-min(1200){
+        background-color: var(--noir);
       }
 
-      & .playbar__inner__left__info,
-      .playbar__inner__left__cover {
-        display: none !important;
+      & .playbar__inner__right {
+        justify-self: center;
+      }
+      & .playbar__inner__left {
+        justify-self: center;
+        gap: 0.5rem;
+
+        & > div {
+          padding: 0.5rem;
+
+          border-radius: 50%;
+          background-color: var(--blanc);
+        }
+
+        & .playbar__inner__left__info,
+        .playbar__inner__left__cover {
+          display: none !important;
+        }
       }
     }
   }
@@ -83,24 +97,36 @@
         align-items: center;
         justify-content: left;
 
+        width: 100%;
+        max-width: 300px;
+
         & .playbar__inner__left__cover {
           width: 4rem;
           aspect-ratio: 1;
-          object-fit: cover;
 
-          box-shadow: 0 0 0 1px var(--blanc);
+          box-shadow: 0 0 0 1px var(--gris);
+          border-radius: 0.5rem;
+          overflow: hidden;
+
+          & img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+          }
         }
 
         & .playbar__inner__left__info {
           position: absolute;
           top: 50%;
-          left: 4.5rem;
+          left: 4rem;
           z-index: -1;
 
           display: flex;
           flex-direction: column;
 
           width: 100%;
+
+          padding-left: 0.5rem;
 
           font-family: "Gotham";
           font-weight: 400;
@@ -122,14 +148,15 @@
 
             transform: translateY(-50%);
 
-            background-image: linear-gradient(to left, var(--noir) 50%, rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to left, var(--noir) 45%, rgba(0, 0, 0, 0) 70%);
           }
 
           & :nth-child(1) {
             position: relative;
-
-            left: -50%;
+            left: 0;
             z-index: -1;
+
+            width: 100%;
 
             white-space: nowrap;
             color: var(--blanc);
@@ -138,6 +165,9 @@
           }
 
           & :nth-child(2) {
+            position: relative;
+            left: 0;
+            z-index: -1;
             font-size: 0.8rem;
             font-weight: 300;
             color: var(--gris);
@@ -154,85 +184,81 @@
       &.playbar__inner__center > :first-child {
         transform: rotate(180deg);
       }
+    }
+  }
+}
+section.playbar__inner__center__progress {
+  display: grid !important;
+  grid-template-columns: 1fr 70% 1fr;
+  gap: 0.5rem;
+  place-items: center;
 
-      &.playbar__inner__center__progress {
-        display: grid;
-        grid-template-columns: 1fr 70% 1fr;
-        gap: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 50%;
 
-        position: absolute;
-        top: 0;
-        left: 50%;
+  width: 100%;
 
-        width: 100%;
+  transform: translateX(-50%);
 
-        transform: translateX(-50%);
+  & span {
+    font-family: "Gotham";
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--gris);
+  }
+}
+.playbar__inner__center__progress__bar {
+  position: relative;
+  top: -1px;
+  left: 0;
 
-        & span:first-child {
-          text-align: right;
-        }
+  width: 100%;
+  height: 10px;
 
-        & span {
-          font-family: "Gotham";
-          font-weight: 400;
-          font-size: 0.75rem;
-          color: var(--gris);
-        }
+  border-radius: 1rem;
+  background-color: var(--gris);
 
-        & > .playbar__inner__center__progress__bar {
-          position: relative;
-          top: -10px;
-          left: 0;
+  transform: translateY(-100%);
 
-          width: 100%;
-          height: 10px;
+  & .playbar__inner__center__progress__bar__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
 
-          border-radius: 1rem;
-          border: 1px solid var(--blanc);
-          background-color: var(--gris);
+    width: 10%;
+    height: 100%;
 
-          & .playbar__inner__center__progress__bar__inner {
-            position: absolute;
-            top: 0;
-            left: 0;
+    border-radius: 1rem;
 
-            width: 10%;
-            height: 100%;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
 
-            border-radius: 1rem;
+      width: 100%;
+      height: 100%;
 
-            &::after {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
+      border-radius: 1rem;
+      background-color: var(--mauve);
+    }
 
-              width: 100%;
-              height: 100%;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      right: 0;
 
-              border-radius: 1rem;
-              background-color: var(--rose);
-            }
+      width: 1rem;
+      height: 1rem;
 
-            &::before {
-              content: "";
-              position: absolute;
-              z-index: 1;
-              top: 50%;
-              right: 0;
+      border-radius: 1rem;
+      border: 1px solid var(--mauve);
+      background-color: var(--blanc);
 
-              width: 1rem;
-              height: 1rem;
-
-              border-radius: 1rem;
-              border: 1px solid var(--mauve);
-              background-color: var(--blanc);
-
-              transform: translateX(50%) translateY(-50%);
-            }
-          }
-        }
-      }
+      transform: translateX(50%) translateY(-50%);
     }
   }
 }
