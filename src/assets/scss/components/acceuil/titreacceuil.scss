@@ -1,13 +1,13 @@
 @mixin h3 {
     font-family: "Gotham";
     font-weight: 900;
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
 
 @mixin h4 {
     font-family: "Gotham";
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: 2.25rem;
   }
 
   @mixin h5 {
@@ -20,7 +20,7 @@
   @mixin p {
     font-family: "Gotham";
     font-weight: 500;
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 
 
@@ -35,58 +35,64 @@
     width: 400px;
     height: 250px;
     background-color: var(--rose);
-    border-radius: 20px;
+    border-radius: 40px;
     overflow: hidden;
   
     .content-container-acceuil {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-around;
       height: 100%;
+    }
+
+
+    .text-container{
+      text-align: center;
+      margin-left: 40px;
     }
   
     .image-container-acceuil {
       width: 60px;
       height: 80%;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
   
-      img {
-        width: 100%;
-        height: auto;
-        border-radius: 20%;
+      .img-acceuil {
+        transform: scale(3);
+        margin-left: 55px;
       }
     }
-  
-    .text-container {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center; // Center the titles vertically
-  
-      .titre-acceuil {
+
+
+    .titre-acceuil {
         @include h4;
         width: 250px;
         color: var(--blanc);
-        margin-bottom: 10px; // Add margin between titles
+        margin: 0;
+        margin-top: 35px;
       }
   
       .soustitre-acceuil {
         @include h5;
         color: var(--mauve);
+        margin-bottom: 25px;
+        margin: 0;
+        margin-bottom: 20px;
       }
-    }
+    
   
+
+    
     .button-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; // Center the buttons vertically
+      justify-content: center;
+      margin-left: 40px;
   
       button {
-        width: 100px;
+        width: 175px;
         height: 40px;
         margin-top: 10px;
         border-radius: 20px;
@@ -95,29 +101,37 @@
         cursor: pointer;
       }
   
-      .button-acceuil-inscription,
       .button-acceuil-connexion {
         @include p;
         color: var(--blanc);
+        margin-top: 10px;
+      }
+
+      .button-acceuil-inscription{
+        @include p;
+        color: var(--mauve);
+        background-color: var(--blanc);
         margin-top: 5px;
       }
+      
     }
     
 }
 
 .welcome-container {
-    text-align: center;
-    margin-bottom: 20px; // Adjust the spacing between titles and round-section
+    margin-bottom: 20px;
 
     .big-title {
       @include h3;
       color: var(--noir);
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .small-title {
       @include h5;
       color: var(--noir);
+      text-align: center;
     }
 
     .big-title-displaced {
