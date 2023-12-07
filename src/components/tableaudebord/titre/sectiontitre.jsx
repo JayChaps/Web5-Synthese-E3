@@ -9,10 +9,14 @@ const SectionTitre = () => {
     <section className="containersectiontitre">
       <div className="content">
         <FaPlayCircle size={"4rem"} color="var(--blanc)" className="play-icon" />
-        <h1 className="titresectiontitre">Album Title</h1>
-        <PropositionChansons />
-        <PropositionChansons />
+        <h1 className="titresectiontitre1">Titre album</h1>
+        <h1 className="titresectiontitre2">Titre album</h1>
+        <h1 className="titresectiontitre3">Titre album</h1>
         <div className="small-image"><img src="src\assets\jpg\placeholder.jpg" alt="" /></div>
+        <PropositionChansons />
+        <PropositionChansons />
+        <PropositionChansons />
+        <PropositionChansons />
       </div>
     </section>
   );

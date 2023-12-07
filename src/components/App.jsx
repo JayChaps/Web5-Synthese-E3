@@ -11,6 +11,7 @@ import LayoutAuth from "./LayoutAuth";
 import RechercheDeezer from "../pages/RechercheDeezer";
 import PageTableauDeBord from "../pages/PageTableauDeBord";
 import PageAuthentification from '../pages/PageAuthentification';
+import Acceuil from "../components/PageAcceuil/Acceuil";
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from "react";
 import Playlist from "../pages/Playlist";
@@ -31,8 +32,13 @@ const Routes = () => {
       children: [
         {
           index: true,
-          element: <Navigate to="/" replace />,
+          element: <Acceuil />,
         },
+        {
+          path: 'authentification',
+          element: <PageAuthentification />,
+        },
+        
       ],
     },
     isConnected && {
@@ -57,6 +63,9 @@ const Routes = () => {
         },
         {
           path: "playlist",
+          element: <Playlist />,
+        },
+        
           element: <LesPlaylist />,
         },
         {
