@@ -65,12 +65,8 @@ const Routes = () => {
           path: "playlist",
           element: <Playlist />,
         },
-        
-          element: <LesPlaylist />,
-        },
         {
-          path: 'authentification',
-          element: <PageAuthentification />,
+          element: <LesPlaylist />,
         },
         {
           path: "artist",
