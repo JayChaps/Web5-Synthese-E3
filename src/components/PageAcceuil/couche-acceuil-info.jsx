@@ -29,15 +29,15 @@ const CoucheAcceuil1 = () => {
             </div>
         </div>
         <div className="container-icon-couche1">
-            <div className="section1">
-                <div className="sous-section1">
-                    <div className="sous-section-icon1">
+            <div className="section2">
+                <div className="sous-section2">
+                    <div className="sous-section-icon2">
                         <BiSearch style={{ fontSize: "4rem", color: "white" }} className="icon2"/>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="container-info-couche1">
+        <div className="container-info-couche2">
             <div className="info-couche1">
                 <p>Recherche musicale 
                    précise, rapide et 
@@ -45,15 +45,15 @@ const CoucheAcceuil1 = () => {
             </div>
         </div>
         <div className="container-icon-couche1">
-            <div className="section1">
-                <div className="sous-section1">
-                    <div className="sous-section-icon1">
+            <div className="section3">
+                <div className="sous-section3">
+                    <div className="sous-section-icon3">
                         <IoVolumeHigh style={{ fontSize: "4rem", color: "white" }} className="icon1"/>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="container-info-couche1">
+        <div className="container-info-couche3">
             <div className="info-couche1">
                 <p>Qualité studio 
                    inégalée.</p>
