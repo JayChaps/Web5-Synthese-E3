@@ -8,7 +8,6 @@ const sectionlistesdelecture = () => {
         <section>
             <div>
                 <h1 className="titre-listesdelecture">Mes listes de lecture</h1>
-
                 <ListesdeLecture />
                 <ListesdeLecture />
                 <ListesdeLecture />
