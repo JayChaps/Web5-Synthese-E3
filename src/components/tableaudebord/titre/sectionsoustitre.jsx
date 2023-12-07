@@ -5,17 +5,17 @@ import { FaPlayCircle } from "react-icons/fa";
 const sectionsoustitre = () => {
   
     return (
-        <section className="containersectionsoustitre">
+        <div className="containersectionsoustitre">
             <div>
             <FaPlayCircle
                     size={"3rem"}
-                    color="var(--blanc)"
+                    color="var(--noir)"
                     className="play-icon-sous-titre"
             />
                 <h2 className="titresectionsoustitre">titrealbum</h2>
+            <div className="soustitre-image"><img src="src\assets\img\jpg\placeholder.jpg" alt="lol" /></div>
             </div>
-
-        </section>
+        </div>
     );
   };
 
