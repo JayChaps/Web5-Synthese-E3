@@ -1,8 +1,12 @@
 .sliderplaylist {
-    width: calc(100vw - 20px);
+    width: 100vw;
     margin: 0 auto;
 
     overflow-x: hidden !important;
+
+    background-color: var(--gris);
+
+    padding: 1rem 0;
     & .glider-contain {
         overflow-x: hidden !important;
         ::-webkit-scrollbar {
@@ -15,22 +19,32 @@
             overflow-x: scroll;
             overflow-y: hidden;
 
-            padding: 3rem 0;
+            padding: 0rem 0;
 
             .glider-track {
-                height: 300px;
+                height: 150px;
 
                 gap: 1rem;
                 justify-content: start !important;
 
                 margin: 0 auto;
 
+
+                @include breakpoint-min(680){
+                    height: 200px;
+                }
+                @include breakpoint-min(840){
+                    height: 250px;
+                }
+                @include breakpoint-min(1036){
+                    height: 300px;
+                }
+
                 .itemplaylist {
 
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background-color: red;
                     
                     & .wrapperitem {
                         position: relative;
