@@ -20,6 +20,7 @@
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: var(--rose);
         -webkit-text-stroke-width: 1px;
+        line-height: 1px;
     }
     .titre-milieu{
         @include h3;
@@ -31,6 +32,7 @@
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: var(--rose);
         -webkit-text-stroke-width: 1px;
+        line-height: 1px;
     }
 
 }
