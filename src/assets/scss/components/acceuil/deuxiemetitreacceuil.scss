@@ -17,7 +17,9 @@
     .titre-haut{
         @include h3;
         color: var(--blanc);
-        text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: var(--rose);
+        -webkit-text-stroke-width: 1px;
     }
     .titre-milieu{
         @include h3;
@@ -26,7 +28,9 @@
     .titre-bas{
         @include h3;
         color: var(--blanc);
-        text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: var(--rose);
+        -webkit-text-stroke-width: 1px;
     }
 
 }

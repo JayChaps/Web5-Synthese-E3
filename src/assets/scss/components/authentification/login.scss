@@ -28,16 +28,18 @@
 .login-title4 {
   @include h2;
   text-align: center;
-  text-shadow: 2px 2px var(--blanc), -2px -2px var(--blanc), 2px -2px var(--blanc), -2px 2px var(--blanc);
-  opacity: 0.5;
+  color: transparent;  // Set the text color to transparent
+  -webkit-text-stroke: 2px white;  // Webkit browsers (Chrome, Safari)
+  -webkit-text-stroke: 2px white;  // Standard property for text stroke
+  opacity: 0.35;
 }
 
 .login-title3 {
-  opacity: 0.25;
+  opacity: 0.15;
 }
 
 .login-title4 {
-  opacity: 0.1;
+  opacity: 0.05;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
