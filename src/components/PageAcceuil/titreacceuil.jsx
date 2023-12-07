@@ -20,9 +20,9 @@ const TitreAcceuil = () => {
               <h3 className="soustitre-acceuil">Votre Instant.</h3>
             </div>
             <div className="button-container">
-              <Link to="authentification">
+              {/* <Link to="authentification">
                 <button className="button-acceuil-inscription">S'inscrire</button>
-              </Link>
+              </Link> */}
               <Link to="authentification">
                 <button className="button-acceuil-connexion">Se Connecter</button>
               </Link>
