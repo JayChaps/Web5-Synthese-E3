@@ -28,6 +28,13 @@ const LesPlaylist = () => {
             color="var(--noir)"
           />
           </section>
+          <div className="coverplaylist">
+            <img src={urlImg} alt="" />
+            <img src={urlImg} alt="" />
+            <img src={urlImg} alt="" />
+            <img src={urlImg} alt="" />
+          </div>
+
         </section>
       </header>
     </div>

@@ -4,7 +4,7 @@ import ItemPlaylist from "./ItemPlaylist";
 
 const SliderPlaylists = () => {
     const settings = {
-        slidesToShow: 3,
+        slidesToShow: 4,
         draggable: true,
     };
     return (
