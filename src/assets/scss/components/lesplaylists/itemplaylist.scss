@@ -1,12 +1,13 @@
 .sliderplaylist {
-    width: 100vw;
+    width: calc(100vw - 20px);
+
     margin: 0 auto;
+    padding: 1rem 0;
 
     overflow-x: hidden !important;
 
     background-color: var(--gris);
 
-    padding: 1rem 0;
     & .glider-contain {
         overflow-x: hidden !important;
         ::-webkit-scrollbar {
@@ -19,7 +20,7 @@
             overflow-x: scroll;
             overflow-y: hidden;
 
-            padding: 0rem 0;
+            padding: 0 1rem;
 
             .glider-track {
                 height: 150px;
@@ -36,9 +37,7 @@
                 @include breakpoint-min(840){
                     height: 250px;
                 }
-                @include breakpoint-min(1036){
-                    height: 300px;
-                }
+
 
                 .itemplaylist {
 
@@ -51,7 +50,7 @@
                         
                         width: 100% !important;
                         aspect-ratio: 1;
-                        max-width: 300px;
+                        max-width: 250px;
                         overflow: hidden;
                         border-radius: 2rem;
 

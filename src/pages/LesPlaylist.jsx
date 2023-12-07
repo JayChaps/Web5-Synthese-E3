@@ -19,20 +19,27 @@ const LesPlaylist = () => {
           </div>
           <section className="lesplaylists__infos__icones">
             <div className="lesplaylistcompte">
-              <img src={urlImg} alt="" />
-              <span></span>
+              <div>
+                <img src={urlImg} alt="" />
+              </div>
+              <span>Nicolas Lauzon</span>
             </div>
-            <FaPen size={"2rem"} color="var(--noir)" />
-            <GrSubtractCircle size={"2rem"} color="var(--noir)" />
-            <FaPlayCircle size={"4rem"} color="var(--noir)" />
+            <div className="lesplaylists__infos__icones__icones">
+
+              <FaPen size={"1rem"} color="var(--noir)" />
+              <GrSubtractCircle size={"1rem"} color="var(--noir)" />
+              <FaPlayCircle size={"2rem"} color="var(--noir)" />
+            </div>
           </section>
-          <div className="coverplaylist">
-            <img src={urlImg} alt="" />
-            <img src={urlImg} alt="" />
-            <img src={urlImg} alt="" />
-            <img src={urlImg} alt="" />
-          </div>
+
         </section>
+        {/* Cover de la playlist 1 image dans chaque coin */}
+        <div className="coverplaylist">
+          <img src={urlImg} alt="" />
+          <img src={urlImg} alt="" />
+          <img src={urlImg} alt="" />
+          <img src={urlImg} alt="" />
+        </div>
       </header>
     </div>
   );
