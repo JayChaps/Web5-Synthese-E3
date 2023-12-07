@@ -3,6 +3,7 @@ import { FaPen } from "react-icons/fa6";
 import { GrSubtractCircle } from "react-icons/gr";
 import { FaPlayCircle } from "react-icons/fa";
 import SliderPlaylists from "../components/Playlist/SliderPlaylists";
+import RecherchePlaylist from "../components/Playlist/RecherchePlaylist";
 
 const LesPlaylist = () => {
   const urlImg = "src/assets/img/jpg/placeholder.jpg";
@@ -41,6 +42,32 @@ const LesPlaylist = () => {
           <img src={urlImg} alt="" />
         </div>
       </header>
+
+      <section className="lesplaylists__playlist">
+        <div className="lesplaylists__playlist__inner">
+          <RecherchePlaylist />
+        </div>
+
+        <section className="lesplaylists__playlist__inner__chansons">
+          <div className="lesplaylists__playlist__inner__chansons__infos">
+            <span className="chansons__infos__number">
+              #
+            </span>
+            <span className="chansons__infos__titre">
+              Titre
+            </span>
+            <span className="chansons__infos__album">
+              Artiste
+            </span>
+            <span className="chansons__infos__duree">
+              Durée
+            </span>
+          </div>
+
+          <div className="lesplaylists__playlist__inner__chansons__chansons">
+          </div>
+        </section>
+      </section>
     </div>
   );
 };
