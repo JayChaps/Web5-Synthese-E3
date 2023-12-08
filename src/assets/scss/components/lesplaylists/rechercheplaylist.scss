@@ -1,0 +1,66 @@
+.playlist__recherche {
+    margin-top: 4rem;
+
+    & .lesplaylists__playlist__recherche__inner {
+        position: relative;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+
+        width: 400px;
+        height: 50px;
+
+        padding: 0.4rem 0.5rem;
+
+        border-radius: 2rem;
+        border: 2px solid var(--noir);
+
+        background-color: var(--blanc);
+
+        transition: border 0.2s ease-in-out;
+        &:has(input:focus) {
+            border: 2px solid var(--mauve);
+
+            &::after {
+                width: calc(270px - 2rem);
+            }
+        }
+
+        &:after {
+            content: "";
+
+            position: absolute;
+            z-index: 10;
+            bottom: 0.4rem;
+            left: 50%;
+
+            // width: calc(270px - 2rem);
+            width: 0;
+            height: 2px;
+            background-color: var(--rose);
+            border-radius: 2px;
+
+            transform: translateX(-50%);
+
+            transition: width 0.2s ease-in-out;
+        }
+        & > input {
+            width: 270px;
+            height: 100%;
+
+            padding: 0 1rem;
+
+            border: none;
+            outline: none;
+
+            font-size: 1.2rem;
+            font-family: "Gotham";
+            color: var(--noir);
+            font-weight: 500;
+
+            background-color: transparent;
+        }
+    }
+}

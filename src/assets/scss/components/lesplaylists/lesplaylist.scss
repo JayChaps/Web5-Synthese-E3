@@ -1,290 +1,175 @@
+@import "sliderplaylist.scss";
 @import "itemplaylist.scss";
+@import "rechercheplaylist.scss";
+@import "headerplaylist.scss";
 
-.lesplaylists {
-    & header {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        gap: 2rem;
-        place-items: center;
+.lesplaylists__playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        max-height: 800px;
+    & .lesplaylists__playlist__inner__chansons {
+        display: flex;
+        flex-direction: column;
 
-        padding: 0.5rem 3rem 3rem 3rem;
+        width: 100%;
+        max-width: 1024px;
+        padding: 0 3rem;
+        margin-top: 2rem;
 
-        background-color: var(--rose);
-
-        border-radius: 0 0 5rem 0;
-
-        @include breakpoint-min(640) {
-            gap: 3rem;
-
-            padding: 1rem 4rem 4rem 4rem;
-        }
-
-        @include breakpoint-min(768) {
-            gap: 4rem;
-
-            border-radius: 0 0 8rem 0;
-        }
-        
-        @include breakpoint-min(1024) {
-            gap: 5rem;
-            
-            padding: 4rem 3rem 5rem 3rem;
-            border-radius: 0 0 10rem 0;
-        }
-
-        @include breakpoint-min(1280) {
-            gap: 6rem;
-        }
-
-        @include breakpoint-min(1536) {
-            gap: 7rem;
-        }
-
-
-        & .coverplaylist {
-            position: relative;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            width: 100%;
-            aspect-ratio: 1/1;
-
-            max-width: 450px;
-
-            border-radius: 3rem;
-            overflow: hidden;
-
-            @include breakpoint-min(1024) {
-                justify-self: start;
-            }
-
-            &>img {
-                position: absolute;
-
-                width: 50%;
-                height: 50%;
-
-                object-fit: cover;
-
-                &:nth-child(1) {
-                    top: 0;
-                    left: 0;
-                }
-
-                &:nth-child(2) {
-                    top: 0;
-                    right: 0;
-                }
-
-                &:nth-child(3) {
-                    bottom: 0;
-                    left: 0;
-                }
-
-                &:nth-child(4) {
-                    bottom: 0;
-                    right: 0;
-                }
-            }
-
-        }
-
-
-        & .lesplaylists__infos {
+        & .lesplaylists__playlist__inner__chansons__chansons {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            gap: 0.5rem;
 
-            height: 100%;
+            & > article {
+                display: grid;
+                grid-template-columns: 2rem auto;
 
-            @include breakpoint-min(1024) {
-                justify-self: end;
-            }
+                font-family: "Gotham";
+                color: var(--gris);
+                font-size: 0.8rem;
 
-            & .lesplaylists__infos__icones {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                & .lesplaylists__infos__icones__icones {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.2rem;
-
-                    @include breakpoint-min(640) {
-                        gap: 0.5rem;
-                    }
-
-
-                    @include breakpoint-min(768) {
-                        gap: 0.75rem;
-                    }
-
-
-
-                    &>svg {
-                        @include breakpoint-min(640) {
-                            width: 1.3rem;
-                            height: 1.3rem;
-
-                            &:last-of-type {
-                                width: 3rem;
-                                height: 3rem;
-                            }
-                        }
-
-                        @include breakpoint-min(768) {
-                            width: 1.5rem;
-                            height: 1.5rem;
-
-                            &:last-of-type {
-                                width: 3.5rem;
-                                height: 3.5rem;
-                            }
-                        }
-
-                        @include breakpoint-min(1024) {
-                            width: 2rem;
-                            height: 2rem;
-
-                            &:last-of-type {
-                                width: 4rem;
-                                height: 4rem;
-                            }
-                        }
-                    }
+                &:nth-child(odd) > div:nth-child(2) {
+                    background-color: #ebebeb;
+                    border-radius: 1.5rem;
                 }
 
+                & > * {
+                    align-self: center;
+                }
+                & > div:nth-child(2) {
+                    display: grid;
+                    grid-template-columns:
+                        0.5rem
+                        5rem
+                        1rem
+                        1fr
+                        1rem
+                        1fr
+                        1rem
+                        1fr
+                        1rem
+                        72px
+                        0.5rem;
 
-                & .lesplaylistcompte {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 0.2rem;
-
-                    margin-right: .5rem;
-
-                    @include breakpoint-min(640) {
-                        gap: 0.5rem;
-
-                        margin-right: 1rem;
+                    padding: 0.4rem 0;
+                    & > * {
+                        align-self: center;
                     }
 
-                    & span {
-                        margin: 0;
+                    & .chansoncover {
+                        position: relative;
 
-                        font-family: "Gotham";
-                        font-weight: 300;
-                        font-size: .8rem;
-                        line-height: 0.8rem;
+                        grid-column: 2/3;
 
-                        color: var(--noir);
+                        width: 100%;
+                        aspect-ratio: 1/1;
 
-                        @include breakpoint-min(768) {
-                            font-size: 1rem;
-                            line-height: 1rem;
-                        }
-                    }
-
-                    &>div {
-
-                        width: 1rem;
-                        height: 1rem;
-                        ;
-
-                        background-color: var(--mauve);
-                        border-radius: 50%;
+                        border-radius: 1rem;
 
                         overflow: hidden;
 
-                        @include breakpoint-min(640) {
-                            width: 1.5rem;
-                            height: 1.5rem;
+                        & img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                         }
 
-                        @include breakpoint-min(768) {
+                        & svg {
+                            position: absolute;
+                            z-index: 10;
+                            bottom: 50%;
+                            right: 50%;
+
                             width: 2rem;
                             height: 2rem;
 
-                            margin-right: .75rem;
+                            transform: translate(50%, 50%);
                         }
+                    }
 
+                    & .infoschansons {
+                        grid-column: 4/5;
+                        display: flex;
+                        flex-direction: column;
+                    }
 
-                        & img {
-                            width: 100%;
-                            aspect-ratio: 1/1;
+                    & .album {
+                        grid-column: 6/7;
+                    }
 
-                            object-fit: cover;
-                        }
+                    & .duree {
+                        grid-column: 8/9;
+                    }
+
+                    & .icones {
+                        grid-column: 10/11;
+                        display: flex;
+                        gap: 0.5rem;
                     }
                 }
             }
+        }
 
-            & .titreplaylist {
-                width: 100%;
+        & .lesplaylists__playlist__inner__chansons__infos {
+            position: relative;
 
-                & h1 {
-                    width: 100%;
+            display: grid;
+            grid-template-columns:
+            2rem
+            0.5rem
+            5rem
+            1rem
+            1fr
+            1rem
+            1fr
+            1rem
+            1fr
+            1rem
+            72px
+            0.5rem;
+            
+            // background-color: red;
 
-                    font-family: "Gotham";
-                    font-weight: 900;
-                    font-size: calc(6.55vw);
-                    // letter-spacing: 0.1rem;
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
 
-                    -webkit-text-fill-color: var(--rose);
-                    -webkit-text-stroke-color: var(--blanc);
-                    -webkit-text-stroke-width: 1px;
+            font-family: "Gotham";
+            font-size: 0.8rem;
+            color: var(--gris);
+            font-weight: 400;
+            &:after {
+                content: "";
 
-                    margin: {
-                        top: 0;
-                        bottom: 0.5em;
-                        left: 0;
-                        right: 0;
-                    }
+                position: absolute;
+                z-index: 10;
+                bottom: 0;
+                left: 50%;
 
-                    @include breakpoint-min(640) {
+                // width: calc(270px - 2rem);
+                width: calc(100% + 2rem);
+                height: 2px;
+                background-color: var(--rose);
+                border-radius: 2px;
 
-                        margin: {
-                            top: 0;
-                            bottom: 0;
-                            left: 0;
-                            right: 0;
-                        }
-                    }
+                transform: translateX(-50%);
+            }
 
-                    @include breakpoint-min(1024) {
-                        font-size: 4.5rem;
-                    }
+            & .chansons__infos__number {
+                grid-column: 1/2;
+            }
 
-                    @include breakpoint-min(1280) {
-                        font-size: 5rem;
-                    }
+            & .chansons__infos__titre {
+                grid-column: 5/6;
+            }
 
-                    &:nth-child(1) {
-                        opacity: 0.2;
-                    }
+            & .chansons__infos__album {
+                grid-column: 7/8;
+            }
 
-                    &:nth-child(2) {
-                        opacity: 0.4;
-                    }
-
-                    &:nth-child(3) {
-                        -webkit-text-fill-color: var(--mauve);
-                        -webkit-text-stroke-color: none;
-                        -webkit-text-stroke-width: 0px;
-
-                        color: var(--mauve);
-                    }
-
-                    &:nth-child(4) {
-                        opacity: 0.4;
-                    }
-                }
+            & .chansons__infos__duree {
+                grid-column: 9/10;
             }
         }
     }

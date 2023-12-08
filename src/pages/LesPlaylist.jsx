@@ -4,6 +4,8 @@ import { GrSubtractCircle } from "react-icons/gr";
 import { FaPlayCircle } from "react-icons/fa";
 import SliderPlaylists from "../components/Playlist/SliderPlaylists";
 import RecherchePlaylist from "../components/Playlist/RecherchePlaylist";
+import ItemChansons from "../components/Playlist/ItemChansons";
+import { CgRemove } from "react-icons/cg";
 
 const LesPlaylist = () => {
   const urlImg = "src/assets/img/jpg/placeholder.jpg";
@@ -28,7 +30,7 @@ const LesPlaylist = () => {
             <div className="lesplaylists__infos__icones__icones">
 
               <FaPen size={"1rem"} color="var(--noir)" />
-              <GrSubtractCircle size={"1rem"} color="var(--noir)" />
+              <CgRemove size={"1rem"} color="var(--noir)" />
               <FaPlayCircle size={"2rem"} color="var(--noir)" />
             </div>
           </section>
@@ -57,16 +59,29 @@ const LesPlaylist = () => {
               Titre
             </span>
             <span className="chansons__infos__album">
-              Artiste
+              Album
             </span>
             <span className="chansons__infos__duree">
               Durée
             </span>
           </div>
-
           <div className="lesplaylists__playlist__inner__chansons__chansons">
+
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
           </div>
         </section>
+        <div className="lesplaylists__playlist__inner">
+          <RecherchePlaylist />
+        </div>
       </section>
     </div>
   );

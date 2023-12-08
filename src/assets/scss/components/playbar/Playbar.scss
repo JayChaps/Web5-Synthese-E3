@@ -26,6 +26,7 @@
 
     @include breakpoint-min(1200) {
       position: static;
+      z-index: 100;
     }
     
     & img {
@@ -75,7 +76,7 @@
       }
 
       & .playbar__inner__left {
-        justify-self: center;
+        justify-self: right;
         gap: 0.5rem;
 
         &>div {

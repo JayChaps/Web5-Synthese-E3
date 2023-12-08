@@ -1,107 +1,62 @@
-.sliderplaylist {
-    width: calc(100vw - 20px);
+.itemplaylist {
 
-    margin: 0 auto;
-    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    & .wrapperitem {
+        position: relative;
+        
+        width: 100% !important;
+        aspect-ratio: 1;
+        max-width: 250px;
+        overflow: hidden;
+        border-radius: 2rem;
 
-    overflow-x: hidden !important;
-
-    background-color: var(--gris);
-
-    & .glider-contain {
-        overflow-x: hidden !important;
-        ::-webkit-scrollbar {
-            display: none;
+        & > * {
+            position: absolute;
         }
 
-        & .glider {
-            height: 100% !important;
+        & img:nth-of-type(1) {
+            top: 0;
+            left: 0;
 
-            overflow-x: scroll;
-            overflow-y: hidden;
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-            padding: 0 1rem;
+        & img:nth-of-type(2) {
+            top: 0;
+            right: 0;
 
-            .glider-track {
-                height: 150px;
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-                gap: 1rem;
-                justify-content: start !important;
+        & img:nth-of-type(3) {
+            bottom: 0;
+            left: 0;
 
-                margin: 0 auto;
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
+        & img:nth-of-type(4) {
+            bottom: 0;
+            right: 0;
 
-                @include breakpoint-min(680){
-                    height: 200px;
-                }
-                @include breakpoint-min(840){
-                    height: 250px;
-                }
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-
-                .itemplaylist {
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    
-                    & .wrapperitem {
-                        position: relative;
-                        
-                        width: 100% !important;
-                        aspect-ratio: 1;
-                        max-width: 250px;
-                        overflow: hidden;
-                        border-radius: 2rem;
-
-                        & > * {
-                            position: absolute;
-                        }
-
-                        & img:nth-of-type(1) {
-                            top: 0;
-                            left: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & img:nth-of-type(2) {
-                            top: 0;
-                            right: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & img:nth-of-type(3) {
-                            bottom: 0;
-                            left: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & img:nth-of-type(4) {
-                            bottom: 0;
-                            right: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & svg{
-                            position: absolute;
-                            bottom: 1rem;
-                            right: 1rem;
-                        }
-                    }
-                }
-            }
+        & svg{
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
         }
     }
 }
