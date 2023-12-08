@@ -1,0 +1,312 @@
+// style général
+.lesplaylists__playlist__inner__chansons__chansons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    width: 100%;
+    max-width: 1024px;
+
+    padding: 0 3rem;
+
+    & > article {
+        display: grid;
+        grid-template-columns: 2rem auto;
+
+        font-family: "Gotham";
+        color: var(--gris);
+        font-size: 0.8em;
+
+        @include breakpoint-min(768){
+            font-size: 1em;
+        }
+
+        &:nth-child(odd) > div:nth-child(2) {
+            background-color: #ebebeb;
+        }
+
+        & > * {
+            align-self: center;
+        }
+        & > .info {
+            display: grid;
+            grid-template-columns:
+                0.5rem
+                5rem
+                1rem
+                1fr
+                1rem
+                1fr
+                1rem
+                1fr
+                1rem
+                72px
+                0.5rem;
+
+                grid-auto-rows: auto;
+
+            padding: 0.4rem 0;
+
+            border-radius: 1.4rem;
+
+            & > * {
+                align-self: center;
+            }
+
+            & .chansoncover {
+                position: relative;
+
+                grid-column: 2/3;
+
+                width: 100%;
+                aspect-ratio: 1/1;
+
+                border-radius: 1rem;
+
+                overflow: hidden;
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                & svg {
+                    position: absolute;
+                    z-index: 10;
+                    bottom: 50%;
+                    right: 50%;
+
+                    width: 2rem;
+                    height: 2rem;
+
+                    transform: translate(50%, 50%);
+                }
+            }
+
+            & .infoschansons {
+                grid-column: 4/5;
+                display: flex;
+                flex-direction: column;
+
+                word-wrap: break-word;
+                word-break: break-all;
+                max-width: 100%;
+
+                & span:first-child {
+                    font-weight: 500;
+                    font-size: 1em;
+                    color: var(--noir);
+                }
+
+                & span:nth-child(2) {
+                    font-weight: 400;
+                    font-size: 0.8em;
+                    color: var(--gris);
+                }
+            }
+
+            & .album {
+                grid-column: 6/7;
+            }
+
+            & .duree {
+                grid-column: 8/9;
+            }
+
+            & .icones {
+                grid-column: 10/11;
+                display: flex;
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+section.recommande {
+    max-width: 768px;
+    padding: 0 3rem;
+
+    margin-inline: 3rem;
+    @include breakpoint-min(1024) {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+
+        & .premier {
+            position: relative;
+            grid-area: 1/1/4/2;
+            display: flex !important;
+
+            & .chansoncover {
+                & > svg {
+                    top: 50% !important;
+                    right: 1rem !important;
+
+                    width: 4rem !important;
+                    height: 4rem !important;
+
+                    transform: translate(0%, -50%) !important;
+                }
+            }
+
+            & .infoschansons {
+                position: absolute;
+                top: 50%;
+                left: 1rem;
+
+                padding: 0.5rem 1rem;
+
+                background-color: var(--grisFonce) !important;
+
+                transform: translateY(-50%);
+
+                border-radius: 1rem;
+
+                & > span:nth-child(1){
+                    font-size: 1.5rem !important;
+                    color: var(--blanc) !important;
+                }
+            }
+
+            & .album {
+                display: none !important;
+            }
+
+            & .duree {
+                display: none !important;
+            }
+
+            & .icones {
+                position: absolute;
+
+                bottom: 1rem;
+                right: 1rem;
+
+                & svg {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+        }
+        &  article {
+            grid-column: 1/3;
+        }
+
+        & article:nth-child(2) {
+            grid-area: 1/2/2/3;
+        }
+
+        & article:nth-child(3) {
+            grid-area: 2/2/3/3;
+        }
+
+        & article:nth-child(4) {
+            grid-area: 3/2/4/3;
+        }
+    }
+
+    & .recommande {
+        display: grid;
+        grid-template-columns:
+            0.5rem
+            5rem
+            1rem
+            1fr
+            1rem
+            1fr
+            1rem
+            1fr
+            1rem
+            72px
+            0.5rem;
+
+        padding: 0.4rem 0;
+
+        &:nth-child(even) {
+            background-color: #ebebeb;
+        }
+
+        &:nth-child(odd) {
+            & div:nth-child(2){
+                background-color: var(--blanc);
+            }
+        }
+        border-radius: 1.4rem;
+
+        @include breakpoint-min(1024) {
+            &.premier {
+                padding: 0 !important;
+            }
+        }
+
+        & .chansoncover {
+            grid-column: 2/3;
+
+            position: relative;
+
+            grid-column: 2/3;
+
+            height: 100%;
+            aspect-ratio: 1/1;
+
+            border-radius: 1rem;
+
+            overflow: hidden;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            & svg {
+                position: absolute;
+                z-index: 10;
+                bottom: 50%;
+                right: 50%;
+
+                width: 2rem;
+                height: 2rem;
+
+                transform: translate(50%, 50%);
+            }
+        }
+
+        & .infoschansons {
+            grid-column: 4/5;
+
+            display: flex;
+            flex-direction: column;
+
+        
+
+            & span:first-child {
+                font-weight: 500;
+                font-size: 1em;
+                color: var(--noir);
+            }
+
+            & span:nth-child(2) {
+                font-weight: 400;
+                font-size: 0.8em;
+                color: var(--gris);
+            }
+        }
+
+        & .album {
+            grid-column: 6/7;
+        }
+
+        & .duree {
+            grid-column: 8/9;
+        }
+
+        & .icones {
+            grid-column: 10/11;
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}

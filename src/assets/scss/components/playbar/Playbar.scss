@@ -21,38 +21,36 @@
 
     display: flex;
 
-    
     width: 100%;
 
     @include breakpoint-min(1200) {
       position: static;
       z-index: 100;
     }
-    
+
     & img {
       position: absolute;
       // top: 50%;
       left: 50%;
-      
+
       width: 150%;
       aspect-ratio: 1;
       max-width: 1200px;
-      
+
       object-fit: cover;
       border-radius: 50% 50%;
-      
+
       transform: translateX(-50%) translateY(-10%);
-      
+
       @include breakpoint-min(1200) {
         top: calc(-50px + 50%);
         left: 0;
 
         transform: translateX(-70%) translateY(-50%);
       }
-      
     }
   }
-  
+
   &:has(.playbarfull) {
     height: 100vh;
 
@@ -64,7 +62,7 @@
       display: none !important;
     }
 
-    &>.playbar__inner {
+    & > .playbar__inner {
       background-color: hsla(238, 76%, 8%, 0.66);
 
       @include breakpoint-min(1200) {
@@ -79,7 +77,7 @@
         justify-self: right;
         gap: 0.5rem;
 
-        &>div {
+        & > div {
           padding: 0.5rem;
 
           border-radius: 50%;
@@ -94,7 +92,7 @@
     }
   }
 
-  &>.playbar__inner {
+  & > .playbar__inner {
     position: relative;
     z-index: 10;
     display: grid;
@@ -105,6 +103,22 @@
     padding: 0 0.5rem;
 
     background-color: var(--noir);
+
+    & svg {
+      transition:
+        transform 0.2s ease-in-out,
+        fill 0.2s ease-in-out,
+        color 0.2s ease-in-out,
+        fill 0.2s ease-in-out,
+        color 0.2s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+
+        fill: var(--mauve);
+        color: var(--mauve) !important;
+      }
+    }
 
     & .iconeShuffleLoop {
       display: none;
@@ -126,7 +140,7 @@
       transform: translateY(-100%);
     }
 
-    &>section {
+    & > section {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -135,7 +149,7 @@
         grid-area: 1 / 1 / 2 / 2;
 
         position: relative;
-
+        z-index: 1;
         display: flex;
         align-items: center;
         justify-content: left;
@@ -151,10 +165,14 @@
           border-radius: 0.5rem;
           overflow: hidden;
 
+          user-select: none;
+
           & img {
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
+
+            user-select: none;
           }
         }
 
@@ -179,24 +197,35 @@
 
           transform: translateY(-50%);
 
+          user-select: none;
+
+          & > span {
+            cursor: pointer;
+            &:hover {
+              color: var(--mauve);
+            }
+            transition:
+              color 0.1s ease-in-out;
+          }
+
           &::after {
             content: "";
             position: absolute;
-            z-index: 1;
+            z-index: 10;
             top: 50%;
-            left: 0;
+            right: 0;
 
-            width: 100%;
+            width: 60%;
             height: 100%;
 
             transform: translateY(-50%);
 
-            background-image: linear-gradient(to left, var(--noir) 45%, rgba(0, 0, 0, 0) 70%);
+            background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, rgba(5, 6, 37, 1) 10%, rgba(5, 6, 37, 1) 100%);
           }
 
           & :nth-child(1) {
             position: relative;
-            left: 0;
+            right: 0;
             z-index: -1;
 
             width: 100%;
@@ -204,12 +233,11 @@
             white-space: nowrap;
             color: var(--blanc);
 
-            transition: all 0.5s ease-in-out;
           }
 
           & :nth-child(2) {
             position: relative;
-            left: 0;
+            right: 0;
             z-index: -1;
             font-size: 0.8rem;
             font-weight: 300;
@@ -220,11 +248,17 @@
       }
 
       &.playbar__inner__right {
+        position: relative;
+        z-index: 200;
+
         grid-area: 1 / 3 / 2 / 4;
         justify-self: right;
       }
 
-      &.playbar__inner__center> :first-child {
+      &.playbar__inner__center {
+        z-index: 100;
+      }
+      &.playbar__inner__center > :first-child {
         transform: rotate(180deg);
       }
     }
@@ -276,7 +310,6 @@ section.playbar__inner__center__progress {
 
     border-radius: 1rem;
 
-
     & .draggable {
       position: absolute;
       z-index: 1;
@@ -294,7 +327,6 @@ section.playbar__inner__center__progress {
       @include breakpoint-min(1200) {
         width: 30px;
         height: 30px;
-
       }
     }
 
@@ -311,8 +343,5 @@ section.playbar__inner__center__progress {
 
       background: linear-gradient(to right, var(--mauve) 0%, var(--rose) 100%);
     }
-
-
-
   }
 }

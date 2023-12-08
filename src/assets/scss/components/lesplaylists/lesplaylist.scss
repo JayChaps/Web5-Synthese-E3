@@ -2,119 +2,34 @@
 @import "itemplaylist.scss";
 @import "rechercheplaylist.scss";
 @import "headerplaylist.scss";
+@import "itemchanson.scss";
+@import "animationtitreplaylist.scss";
 
 .lesplaylists__playlist {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    gap: 2rem;
+
+    padding-bottom: 6rem;
+    margin-top: 4rem;
+
+    @include breakpoint-min(1024) {
+        padding-bottom: 3rem;
+        margin-top: 0;
+    }
+
     & .lesplaylists__playlist__inner__chansons {
         display: flex;
         flex-direction: column;
 
+        
         width: 100%;
         max-width: 1024px;
-        padding: 0 3rem;
-        margin-top: 2rem;
-
-        & .lesplaylists__playlist__inner__chansons__chansons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-
-            & > article {
-                display: grid;
-                grid-template-columns: 2rem auto;
-
-                font-family: "Gotham";
-                color: var(--gris);
-                font-size: 0.8rem;
-
-                &:nth-child(odd) > div:nth-child(2) {
-                    background-color: #ebebeb;
-                    border-radius: 1.5rem;
-                }
-
-                & > * {
-                    align-self: center;
-                }
-                & > div:nth-child(2) {
-                    display: grid;
-                    grid-template-columns:
-                        0.5rem
-                        5rem
-                        1rem
-                        1fr
-                        1rem
-                        1fr
-                        1rem
-                        1fr
-                        1rem
-                        72px
-                        0.5rem;
-
-                    padding: 0.4rem 0;
-                    & > * {
-                        align-self: center;
-                    }
-
-                    & .chansoncover {
-                        position: relative;
-
-                        grid-column: 2/3;
-
-                        width: 100%;
-                        aspect-ratio: 1/1;
-
-                        border-radius: 1rem;
-
-                        overflow: hidden;
-
-                        & img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-
-                        & svg {
-                            position: absolute;
-                            z-index: 10;
-                            bottom: 50%;
-                            right: 50%;
-
-                            width: 2rem;
-                            height: 2rem;
-
-                            transform: translate(50%, 50%);
-                        }
-                    }
-
-                    & .infoschansons {
-                        grid-column: 4/5;
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                    & .album {
-                        grid-column: 6/7;
-                    }
-
-                    & .duree {
-                        grid-column: 8/9;
-                    }
-
-                    & .icones {
-                        grid-column: 10/11;
-                        display: flex;
-                        gap: 0.5rem;
-                    }
-                }
-            }
-        }
-
         & .lesplaylists__playlist__inner__chansons__infos {
             position: relative;
-
+            
             display: grid;
             grid-template-columns:
             2rem
@@ -130,9 +45,12 @@
             72px
             0.5rem;
             
-            // background-color: red;
+            // width: 100%;
+            max-width: 1024px;
 
-            padding-bottom: 0.5em;
+
+
+            padding: 0 3rem 0.5em;
             margin-bottom: 1em;
 
             font-family: "Gotham";
@@ -147,8 +65,8 @@
                 bottom: 0;
                 left: 50%;
 
-                // width: calc(270px - 2rem);
-                width: calc(100% + 2rem);
+                width: calc(270px - 2rem);
+                width: 80%;
                 height: 2px;
                 background-color: var(--rose);
                 border-radius: 2px;
@@ -173,4 +91,72 @@
             }
         }
     }
+
+
+
+    & .separateur {
+        position: relative;
+        font-size: 2em;
+
+
+        
+        &::before{
+            content: "";
+            
+            position: absolute;
+            top: 50%;
+            left: 0;
+            
+            display: block;
+            width: 50px;
+            height: 2px;
+            
+            border-radius: 2px;
+            background-color: var(--rose);
+            
+            transform: translate(calc(-100% - 1rem), -50%);
+
+            @include breakpoint-min(640) {
+                width: 100px;
+
+                transform: translate(calc(-100% - 2rem), -50%);
+            }
+
+            @include breakpoint-min(768) {
+                width: 150px;
+
+                transform: translate(calc(-100% - 3rem), -50%);
+            }
+        }
+        
+        &::after{
+            content: "";
+            
+            position: absolute;
+            top: 50%;
+            right: 0;
+            
+            display: block;
+            width: 50px;
+            height: 2px;
+            
+            border-radius: 2px;
+            background-color: var(--rose);
+            
+            transform: translate(calc(100% + 1rem), -50%);
+            
+            @include breakpoint-min(640) {
+                width: 100px;
+
+                transform: translate(calc(100% + 2rem), -50%);
+            }
+
+            @include breakpoint-min(768) {
+                width: 150px;
+
+                transform: translate(calc(100% + 3rem), -50%);
+            }
+        }
+    }
 }
+

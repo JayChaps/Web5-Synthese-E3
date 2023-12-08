@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa6";
 import { GrSubtractCircle } from "react-icons/gr";
 import { FaPlayCircle } from "react-icons/fa";
@@ -6,19 +6,33 @@ import SliderPlaylists from "../components/Playlist/SliderPlaylists";
 import RecherchePlaylist from "../components/Playlist/RecherchePlaylist";
 import ItemChansons from "../components/Playlist/ItemChansons";
 import { CgRemove } from "react-icons/cg";
+import ItemChansonRecomande from "../components/Playlist/ItemChansonRecomande";
 
 const LesPlaylist = () => {
+  const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
   const urlImg = "src/assets/img/jpg/placeholder.jpg";
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowDimensions(window.innerWidth);
+    });
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
   return (
     <div className="lesplaylists">
       <SliderPlaylists />
       <header>
         <section className="lesplaylists__infos">
           <div className="titreplaylist">
-            <h1>NomPlaylist</h1>
-            <h1>NomPlaylist</h1>
-            <h1>NomPlaylist</h1>
-            <h1>NomPlaylist</h1>
+            <div className="titreinner">
+              <h1>NomPlaylist</h1>
+              <h1>NomPlaylist</h1>
+              <h1>NomPlaylist</h1>
+              <h1>NomPlaylist</h1>
+            </div>
           </div>
           <section className="lesplaylists__infos__icones">
             <div className="lesplaylistcompte">
@@ -28,13 +42,11 @@ const LesPlaylist = () => {
               <span>Nicolas Lauzon</span>
             </div>
             <div className="lesplaylists__infos__icones__icones">
-
               <FaPen size={"1rem"} color="var(--noir)" />
               <CgRemove size={"1rem"} color="var(--noir)" />
               <FaPlayCircle size={"2rem"} color="var(--noir)" />
             </div>
           </section>
-
         </section>
         {/* Cover de la playlist 1 image dans chaque coin */}
         <div className="coverplaylist">
@@ -46,27 +58,16 @@ const LesPlaylist = () => {
       </header>
 
       <section className="lesplaylists__playlist">
-        <div className="lesplaylists__playlist__inner">
-          <RecherchePlaylist />
-        </div>
+        <RecherchePlaylist />
 
         <section className="lesplaylists__playlist__inner__chansons">
           <div className="lesplaylists__playlist__inner__chansons__infos">
-            <span className="chansons__infos__number">
-              #
-            </span>
-            <span className="chansons__infos__titre">
-              Titre
-            </span>
-            <span className="chansons__infos__album">
-              Album
-            </span>
-            <span className="chansons__infos__duree">
-              Durée
-            </span>
+            <span className="chansons__infos__number">#</span>
+            <span className="chansons__infos__titre">Titre</span>
+            <span className="chansons__infos__album">Album</span>
+            <span className="chansons__infos__duree">Durée</span>
           </div>
           <div className="lesplaylists__playlist__inner__chansons__chansons">
-
             <ItemChansons />
             <ItemChansons />
             <ItemChansons />
@@ -79,9 +80,18 @@ const LesPlaylist = () => {
             <ItemChansons />
           </div>
         </section>
-        <div className="lesplaylists__playlist__inner">
-          <RecherchePlaylist />
+        <div className="separateur">
+          <span>Chansons recommandées</span>
         </div>
+        <section className="lesplaylists__playlist__inner__chansons__chansons recommande">
+          <ItemChansonRecomande premier={true} />
+          <ItemChansonRecomande />
+          <ItemChansonRecomande />
+          <ItemChansonRecomande />
+          <ItemChansonRecomande />
+          <ItemChansonRecomande />
+          <ItemChansonRecomande />
+        </section>
       </section>
     </div>
   );
