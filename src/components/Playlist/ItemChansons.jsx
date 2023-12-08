@@ -16,7 +16,7 @@ const ItemChansons = () => {
           <FaPlayCircle size={"2rem"} color="var(--noir)" />
         </div>
         <div className="infoschansons">
-          <span>Titddddddddddddddre</span>
+          <span>Titre</span>
           <span>Artiste</span>
         </div>
 
