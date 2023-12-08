@@ -1,0 +1,38 @@
+.sliderplaylist {
+    // width: 100%;
+
+    overflow-x: hidden !important;
+
+    background-color: var(--mauve);
+
+    & .glider-contain {
+        overflow-x: hidden !important;
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        & .glider {
+            height: 100% !important;
+
+            overflow-x: scroll;
+            overflow-y: hidden;
+
+            padding: 1rem;
+
+            .glider-track {
+                height: 150px;
+
+                gap: 1rem;
+                justify-content: start !important;
+
+                @include breakpoint-min(680){
+                    height: 200px;
+                }
+                @include breakpoint-min(840){
+                    height: 250px;
+                }
+
+            }
+        }
+    }
+}

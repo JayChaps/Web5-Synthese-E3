@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPauseCircle } from "react-icons/fa";
+import { CgAdd } from "react-icons/cg";
 import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
 import { BiSolidSkipNextCircle } from "react-icons/bi";
 import { BiHeart } from "react-icons/bi";
-import { GrAddCircle } from "react-icons/gr";
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
 
@@ -78,26 +78,35 @@ const Playbar = () => {
         <section className="playbar__inner__center">
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
 
-          {/* changer icone si en play ou en pause */}
-          <FaPlayCircle
-            onClick={handlePlayPause}
-            size={"4rem"}
-            color="var(--blanc)"
-          />
+          {isPaused ? (
+            <>
+              <FaPlayCircle
+                onClick={handlePlayPause}
+                size={"4rem"}
+                color="var(--blanc)"
+              />
+            </>
+          ) : (
+            <>
+              <FaPauseCircle
+                onClick={handlePlayPause}
+                size={"4rem"}
+                color="var(--blanc)"
+              />
+            </>
+          )}
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
           <BiHeart size={"3.5rem"} color="var(--rose)" />
-          <GrAddCircle size={"3rem"} color="var(--blanc)" />
+          <CgAdd size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__center__progress">
           <span>
             0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
             {(progress * duration).toFixed(0)}
           </span>{" "}
-          <div
-            className="playbar__inner__center__progress__bar"
-          >
+          <div className="playbar__inner__center__progress__bar">
             <div
               className="playbar__inner__center__progress__bar__inner"
               style={{ width: `${progress * 100}%` }}
@@ -106,7 +115,6 @@ const Playbar = () => {
             </div>
           </div>
           <span>{duration}</span>
-
         </section>
       </div>
     </aside>

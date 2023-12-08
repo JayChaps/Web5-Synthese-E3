@@ -1,9 +1,176 @@
+@import "sliderplaylist.scss";
 @import "itemplaylist.scss";
+@import "rechercheplaylist.scss";
+@import "headerplaylist.scss";
 
+.lesplaylists__playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.lesplaylists{
-    
-    & header{
+    & .lesplaylists__playlist__inner__chansons {
+        display: flex;
+        flex-direction: column;
 
+        width: 100%;
+        max-width: 1024px;
+        padding: 0 3rem;
+        margin-top: 2rem;
+
+        & .lesplaylists__playlist__inner__chansons__chansons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            & > article {
+                display: grid;
+                grid-template-columns: 2rem auto;
+
+                font-family: "Gotham";
+                color: var(--gris);
+                font-size: 0.8rem;
+
+                &:nth-child(odd) > div:nth-child(2) {
+                    background-color: #ebebeb;
+                    border-radius: 1.5rem;
+                }
+
+                & > * {
+                    align-self: center;
+                }
+                & > div:nth-child(2) {
+                    display: grid;
+                    grid-template-columns:
+                        0.5rem
+                        5rem
+                        1rem
+                        1fr
+                        1rem
+                        1fr
+                        1rem
+                        1fr
+                        1rem
+                        72px
+                        0.5rem;
+
+                    padding: 0.4rem 0;
+                    & > * {
+                        align-self: center;
+                    }
+
+                    & .chansoncover {
+                        position: relative;
+
+                        grid-column: 2/3;
+
+                        width: 100%;
+                        aspect-ratio: 1/1;
+
+                        border-radius: 1rem;
+
+                        overflow: hidden;
+
+                        & img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        & svg {
+                            position: absolute;
+                            z-index: 10;
+                            bottom: 50%;
+                            right: 50%;
+
+                            width: 2rem;
+                            height: 2rem;
+
+                            transform: translate(50%, 50%);
+                        }
+                    }
+
+                    & .infoschansons {
+                        grid-column: 4/5;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    & .album {
+                        grid-column: 6/7;
+                    }
+
+                    & .duree {
+                        grid-column: 8/9;
+                    }
+
+                    & .icones {
+                        grid-column: 10/11;
+                        display: flex;
+                        gap: 0.5rem;
+                    }
+                }
+            }
+        }
+
+        & .lesplaylists__playlist__inner__chansons__infos {
+            position: relative;
+
+            display: grid;
+            grid-template-columns:
+            2rem
+            0.5rem
+            5rem
+            1rem
+            1fr
+            1rem
+            1fr
+            1rem
+            1fr
+            1rem
+            72px
+            0.5rem;
+            
+            // background-color: red;
+
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+
+            font-family: "Gotham";
+            font-size: 0.8rem;
+            color: var(--gris);
+            font-weight: 400;
+            &:after {
+                content: "";
+
+                position: absolute;
+                z-index: 10;
+                bottom: 0;
+                left: 50%;
+
+                // width: calc(270px - 2rem);
+                width: calc(100% + 2rem);
+                height: 2px;
+                background-color: var(--rose);
+                border-radius: 2px;
+
+                transform: translateX(-50%);
+            }
+
+            & .chansons__infos__number {
+                grid-column: 1/2;
+            }
+
+            & .chansons__infos__titre {
+                grid-column: 5/6;
+            }
+
+            & .chansons__infos__album {
+                grid-column: 7/8;
+            }
+
+            & .chansons__infos__duree {
+                grid-column: 9/10;
+            }
+        }
     }
 }

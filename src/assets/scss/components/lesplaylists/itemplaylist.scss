@@ -1,85 +1,62 @@
-.sliderplaylist {
+.itemplaylist {
 
-    width: calc(100vw - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    & .wrapperitem {
+        position: relative;
+        
+        width: 100% !important;
+        aspect-ratio: 1;
+        max-width: 250px;
+        overflow: hidden;
+        border-radius: 2rem;
 
-    & .glider-contain {
-        overflow-x: hidden !important;
-
-        ::-webkit-scrollbar {
-            display: none;
+        & > * {
+            position: absolute;
         }
 
-        & .glider {
-            height: 100% !important;
+        & img:nth-of-type(1) {
+            top: 0;
+            left: 0;
 
-            overflow-x: scroll;
-            overflow-y: hidden;
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-            padding: 3rem;
+        & img:nth-of-type(2) {
+            top: 0;
+            right: 0;
 
-            .glider-track {
-                height: 300px;
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-                gap: 1rem;
-                justify-content: start !important;
+        & img:nth-of-type(3) {
+            bottom: 0;
+            left: 0;
 
-                .itemplaylist {
-                    & .wrapperitem {
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-                        height: 100% !important;
-                        position: relative;
+        & img:nth-of-type(4) {
+            bottom: 0;
+            right: 0;
 
-                        height: 100% !important;
-                        width: 300px !important;
+            width: 50%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
 
-                        overflow: hidden;
-
-                        border-radius: 2rem;
-
-                        &>* {
-                            position: absolute;
-                        }
-
-                        & img:nth-of-type(1) {
-                            top: 0;
-                            left: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & img:nth-of-type(2) {
-                            top: 0;
-                            right: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & img:nth-of-type(3) {
-                            bottom: 0;
-                            left: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-                        & img:nth-of-type(4) {
-                            bottom: 0;
-                            right: 0;
-
-                            width: 50%;
-                            aspect-ratio: 1;
-                            object-fit: cover;
-                        }
-
-
-                    }
-                }
-            }
+        & svg{
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
         }
     }
 }
