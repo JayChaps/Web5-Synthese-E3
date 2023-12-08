@@ -63,7 +63,7 @@ const Routes = () => {
         },
         {
           path: "playlist",
-          element: <Playlist />,
+          element: <LesPlaylist />,
         },
         {
           element: <LesPlaylist />,
