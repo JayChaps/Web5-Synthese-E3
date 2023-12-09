@@ -10,7 +10,7 @@ import { IoIosSearch } from "react-icons/io";
 import RechercheDeezer from "../pages/RechercheDeezer";
 
 const Nav = () => {
- 
+  const { user, googleSignIn, logOut } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,8 +21,7 @@ const Nav = () => {
     { name: "Vos playlists", url: "/playlist" },
   ];
 
-  const icones = [];
-
+  const logoUrl = "src/assets/img/svg/logo.svg";
   console.log(links);
   //   useEffect(()=>{
   //     if(user !== null){
@@ -35,25 +34,31 @@ const Nav = () => {
   // },[user])
 
   const settings = {
-    size: "2rem",
+    size: "3rem",
     color: "var(--blanc)",
   };
 
   return (
     <nav>
       <ul className="nav">
-        <li className="nav__logo"></li>
-        <li
-          className={
-            location.pathname.startsWith("/home")
-              ? "active nav__accueil"
-              : "nav__accueil"
-          }
-        >
-          <Link to="/home">
-            <TiHomeOutline {...settings} />
-          </Link>
-        </li>
+        {window.innerWidth < 1024 && (
+          <li className="nav__logo">
+            <img src={logoUrl} alt="" />
+          </li>
+        )}
+        {window.innerWidth > 1024 && (
+          <li
+            className={
+              location.pathname.startsWith("/home")
+                ? "active nav__accueil"
+                : "nav__accueil"
+            }
+          >
+            <Link to="/home">
+              <TiHomeOutline {...settings} />
+            </Link>
+          </li>
+        )}
         <li
           className={
             location.pathname.startsWith("/search")
@@ -61,7 +66,7 @@ const Nav = () => {
               : "nav__recherche"
           }
         >
-          <button >
+          <button>
             <IoIosSearch {...settings} />
           </button>
           {/* <RechercheDeezer /> */}
@@ -77,11 +82,6 @@ const Nav = () => {
             <PiPlaylistBold {...settings} />
           </Link>
         </li>
-        <li className="nav__contact">
-          <Link to="/profil">
-            <MdSupervisorAccount {...settings} />
-          </Link>
-        </li>
         <li
           className={
             location.pathname.startsWith("/profil")
@@ -92,7 +92,6 @@ const Nav = () => {
           <Link to="/profil">
             <MdAccountCircle {...settings} />
           </Link>
-
         </li>
       </ul>
     </nav>

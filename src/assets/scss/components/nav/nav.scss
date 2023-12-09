@@ -1,3 +1,6 @@
+@import "recherche.scss";
+
+
 nav {
     position: fixed;
     bottom: 0;
@@ -19,9 +22,10 @@ nav {
         top: 0;
     }
     & > ul {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr; 
         align-items: center;
+        justify-items: center;
 
         width: 100%;
 
@@ -29,40 +33,43 @@ nav {
         &::after {
             display: none !important;
         }
-        & > li {
+        &  li {
+            width: fit-content;
             border-radius: 1rem;
             &:first-child {
-                display: none;
+              
+                background-color: var(--blanc);
 
-                @include breakpoint-min(1024) {
-                    display: block;
+                &:hover a{
+                    background-color: var(--blanc) !important;
+                }
+                & img{
+                    width: 200px;
                 }
             }
-            &.active > a{
+            &.active:not(.nav__logo)  a, &.active button {
                 background-color: var(--rose) !important;
             }
 
-            &.active:nth-child(5):not(:hover) a{
-                background-color: var(--grisFonce) !important;
-            }
-
-            &:hover:not(.active) a{
+            &:hover:not(.active, .nav__logo) a, &:hover:not(.active.nav__logo) button{
                 background-color: var(--noir) !important;
             }
-            & > a {
+            & > a, & > button {
                 border-radius: 1rem;
                 transition: background-color 0.1s ease-in-out;
                 background-color: rgba(255, 255, 255, 0) !important;
 
-
-                & > svg {
-                    width: 3rem;
-                    height: 3rem;
-                }
             }
 
-            &:last-child:not(.codeco) button {
-                display: none;
+            &.nav__recherche {
+                
+                & button{
+                    &:focus{
+                        width: 50vw;
+                    }
+
+                    padding: 10px 15px;
+                }
             }
         }
     }
