@@ -1,12 +1,12 @@
 .playlist__recherche {
     position: fixed;
     z-index: 1000;
-    bottom: 7rem;
+    bottom: 224px;
 
-    margin-top: 4rem;
-    margin-bottom: 2rem;
     @include breakpoint-min(1024) {
         position: static;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
         margin-bottom: 0;
     }
 

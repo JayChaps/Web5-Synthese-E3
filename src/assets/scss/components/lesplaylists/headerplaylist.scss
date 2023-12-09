@@ -108,6 +108,8 @@
                 justify-content: space-between;
                 align-items: center;
 
+                margin-top: 2rem;
+
                 & .lesplaylists__infos__icones__icones {
                     display: flex;
                     align-items: center;
@@ -238,25 +240,32 @@
 
                 text-align: start;
 
-                overflow: hidden !important;
+                overflow: hidden;
                 & .titreinner {
                     position: absolute;
                     z-index: 5;
 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    height: 100%;
 
                     &::after {
                         content: "";
                         position: absolute;
                         z-index: 10;
                         top: 50%;
-                        left: 0;
+                        right: 0;
 
-                        width: 50vw;
+                        width: 100%;
                         height: 100%;
 
                         transform: translateY(-50%);
 
-                        background: linear-gradient(90deg, transparent 50%, var(--rose) 70%, var(--rose) 0%);
+                        @include breakpoint-min(1024) {
+                            background: linear-gradient(90deg, transparent 40%, var(--rose) 70%, var(--rose) 0%);
+                        }
                     }
 
                     & h1 {
@@ -269,19 +278,13 @@
 
                         font-family: "Gotham";
                         font-weight: 900;
-                        font-size: calc(6.55vw);
+                        font-size: calc(5.5vw);
                         // letter-spacing: 0.1rem;
 
                         -webkit-text-fill-color: var(--rose);
                         -webkit-text-stroke-color: var(--blanc);
                         -webkit-text-stroke-width: 1px;
-
-                        margin: {
-                            top: 0;
-                            bottom: 0.5em;
-                            left: 0;
-                            right: 0;
-                        }
+                        margin: 0;
 
                         @include breakpoint-min(640) {
                             margin: {

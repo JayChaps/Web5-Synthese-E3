@@ -3,7 +3,12 @@
 @import "pages/pages.scss";
 
 div.interface {
-  padding-bottom: 104px;
-
+  padding-bottom: 204px;
   background-color: var(--blanc);
+
+  @include breakpoint-min(1024) {
+    padding-bottom: 104px;
+    padding-top: 80px;
+  }
 }
+
