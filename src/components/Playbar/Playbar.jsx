@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
+
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPauseCircle } from "react-icons/fa";
-import { CgAdd } from "react-icons/cg";
+import { BiSolidSkipNextCircle } from "react-icons/bi";
+
 import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
-import { BiSolidSkipNextCircle } from "react-icons/bi";
+import { CgAdd } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
+
+import { IoVolumeOff } from "react-icons/io5";
+import { IoVolumeLow } from "react-icons/io5";
+import { IoVolumeMedium } from "react-icons/io5";
+import { IoVolumeHigh } from "react-icons/io5";
+import { IoVolumeMute } from "react-icons/io5";
+
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
 
@@ -25,6 +34,8 @@ const Playbar = () => {
   } = useAudio();
 
   const [isFullbarOpen, setIsFullbarOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [lastVolume, setLastVolume] = useState(0.5);
 
   const { progress } = useAudioProgress();
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
@@ -41,6 +52,26 @@ const Playbar = () => {
       return;
     }
   };
+
+  const handleVolume = (e) => {
+    changeVolume(e.target.value);
+    setLastVolume(e.target.value);
+    if (e.target.value > 0 && isMuted) {
+      setIsMuted(false);
+    }
+  };
+
+  const handleMute = () => {
+    if (isMuted) {
+      setIsMuted(false);
+      changeVolume(lastVolume);
+    } else {
+      setIsMuted(true);
+      setLastVolume(volume);
+      changeVolume(0);
+    }
+  };
+
   const urlImg = "src/assets/img/jpg/placeholder.jpg";
   return (
     <aside className="playbar">
@@ -68,7 +99,10 @@ const Playbar = () => {
           </div>
 
           <div className="playbar__inner__left__cover">
-            <img src={songInfo.coverUrl} alt="cover" />
+            <img
+              src={songInfo.coverUrl ? songInfo.coverUrl : urlImg}
+              alt="cover"
+            />
           </div>
           <div className="playbar__inner__left__info">
             <span>{songInfo.title}</span>
@@ -99,7 +133,64 @@ const Playbar = () => {
         </section>
         <section className="playbar__inner__right">
           <BiHeart size={"3.5rem"} color="var(--rose)" />
-          <CgAdd size={"3rem"} color="var(--blanc)" />
+          <CgAdd size={"3.5rem"} color="var(--blanc)" />
+
+          {isMuted ? (
+            <IoVolumeMute
+              size={"3.5rem"}
+              color="var(--blanc)"
+              onClick={handleMute}
+            />
+          ) : volume <= 0 && !isMuted ? (
+            <IoVolumeOff
+              size={"3.5rem"}
+              color="var(--blanc)"
+              onClick={handleMute}
+            />
+          ) : volume < 0.5 && !isMuted ? (
+            <IoVolumeLow
+              size={"3.5rem"}
+              color="var(--blanc)"
+              onClick={handleMute}
+            />
+          ) : volume < 0.75 && !isMuted ? (
+            <IoVolumeMedium
+              size={"3.5rem"}
+              color="var(--blanc)"
+              onClick={handleMute}
+            />
+          ) : (
+            volume >= 0.75 && (
+              <IoVolumeHigh
+                size={"3.5rem"}
+                color="var(--blanc)"
+                onClick={handleMute}
+              />
+            )
+          )}
+          <div className="volume">
+            <div
+              className="progress"
+              style={{
+                width: `
+                calc(${volume * 100}% + ${
+                  
+                  
+                  15 - volume * 15
+                
+                
+                }px)`,
+              }}
+            ></div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolume}
+            />
+          </div>
         </section>
         <section className="playbar__inner__center__progress">
           <span>

@@ -48,21 +48,5 @@
             }
         }
 
-        & .animationLecteur {
-            position: relative;
-            height: 15vh;
-            & .frequence {
-                position: relative;
-                top: 0;
-                left: 0;
-
-                width: 100vw;
-                height: 100px;
-
-                background-color: var(--mauve);
-            }
-        }
-
-       
     }
 }
