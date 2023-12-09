@@ -3,7 +3,7 @@ import Playlist from '../pages/Playlist';
 
 
 const Profil = () => {
-    const { user } = useAuth();
+    const { user, googleSignIn, logOut } = useAuth();
     const userName = user?.displayName || 'No name available';
 
   
@@ -11,6 +11,9 @@ const Profil = () => {
       <div>
         <h1>{userName}</h1>
         <h2>{user.email}</h2>
+        <button onClick={user === null ? googleSignIn : logOut}>
+            {user === null ? "Se connecter avec Google" : "Se déconnecter"}
+          </button>
         <Playlist/>
         <h2>Chansons aimées : </h2>
         <div>
@@ -20,7 +23,6 @@ const Profil = () => {
             <option value="theme2">theme2</option>
         </select>
         </div>
-        
       </div>
     );
 };

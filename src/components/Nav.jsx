@@ -7,9 +7,10 @@ import { PiPlaylistBold } from "react-icons/pi";
 import { MdAccountCircle } from "react-icons/md";
 import { MdSupervisorAccount } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
+import RechercheDeezer from "../pages/RechercheDeezer";
 
 const Nav = () => {
-  const { user, googleSignIn, logOut } = useAuth();
+ 
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -60,9 +61,10 @@ const Nav = () => {
               : "nav__recherche"
           }
         >
-          <Link to="/search">
+          <button >
             <IoIosSearch {...settings} />
-          </Link>
+          </button>
+          {/* <RechercheDeezer /> */}
         </li>
         <li
           className={
@@ -90,9 +92,7 @@ const Nav = () => {
           <Link to="/profil">
             <MdAccountCircle {...settings} />
           </Link>
-          <button onClick={user === null ? googleSignIn : logOut}>
-            {user === null ? "Se connecter avec Google" : "Se déconnecter"}
-          </button>
+
         </li>
       </ul>
     </nav>
