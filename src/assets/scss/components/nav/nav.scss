@@ -14,18 +14,19 @@ nav {
     width: 100vw;
     height: 80px;
 
-    padding: 0 2rem;
-
     background-color: var(--grisFonce);
 
     @include breakpoint-min(1024) {
         top: 0;
     }
     & > ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr; 
-        align-items: center;
-        justify-items: center;
+        // display: grid;
+        // grid-template-columns: 1fr 1fr 1fr 1fr; 
+        // align-items: center;
+        // justify-items: center;
+
+        display: flex;
+        justify-content: space-around;
 
         width: 100%;
 
@@ -33,12 +34,39 @@ nav {
         &::after {
             display: none !important;
         }
+
+
+        &:has(.nav__recherche button:focus){
+            justify-items: center;
+
+            & li.nav__accueil, & li.nav__logo{
+                grid-column: 1 / 2;
+            }
+            & li.nav__recherche{
+                grid-column: 2 / 3;
+            }
+
+            & li.nav__playlist, & li.nav__compte{
+                grid-column: 3 / 4;
+            }
+        }
+
+
+
         &  li {
+            display: inline-block;
             width: fit-content;
             border-radius: 1rem;
-            &:first-child {
-              
+            &.nav__logo{
+                display: none;
+
                 background-color: var(--blanc);
+
+                @include breakpoint-min(1024) {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
                 &:hover a{
                     background-color: var(--blanc) !important;
@@ -47,6 +75,14 @@ nav {
                     width: 200px;
                 }
             }
+
+            &.nav__accueil{
+                @include breakpoint-min(1024) {
+                    display: none;
+                }
+            }
+
+
             &.active:not(.nav__logo)  a, &.active button {
                 background-color: var(--rose) !important;
             }
@@ -63,13 +99,20 @@ nav {
 
             &.nav__recherche {
                 
+
                 & button{
                     &:focus{
-                        width: 50vw;
+                        width: 100%;
                     }
 
-                    padding: 10px 15px;
+                    padding: 0.5rem;
                 }
+            }
+
+
+
+            & > a{
+                padding: 0.5rem !important
             }
         }
     }

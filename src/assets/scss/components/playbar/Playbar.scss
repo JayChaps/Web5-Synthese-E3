@@ -417,6 +417,7 @@ section.playbar__inner__center__progress {
   place-items: center;
 
   position: absolute;
+  z-index: 1000;
   top: 0;
   left: 50%;
 
@@ -457,7 +458,7 @@ section.playbar__inner__center__progress {
 
     & .draggable {
       position: absolute;
-      z-index: 1;
+      z-index: 100;
       top: 50%;
       right: 0;
 
@@ -468,6 +469,13 @@ section.playbar__inner__center__progress {
       background-color: var(--rose);
 
       transform: translateX(50%) translateY(-50%);
+
+      cursor: pointer;
+
+      &:hover {
+        transform: translateX(50%) translateY(-50%)  scale(1.1);
+        background-color: var(--mauve);
+      }
 
       @include breakpoint-min(1200) {
         width: 30px;

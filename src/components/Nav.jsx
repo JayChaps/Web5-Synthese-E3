@@ -23,6 +23,18 @@ const Nav = () => {
 
   const logoUrl = "src/assets/img/svg/logo.svg";
   console.log(links);
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    if (location.pathname.startsWith("/search")) {
+      navigate(-1);
+    } else {
+      navigate("/search");
+    }
+  };
+
+ 
+
   //   useEffect(()=>{
   //     if(user !== null){
   //         navigate('/home');
@@ -41,24 +53,22 @@ const Nav = () => {
   return (
     <nav>
       <ul className="nav">
-        {window.innerWidth < 1024 && (
-          <li className="nav__logo">
-            <img src={logoUrl} alt="" />
-          </li>
-        )}
-        {window.innerWidth > 1024 && (
-          <li
-            className={
-              location.pathname.startsWith("/home")
-                ? "active nav__accueil"
-                : "nav__accueil"
-            }
-          >
-            <Link to="/home">
-              <TiHomeOutline {...settings} />
-            </Link>
-          </li>
-        )}
+        <li className="nav__logo">
+          <Link to="/home">
+            <img src={logoUrl} alt="Logo" />
+          </Link>
+        </li>
+        <li
+          className={
+            location.pathname.startsWith("/home")
+              ? "active nav__accueil"
+              : "nav__accueil"
+          }
+        >
+          <Link to="/home">
+            <TiHomeOutline {...settings} />
+          </Link>
+        </li>
         <li
           className={
             location.pathname.startsWith("/search")
@@ -66,10 +76,9 @@ const Nav = () => {
               : "nav__recherche"
           }
         >
-          <button>
+          <Link onClick={handleSearch}>
             <IoIosSearch {...settings} />
-          </button>
-          {/* <RechercheDeezer /> */}
+          </Link>
         </li>
         <li
           className={
