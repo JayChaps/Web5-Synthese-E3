@@ -1,5 +1,6 @@
 .playbarfull__inner {
-    .animationLecteur{
-        
+    & .animationLecteur {
+        position: relative;
+        height: 50px;
     }
 }
