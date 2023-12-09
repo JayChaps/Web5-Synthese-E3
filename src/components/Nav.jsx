@@ -1,41 +1,99 @@
 import React from "react";
-import { Link, useLocation,useNavigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "../context/auhContext";
-import { useEffect} from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auhContext";
 
-import Acceuil from "../components/PageAcceuil/Acceuil";
+import { TiHomeOutline } from "react-icons/ti";
+import { PiPlaylistBold } from "react-icons/pi";
+import { MdAccountCircle } from "react-icons/md";
+import { MdSupervisorAccount } from "react-icons/md";
+import { IoIosSearch } from "react-icons/io";
 
-const Nav = ({ links }) => {
-  const { user,googleSignIn,logOut } = useAuth();
+const Nav = () => {
+  const { user, googleSignIn, logOut } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
-//   useEffect(()=>{
-//     if(user !== null){
-//         navigate('/home');
-//     }
-//     else
-//     {
-//         navigate('/')
-//     } 
-// },[user])
+  const links = [
+    { name: "Accueil", url: "/home" },
+    { name: "Profil", url: "/profil" },
+    { name: "Recherche", url: "/search" },
+    { name: "Vos playlists", url: "/playlist" },
+  ];
+
+  const icones = [];
+
+  console.log(links);
+  //   useEffect(()=>{
+  //     if(user !== null){
+  //         navigate('/home');
+  //     }
+  //     else
+  //     {
+  //         navigate('/')
+  //     }
+  // },[user])
+
+  const settings = {
+    size: "2rem",
+    color: "var(--blanc)",
+  };
 
   return (
     <nav>
       <ul className="nav">
-        {Array.isArray(links) && links.map(({ name, url }) => (
-          <li
-            data-cy={`lnk-${url}`}
-            key={name}
-            className={location.pathname.startsWith(url) ? "active" : ""}
-          >
-            <Link to={url}>{name}</Link>
-          </li>
-        ))}
-    <button onClick={user === null ? googleSignIn : logOut}>
-          {user === null ? "Se connecter avec Google" : "Se déconnecter"}
-        </button>
-        
+        <li className="nav__logo"></li>
+        <li
+          className={
+            location.pathname.startsWith("/home")
+              ? "active nav__accueil"
+              : "nav__accueil"
+          }
+        >
+          <Link to="/home">
+            <TiHomeOutline {...settings} />
+          </Link>
+        </li>
+        <li
+          className={
+            location.pathname.startsWith("/search")
+              ? "active nav__recherche"
+              : "nav__recherche"
+          }
+        >
+          <Link to="/search">
+            <IoIosSearch {...settings} />
+          </Link>
+        </li>
+        <li
+          className={
+            location.pathname.startsWith("/playlist")
+              ? "active nav__playlist"
+              : "nav__playlist"
+          }
+        >
+          <Link to="/playlist">
+            <PiPlaylistBold {...settings} />
+          </Link>
+        </li>
+        <li className="nav__contact">
+          <Link to="/profil">
+            <MdSupervisorAccount {...settings} />
+          </Link>
+        </li>
+        <li
+          className={
+            location.pathname.startsWith("/profil")
+              ? "active nav__compte"
+              : "nav__compte"
+          }
+        >
+          <Link to="/profil">
+            <MdAccountCircle {...settings} />
+          </Link>
+          <button onClick={user === null ? googleSignIn : logOut}>
+            {user === null ? "Se connecter avec Google" : "Se déconnecter"}
+          </button>
+        </li>
       </ul>
     </nav>
   );

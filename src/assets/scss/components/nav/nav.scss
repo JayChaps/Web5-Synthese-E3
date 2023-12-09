@@ -1,22 +1,69 @@
-nav{
+nav {
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: 10000000000000000000000000000000000;
 
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
     height: 80px;
+
+    padding: 0 2rem;
 
     background-color: var(--grisFonce);
 
     @include breakpoint-min(1024) {
         top: 0;
     }
-    & > ul{
+    & > ul {
         display: flex;
         justify-content: space-between;
-        & > li{
+        align-items: center;
 
+        width: 100%;
+
+        &::before,
+        &::after {
+            display: none !important;
+        }
+        & > li {
+            border-radius: 1rem;
+            &:first-child {
+                display: none;
+
+                @include breakpoint-min(1024) {
+                    display: block;
+                }
+            }
+            &.active > a{
+                background-color: var(--rose) !important;
+            }
+
+            &.active:nth-child(5):not(:hover) a{
+                background-color: var(--grisFonce) !important;
+            }
+
+            &:hover:not(.active) a{
+                background-color: var(--noir) !important;
+            }
+            & > a {
+                border-radius: 1rem;
+                transition: background-color 0.1s ease-in-out;
+                background-color: rgba(255, 255, 255, 0) !important;
+
+
+                & > svg {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+
+            &:last-child:not(.codeco) button {
+                display: none;
+            }
         }
     }
 }

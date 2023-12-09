@@ -189,6 +189,7 @@ const Playbar = () => {
               step="0.01"
               value={volume}
               onChange={handleVolume}
+              disabled={!isReady}
             />
           </div>
         </section>
