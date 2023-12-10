@@ -3,10 +3,11 @@ import { FaPen } from "react-icons/fa6";
 import { GrSubtractCircle } from "react-icons/gr";
 import { FaPlayCircle } from "react-icons/fa";
 import SliderPlaylists from "../components/Playlist/SliderPlaylists";
-import RecherchePlaylist from "../components/Playlist/RecherchePlaylist";
 import ItemChansons from "../components/Playlist/ItemChansons";
 import { CgRemove } from "react-icons/cg";
 import ItemChansonRecomande from "../components/Playlist/ItemChansonRecomande";
+import { Link } from "react-router-dom";
+import RechercheDeezerInput from "../components/RechercheDeezer/RechercheDeezerInput";
 
 const LesPlaylist = () => {
   const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
@@ -58,7 +59,11 @@ const LesPlaylist = () => {
       </header>
 
       <section className="lesplaylists__playlist">
-        <RecherchePlaylist />
+        <Link to="/search">
+          <RechercheDeezerInput 
+            placeholder={"Ajoutez une chanson !"}
+          />
+        </Link>
 
         <section className="lesplaylists__playlist__inner__chansons">
           <div className="lesplaylists__playlist__inner__chansons__infos">

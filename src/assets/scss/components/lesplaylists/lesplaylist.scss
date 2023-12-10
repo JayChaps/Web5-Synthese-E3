@@ -1,6 +1,5 @@
 @import "sliderplaylist.scss";
 @import "itemplaylist.scss";
-@import "rechercheplaylist.scss";
 @import "headerplaylist.scss";
 @import "itemchanson.scss";
 @import "animationtitreplaylist.scss";
@@ -17,7 +16,7 @@
 
     @include breakpoint-min(1024) {
         padding-bottom: 3rem;
-        margin-top: 0;
+        margin-top: 6rem;
     }
 
     & .lesplaylists__playlist__inner__chansons {
@@ -97,8 +96,8 @@
     & .separateur {
         position: relative;
         font-size: 2em;
-
-
+        font-weight: 700;
+        color: var(--rose);
         
         &::before{
             content: "";

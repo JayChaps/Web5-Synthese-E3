@@ -1,6 +1,6 @@
 // RechercheDeezer.jsx :
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 // import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
@@ -16,11 +16,12 @@ import {
 import { SongInfoContext } from "../context/SongInfoContext";
 // import { useSongInfo } from "../context/SongInfoContext";
 import { PlaylistsContext } from "../context/playlistsContext";
-import { PlaylistSelector } from "../components/PlaylistSelector";
+import { PlaylistSelector } from "../components/RechercheDeezer/PlaylistSelector";
 
-
-import { IoIosSearch } from "react-icons/io";
 import RechercheDeezerInput from "../components/RechercheDeezer/RechercheDeezerInput";
+
+import { CgAdd } from "react-icons/cg";
+import { FaPlayCircle } from "react-icons/fa";
 
 const RechercheDeezer = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,6 +30,8 @@ const RechercheDeezer = () => {
   const [filter, setFilter] = useState("");
   // const { estActif, setActif } = PlaylistSelector();
   const [selectorActif, setSelectorActif] = useState(false);
+
+  const navigate = useNavigate();
 
   // const { changeSource, play, pause } = useAudio();
   const { handlePlaySong } = useContext(SongInfoContext);
@@ -103,26 +106,51 @@ const RechercheDeezer = () => {
     console.log(selectedSong);
   };
 
+  const handleBack = (e) => {
+    e.preventDefault();
+    navigate(-1);
+  }
+
   return (
     <section className="deezer">
+      <Link onClick={handleBack}>
+        <div class="outer">
+          <div class="inner">
+            <label>Retour</label>
+          </div>
+        </div>
+      </Link>
       <h1>Recherche</h1>
       <div className="recherche">
-        <RechercheDeezerInput 
-
-        value={searchTerm}
-        handleInputChange={handleInputChange}
-        handleSearch={handleSearch}
+        <RechercheDeezerInput
+          autoFocus={true}
+          value={searchTerm}
+          handleInputChange={handleInputChange}
+          handleSearch={handleSearch}
+          placeholder={"Que voulez-vous écouter ?"}
         />
         {/* <button onClick={handleSearch}>Rechercher</button> */}
       </div>
       <div className="filtres">
-        <button value={searchFilters[0]} onClick={filters}>
+        <button
+          value={searchFilters[0]}
+          onClick={filters}
+          className={filter === searchFilters[0] ? "active" : ""}
+        >
           Artistes
         </button>
-        <button value={searchFilters[1]} onClick={filters}>
+        <button
+          value={searchFilters[1]}
+          onClick={filters}
+          className={filter === searchFilters[1] ? "active" : ""}
+        >
           Albums
         </button>
-        <button value={searchFilters[2]} onClick={filters}>
+        <button
+          value={searchFilters[2]}
+          onClick={filters}
+          className={filter === searchFilters[2] ? "active" : ""}
+        >
           Titres
         </button>
       </div>
@@ -131,10 +159,12 @@ const RechercheDeezer = () => {
         {searchResults.map((result, index) => {
           return (
             <li key={index}>
-              <h2>{result.title}</h2>
-              <Link to={`/artist/${result.artist.id}`}>
-                <p>{result.artist.name}</p>
-              </Link>
+              <div className="infos">
+                <h2>{result.title}</h2>
+                <Link to={`/artist/${result.artist.id}`}>
+                  <p>{result.artist.name}</p>
+                </Link>
+              </div>
               <div className="imgrecherche">
                 <img
                   onClick={() => handlePlaySong(result)}
@@ -142,9 +172,10 @@ const RechercheDeezer = () => {
                   alt={`Couverture de l'album ${result.album.title}`}
                 />
               </div>
-              <button onClick={() => handlePlaylistSelector(result)}>
-                Ajouter à la playlist
-              </button>
+              <div className="boutons">
+                <CgAdd size={"2rem"} color="var(--rose)"  onClick={() => handlePlaylistSelector(result)}/>
+                <FaPlayCircle size={"2rem"} color="var(--rose)" onClick={() => handlePlaySong(result)}/>
+              </div>
               {selectorActif && (
                 <PlaylistSelector
                   estActif={selectorActif}
@@ -153,7 +184,6 @@ const RechercheDeezer = () => {
                 />
               )}
               {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
-              <button onClick={() => handlePlaySong(result)}>Lire</button>
             </li>
           );
         })}

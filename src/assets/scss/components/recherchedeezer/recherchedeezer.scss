@@ -1,0 +1,414 @@
+.deezer {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-bottom: 6rem;
+
+    & > h1 {
+        @include h2;
+
+        padding: {
+            top: 3rem;
+            bottom: 1rem;
+        }
+
+        color: var(--rose);
+
+        @include breakpoint-min(1024) {
+            padding: 3rem 0 1rem;
+        }
+    }
+
+    & > ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 1rem;
+
+        width: 90%;
+        // max-width: 1024px;
+
+        margin-top: 1rem;
+        & > li {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 1rem;
+
+            border-radius: 1rem;
+            border: 3px solid var(--rose);
+            box-shadow: -2px 4px 10px 0px rgba(0, 0, 0, 0.726);
+
+            transition:
+                background-color 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+
+            overflow: hidden;
+            &:hover {
+                background-color: var(--rose);
+                color: var(--blanc);
+            }
+
+            &:has(.playlistSelector) {
+                gap: 0;
+
+                & > .boutons {
+                    display: none;
+                }
+            }
+
+            & .playlistSelector {
+                z-index: 3;
+                width: 100%;
+                height: 100%;
+                background-color: var(--grisFonce);
+
+                & > .playlistSelector__header {
+                    position: relative;
+
+                    display: grid;
+                    grid-template-columns: 1fr auto;
+                    place-items: center;
+
+                    padding: 0.5rem 1rem;
+
+                    & > h2 {
+                        margin: 0;
+                        padding: 0;
+                        color: var(--blanc);
+                    }
+
+                    & .outer {
+                        position: absolute;
+                        top: 50%;
+                        right: 0.2rem;
+
+                        width: 2rem;
+                        height: 2rem;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        padding: 0;
+
+                        background-color: transparent;
+
+                        transform: translateY(-50%);
+
+                        &:hover {
+                            & ::after,
+                            & ::before {
+                                background-color: var(--mauve) !important;
+                            }
+                        }
+
+                        & .inner {
+                            position: relative;
+                            width: 100%;
+                            text-align: center;
+                            &:before,
+                            &:after {
+                                content: "";
+
+                                position: absolute;
+                                left: 0;
+
+                                height: 2px;
+                                width: inherit;
+
+                                background: var(--rose);
+                                border-radius: 2px;
+                                transition: all 0.1s ease-in;
+                            }
+
+                            &:before {
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%) rotate(45deg);
+                            }
+
+                            &:after {
+                                bottom: 50%;
+                                left: 50%;
+                                transform: translate(-50%, 50%) rotate(-45deg);
+                            }
+                        }
+                    }
+                }
+                & .playlistSelector__body {
+                    padding: 0.5rem 1rem;
+
+                    & > .playlist__recherche {
+                        position: static;
+
+                        width: 100%;
+                        height: 2rem;
+
+                        transform: none;
+
+                        & > .lesplaylists__playlist__recherche__inner {
+                            gap: 0.2rem;
+
+                            width: 100%;
+                            height: 100%;
+
+                            padding: 0.2rem 1rem 0.2rem 0.5rem;
+
+                            & > svg {
+            
+                                cursor: pointer;
+                                transition: all 0.1s ease-in-out;
+                                &:hover {
+                                    color: var(--mauve) !important;
+                                    fill: var(--mauve);
+                                }
+                            }
+                            & > div {
+
+                                & > input {
+                                    font-size: 1em;
+                                    font-weight: 400;
+                                    letter-spacing: -1px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            & > .boutons {
+                z-index: 3;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                width: 100%;
+                padding: 0.5rem 1rem;
+
+                & > svg {
+                    cursor: pointer;
+                    transition: all 0.1s ease-in-out;
+                    &:hover {
+                        color: var(--mauve) !important;
+                        fill: var(--mauve);
+                    }
+                    &:nth-child(2) {
+                        width: 3rem;
+                        height: 3rem;
+                    }
+                }
+            }
+
+            & > div.imgrecherche {
+                position: absolute;
+                z-index: 1;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+
+                transition: transform 0.2s ease-in-out;
+                cursor: pointer;
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            & > .infos {
+                position: relative;
+                z-index: 2;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                // gap: 0.5rem;
+
+                width: 100%;
+
+                padding: 0.8em;
+                margin: 0;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background-color: var(--noir);
+                    opacity: 0.5;
+                }
+
+                @include breakpoint-min(640) {
+                    padding: 0.5rem;
+                }
+                @include breakpoint-min(768) {
+                    padding: 1rem;
+                }
+
+                & > h2 {
+                    font-weight: 600;
+                    text-align: center;
+                    color: var(--rose);
+                    line-height: 1em;
+                }
+
+                & > a {
+                    text-decoration: none;
+
+                    padding: 0;
+                    margin: 0;
+
+                    color: var(--blanc);
+
+                    transition: all 0.1s ease-in-out;
+                    &:hover {
+                        color: var(--rose);
+                        transform: scale(1.1);
+                    }
+
+                    & > p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    & .filtres {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+
+        font-family: "Gotham";
+        font-size: 1.2em;
+        font-weight: 700;
+        color: var(--rose);
+
+        & button {
+            padding: 0.5rem 1rem;
+            border-radius: 3rem;
+            border: 1px solid var(--mauve);
+            background-color: var(--blanc);
+
+            transition:
+                background-color 0.1s ease-in-out,
+                color 0.1s ease-in-out;
+            &.active {
+                background-color: var(--mauve);
+                color: var(--blanc);
+            }
+
+            &:hover:not(.active) {
+                background-color: var(--mauve);
+                color: var(--blanc);
+            }
+        }
+    }
+
+    & .outer {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 100;
+
+        padding: 0.5rem;
+
+        border-radius: 1rem;
+
+        background-color: var(--grisFonce);
+
+        @include breakpoint-min(1024) {
+            top: calc(2rem + 80px);
+            right: 2rem;
+        }
+
+        cursor: pointer;
+        &:hover label {
+            opacity: 1 !important;
+        }
+
+        &:hover .inner:before,
+        &:hover .inner:after {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        &:hover .inner:before {
+            top: 0;
+        }
+
+        &.outer:hover .inner:after {
+            bottom: 0;
+        }
+
+        & .inner {
+            position: relative;
+            width: 100%;
+            text-align: center;
+
+            &:before,
+            &:after {
+                content: "";
+
+                position: absolute;
+                left: 0;
+
+                height: 2px;
+                width: inherit;
+
+                background: var(--rose);
+                border-radius: 2px;
+                transition: all 0.1s ease-in;
+            }
+
+            &:before {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            &:after {
+                bottom: 50%;
+                left: 50%;
+                transform: translate(-50%, 50%) rotate(-45deg);
+            }
+
+            & label {
+                cursor: pointer;
+
+                margin: 0;
+
+                font-family: "Gotham";
+                font-size: 0.5em;
+                line-height: 4em;
+                text-transform: uppercase;
+                color: var(--rose);
+
+                opacity: 0;
+
+                transition: all 0.1s ease-in;
+
+                @include breakpoint-min(1024) {
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
+}

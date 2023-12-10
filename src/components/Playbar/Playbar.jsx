@@ -77,6 +77,9 @@ const Playbar = () => {
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
       {/* A enlever pour voir */}
+
+
+      {/* ------------------- setIsFullbarOpen à false quand on change de location.pathname */}
       {isFullbarOpen && (
         <>
           <PlaybarFull

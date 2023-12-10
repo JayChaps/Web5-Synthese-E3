@@ -15,15 +15,15 @@
 
             width: 100%;
 
-            @include breakpoint-min(768){
+            @include breakpoint-min(768) {
                 padding: 1rem 1rem 0 4rem;
             }
 
-            @include breakpoint-min(1024){
+            @include breakpoint-min(1024) {
                 padding: 1rem 1rem 0 6rem;
             }
 
-            @include breakpoint-min(1200){
+            @include breakpoint-min(1200) {
                 width: calc(58vw - 20px);
                 margin-left: auto;
                 padding: 1rem 0 0 0;
@@ -47,6 +47,9 @@
                 color: var(--gris);
             }
         }
-
     }
+}
+
+main:has(aside .playbarfull) > div{
+    display: none !important;
 }
