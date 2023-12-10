@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/auhContext";
 import Playlist from "../pages/Playlist";
 import SliderPlaylists from "./Playlist/SliderPlaylists";
+import ItemChansons from "./Playlist/ItemChansons";
 
 const Profil = () => {
   const { user, googleSignIn, logOut } = useAuth();
@@ -44,10 +45,33 @@ const Profil = () => {
         </div>
         {/* <Playlist /> */}
         <div className="playlists">
-          <h3>Mes playlists</h3>
+          <div className="soustitreprofil">
+            <h3>Mes playlists</h3>
+            <h3>Mes playlists</h3>
+            <h3>Mes playlists</h3>
+          </div>
           <SliderPlaylists />
         </div>
-        <h2>Chansons aimées : </h2>
+        <div className="chansonsaimees">
+          <div className="soustitreprofil alt">
+            <h3>Chansons aimées</h3>
+            <h3>Chansons aimées</h3>
+            <h3>Chansons aimées</h3>
+          </div>
+
+          <div className="lesplaylists__playlist__inner__chansons__chansons">
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+            <ItemChansons />
+          </div>
+        </div>
       </div>
     </div>
   );

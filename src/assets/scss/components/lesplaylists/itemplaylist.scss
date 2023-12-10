@@ -55,6 +55,7 @@
             text-align: center;
 
             transition: color 0.1s ease-in-out;
+            
             &:hover {
                 color: var(--mauve);
 
@@ -95,6 +96,7 @@
             width: 50%;
             aspect-ratio: 1;
             object-fit: cover;
+            user-select: none;
         }
 
         & img:nth-of-type(2) {
@@ -104,6 +106,7 @@
             width: 50%;
             aspect-ratio: 1;
             object-fit: cover;
+            user-select: none;
         }
 
         & img:nth-of-type(3) {
@@ -113,6 +116,7 @@
             width: 50%;
             aspect-ratio: 1;
             object-fit: cover;
+            user-select: none;
         }
 
         & img:nth-of-type(4) {
@@ -122,6 +126,7 @@
             width: 50%;
             aspect-ratio: 1;
             object-fit: cover;
+            user-select: none;
         }
 
         & > svg:last-of-type{
