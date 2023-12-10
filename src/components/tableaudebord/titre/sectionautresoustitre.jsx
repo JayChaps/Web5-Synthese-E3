@@ -9,10 +9,11 @@ const sectionautresoustitre = () => {
             <div>
             <FaPlayCircle
                     size={"2rem"}
-                    color="var(--blanc)"
+                    color="var(--noir)"
                     className="play-icon-autre-sous-titre"
             />
                 <h4 className="titresectionautresoustitre">titrealbum</h4>
+                <div className="autresoustitre-image"><img src="src\assets\img\jpg\placeholder.jpg" alt="lol" /></div>
             </div>
 
         </section>

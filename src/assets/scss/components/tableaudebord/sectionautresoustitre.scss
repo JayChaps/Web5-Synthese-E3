@@ -4,7 +4,6 @@
     height: 125px;
     width: 125px;
     margin: 17px;
-    background-color: #222C32;
     border-radius: 20px;
   
 }
@@ -12,7 +11,7 @@
 .titresectionautresoustitre{
     @include p;
     padding: 20px;
-    color: white;
+    color: var(--grisFonce);
     
 }
 
@@ -22,3 +21,18 @@
     right: 0;
     margin: 10px;
 }
+
+.autresoustitre-image{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    img{
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+    }
+  }

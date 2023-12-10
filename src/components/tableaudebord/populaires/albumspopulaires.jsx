@@ -19,7 +19,7 @@ const albumspopulaires = () => {
             </div>
             <div className="image-container">
                 <img
-                    src="src\assets\jpg\placeholder.jpg" // Changer ici
+                    src="src\assets\img\jpg\placeholder.jpg" // Changer ici
                     alt="populaires"
                     className="cover-mask"
                />
