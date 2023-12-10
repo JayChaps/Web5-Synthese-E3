@@ -11,6 +11,7 @@ const Profil = () => {
       <div>
         <h1>{userName}</h1>
         <h2>{user.email}</h2>
+        <img src={user.photoURL} alt="" />
         <Playlist/>
         <h2>Chansons aimées : </h2>
         <div>
