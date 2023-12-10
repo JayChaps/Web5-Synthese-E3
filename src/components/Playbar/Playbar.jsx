@@ -72,7 +72,7 @@ const Playbar = () => {
     }
   };
 
-  const urlImg = "src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
   return (
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}

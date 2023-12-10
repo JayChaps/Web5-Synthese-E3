@@ -1,10 +1,14 @@
 .sliderplaylist {
     // width: 100%;
-
-    overflow-x: hidden !important;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem ;
+    
     background-color: var(--mauve);
-
+    
+    overflow-x: hidden !important;
     & .glider-contain {
         overflow-x: hidden !important;
         ::-webkit-scrollbar {

@@ -10,5 +10,12 @@ div.interface {
     padding-bottom: 104px;
     padding-top: 80px;
   }
+  
 }
 
+div.interface:has(.login, .accueil){
+  padding-bottom: 80px;
+  @include breakpoint-min(1024) {
+    padding-bottom: 0;
+  }
+}

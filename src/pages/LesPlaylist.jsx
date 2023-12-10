@@ -11,7 +11,7 @@ import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
 
 const LesPlaylist = () => {
   const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
-  const urlImg = "src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
   useEffect(() => {
     window.addEventListener("resize", () => {
