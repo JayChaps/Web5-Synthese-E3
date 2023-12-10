@@ -2,11 +2,12 @@ import AnimationLecteur from "./AnimationLecteur";
 import ChansonsSuivantes from "./ChansonsSuivantes";
 import SliderPlaybarFull from "./SliderPlaybarFull";
 
-const PlaybarFull = ({ songInfo, progress, duration }) => {
+const PlaybarFull = ({ songInfo, progress, duration, children }) => {
 
   return (
     <div className="playbarfull">
       <div className="playbarfull__inner">
+        {children}
         <section className="infoChanson">
           {/* Redirection album */}
           <h2 className="titreChanson">Titre</h2>

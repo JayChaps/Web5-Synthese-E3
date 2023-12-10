@@ -23,31 +23,28 @@
         display: flex;
         flex-direction: column;
 
-        
         width: 100%;
         max-width: 1024px;
         & .lesplaylists__playlist__inner__chansons__infos {
             position: relative;
-            
+
             display: grid;
             grid-template-columns:
-            2rem
-            0.5rem
-            5rem
-            1rem
-            1fr
-            1rem
-            1fr
-            1rem
-            1fr
-            1rem
-            72px
-            0.5rem;
-            
+                2rem
+                0.5rem
+                5rem
+                1rem
+                1fr
+                1rem
+                1fr
+                1rem
+                1fr
+                1rem
+                72px
+                0.5rem;
+
             // width: 100%;
             max-width: 1024px;
-
-
 
             padding: 0 3rem 0.5em;
             margin-bottom: 1em;
@@ -91,71 +88,74 @@
         }
     }
 
-
-
     & .separateur {
-        position: relative;
+        width: 100%;
+
         font-size: 2em;
         font-weight: 700;
         color: var(--rose);
-        
-        &::before{
-            content: "";
-            
-            position: absolute;
-            top: 50%;
-            left: 0;
-            
-            display: block;
-            width: 50px;
-            height: 2px;
-            
-            border-radius: 2px;
-            background-color: var(--rose);
-            
-            transform: translate(calc(-100% - 1rem), -50%);
+        text-align: center;
 
-            @include breakpoint-min(640) {
-                width: 100px;
+        overflow: hidden;
+        & > span {
+            position: relative;
+            &::before {
+                content: "";
 
-                transform: translate(calc(-100% - 2rem), -50%);
+                position: absolute;
+                top: 50%;
+                left: 0;
+
+                display: block;
+                width: 50px;
+                height: 2px;
+
+                border-radius: 2px;
+                background-color: var(--rose);
+
+                transform: translate(calc(-100% - 1rem), -50%);
+
+                @include breakpoint-min(640) {
+                    width: 100px;
+
+                    transform: translate(calc(-100% - 2rem), -50%);
+                }
+
+                @include breakpoint-min(768) {
+                    width: 150px;
+
+                    transform: translate(calc(-100% - 3rem), -50%);
+                }
             }
 
-            @include breakpoint-min(768) {
-                width: 150px;
+            &::after {
+                content: "";
 
-                transform: translate(calc(-100% - 3rem), -50%);
-            }
-        }
-        
-        &::after{
-            content: "";
-            
-            position: absolute;
-            top: 50%;
-            right: 0;
-            
-            display: block;
-            width: 50px;
-            height: 2px;
-            
-            border-radius: 2px;
-            background-color: var(--rose);
-            
-            transform: translate(calc(100% + 1rem), -50%);
-            
-            @include breakpoint-min(640) {
-                width: 100px;
+                position: absolute;
+                top: 50%;
+                right: 0;
 
-                transform: translate(calc(100% + 2rem), -50%);
-            }
+                display: block;
+                width: 50px;
+                height: 2px;
 
-            @include breakpoint-min(768) {
-                width: 150px;
+                border-radius: 2px;
+                background-color: var(--rose);
 
-                transform: translate(calc(100% + 3rem), -50%);
+                transform: translate(calc(100% + 1rem), -50%);
+
+                @include breakpoint-min(640) {
+                    width: 100px;
+
+                    transform: translate(calc(100% + 2rem), -50%);
+                }
+
+                @include breakpoint-min(768) {
+                    width: 150px;
+
+                    transform: translate(calc(100% + 3rem), -50%);
+                }
             }
         }
     }
 }
-

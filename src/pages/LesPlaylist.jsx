@@ -7,7 +7,7 @@ import ItemChansons from "../components/Playlist/ItemChansons";
 import { CgRemove } from "react-icons/cg";
 import ItemChansonRecomande from "../components/Playlist/ItemChansonRecomande";
 import { Link } from "react-router-dom";
-import RechercheDeezerInput from "../components/RechercheDeezer/RechercheDeezerInput";
+import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
 
 const LesPlaylist = () => {
   const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
@@ -62,6 +62,8 @@ const LesPlaylist = () => {
         <Link to="/search">
           <RechercheDeezerInput 
             placeholder={"Ajoutez une chanson !"}
+            icone={"add"}
+           
           />
         </Link>
 

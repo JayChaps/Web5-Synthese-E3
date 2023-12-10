@@ -45,7 +45,6 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
     if (newPlaylistName !== "") {
       createNewPlaylistAndAddSong(newPlaylistName, theSong);
       setChampNomActif(false);
-      setActif(false);
     }
   };
 
@@ -58,8 +57,8 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
     <div className="playlistSelector">
       <div className="playlistSelector__header">
         <h2>Playlists</h2>
-        <div class="outer" onClick={() => setActif(false)}>
-          <div class="inner"></div>
+        <div className="outer" onClick={() => setActif(false)}>
+          <div className="inner"></div>
         </div>
       </div>
       <div className="playlistSelector__body">

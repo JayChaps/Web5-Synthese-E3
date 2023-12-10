@@ -18,7 +18,7 @@ import { SongInfoContext } from "../context/SongInfoContext";
 import { PlaylistsContext } from "../context/playlistsContext";
 import { PlaylistSelector } from "../components/RechercheDeezer/PlaylistSelector";
 
-import RechercheDeezerInput from "../components/RechercheDeezer/RechercheDeezerInput";
+import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
 
 import { CgAdd } from "react-icons/cg";
 import { FaPlayCircle } from "react-icons/fa";
@@ -114,8 +114,8 @@ const RechercheDeezer = () => {
   return (
     <section className="deezer">
       <Link onClick={handleBack}>
-        <div class="outer">
-          <div class="inner">
+        <div className="outer">
+          <div className="inner">
             <label>Retour</label>
           </div>
         </div>
@@ -128,6 +128,7 @@ const RechercheDeezer = () => {
           handleInputChange={handleInputChange}
           handleSearch={handleSearch}
           placeholder={"Que voulez-vous écouter ?"}
+          icone={"search"}
         />
         {/* <button onClick={handleSearch}>Rechercher</button> */}
       </div>

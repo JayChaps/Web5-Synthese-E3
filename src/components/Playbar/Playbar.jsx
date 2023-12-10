@@ -78,7 +78,6 @@ const Playbar = () => {
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
       {/* A enlever pour voir */}
 
-
       {/* ------------------- setIsFullbarOpen à false quand on change de location.pathname */}
       {isFullbarOpen && (
         <>
@@ -86,7 +85,13 @@ const Playbar = () => {
             songInfo={songInfo}
             progress={progress}
             duration={duration}
-          />
+          >
+            <div className="outer" onClick={() => setIsFullbarOpen(false)}>
+              <div className="inner">
+                <label>Retour</label>
+              </div>
+            </div>
+          </PlaybarFull>
           <div className="cover">
             <img src={urlImg} alt="" />
           </div>
@@ -176,13 +181,7 @@ const Playbar = () => {
               className="progress"
               style={{
                 width: `
-                calc(${volume * 100}% + ${
-                  
-                  
-                  15 - volume * 15
-                
-                
-                }px)`,
+                calc(${volume * 100}% + ${15 - volume * 15}px)`,
               }}
             ></div>
             <input

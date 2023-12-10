@@ -1,10 +1,17 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
-const RechercheDeezerInput = ({ value, handleInputChange, handleSearch, autoFocus, placeholder }) => {
+import { CgAdd } from "react-icons/cg";
+const RechercheDeezerInput = ({ value, handleInputChange, autoFocus, placeholder, icone, action }) => {
   return (
     <div className="playlist__recherche">
       <div className="lesplaylists__playlist__recherche__inner">
-        <IoIosSearch size={"2rem"} color="var(--noir)" />
+
+        {
+          icone  === "add" && <CgAdd size={"2rem"} color="var(--noir)" onClick={action}/>
+        }
+        {
+          icone  === "search" && <IoIosSearch size={"2rem"} color="var(--noir)" />
+        }
         <div>
           <input type="text" value={value} onChange={handleInputChange}
             autoFocus={autoFocus} 
