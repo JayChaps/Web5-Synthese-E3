@@ -37,7 +37,7 @@
             }
         }
         cursor: pointer;
-
+        user-select: none;
         & > .info {
             display: grid;
             grid-template-columns:
@@ -131,6 +131,13 @@
                 grid-column: 10/11;
                 display: flex;
                 gap: 0.5rem;
+
+                & > svg{
+                    transition: color 0.1s ease-in-out;
+                    &:hover{
+                        color: var(--mauve) !important;
+                    }
+                }
             }
         }
     }

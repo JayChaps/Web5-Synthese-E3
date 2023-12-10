@@ -447,9 +447,12 @@ section.playbar__inner__center__progress {
     min-width: 300px;
   }
 
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
 
   & span {
+    position: relative;
+    top: 1rem;
+
     font-family: "Gotham";
     font-weight: 400;
     font-size: 0.75rem;
@@ -470,7 +473,16 @@ section.playbar__inner__center__progress {
   border-radius: 1rem;
   background-color: var(--gris);
 
-  transform: translateY(-100%);
+  &:hover{
+    .draggable{
+      opacity: 1 !important;
+    }
+
+    & .playbar__inner__center__progress__bar__inner::after{
+      background: linear-gradient(to right, var(--mauve) 0%, var(--rose) 100%) !important;
+    }
+  }
+
 
   & .playbar__inner__center__progress__bar__inner {
     position: absolute;
@@ -495,7 +507,9 @@ section.playbar__inner__center__progress {
       background-color: var(--rose);
 
       transform: translateX(50%) translateY(-50%);
+      opacity: 0;
 
+      transition: opacity 0.1s ease-in-out;
       cursor: pointer;
 
       &:hover {
@@ -520,7 +534,7 @@ section.playbar__inner__center__progress {
 
       border-radius: 1rem;
 
-      background: linear-gradient(to right, var(--mauve) 0%, var(--rose) 100%);
+      background: linear-gradient(to right, var(--blanc) 0%, var(--blanc) 100%);
     }
   }
 }
