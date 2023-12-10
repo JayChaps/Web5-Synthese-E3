@@ -19,3 +19,19 @@ div.interface:has(.login, .accueil){
     padding-bottom: 0;
   }
 }
+
+html{
+  &::-webkit-scrollbar {
+    width: 8px;
+}
+
+&::-webkit-scrollbar-track {
+    background: var(--grisFonce);
+}
+
+&::-webkit-scrollbar-thumb {
+    background-color: var(--rose);
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+}
+}
