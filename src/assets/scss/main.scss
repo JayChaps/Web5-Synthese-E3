@@ -12,3 +12,11 @@ div.interface {
   }
 }
 
+div.interface:has(.login, .acceuil){
+  padding-bottom: 80px;
+
+  @include breakpoint-min(1024){
+    padding-bottom: 0;
+  }
+}
+

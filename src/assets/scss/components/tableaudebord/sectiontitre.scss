@@ -3,6 +3,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding: 2em 10px 20px 20px;
     height: 300px;
     width: 430px;
     background-color: var(--grisFonce);
@@ -11,6 +12,7 @@
     max-height: 400px;
     margin-top: 20px;
 
+
   
     .content {
       position: relative;
@@ -18,24 +20,45 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 20px;
+      
       color: var(--blanc);
       height: 100%;
+      
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      
+      }
+  
+    &::-webkit-scrollbar-track {
+        background: var(--grisFonce);
+    }
+  
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--rose);
+        border-radius: 10px;
+    }
   
       .titresectiontitre2 {
+        position: relative;
         @include h3;
         color: var(--blanc);
-        line-height: 15px
+        line-height: 15px;
+        z-index: 30;
       }
       .titresectiontitre1 {
+        position: relative;
         @include h3;
         color: var(--blanc);
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: var(--rose);
         -webkit-text-stroke-width: 1px;
-        line-height: 15px
+        line-height: 15px;
+        opacity: 0.5;
+        z-index: 29;
       }
       .titresectiontitre3 {
+        position: relative;
         @include h3;
         color: var(--blanc);
         -webkit-text-fill-color: transparent;
@@ -43,13 +66,15 @@
         -webkit-text-stroke-width: 1px;
         line-height: 15px;
         margin-bottom: 20px;
+        opacity: 0.5;
+        z-index: 29;
       }
   
       .play-icon {
         position: absolute;
         top: 0;
         right: 0;
-        margin: 20px;
+        margin-right: 20px;
       }
   
       .small-image {

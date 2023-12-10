@@ -11,9 +11,9 @@
 }
 
 .logo-google {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  margin: 15px;
 }
 
 .login-title {
@@ -30,9 +30,9 @@
 .login-title4 {
   @include h2;
   text-align: center;
-  color: transparent;  // Set the text color to transparent
-  -webkit-text-stroke: 2px white;  // Webkit browsers (Chrome, Safari)
-  -webkit-text-stroke: 2px white;  // Standard property for text stroke
+  color: transparent;
+  -webkit-text-stroke: 2px white; 
+  -webkit-text-stroke: 2px white;
   opacity: 0.35;
 }
 
@@ -50,6 +50,7 @@
 }
 
 .login {
+  height: 100vh;
   text-align: center;
   position: relative;
 
@@ -69,9 +70,9 @@
 }
 
 .button-wrapper {
-  height: 700px;
+  height: 100%;
   background-color: var(--mauve);
-  padding: 94px;
+  padding: 95px 95px 0px 95px;
   border-top-left-radius: 200px;
   text-align: center;
   overflow: hidden;
@@ -80,14 +81,14 @@
 }
 
 .login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @include p;
   background-color: var(--blanc);
   color: var(--noir);
   padding: 0.75rem;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
 }

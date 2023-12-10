@@ -25,6 +25,7 @@
     .titre-milieu{
         @include h3;
         color: var(--noir);
+        padding: 15px;
     }
     .titre-bas{
         @include h3;

@@ -10,7 +10,7 @@ import PetitsPoints from "../petitspoints";
 const Acceuil = () => {
   
   return (
-    <div>
+    <div className="acceuil">
         <TitreAcceuil/>
         <CoucheInfo1/>
         <PetitsPoints/>
