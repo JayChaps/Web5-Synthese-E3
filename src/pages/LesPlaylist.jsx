@@ -63,7 +63,6 @@ const LesPlaylist = () => {
           <RechercheDeezerInput 
             placeholder={"Ajoutez une chanson !"}
             icone={"add"}
-           
           />
         </Link>
 
@@ -75,6 +74,16 @@ const LesPlaylist = () => {
             <span className="chansons__infos__duree">Durée</span>
           </div>
           <div className="lesplaylists__playlist__inner__chansons__chansons">
+
+            {/* faire boucle ici */}
+            {/* À passer:
+              numéro de la chanson
+              img
+              titre
+              artiste
+              album
+              durée
+            */}
             <ItemChansons />
             <ItemChansons />
             <ItemChansons />
@@ -91,7 +100,8 @@ const LesPlaylist = () => {
           <span>Chansons recommandées</span>
         </div>
         <section className="lesplaylists__playlist__inner__chansons__chansons recommande">
-          <ItemChansonRecomande premier={true} />
+          {/* premier item a le props premier *Important* */}
+          <ItemChansonRecomande premier={true} /> 
           <ItemChansonRecomande />
           <ItemChansonRecomande />
           <ItemChansonRecomande />
