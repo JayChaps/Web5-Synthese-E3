@@ -438,7 +438,7 @@
 
     border-radius: 1rem;
 
-    background-color: var(--grisFonce);
+    background-color: var(--rose);
 
     @include breakpoint-min(1024) {
         top: calc(2rem + 80px);
@@ -478,7 +478,7 @@
             height: 2px;
             width: inherit;
 
-            background: var(--rose);
+            background: var(--blanc);
             border-radius: 2px;
             transition: all 0.1s ease-in;
         }
@@ -504,7 +504,7 @@
             font-size: 0.5em;
             line-height: 4em;
             text-transform: uppercase;
-            color: var(--rose);
+            color: var(--blanc);
 
             opacity: 0;
 
