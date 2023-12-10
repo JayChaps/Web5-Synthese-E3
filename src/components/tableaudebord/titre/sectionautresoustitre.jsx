@@ -13,7 +13,7 @@ const sectionautresoustitre = () => {
                     className="play-icon-autre-sous-titre"
             />
                 <h4 className="titresectionautresoustitre">titrealbum</h4>
-                <div className="autresoustitre-image"><img src="src\assets\img\jpg\placeholder.jpg" alt="lol" /></div>
+                <div className="autresoustitre-image"><img src="src\assets\img\jpg\placeholder.jpg" alt="" /></div>
             </div>
 
         </section>

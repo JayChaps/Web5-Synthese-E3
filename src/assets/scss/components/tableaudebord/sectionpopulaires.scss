@@ -1,5 +1,7 @@
 .titrepopulaires{
     @include h2;
     text-align: center;
+    padding: 30px;
+    color: var(--rose);
 }
 
