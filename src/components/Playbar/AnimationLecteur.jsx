@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 const AnimationLecteur = () => {
-  const music = "src/assets/song/titanium-170190.mp3";
+  // const music = "src/assets/song/titanium-170190.mp3";
   const listener = new THREE.AudioListener();
   const sound = new THREE.Audio(listener);
   const analyser = new THREE.AudioAnalyser(sound, 32);

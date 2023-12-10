@@ -9,16 +9,7 @@ const Nav = ({ links }) => {
   const { user,googleSignIn,logOut } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(()=>{
-    if(user !== null){
-        navigate('/home');
-    }
-    else
-    {
-        navigate('/')
-    } 
-},[user])
+    
 
   return (
     <nav>
