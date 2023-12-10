@@ -14,7 +14,7 @@ const TitreAcceuil = () => {
               alt="Placeholder"
             />
           </div>
-          <div className="container-texte-boutons">
+          <div className="container-texte-boutons"> 
             <div className="text-container">
               <h2 className="titre-acceuil">Votre Son.</h2>
               <h3 className="soustitre-acceuil">Votre Instant.</h3>
