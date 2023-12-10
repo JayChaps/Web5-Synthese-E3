@@ -1,38 +1,69 @@
 .profil {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    
+
+    & > .bodyprofil {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        & .playlists{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            & > h3{
+                @include h4;
+                padding: 0;
+                margin: 0;
+                color: var(--mauve);
+            }
+            
+        }
+
+        & .nomcompte {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            & > h1 {
+                @include h3;
+
+                padding: 0;
+                margin: 0;
+
+                color: var(--rose);
+
+                @include breakpoint-min(640) {
+                    @include h2;
+                }
+            }
+
+            & > h2 {
+                @include h5;
+
+                padding: 0;
+                margin: 0;
+
+                color: var(--gris);
+
+                @include breakpoint-min(640) {
+                    @include h4;
+                }
+            }
+        }
+    }
+
     & > header {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 1rem;
 
-        padding: 2rem 1rem 0 1rem;
+        padding: 3rem 1rem 0 1rem;
 
-
-        & .nomcompte{
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            & > h1{
-                @include h2;
-
-                padding: 0;
-                margin: 0;
-
-                color: var(--rose);
-            }
-
-            & > h2{
-                @include h4;
-
-                padding: 0;
-                margin: 0;
-
-                color: var(--gris);
-            }
-        }
         & .boutonsprofil {
             display: flex;
             justify-content: space-between;
@@ -61,7 +92,6 @@
                 &.open {
                     & ul {
                         display: flex;
-  
                     }
 
                     &::after {

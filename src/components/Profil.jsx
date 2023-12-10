@@ -16,9 +16,10 @@ const Profil = () => {
     <div className="profil">
       <header>
         <div className="boutonsprofil">
-          <div className={
-            isThemeOpen ? "open selecttheme" : "selecttheme"
-          } onClick={handleTheme}>
+          <div
+            className={isThemeOpen ? "open selecttheme" : "selecttheme"}
+            onClick={handleTheme}
+          >
             <span>Votre thème</span>
             <ul name="theme" id="theme" className="themes">
               <li value="theme1">Thème 1</li>
@@ -35,14 +36,19 @@ const Profil = () => {
             </button>
           </div>
         </div>
+      </header>
+      <div className="bodyprofil">
         <div className="nomcompte">
           <h1>{userName}</h1>
           <h2>{user.email}</h2>
         </div>
-      </header>
-      <Playlist />
-      <SliderPlaylists />
-      <h2>Chansons aimées : </h2>
+        {/* <Playlist /> */}
+        <div className="playlists">
+          <h3>Mes playlists</h3>
+          <SliderPlaylists />
+        </div>
+        <h2>Chansons aimées : </h2>
+      </div>
     </div>
   );
 };
