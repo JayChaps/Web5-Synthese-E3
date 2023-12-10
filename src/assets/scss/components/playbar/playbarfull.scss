@@ -7,6 +7,42 @@
     & .playbarfull__inner {
         width: 100%;
         height: 100%;
+
+
+        & .temps{
+            display: flex;
+            justify-content: space-between;
+
+            width: 100%;
+            padding: 0 2rem;
+            margin-top: 3rem;
+
+            @include h5;
+
+            @include breakpoint-min(768) {
+                padding: 0 3rem;
+            }
+
+            @include breakpoint-min(1024) {
+                padding: 0 4rem;
+                @include h4;
+            }
+
+            @include breakpoint-min(1200) {
+                flex-direction: column;
+
+                position: absolute;
+                top: 0;
+                left: 350px;
+
+                height: 100%;
+
+                padding: 1rem 3rem;
+                margin: 0;
+
+                width: auto;
+            }
+        }
         & .infoChanson {
             display: flex;
             flex-direction: column;

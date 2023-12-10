@@ -17,6 +17,10 @@ const PlaybarFull = ({ songInfo, progress, duration, children }) => {
         <AnimationLecteur />
         <ChansonsSuivantes />
         <SliderPlaybarFull progress={progress} duration={duration} />
+        <div className="temps">
+          <span>0:00</span>
+          <span>0:30</span>
+        </div>
       </div>
     </div>
   );
