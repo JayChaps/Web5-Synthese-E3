@@ -5,6 +5,8 @@ import { SongInfoContext } from "../../context/SongInfoContext";
 
 import CreerPlaylistInput from "./CreerPlaylistInput";
 
+import { CgAdd } from "react-icons/cg";
+
 export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
   // const [ estActif, setActif ] = useState(false);
   const [champNomActif, setChampNomActif] = useState(false);
@@ -79,6 +81,7 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
         <ul>
           {playlists.map((playlist) => (
             <li key={playlist.id}>
+              <CgAdd size={"2rem"} color="var(--blanc)"/>
               <button onClick={() => ajouter(playlist.id)}>
                 {playlist.name}
               </button>
