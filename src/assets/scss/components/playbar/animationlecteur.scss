@@ -2,12 +2,15 @@
     & .animationLecteur {
         position: fixed;
         z-index: -10000000;
-        bottom: 220px;
+        bottom: 230px;
         width: 100%;
 
         overflow: visible;
 
         @include breakpoint-min(640) {
+            bottom: 215px;
+        }
+        @include breakpoint-min(768) {
             bottom: 180px;
         }
 

@@ -43,7 +43,7 @@ const AnimationLecteur = () => {
           // Modifiez ici les propriétés du point en fonction de vos données audio
           return {
             ...point,
-            y:
+            y: 
             Math.sin((pointIndex + 1) *10) *
             (audio[lineIndex * numPoints + pointIndex] || 0),
           
