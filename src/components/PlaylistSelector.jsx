@@ -27,23 +27,24 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
         addToPlaylist(theSong);
         setChampNomActif(false);
         setActif(false);
-    }
-
-    // useEffect(() => {
-    //     if (shouldFetchPlaylists) {
-    //         fetchPlaylists();
-    //         setShouldFetchPlaylists(false);
-    //         console.log("useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true")
-    //     }
-    // // }, [newPlaylistName, createNewPlaylist, estActif]);
-    // }, [shouldFetchPlaylists]);
+    };
 
     useEffect(() => {
-        if (estActif) {
+        if (shouldFetchPlaylists) {
             fetchPlaylists();
-            console.log("useEffect fetchPlaylists avec un S pcq estActif est true");
+            setShouldFetchPlaylists(false);
+            console.log("useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true")
         }
-    }, [estActif]);
+    // }, [newPlaylistName, createNewPlaylist, estActif]);
+    // }, [shouldFetchPlaylists]);
+    }, []);
+
+    // useEffect(() => {
+    //     if (estActif) {
+    //         fetchPlaylists();
+    //         console.log("useEffect fetchPlaylists avec un S pcq estActif est true");
+    //     }
+    // }, [estActif]);
 
     const creerEtAjouter = () => {
         createNewPlaylistAndAddSong(newPlaylistName, theSong);
