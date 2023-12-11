@@ -39,6 +39,7 @@ const Playbar = () => {
   const [isFullbarOpen, setIsFullbarOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
+  const [isDragging, setIsDragging] = useState(false);
 
   const { progress, changeProgress } = useAudioProgress();
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);

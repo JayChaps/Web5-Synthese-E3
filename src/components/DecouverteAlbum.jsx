@@ -1,7 +1,6 @@
 import { useEffect, useState,useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
-import '../css/DecouverteAlbum.css';
 import { SongInfoContext } from '../context/SongInfoContext';
 
 const DecouverteAlbum = () => {
