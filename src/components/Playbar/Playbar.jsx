@@ -20,6 +20,7 @@ import { SongInfoContext } from "../../context/SongInfoContext";
 import { useFavorites } from "../../context/FavoritesContext";
 import PlaybarFull from "./PlaybarFull";
 import { PlaylistsContext } from "../../context/playlistsContext";
+import { PlaybarContext } from "../../context/playbarContext";
 
 
 const Playbar = () => {
@@ -36,7 +37,10 @@ const Playbar = () => {
     changeVolume,
   } = useAudio();
 
-  const [isFullbarOpen, setIsFullbarOpen] = useState(false);
+  // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
+
+  const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
+
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
   const [isDragging, setIsDragging] = useState(false);
@@ -122,9 +126,11 @@ const Playbar = () => {
       changeVolume(0);
     }
   };
-  console.log(songInfo);
+  // console.log(songInfo);
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+
+  
   return (
     <aside className="playbar">
       {/* Mettre le composant PlaybarFull si on clique quelque part */}
