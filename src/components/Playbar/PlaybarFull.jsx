@@ -12,7 +12,7 @@ const PlaybarFull = ({ songInfo, progress, duration, children }) => {
           {/* Redirection album */}
           <h2 className="titreChanson">Titre</h2>
           {/* redirection découvert artiste */}
-          <h2 className="artisteChanson">Album</h2>
+          <h2 className="artisteChanson">Artiste</h2>
         </section>
         <AnimationLecteur />
         <ChansonsSuivantes />

@@ -43,17 +43,40 @@
             gap: 1rem;
 
             border-radius: 1rem;
-            border: 3px solid var(--rose);
+            // border: 3px solid var(--rose);
             box-shadow: -2px 4px 10px 0px rgba(0, 0, 0, 0.726);
-
-            transition:
-                background-color 0.2s ease-in-out,
-                color 0.2s ease-in-out;
+            box-shadow: -2px 4px 10px 0px #050625;
 
             overflow: hidden;
+
+
+            & .titrestroke{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 10;
+
+                transform: translate(-50%, -50%);
+               
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke-color: var(--blanc);
+                -webkit-text-stroke-width: 1.5px;
+
+                white-space: nowrap;
+
+                font-size: 100%;
+                @include h5;
+
+                opacity: .5;
+            }
+
+            cursor: pointer;
             &:hover {
-                background-color: var(--rose);
-                color: var(--blanc);
+                & .imgrecherche{
+                   & img{
+                    transform: scale(1.1);
+                   }
+                }
             }
 
             &:has(.playlistSelector) {
@@ -65,11 +88,12 @@
             }
 
             & .playlistSelector {
+                position: relative;
+                z-index: 50;
+
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-
-                z-index: 3;
                 width: 100%;
                 height: 100%;
                 background-color: var(--grisFonce);
@@ -320,21 +344,19 @@
                 height: 100%;
 
                 transition: transform 0.2s ease-in-out;
-                cursor: pointer;
-                &:hover {
-                    transform: scale(1.1);
-                }
 
                 & img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    filter: brightness(50%) grayscale(50%);
+                    transition: transform 0.1s ease-in-out;
                 }
             }
 
             & > .infos {
                 position: relative;
-                z-index: 2;
+                z-index: 100;
 
                 display: flex;
                 flex-direction: column;
@@ -347,18 +369,6 @@
                 padding: 0.8em;
                 margin: 0;
 
-                &::after {
-                    content: "";
-                    position: absolute;
-                    z-index: -1;
-                    width: 100%;
-                    height: 100%;
-                    top: 0;
-                    left: 0;
-                    background-color: var(--noir);
-                    opacity: 0.5;
-                }
-
                 @include breakpoint-min(640) {
                     padding: 0.5rem;
                 }
@@ -369,7 +379,7 @@
                 & > h2 {
                     font-weight: 600;
                     text-align: center;
-                    color: var(--rose);
+                    color: var(--blanc);
                     line-height: 1em;
                 }
 

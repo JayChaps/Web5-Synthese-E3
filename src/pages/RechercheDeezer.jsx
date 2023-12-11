@@ -160,6 +160,7 @@ const RechercheDeezer = () => {
         {searchResults.map((result, index) => {
           return (
             <li key={index}>
+              <h4 className="titrestroke">{result.title}</h4>
               <div className="infos">
                 <h2>{result.title}</h2>
                 <Link to={`/artist/${result.artist.id}`}>
@@ -174,8 +175,8 @@ const RechercheDeezer = () => {
                 />
               </div>
               <div className="boutons">
-                <CgAdd size={"2rem"} color="var(--rose)"  onClick={() => handlePlaylistSelector(result)}/>
-                <FaPlayCircle size={"2rem"} color="var(--rose)" onClick={() => handlePlaySong(result)}/>
+                <CgAdd size={"2rem"} color="var(--blanc)"  onClick={() => handlePlaylistSelector(result)}/>
+                <FaPlayCircle size={"2rem"} color="var(--blanc)" onClick={() => handlePlaySong(result)}/>
               </div>
               {selectorActif && (
                 <PlaylistSelector

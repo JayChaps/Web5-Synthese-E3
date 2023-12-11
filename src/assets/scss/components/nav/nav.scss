@@ -62,6 +62,8 @@ nav {
 
                 background-color: var(--blanc);
 
+                
+
                 @include breakpoint-min(1024) {
                     display: flex;
                     justify-content: center;
