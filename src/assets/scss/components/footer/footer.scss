@@ -1,0 +1,19 @@
+footer{
+    height: calc(100vh - 184px);
+
+
+    background-color: var(--noir);
+}
+
+
+footer.loginfooter{
+    height: calc(100vh - 80px);
+
+    @include breakpoint-min(1024) {
+        padding-bottom: 0;
+      }
+}
+
+div.interface:has(.login) footer{
+    display: none;
+}

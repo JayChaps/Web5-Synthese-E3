@@ -3,7 +3,7 @@
 @import "pages/pages.scss";
 
 div.interface {
-  padding-bottom: 204px;
+  padding-bottom: 184px;
   background-color: var(--blanc);
 
   @include breakpoint-min(1024) {
@@ -13,7 +13,7 @@ div.interface {
   
 }
 
-div.interface:has(.login, .accueil){
+div.interfacedeux{
   padding-bottom: 80px;
   @include breakpoint-min(1024) {
     padding-bottom: 0;

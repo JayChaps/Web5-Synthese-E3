@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
+import Footer from "./footer/footer";
 
 const Layout = () => {
   return (
-    <div className="interface">
+    <div className="interfacedeux interface">
       <Nav />
 
       <main>
         <Outlet />
       </main>
+      <Footer classe={"loginfooter"}/>
     </div>
   );
 };
