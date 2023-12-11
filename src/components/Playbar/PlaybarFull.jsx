@@ -2,7 +2,7 @@ import AnimationLecteur from "./AnimationLecteur";
 import ChansonsSuivantes from "./ChansonsSuivantes";
 import SliderPlaybarFull from "./SliderPlaybarFull";
 
-const PlaybarFull = ({ songInfo, progress, duration, children }) => {
+const PlaybarFull = ({ children }) => {
 
   return (
     <div className="playbarfull">
@@ -14,9 +14,9 @@ const PlaybarFull = ({ songInfo, progress, duration, children }) => {
           {/* redirection découvert artiste */}
           <h2 className="artisteChanson">Artiste</h2>
         </section>
-        <AnimationLecteur />
         <ChansonsSuivantes />
-        <SliderPlaybarFull progress={progress} duration={duration} />
+        <SliderPlaybarFull />
+        <AnimationLecteur />
         <div className="temps">
           <span>0:00</span>
           <span>0:30</span>

@@ -3,12 +3,14 @@
     right: 0;
 
     width: calc(100vw - 20px);
+    margin: 0 auto;
 
     overflow-x: hidden !important;
 
     @include breakpoint-min(1200) {
         width: calc(65vw - 20px) !important;
         margin-left: auto !important;
+        margin-right: 0 !important;
     }
 
     // glider
