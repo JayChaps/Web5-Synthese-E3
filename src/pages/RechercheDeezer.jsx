@@ -34,11 +34,15 @@ const RechercheDeezer = () => {
             selectedSong, setSelectedSong,
             createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
 
+    const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
+    const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
+
     const searchFilters = ["artist","album","track"]
 
     useEffect(() => {
         if (searchTerm) {
             handleSearch();
+            console.log("useEffect handleSearch")
         }
     }, [searchTerm,filter]);
 
@@ -68,8 +72,12 @@ const RechercheDeezer = () => {
 
     // Récupération de la playlist
     useEffect(() => {
-        fetchPlaylist();
-    }, [newPlaylistName, playlists, createNewPlaylist]);
+        if (shouldFetchPlaylist) {
+            fetchPlaylist();
+            console.log("useEffect fetchPlaylist");
+        }
+    // }, [newPlaylistName, playlists, createNewPlaylist]);
+    }, [shouldFetchPlaylist]);
     
 
     const filters = (e) => {
@@ -79,6 +87,7 @@ const RechercheDeezer = () => {
     }
 
     const handlePlaylistSelector = (song) => {
+        setShouldFetchPlaylist(true);
         setSelectorActif(!selectorActif);
         if (!selectorActif) {
             setSelectedSong(song);

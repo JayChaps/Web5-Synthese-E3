@@ -1,7 +1,7 @@
 // playlistsContext.jsx :
 import React, { createContext, useEffect, useState } from "react";
 import { auth, db } from "../config/firebase";
-import { collection, setDoc, doc, arrayUnion, getDocs, addDoc, getDoc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, setDoc, doc, arrayUnion, getDocs, addDoc, getDoc, deleteDoc, updateDoc, arrayRemove } from "firebase/firestore";
 
 // Créer le contexte
 const PlaylistsContext = createContext();
@@ -13,6 +13,8 @@ const PlaylistsProvider = ({ children }) => {
     const [newPlaylistName, setNewPlaylistName] = useState('');
     const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
     const [selectedSong, setSelectedSong] = useState("");
+    // const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
+    // const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
 
     // Récupération des playlists
     const fetchPlaylists = async () => {
@@ -44,12 +46,15 @@ const PlaylistsProvider = ({ children }) => {
         }
         // const querySnapshot = await getDocs(collection(db, "playlists"));
         // setPlaylists(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        console.log("fetchPlaylists() done");
     };
 
     // Récupération d'une playlist
     const fetchPlaylist = async () => {
         const querySnapshot = await getDocs(collection(db, "playlists"));
         setPlaylist(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+
+        console.log("fetchPlaylist() done");
     };
     
     // Ajout d'une nouvelle playlist
@@ -73,6 +78,8 @@ const PlaylistsProvider = ({ children }) => {
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
         }
+
+        console.log("createNewPlaylist() done");
     };
 
     // Ajout d'une chanson à une playlist
@@ -93,6 +100,8 @@ const PlaylistsProvider = ({ children }) => {
         else {
             console.error("Error updating document");
         }
+
+        console.log("addToPlaylist() done");
     }
 
     // Suppression d'une chanson d'une playlist
@@ -124,6 +133,8 @@ const PlaylistsProvider = ({ children }) => {
                 return playlist;
             }));
         }
+
+        console.log("removeSongFromPlaylist() done");
     };
 
     // Créer une nouvelle playlist ET ajouter une chanson
@@ -147,14 +158,29 @@ const PlaylistsProvider = ({ children }) => {
             setNewPlaylistName(''); // Reset le nom après création
             console.log("Playlist created and song added!");
         }
+
+        console.log("createNewPlaylistAndAddSong() done");
     };
 
 
     // Suppression d'une playlist
     const deletePlaylist = async (playlistId) => {
+
+        const userId = auth.currentUser.uid;
+
+        // Suppression de la playlist de la collection 'playlists'
         await deleteDoc(doc(db, "playlists", playlistId));
+
+        // Suppression de l'ID de la playlist du document de l'utilisateur
+        const userRef = doc(db, "users", userId);
+        await updateDoc(userRef, {
+            playlistsIds: arrayRemove(playlistId)
+        });
+
         // Mettre à jour l'état après suppression
         setPlaylists(playlists.filter((playlist) => playlist.id !== playlistId));
+
+        console.log("deletePlaylist() done");
     };
 
     return (
