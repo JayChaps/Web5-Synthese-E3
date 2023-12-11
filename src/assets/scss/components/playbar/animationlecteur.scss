@@ -2,14 +2,19 @@
     & .animationLecteur {
         position: fixed;
         z-index: -10000000;
-        bottom: 20vh;
+        bottom: 220px;
         width: 100%;
 
         overflow: visible;
 
-        @include breakpoint-min(800){
-          bottom: 10vh;  
+        @include breakpoint-min(640) {
+            bottom: 180px;
         }
+
+        @include breakpoint-min(1024) {
+            bottom: 100px;
+        }
+
         & > .animationcontainer {
             position: relative;
 

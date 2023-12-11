@@ -44,7 +44,7 @@ const AnimationLecteur = () => {
           return {
             ...point,
             y:
-            Math.sin((pointIndex + 1)) *
+            Math.sin((pointIndex + 1) *10) *
             (audio[lineIndex * numPoints + pointIndex] || 0),
           
           };
