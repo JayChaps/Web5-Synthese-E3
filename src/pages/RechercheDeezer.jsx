@@ -177,13 +177,13 @@ const RechercheDeezer = () => {
                 <CgAdd size={"2rem"} color="var(--blanc)"  onClick={() => handlePlaylistSelector(result)}/>
                 <FaPlayCircle size={"2rem"} color="var(--blanc)" onClick={() => handlePlaySong(result)}/>
               </div>
-              {/* {selectorActif && (
+              {selectorActif && (
                 <PlaylistSelector
                   estActif={selectorActif}
                   setActif={setSelectorActif}
                   theSong={result}
                 />
-              )} */}
+              )}
               {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
             </li>
           );
