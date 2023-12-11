@@ -1,39 +1,20 @@
-// RechercheDeezer.jsx :
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
-// import LayoutAuth from "../components/LayoutAuth";
-import { db } from "../config/firebase";
-import {
-  collection,
-  setDoc,
-  doc,
-  arrayUnion,
-  getDocs,
-  addDoc,
-} from "firebase/firestore";
-// import { useAudio } from "../context/audiotim";
-import { SongInfoContext } from "../context/SongInfoContext";
-// import { useSongInfo } from "../context/SongInfoContext";
-import { PlaylistsContext } from "../context/playlistsContext";
-import { PlaylistSelector } from "../components/RechercheDeezer/PlaylistSelector";
-
-import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
-
+import { motion } from "framer-motion";
 import { CgAdd } from "react-icons/cg";
 import { FaPlayCircle } from "react-icons/fa";
+import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
+import { PlaylistSelector } from "../components/RechercheDeezer/PlaylistSelector";
+import { SongInfoContext } from "../context/SongInfoContext";
+import { PlaylistsContext } from "../context/playlistsContext";
 
 const RechercheDeezer = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
   const [filter, setFilter] = useState("");
-  // const { estActif, setActif } = PlaylistSelector();
   const [selectorActif, setSelectorActif] = useState(false);
-
   const navigate = useNavigate();
-
-  // const { changeSource, play, pause } = useAudio();
   const { handlePlaySong } = useContext(SongInfoContext);
   const {
     createNewPlaylist,
@@ -70,24 +51,17 @@ const RechercheDeezer = () => {
   const handleSearch = () => {
     const encodedSearchTerm = encodeURIComponent(searchTerm);
     const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
-    console.log(url);
 
     fetchJsonp(url)
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data.data || []);
-        console.log(data.data);
       })
       .catch((error) => {
         console.error("Erreur lors de la recherche:", error);
       });
   };
 
-  // useEffect(() => {
-  //     console.log("SelectedSong: "+ {selectedSong});
-  // }, [selectedSong, selectorActif]);
-
-  // Récupération de la playlist
   useEffect(() => {
     fetchPlaylist();
   }, [newPlaylistName, playlists, createNewPlaylist]);
@@ -95,7 +69,6 @@ const RechercheDeezer = () => {
   const filters = (e) => {
     setFilter("");
     setFilter(e.target.value);
-    console.log(e.target.value);
   };
 
   const handlePlaylistSelector = (song) => {
@@ -103,34 +76,42 @@ const RechercheDeezer = () => {
     if (!selectorActif) {
       setSelectedSong(song);
     }
-    console.log(selectedSong);
   };
 
   const handleBack = (e) => {
     e.preventDefault();
     navigate(-1);
-  }
+  };
 
   return (
-    <div className="deezer">
-      <Link onClick={handleBack}>
-        <div className="outer">
-          <div className="inner">
-            <label>Retour</label>
-          </div>
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+      className="deezer"
+    >
+      <Link to="/" className="outer">
+        <div className="inner">
+          <label>Retour</label>
         </div>
       </Link>
       <h1>Recherche</h1>
       <div className="recherche">
-        <RechercheDeezerInput
-          autoFocus={true}
-          value={searchTerm}
-          handleInputChange={handleInputChange}
-          handleSearch={handleSearch}
-          placeholder={"Que voulez-vous écouter ?"}
-          icone={"search"}
-        />
-        {/* <button onClick={handleSearch}>Rechercher</button> */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <RechercheDeezerInput
+            autoFocus={true}
+            value={searchTerm}
+            handleInputChange={handleInputChange}
+            handleSearch={handleSearch}
+            placeholder={"Que voulez-vous écouter ?"}
+            icone={"search"}
+          />
+        </motion.div>
       </div>
       <div className="filtres">
         <button
@@ -157,40 +138,51 @@ const RechercheDeezer = () => {
       </div>
 
       <ul>
-        {searchResults.map((result, index) => {
-          return (
-            <li key={index}>
-              <h4 className="titrestroke">{result.title}</h4>
-              <div className="infos">
-                <h2>{result.title}</h2>
-                <Link to={`/artist/${result.artist.id}`}>
-                  <p>{result.artist.name}</p>
-                </Link>
-              </div>
-              <div className="imgrecherche">
-                <img
-                  onClick={() => handlePlaySong(result)}
-                  src={result.album.cover}
-                  alt={`Couverture de l'album ${result.album.title}`}
-                />
-              </div>
-              <div className="boutons">
-                <CgAdd size={"2rem"} color="var(--blanc)"  onClick={() => handlePlaylistSelector(result)}/>
-                <FaPlayCircle size={"2rem"} color="var(--blanc)" onClick={() => handlePlaySong(result)}/>
-              </div>
-              {selectorActif && (
-                <PlaylistSelector
-                  estActif={selectorActif}
-                  setActif={setSelectorActif}
-                  theSong={result}
-                />
-              )}
-              {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
-            </li>
-          );
-        })}
+        {searchResults.map((result, index) => (
+          <motion.li
+            key={index}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
+          >
+            <h4 className="titrestroke">{result.title}</h4>
+            <div className="infos">
+              <h2>{result.title}</h2>
+              <Link to={`/artist/${result.artist.id}`}>
+                <p>{result.artist.name}</p>
+              </Link>
+            </div>
+            <div className="imgrecherche">
+              <img
+                onClick={() => handlePlaySong(result)}
+                src={result.album.cover}
+                alt={`Couverture de l'album ${result.album.title}`}
+              />
+            </div>
+            <div className="boutons">
+              <CgAdd
+                size={"2rem"}
+                color="var(--blanc)"
+                onClick={() => handlePlaylistSelector(result)}
+              />
+              <FaPlayCircle
+                size={"2rem"}
+                color="var(--blanc)"
+                onClick={() => handlePlaySong(result)}
+              />
+            </div>
+            {selectorActif && (
+              <PlaylistSelector
+                estActif={selectorActif}
+                setActif={setSelectorActif}
+                theSong={result}
+              />
+            )}
+          </motion.li>
+        ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 
