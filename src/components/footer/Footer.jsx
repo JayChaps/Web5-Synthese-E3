@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
 
-const Footer = ({classe}) => {
+const Footer = ({ classe }) => {
+
+  const urlLogo = "/src/assets/img/svg/logo.svg";
   return (
-    <footer className={classe + " accueil"}>footer</footer>
-  )
-}
+    <footer className={classe + " accueil"}>
+      <div className="footerinner">
+      <div className="logo">
+        <img src={urlLogo} alt="" />
+      </div>
 
-export default Footer
+
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
