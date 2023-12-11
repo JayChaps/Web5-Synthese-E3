@@ -51,11 +51,15 @@ footer {
                     color: var(--blanc);
                     text-decoration: none;
 
+                    border-radius: 40px;
+
                     transition: all 0.1s ease-in-out;
 
                     cursor: pointer;
                     &:hover {
                         color: var(--rose);
+
+                        background-color: var(--blanc);
                     }
                 }
             }

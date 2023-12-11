@@ -33,6 +33,13 @@
                 display: block;
             }
         }
+        &:hover {
+            background-color: #ebebeb;
+
+            & .chansoncover img {
+                display: block;
+            }
+        }
         cursor: pointer;
         user-select: none;
         & > .info {
@@ -76,7 +83,6 @@
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    
                 }
 
                 & svg {
@@ -128,6 +134,18 @@
                 grid-column: 10/11;
                 display: flex;
                 gap: 0.5rem;
+
+                & > label {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    & .checkmark {
+                        width: 2rem !important;
+                        height: 2rem !important;
+                    }
+                    & svg path {
+                        stroke: var(--rose) !important;
+                    }
+                }
 
                 & > svg {
                     transition: color 0.1s ease-in-out;
@@ -201,9 +219,24 @@ section.recommande {
                 bottom: 1rem;
                 right: 1rem;
 
-                & svg {
-                    width: 3rem;
-                    height: 3rem;
+                & > label {
+                    width: 4rem !important;
+                    height: 4rem !important;
+                    & .checkmark {
+                        width: 4rem !important;
+                        height: 4rem !important;
+                    }
+                    & svg path {
+                        width: 4rem !important;
+                        stroke: var(--rose) !important;
+                    }
+                }
+
+                & > svg {
+                    transition: color 0.1s ease-in-out;
+                    &:hover {
+                        color: var(--mauve) !important;
+                    }
                 }
             }
         }
@@ -331,7 +364,20 @@ section.recommande {
         & .icones {
             grid-column: 10/11;
             display: flex;
+            align-items: center;
             gap: 0.5rem;
+
+            & > label.coeur {
+                width: 2rem !important;
+                height: 2rem !important;
+                & .checkmark {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                }
+                & svg path {
+                    stroke: var(--rose) !important;
+                }
+            }
         }
     }
 }
