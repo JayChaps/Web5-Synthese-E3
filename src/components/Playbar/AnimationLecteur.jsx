@@ -62,7 +62,7 @@ const AnimationLecteur = () => {
   return (
     <div className="animationLecteur">
       <div className="animationcontainer">
-        <svg preserveAspectRatio="none" viewBox={`0 0 ${windowDimensions.width} 100`}>
+        <svg preserveAspectRatio="none" viewBox={`0 0 ${windowDimensions.width} 1`}>
           {lines.map((line, lineIndex) => (
             <polyline
               key={lineIndex}
