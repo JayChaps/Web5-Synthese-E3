@@ -31,7 +31,7 @@ const CoucheAcceuil1 = () => {
       ref={containerRef}
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.25 }}
     >
       <div className="container-icon-couche1">
         <div className="section1">
