@@ -69,10 +69,17 @@ const DecouverteArtiste = () => {
 
   return (
     <div>
-      <motion.h1 className="titre-decouverte" initial={{ opacity: 1, y: 50 }} animate={controls}>
+       <h1 className="titre-decouverte3" initial={{ opacity: 1, y: 50 }} animate={controls}>
         Populaire
-      </motion.h1>
+      </h1>
+      <h1 className="titre-decouverte" initial={{ opacity: 1, y: 50 }} animate={controls}>
+        Populaire
+      </h1>
+      <h1 className="titre-decouverte2" initial={{ opacity: 1, y: 50 }} animate={controls}>
+        Populaire
+      </h1>
 
+      <div className="containertest">
       {popularSongs.map((data, id) => (
         <motion.div
           className="topSongs"
@@ -85,7 +92,9 @@ const DecouverteArtiste = () => {
           <h2 className="titre-populaire">{data.title}</h2>
           <FaPlayCircle size={"3rem"} color="var(--blanc)" className="play-icon-decouverte" />
         </motion.div>
-      ))}
+
+))}
+</div>
 
       <motion.h1 className="titre-fans" initial={{ opacity: 0, y: 50 }} animate={controls}>
         Les fans aiment aussi:
