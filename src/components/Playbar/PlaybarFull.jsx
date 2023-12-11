@@ -11,8 +11,8 @@ const PlaybarFull = ({ children }) => {
     controls.start({
       opacity: 1,
       y: 0,
-      scale: 1, // Reset scale to 1
-      transition: { duration: 0.8, ease: "easeOut" }, // Slightly decrease the duration
+      scale: 1,
+      transition: { duration: 0.8, ease: "easeOut" },
     });
   }, [controls]);
 
