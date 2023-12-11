@@ -60,7 +60,7 @@ const Playlist = () => {
     }
 
     return (
-        <div>
+        <main>
             <h1>Playlists</h1>
             <DragDropContext onDragEnd={onDragEnd}>
                 {playlists.map((playlist) => (
@@ -98,7 +98,7 @@ const Playlist = () => {
                     </Droppable>
                 ))}
             </DragDropContext>
-        </div>
+        </main>
     );
 };
 

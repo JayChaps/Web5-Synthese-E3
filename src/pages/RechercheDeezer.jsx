@@ -111,7 +111,7 @@ const RechercheDeezer = () => {
   }
 
   return (
-    <div className="deezer">
+    <main className="deezer">
       <Link onClick={handleBack}>
         <div className="outer">
           <div className="inner">
@@ -189,7 +189,7 @@ const RechercheDeezer = () => {
           );
         })}
       </ul>
-    </div>
+    </main>
   );
 };
 
