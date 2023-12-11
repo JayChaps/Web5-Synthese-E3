@@ -21,6 +21,7 @@ import { useFavorites } from "../../context/FavoritesContext";
 import PlaybarFull from "./PlaybarFull";
 import { PlaylistsContext } from "../../context/playlistsContext";
 import { PlaybarContext } from "../../context/playbarContext";
+import Coeur from "../Coeur/Coeur";
 
 
 const Playbar = () => {
@@ -198,7 +199,8 @@ const Playbar = () => {
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
-          <BiHeart size={"3.5rem"} color="var(--rose)" onClick={handleAddToFavorites} />
+          {/* <BiHeart size={"3.5rem"} color="var(--rose)" onClick={handleAddToFavorites} /> */}
+          <Coeur />
           <CgAdd size={"3.5rem"} color="var(--blanc)" />
 
           {isMuted ? (

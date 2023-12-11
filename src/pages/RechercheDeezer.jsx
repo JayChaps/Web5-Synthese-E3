@@ -113,87 +113,87 @@ const RechercheDeezer = () => {
         navigate(-1);
     }
 
-    return (
-        <div className="deezer">
-            <Link onClick={handleBack}>
-                <div className="outer">
-                    <div className="inner">
-                        <label>Retour</label>
-                    </div>
-                </div>
-            </Link>
-            <h1>Recherche</h1>
-            <div className="recherche">
-                <RechercheDeezerInput
-                    autoFocus={true}
-                    value={searchTerm}
-                    handleInputChange={handleInputChange}
-                    handleSearch={handleSearch}
-                    placeholder={"Que voulez-vous écouter ?"}
-                    icone={"search"}
-                />
-                {/* <button onClick={handleSearch}>Rechercher</button> */}
-            </div>
-            <div className="filtres">
-                <button
-                    value={searchFilters[0]}
-                    onClick={filters}
-                    className={filter === searchFilters[0] ? "active" : ""}
-                >
-                    Artistes
-                </button>
-                <button
-                    value={searchFilters[1]}
-                    onClick={filters}
-                    className={filter === searchFilters[1] ? "active" : ""}
-                >
-                    Albums
-                </button>
-                <button
-                    value={searchFilters[2]}
-                    onClick={filters}
-                    className={filter === searchFilters[2] ? "active" : ""}
-                >
-                    Titres
-                </button>
-            </div>
-
-            <ul>
-                {searchResults.map((result, index) => {
-                    return (
-                        <li key={index}>
-                            <h4 className="titrestroke">{result.title}</h4>
-                            <div className="infos">
-                                <h2>{result.title}</h2>
-                                <Link to={`/artist/${result.artist.id}`}>
-                                    <p>{result.artist.name}</p>
-                                </Link>
-                            </div>
-                            <div className="imgrecherche">
-                                <img
-                                    onClick={() => handlePlaySong(result)}
-                                    src={result.album.cover}
-                                    alt={`Couverture de l'album ${result.album.title}`}
-                                />
-                            </div>
-                            <div className="boutons">
-                                <CgAdd size={"2rem"} color="var(--blanc)" onClick={() => handlePlaylistSelector(result)} />
-                                <FaPlayCircle size={"2rem"} color="var(--blanc)" onClick={() => handlePlaySong(result)} />
-                            </div>
-                            {selectorActif && (
-                                <PlaylistSelector
-                                    estActif={selectorActif}
-                                    setActif={setSelectorActif}
-                                    theSong={result}
-                                />
-                            )}
-                            {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
-                        </li>
-                    );
-                })}
-            </ul>
+  return (
+    <main className="deezer">
+      <Link onClick={handleBack}>
+        <div className="outer">
+          <div className="inner">
+            <label>Retour</label>
+          </div>
         </div>
-    );
+      </Link>
+      <h1>Recherche</h1>
+      <div className="recherche">
+        <RechercheDeezerInput
+          autoFocus={true}
+          value={searchTerm}
+          handleInputChange={handleInputChange}
+          handleSearch={handleSearch}
+          placeholder={"Que voulez-vous écouter ?"}
+          icone={"search"}
+        />
+        {/* <button onClick={handleSearch}>Rechercher</button> */}
+      </div>
+      <div className="filtres">
+        <button
+          value={searchFilters[0]}
+          onClick={filters}
+          className={filter === searchFilters[0] ? "active" : ""}
+        >
+          Artistes
+        </button>
+        <button
+          value={searchFilters[1]}
+          onClick={filters}
+          className={filter === searchFilters[1] ? "active" : ""}
+        >
+          Albums
+        </button>
+        <button
+          value={searchFilters[2]}
+          onClick={filters}
+          className={filter === searchFilters[2] ? "active" : ""}
+        >
+          Titres
+        </button>
+      </div>
+
+      <ul>
+        {searchResults.map((result, index) => {
+          return (
+            <li key={index}>
+              <h4 className="titrestroke">{result.title}</h4>
+              <div className="infos">
+                <h2>{result.title}</h2>
+                <Link to={`/artist/${result.artist.id}`}>
+                  <p>{result.artist.name}</p>
+                </Link>
+              </div>
+              <div className="imgrecherche">
+                <img
+                  onClick={() => handlePlaySong(result)}
+                  src={result.album.cover}
+                  alt={`Couverture de l'album ${result.album.title}`}
+                />
+              </div>
+              <div className="boutons">
+                <CgAdd size={"2rem"} color="var(--blanc)"  onClick={() => handlePlaylistSelector(result)}/>
+                <FaPlayCircle size={"2rem"} color="var(--blanc)" onClick={() => handlePlaySong(result)}/>
+              </div>
+              {selectorActif && (
+                <PlaylistSelector
+                  estActif={selectorActif}
+                  setActif={setSelectorActif}
+                  theSong={result}
+                />
+              )}
+              {/* <button onClick={() => fetchLyrics(result.id)}>Afficher les paroles</button> */}
+            </li>
+          );
+        })}
+      </ul>
+    </main>
+  );
 };
 
 export default RechercheDeezer;

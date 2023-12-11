@@ -56,7 +56,7 @@ const LesPlaylist = () => {
 
 
   return (
-    <div className="lesplaylists">
+    <main className="lesplaylists">
       <SliderPlaylists />
       {/* ... Reste du JSX ... */}
       {playlists.map((playlist) => (
@@ -87,7 +87,7 @@ const LesPlaylist = () => {
         </section>
       ))}
       {/* ... Reste du JSX ... */}
-    </div>
+    </main>
   );
 
   // return (

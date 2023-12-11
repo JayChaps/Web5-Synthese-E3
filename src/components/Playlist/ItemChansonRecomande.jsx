@@ -2,6 +2,7 @@ import React from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { CgAdd, CgRemove } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
+import Coeur from "../Coeur/Coeur";
 
 const ItemChansonRecomande = ({ premier = false }) => {
   const urlImg = "src/assets/img/jpg/placeholder.jpg";
@@ -25,7 +26,7 @@ const ItemChansonRecomande = ({ premier = false }) => {
         </div>
 
         <div className="icones">
-          <BiHeart size={"2rem"} color="var(--rose)" />
+          <Coeur />
           <CgAdd size={"2rem"} color="var(--noir)" />
         </div>
   
