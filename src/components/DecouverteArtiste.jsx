@@ -1,24 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
 import "../assets/scss/components/decouverte/decouverteartiste.scss";
 import PlaylistSelector from "./RechercheDeezer/PlaylistSelector";
-
-// const encodedSearchTerm = encodeURIComponent(searchTerm);
-// const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
-// console.log(url);
-
-// fetchJsonp(url)
-//     .then(response => response.json())
-//     .then(data => {
-//         setSearchResults(data.data || []);
-//         console.log(data.data);
-//     })
-//     .catch(error => {
-//         console.error("Erreur lors de la recherche:", error);
-//     });
+import { SongInfoContext } from '../context/SongInfoContext';
 
 
 
@@ -28,6 +15,7 @@ const DecouverteArtiste = () => {
   const [relatedArtist, setRelatedArtist] = useState([]);
   const nom = "";
   const { idArtist } = useParams();
+    const { handlePlaySong } = useContext(SongInfoContext);
   console.log(idArtist);
 
   const topRelatedArtist = () => {

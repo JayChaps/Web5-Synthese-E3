@@ -1,6 +1,6 @@
 // RechercheDeezer.jsx :
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 // import LayoutAuth from "../components/LayoutAuth";
 import { db } from "../config/firebase";
@@ -33,29 +33,22 @@ const RechercheDeezer = () => {
 
   const navigate = useNavigate();
 
-  // const { changeSource, play, pause } = useAudio();
-  const { handlePlaySong } = useContext(SongInfoContext);
-  const {
-    createNewPlaylist,
-    deletePlaylist,
-    addToPlaylist,
-    removeSongFromPlaylist,
-    newPlaylistName,
-    setNewPlaylistName,
-    selectedPlaylistId,
-    setSelectedPlaylistId,
-    fetchPlaylists,
-    fetchPlaylist,
-    playlists,
-    setPlaylists,
-    playlist,
-    setPlaylist,
-    selectedSong,
-    setSelectedSong,
-    createNewPlaylistAndAddSong,
-  } = useContext(PlaylistsContext);
+    // const { changeSource, play, pause } = useAudio();
+    const { handlePlaySong } = useContext(SongInfoContext);
+    const { createNewPlaylist, deletePlaylist,
+        addToPlaylist, removeSongFromPlaylist,
+        newPlaylistName, setNewPlaylistName,
+        selectedPlaylistId, setSelectedPlaylistId,
+        fetchPlaylists, fetchPlaylist,
+        playlists, setPlaylists,
+        playlist, setPlaylist,
+        selectedSong, setSelectedSong,
+        createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
 
-  const searchFilters = ["artist", "album", "track"];
+    const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
+    const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
+
+    const searchFilters = ["artist","album","track"]
 
   useEffect(() => {
     if (searchTerm) {
@@ -87,10 +80,15 @@ const RechercheDeezer = () => {
   //     console.log("SelectedSong: "+ {selectedSong});
   // }, [selectedSong, selectorActif]);
 
-  // Récupération de la playlist
-  useEffect(() => {
-    fetchPlaylist();
-  }, [newPlaylistName, playlists, createNewPlaylist]);
+    // Récupération de la playlist
+    useEffect(() => {
+        if (shouldFetchPlaylist) {
+            fetchPlaylist();
+            console.log("useEffect fetchPlaylist");
+        }
+    // }, [newPlaylistName, playlists, createNewPlaylist]);
+    }, [shouldFetchPlaylist]);
+    
 
   const filters = (e) => {
     setFilter("");
@@ -99,6 +97,7 @@ const RechercheDeezer = () => {
   };
 
   const handlePlaylistSelector = (song) => {
+        setShouldFetchPlaylist(true);
     setSelectorActif(!selectorActif);
     if (!selectorActif) {
       setSelectedSong(song);

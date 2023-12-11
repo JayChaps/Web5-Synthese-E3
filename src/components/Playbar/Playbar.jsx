@@ -17,8 +17,11 @@ import { IoVolumeMute } from "react-icons/io5";
 
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
-
+import { useFavorites } from "../../context/FavoritesContext";
 import PlaybarFull from "./PlaybarFull";
+import { PlaylistsContext } from "../../context/playlistsContext";
+
+
 const Playbar = () => {
   const {
     play,
@@ -37,13 +40,60 @@ const Playbar = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
 
-  const { progress } = useAudioProgress();
+  const { progress, changeProgress } = useAudioProgress();
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
+  const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
 
   // Fonction pour jouer ou mettre en pause la chanson
   const handlePlayPause = () => {
     togglePause();
+    console.log(songInfo);
   };
+
+
+
+  const handleMouseDown = (e) => {
+    e.preventDefault(); // Empêcher le comportement de sélection du texte ou autre
+    setIsDragging(true);
+    handleProgressChange(e);
+  };
+
+  const handleMouseUp = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (isDragging) {
+      handleProgressChange(e);
+    }
+  };
+  const handleProgressChange = (e) => {
+    const progressBar = e.currentTarget;
+    const progressBarRect = progressBar.getBoundingClientRect();
+    const newProgress = (e.pageX - progressBarRect.left) / progressBarRect.width;
+    changeProgress(Math.min(Math.max(newProgress, 0), 1));
+  };
+
+
+  const { addToFavorites } = useFavorites();
+
+  // Fonction pour ajouter la chanson aux favoris
+  const handleAddToFavorites = () => {
+    addToFavorites(songInfo);
+
+    // addToFavorites({
+    //   id: songInfo.id,
+    //   title: songInfo.title,
+    //   artist: songInfo.artist,
+    //   coverUrl: songInfo.coverUrl,
+    // });
+    console.log("Song added to favorites : " + songInfo.title);
+  };
+
+
+
 
   const handleClick = (e) => {
     if (e.target.classList.contains("playbar__inner")) {
@@ -141,7 +191,7 @@ const Playbar = () => {
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
-          <BiHeart size={"3.5rem"} color="var(--rose)" />
+          <BiHeart size={"3.5rem"} color="var(--rose)" onClick={handleAddToFavorites} />
           <CgAdd size={"3.5rem"} color="var(--blanc)" />
 
           {isMuted ? (
@@ -196,12 +246,21 @@ const Playbar = () => {
             />
           </div>
         </section>
-        <section className="playbar__inner__center__progress">
+        <section className="playbar__inner__center__progress"
+        >
           <span>
             0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
             {(progress * duration).toFixed(0)}
           </span>{" "}
-          <div className="playbar__inner__center__progress__bar">
+          <div
+            className="playbar__inner__center__progress__bar"
+            onClick={handleProgressChange}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseUp}
+            onMouseUp={handleMouseUp}
+            style={{ width: `${(duration / duration) * 100}%` }}
+          >
             <div
               className="playbar__inner__center__progress__bar__inner"
               style={{ width: `${progress * 100}%` }}
@@ -209,7 +268,7 @@ const Playbar = () => {
               <div className="draggable"></div>
             </div>
           </div>
-          <span>{duration}</span>
+          <span>0:{duration.toFixed(0)}</span>
         </section>
       </div>
     </aside>

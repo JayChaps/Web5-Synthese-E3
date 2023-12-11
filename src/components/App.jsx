@@ -20,6 +20,9 @@ import { AudioProvider, useAudio } from "../context/audiotim";
 import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
+import DecouverteAlbum from './DecouverteAlbum';
+import { FavoritesProvider } from "../context/FavoritesContext";
+
 
 const Routes = () => {
   const { isConnected, loading } = useAuth();
@@ -47,12 +50,12 @@ const Routes = () => {
       children: [
         {
           index: true,
-          element: <Navigate to="/home" />,
+          element: <Navigate to="/profil" />,
         },
-        {
-          path: "home",
-          element: <PageTableauDeBord />,
-        },
+        // {
+        //   path: "home",
+        //   element: <PageTableauDeBord />,
+        // },
         {
           path: "profil",
           element: <Profil />,
@@ -90,13 +93,15 @@ const Routes = () => {
 
 const App = () => {
   return (
-    <AudioProvider>
-      <PlaylistsProvider>
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
-      </PlaylistsProvider>
-    </AudioProvider>
+    <FavoritesProvider>
+      <AudioProvider>
+        <PlaylistsProvider>
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
+        </PlaylistsProvider>
+      </AudioProvider>
+    </FavoritesProvider>
   );
 };
 

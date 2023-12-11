@@ -49,7 +49,15 @@ const Playlist = () => {
         // Mettre à jour Firestore
         const playlistRef = doc(db, "playlists", playlistId);
         await updateDoc(playlistRef, { songs: newSongs });
+
     };
+
+
+    // Lancer la chanson 
+    const JouerLaChanson = (song) => {
+        setSelectedSong(song);
+        handlePlaySong(song);
+    }
 
     return (
         <div>
@@ -78,7 +86,7 @@ const Playlist = () => {
                                                 {...provided.dragHandleProps}
                                             >
                                                 <span>{song.title}</span>
-                                                <button onClick={() => handlePlaySong(song)}>Lire</button>
+                                                <button onClick={() => JouerLaChanson(song)}>Lire</button>
                                                 <button onClick={() => removeSongFromPlaylist(playlist.id, song)}>Supprimer</button>
                                             </div>
                                         )}
