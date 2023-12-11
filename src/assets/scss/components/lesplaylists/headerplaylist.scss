@@ -56,8 +56,8 @@
             border-radius: 3rem;
             overflow: hidden;
 
-            box-shadow: -2px 4px 10px 0px rgba(0, 0, 0, 0.726);
-
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            user-select: none;
             @include breakpoint-min(1024) {
                 justify-self: start;
             }
@@ -100,7 +100,7 @@
             justify-content: space-between;
 
             height: 100%;
-
+            user-select: none;
             @include breakpoint-min(1024) {
                 justify-self: end;
             }

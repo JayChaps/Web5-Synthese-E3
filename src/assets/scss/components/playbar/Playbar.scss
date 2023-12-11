@@ -140,7 +140,7 @@
       height: 4px;
 
       background-color: var(--rose);
-      box-shadow: 0 -1px 6px 1px rgba(0, 0, 0, 0.274);
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
 
       transform: translateY(-100%);
     }
@@ -166,7 +166,7 @@
           width: 4rem;
           aspect-ratio: 1;
 
-          box-shadow: 0 0 0 1px var(--gris);
+          box-shadow: 0 0 0 1px var(--rose);
           border-radius: 0.5rem;
           overflow: hidden;
 

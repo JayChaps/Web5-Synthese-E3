@@ -114,7 +114,7 @@
 
                         overflow: hidden;
 
-                        box-shadow: -2px 4px 10px 0px rgba(0, 0, 0, 0.726);
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
                         @include breakpoint-min(1200) {
                             max-width: 275px;
