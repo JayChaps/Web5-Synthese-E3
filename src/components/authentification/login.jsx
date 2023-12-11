@@ -35,12 +35,12 @@ function Login() {
       <motion.h1 className="login-title2" variants={titleVariants2}>Connexion</motion.h1>
       <motion.h1 className="login-title3" variants={titleVariants3}>Connexion</motion.h1>
       <motion.h1 className="login-title4" variants={titleVariants4}>Connexion</motion.h1>
-      <div className="button-wrapper">
+      <main className="button-wrapper">
         <button className="login-button" onClick={user === null ? googleSignIn : logOut}>
           <img src="src\assets\png\google-logo.png" alt="" className='logo-google'/>
           {user === null ? "Se connecter avec Google" : "Se déconnecter"}
         </button>
-      </div>
+      </main>
     </motion.div>
   );
 }

@@ -23,7 +23,7 @@ const LesPlaylist = () => {
     };
   }, []);
   return (
-    <div className="lesplaylists">
+    <main className="lesplaylists">
       <SliderPlaylists />
       <header>
         <section className="lesplaylists__infos">
@@ -110,7 +110,7 @@ const LesPlaylist = () => {
           <ItemChansonRecomande />
         </section>
       </section>
-    </div>
+    </main>
   );
 };
 

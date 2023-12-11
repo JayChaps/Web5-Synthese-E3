@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auhContext";
 
@@ -25,15 +25,13 @@ const Nav = () => {
   console.log(links);
 
   const handleSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (location.pathname.startsWith("/search")) {
       navigate(-1);
     } else {
       navigate("/search");
     }
   };
-
- 
 
   //   useEffect(()=>{
   //     if(user !== null){
@@ -49,6 +47,15 @@ const Nav = () => {
     size: "3rem",
     color: "var(--blanc)",
   };
+
+  useEffect(() => {
+    // This function will be called whenever the location changes
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }, [location]);
+  
 
   return (
     <nav>

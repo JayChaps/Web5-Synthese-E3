@@ -260,13 +260,21 @@
         @include breakpoint-min(1024) {
           gap: 0.5rem;
         }
-        & svg:last-of-type {
+        & > svg:last-of-type {
           display: none;
 
           @include breakpoint-min(1024) {
             display: inline-block;
           }
         }
+
+        & > .coeur{
+          .checkmark{
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+
         & .volume {
           position: relative;
 

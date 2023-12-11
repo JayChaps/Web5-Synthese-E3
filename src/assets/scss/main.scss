@@ -1,11 +1,11 @@
-@import "base/base.scss";
-@import "components/components.scss";
-@import "pages/pages.scss";
+@import '../scss/base/base.scss';
+@import '../scss/components/components.scss';
+@import "../scss/pages/pages.scss";
 
 div.interface {
   padding-bottom: 184px;
   background-color: var(--blanc);
-
+  
   @include breakpoint-min(1024) {
     padding-bottom: 104px;
     padding-top: 80px;
@@ -34,4 +34,8 @@ html{
     border-radius: 10px;
     border: 0px solid #ffffff;
 }
+}
+
+main{
+  min-height: 100vh;
 }
