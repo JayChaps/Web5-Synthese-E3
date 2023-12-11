@@ -52,10 +52,10 @@ const Routes = () => {
           index: true,
           element: <Navigate to="/profil" />,
         },
-        // {
-        //   path: "home",
-        //   element: <PageTableauDeBord />,
-        // },
+        {
+          path: "home",
+          element: <PageTableauDeBord />,
+        },
         {
           path: "profil",
           element: <Profil />,
