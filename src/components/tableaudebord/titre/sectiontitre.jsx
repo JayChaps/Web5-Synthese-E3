@@ -42,6 +42,10 @@ const SectionTitre = () => {
         <PropositionChansons />
         <PropositionChansons />
         <PropositionChansons />
+        <PropositionChansons />
+        <PropositionChansons />
+        <PropositionChansons />
+        <PropositionChansons />
       </motion.div>
     </motion.section>
   );
