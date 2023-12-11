@@ -7,6 +7,45 @@
     & .playbarfull__inner {
         width: 100%;
         height: 100%;
+
+
+        & .temps{
+            position: absolute;
+            bottom: 120px;
+            display: flex;
+            justify-content: space-between;
+
+            width: 100%;
+            padding: 0 2rem;
+            margin-top: 3rem;
+
+            @include h5;
+            color: var(--gris);
+
+            @include breakpoint-min(768) {
+                padding: 0 3rem;
+            }
+
+            @include breakpoint-min(1024) {
+                padding: 0 4rem;
+
+                font-size: 1.5em;
+            }
+
+            @include breakpoint-min(1200) {
+                flex-direction: column;
+
+                top: 0;
+                left: 350px;
+
+                height: 100%;
+
+                padding: 1rem 3rem;
+                margin: 0;
+
+                width: auto;
+            }
+        }
         & .infoChanson {
             display: flex;
             flex-direction: column;
@@ -15,15 +54,15 @@
 
             width: 100%;
 
-            @include breakpoint-min(768){
+            @include breakpoint-min(768) {
                 padding: 1rem 1rem 0 4rem;
             }
 
-            @include breakpoint-min(1024){
+            @include breakpoint-min(1024) {
                 padding: 1rem 1rem 0 6rem;
             }
 
-            @include breakpoint-min(1200){
+            @include breakpoint-min(1200) {
                 width: calc(58vw - 20px);
                 margin-left: auto;
                 padding: 1rem 0 0 0;
@@ -47,55 +86,9 @@
                 color: var(--gris);
             }
         }
-
-        & .animationLecteur {
-            position: relative;
-            height: 15vh;
-            & .frequence {
-                position: relative;
-                top: 0;
-                left: 0;
-
-                width: 100vw;
-                height: 100px;
-
-                background-color: var(--mauve);
-            }
-        }
-
-        & .cover {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            z-index: 2000;
-
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            width: 150%;
-            aspect-ratio: 1;
-            max-width: 1200px;
-
-            transform: translateX(-50%) translateY(-10%);
-
-            border-radius: 50% 50%;
-
-            overflow: hidden;
-
-            @include breakpoint-min(1200){
-                top: 50%;
-                left:0;
-                right: 100%;
-                transform: translateX(-70%) translateY(-50%);
-            }
-
-            & img {
-                width: 100vw;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
     }
+}
+
+main:has(aside .playbarfull) > div{
+    display: none !important;
 }

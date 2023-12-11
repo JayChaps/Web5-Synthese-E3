@@ -1,18 +1,30 @@
+.sous-sous-titre{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 900px;
+}
+
 .containersectionautresoustitre{
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 125px;
     width: 125px;
     margin: 17px;
-    background-color: #222C32;
     border-radius: 20px;
+
+    
   
 }
 
 .titresectionautresoustitre{
+    position: relative;
     @include p;
-    padding: 20px;
-    color: white;
+    padding: 10px;
+    color: var(--grisFonce);
+    z-index: 2;
     
 }
 
@@ -21,4 +33,21 @@
     top: 0;
     right: 0;
     margin: 10px;
+    z-index: 3;
 }
+
+.autresoustitre-image{
+    position: absolute;
+    // z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    img{
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       border-radius: 30px;
+    }
+  }

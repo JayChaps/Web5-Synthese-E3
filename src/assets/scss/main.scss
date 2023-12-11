@@ -3,5 +3,35 @@
 @import "../scss/pages/pages.scss";
 
 div.interface {
-  padding-bottom: 104px;
+  padding-bottom: 184px;
+  background-color: var(--blanc);
+
+  @include breakpoint-min(1024) {
+    padding-bottom: 104px;
+    padding-top: 80px;
+  }
+  
+}
+
+div.interfacedeux{
+  padding-bottom: 80px;
+  @include breakpoint-min(1024) {
+    padding-bottom: 0;
+  }
+}
+
+html{
+  &::-webkit-scrollbar {
+    width: 8px;
+}
+
+&::-webkit-scrollbar-track {
+    background: var(--grisFonce);
+}
+
+&::-webkit-scrollbar-thumb {
+    background-color: var(--rose);
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+}
 }

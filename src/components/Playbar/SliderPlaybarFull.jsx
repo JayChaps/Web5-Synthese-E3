@@ -17,22 +17,24 @@ const SliderPlaybarFul = ({ progress, duration }) => {
 
   const mathValue = value <= 50 ? 50 - value : value - 50;
 
-  const width = windowDimensions.width < 800 ? windowDimensions.width : 800; // Meme valeur que dans le css(width: 95vw)
+  const width = windowDimensions.width < 800 ? windowDimensions.width : 800;
   const heightSlider = 40; // Meme valeur que dans le css(height: 20px)
   const widthSliderknob = 30;
   const radius = width / 2;
   const cos = mathValue / 100;
 
   const opposite = Math.sin(Math.acos(cos)) * radius * 2;
+  const smoothAddition = (value, limit) => {
+    const smoothFactor = Math.abs(value - 50) / 100;
+    return smoothFactor * limit;
+  };
 
+  console.log(smoothAddition(value, 50));
   // degré fonctionne pas avec les cosinus
   const degree =
     value <= 50
-      ? Math.acos(cos) 
-      * (180 / Math.PI)
+      ? Math.acos(cos) * (180 / Math.PI)
       : 180 - Math.acos(cos) * (180 / Math.PI);
-
-  console.log(degree);
 
   const tailStyle = {
     background: `conic-gradient(
@@ -42,12 +44,10 @@ const SliderPlaybarFul = ({ progress, duration }) => {
   };
   const thumbContainerStyle = {
     transform: `translateY(calc(${
-
-      -opposite +
-      width +
-      heightSlider / 2 -
-      widthSliderknob / 2 -
-      (Math.abs(value - 50) / 100) * 50
+      -opposite * 0.85 +
+      (width + heightSlider) * 0.85 -
+      heightSlider/2 -
+      widthSliderknob / 2
     }px - 50%
       )) translateX(calc(${
         (value / 100) * (width * 0.85 - widthSliderknob) -
@@ -57,11 +57,10 @@ const SliderPlaybarFul = ({ progress, duration }) => {
   };
   const sliderStyle = {
     transform: `translateY(calc(${
-      -opposite +
-      width +
-      heightSlider / 2 -
-      widthSliderknob / 2 -
-      (Math.abs(value - 50) / 100) * 50
+      -opposite * 0.85 +
+      (width + heightSlider) * 0.85 -
+      heightSlider +
+      widthSliderknob /4
     }px - 50%)) translateX(-50%)`,
   };
 
