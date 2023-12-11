@@ -22,6 +22,7 @@ import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
 import DecouverteAlbum from './DecouverteAlbum';
 import { FavoritesProvider } from "../context/FavoritesContext";
+import { PlaybarProvider } from "../context/playbarContext";
 
 
 const Routes = () => {
@@ -41,7 +42,7 @@ const Routes = () => {
           path: 'authentification',
           element: <PageAuthentification />,
         },
-        
+
       ],
     },
     isConnected && {
@@ -96,9 +97,11 @@ const App = () => {
     <FavoritesProvider>
       <AudioProvider>
         <PlaylistsProvider>
-          <AuthProvider>
-            <Routes />
-          </AuthProvider>
+          <PlaybarProvider>
+            <AuthProvider>
+              <Routes />
+            </AuthProvider>
+          </PlaybarProvider>
         </PlaylistsProvider>
       </AudioProvider>
     </FavoritesProvider>
