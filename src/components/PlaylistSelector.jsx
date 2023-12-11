@@ -19,6 +19,9 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
             selectedSong, setSelectedSong,
             createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
 
+    const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
+    const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
+
     const ajouter = (id) => {
         setSelectedPlaylistId(id);
         addToPlaylist(theSong);
@@ -26,15 +29,31 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
         setActif(false);
     }
 
+    // useEffect(() => {
+    //     if (shouldFetchPlaylists) {
+    //         fetchPlaylists();
+    //         setShouldFetchPlaylists(false);
+    //         console.log("useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true")
+    //     }
+    // // }, [newPlaylistName, createNewPlaylist, estActif]);
+    // }, [shouldFetchPlaylists]);
+
     useEffect(() => {
-        fetchPlaylists();
-    }, [newPlaylistName, playlists, createNewPlaylist, estActif]);
+        if (estActif) {
+            fetchPlaylists();
+            console.log("useEffect fetchPlaylists avec un S pcq estActif est true");
+        }
+    }, [estActif]);
 
     const creerEtAjouter = () => {
         createNewPlaylistAndAddSong(newPlaylistName, theSong);
         setChampNomActif(false);
         setActif(false);
     };
+
+    // const handleSelectorActif = () => {
+        
+    // };
 
     // useEffect(() => {
     //     setSelectedSong(theSong);

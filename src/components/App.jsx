@@ -18,6 +18,7 @@ import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
 import DecouverteAlbum from './DecouverteAlbum';
+import { FavoritesProvider } from "../context/FavoritesContext";
 
 
 const Routes = () => {
@@ -91,13 +92,15 @@ const Routes = () => {
 
 const App = () => {
   return (
-    <AudioProvider>
-      <PlaylistsProvider>
-        <AuthProvider>
-          <Routes />
-        </AuthProvider>
-      </PlaylistsProvider>
-    </AudioProvider>
+    <FavoritesProvider>
+      <AudioProvider>
+        <PlaylistsProvider>
+          <AuthProvider>
+            <Routes />
+          </AuthProvider>
+        </PlaylistsProvider>
+      </AudioProvider>
+    </FavoritesProvider>
   );
 };
 
