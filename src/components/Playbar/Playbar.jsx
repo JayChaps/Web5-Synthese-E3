@@ -1,24 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPauseCircle } from "react-icons/fa";
 import { BiSolidSkipNextCircle } from "react-icons/bi";
-
 import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
 import { CgAdd } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
-
-import { IoVolumeOff } from "react-icons/io5";
-import { IoVolumeLow } from "react-icons/io5";
-import { IoVolumeMedium } from "react-icons/io5";
-import { IoVolumeHigh } from "react-icons/io5";
-import { IoVolumeMute } from "react-icons/io5";
+import { IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh, IoVolumeMute } from "react-icons/io5";
+import { motion, useAnimation } from "framer-motion";
 
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
-
 import PlaybarFull from "./PlaybarFull";
+
 const Playbar = () => {
   const {
     play,
@@ -40,7 +34,12 @@ const Playbar = () => {
   const { progress } = useAudioProgress();
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
 
-  // Fonction pour jouer ou mettre en pause la chanson
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
+  }, []);
+
   const handlePlayPause = () => {
     togglePause();
   };
@@ -71,15 +70,16 @@ const Playbar = () => {
       changeVolume(0);
     }
   };
-  console.log(songInfo);
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
-  return (
-    <aside className="playbar">
-      {/* Mettre le composant PlaybarFull si on clique quelque part */}
-      {/* A enlever pour voir */}
 
-      {/* ------------------- setIsFullbarOpen à false quand on change de location.pathname */}
+  return (
+    <motion.aside
+      className="playbar"
+      initial={{ opacity: 0, y: 50 }}
+      animate={controls}
+      onClick={handleClick}
+    >
       {isFullbarOpen && (
         <>
           <PlaybarFull
@@ -98,7 +98,8 @@ const Playbar = () => {
           </div>
         </>
       )}
-      <div className="playbar__inner" onClick={handleClick}>
+
+<div className="playbar__inner" onClick={handleClick}>
         <section className="playbar__inner__left">
           <div className="iconeShuffleLoop">
             <BsShuffle size={"2rem"} color="var(--noir)" />
@@ -212,67 +213,8 @@ const Playbar = () => {
           <span>{duration}</span>
         </section>
       </div>
-    </aside>
+    </motion.aside>
   );
 };
 
 export default Playbar;
-
-// <div className="playbar__inner">
-//   <section className="playbar__inner__left">
-//     <div className="playbar__inner__left__cover">
-//       <img src={songInfo.coverUrl} alt="cover" />
-//     </div>
-//     <div className="playbar__inner__left__song">
-//       <div className="playbar__inner__left__song__title">
-//         <span>{songInfo.title}</span>
-//       </div>
-//       <div className="playbar__inner__left__song__artist">
-//         <span>{songInfo.artist}</span>
-//       </div>
-//     </div>
-//   </section>
-//   <section className="playbar__inner__center">
-//     <button className="playbar__inner__center__buttons__previous">
-//       <b className="fas fa-step-backward">{"⏮"}</b>
-//     </button>
-//     <button
-//       className="playbar__inner__center__buttons__play"
-//       onClick={handlePlayPause}
-//     >
-//       <b className="fas fa-play">{isPaused ? "▶️" : "⏸"}</b>
-//     </button>
-//     <button className="playbar__inner__center__buttons__next">
-//       <b className="fas fa-step-forward">{"⏭"}</b>
-//     </button>
-//   </section>
-
-//   <button className="playbar__inner__center__buttons__shuffle">
-//     <b className="fas fa-random">{"🔀"}</b>
-//   </button>
-//   <button className="playbar__inner__center__buttons__repeat">
-//     <b className="fas fa-redo">{"🔁"}</b>
-//   </button>
-
-//   <section className="playbar__inner__center__progress">
-//     <div className="playbar__inner__center__progress__time">
-//       <span>
-//         0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
-//         {(progress * duration).toFixed(0)}
-//       </span>
-//     </div>
-//     <div
-//       className="playbar__inner__center__progress__bar"
-//       style={{ width: `${(duration / duration) * 100}%` }}
-//     >
-//       --------------------------------------
-//       <div
-//         className="playbar__inner__center__progress__bar__inner"
-//         style={{ width: `${progress * 100}%` }}
-//       ></div>
-//     </div>
-//     <div className="playbar__inner__center__progress__time">
-//       <span>{duration}</span>
-//     </div>
-//   </section>
-// </div>
