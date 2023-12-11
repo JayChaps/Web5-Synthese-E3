@@ -6,14 +6,15 @@
 
 @mixin p {
   font-family: "Gotham";
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.125rem;
 }
 
 .logo-google {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  margin: 15px;
+  filter: brightness(115%);
 }
 
 .login-title {
@@ -22,7 +23,7 @@
   margin-top: 100px;
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .login-title2,
@@ -30,64 +31,62 @@
 .login-title4 {
   @include h2;
   text-align: center;
-  color: transparent;  // Set the text color to transparent
-  -webkit-text-stroke: 2px white;  // Webkit browsers (Chrome, Safari)
-  -webkit-text-stroke: 2px white;  // Standard property for text stroke
-  opacity: 0.35;
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+  position: relative;
+  z-index: 1; 
 }
 
-.login-title3 {
-  opacity: 0.15;
-}
+
 
 .login-title4 {
-  opacity: 0.05;
   position: absolute;
-  left: 50%;
+  left: 10%;
   transform: translateX(-50%);
   margin-top: -5px;
   z-index: 0;
 }
 
 .login {
+  height: 100vh;
   text-align: center;
   position: relative;
-
   overflow: hidden;
 
-  &::before{
+  &::before {
     position: absolute;
     top: -50%;
     left: 0;
-    // z-index: -1;
     content: "";
     width: 100vw;
     height: 1000vh;
-
     background-color: var(--rose);
+    z-index: 0;
   }
 }
 
 .button-wrapper {
-  height: 700px;
+  height: 100%;
   background-color: var(--mauve);
-  padding: 94px;
+  padding: 95px 95px 0px 95px;
   border-top-left-radius: 200px;
   text-align: center;
   overflow: hidden;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .login-button {
-  @include p;
-  background-color: var(--blanc);
-  color: var(--noir);
-  padding: 0.75rem;
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
+  @include p;
+  background-color: var(--blanc);
+  color: var(--grisFonce);
+  padding: 0.75rem;
+  border-radius: 20px;
+  box-shadow: 8px 8px 8px  rgba(255, 255, 255, 0.1);
+  margin-top: 100px;
+  z-index: 2;
+  border: 1px white solid;
 }

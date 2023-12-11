@@ -19,19 +19,20 @@
         color: var(--blanc);
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: var(--rose);
-        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-width: 1.5px;
         line-height: 1px;
     }
     .titre-milieu{
         @include h3;
         color: var(--noir);
+        padding: 15px;
     }
     .titre-bas{
         @include h3;
         color: var(--blanc);
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: var(--rose);
-        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-width: 1.5px;
         line-height: 1px;
     }
 
