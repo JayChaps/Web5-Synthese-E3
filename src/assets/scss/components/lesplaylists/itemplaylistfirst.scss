@@ -10,6 +10,9 @@
 
         padding: 0.5em;
         background-color: var(--rose);
+
+        border-radius: 40px;
+        border-bottom-right-radius: 70px;
         &::after {
             display: none;
         }

@@ -13,7 +13,7 @@ const ChansonSuivante = () => {
 
         <div className="chansonsuivante__icones">
           <BiHeart size={"2.2rem"} color="var(--rose)" />
-          <CgRemove size={"2rem"} color="var(--noir)" />
+          <CgRemove size={"2rem"} color="var(--blanc)" />
         </div>
 
         <div className="chansonsuivante__info">

@@ -71,6 +71,7 @@ const Playbar = () => {
       changeVolume(0);
     }
   };
+  console.log(songInfo);
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
   return (
