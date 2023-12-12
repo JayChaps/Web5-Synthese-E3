@@ -73,6 +73,7 @@ const RechercheDeezer = () => {
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data.data || []);
+        console.log(data.data);
       })
       .catch((error) => {
         console.error("Erreur lors de la recherche:", error);

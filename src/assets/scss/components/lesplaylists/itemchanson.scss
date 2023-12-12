@@ -127,13 +127,15 @@
                 word-break: break-all;
                 max-width: 100%;
 
-                & span:first-child {
+                & a:first-child {
+                    text-decoration: none;
                     font-weight: 500;
                     font-size: 1em;
                     color: var(--noir);
                 }
-
-                & span:nth-child(2) {
+                
+                & a:nth-child(2) {
+                    text-decoration: none;
                     font-weight: 400;
                     font-size: 0.8em;
                     color: var(--gris);

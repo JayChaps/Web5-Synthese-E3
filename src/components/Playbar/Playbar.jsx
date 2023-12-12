@@ -23,11 +23,13 @@ import { PlaylistsContext } from "../../context/playlistsContext";
 import { PlaybarContext } from "../../context/playbarContext";
 import Coeur from "../Coeur/Coeur";
 import TeteDeLecturePlaybar from "./TeteDeLecturePlaybar";
+import PlaylistSelector from "../RechercheDeezer/PlaylistSelector";
 
 const Playbar = () => {
   const { isPaused, changeSource, isReady, togglePause, volume, changeVolume } =
     useAudio();
 
+  const [selectorActif, setSelectorActif] = useState(false);
   // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
 
   const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
@@ -86,128 +88,135 @@ const Playbar = () => {
 
   console.log(songInfo);
   return (
-    <motion.aside
-      className="playbar"
-      initial={{ opacity: 0, y: "100%" }}
-      animate={controls}
-      onClick={handleClick}
-    >
-      {isFullbarOpen && (
-        <>
-          <PlaybarFull>
-            <div className="outer" onClick={() => setIsFullbarOpen(false)}>
-              <div className="inner">
-                <label>Retour</label>
+    <>
+      {selectorActif && <PlaylistSelector setActif={setSelectorActif} />}
+      <motion.aside
+        className="playbar"
+        initial={{ opacity: 0, y: "100%" }}
+        animate={controls}
+        onClick={handleClick}
+      >
+        {isFullbarOpen && (
+          <>
+            <PlaybarFull>
+              <div className="outer" onClick={() => setIsFullbarOpen(false)}>
+                <div className="inner">
+                  <label>Retour</label>
+                </div>
               </div>
+            </PlaybarFull>
+            <div className="cover">
+              <img src={songInfo.coverUrl} alt="" />
             </div>
-          </PlaybarFull>
-          <div className="cover">
-            <img src={songInfo.coverUrl} alt="" />
-          </div>
-        </>
-      )}
+          </>
+        )}
 
-      <div className="playbar__inner" onClick={handleClick}>
-        <section className="playbar__inner__left">
-          <div className="iconeShuffleLoop">
-            <BsShuffle size={"2rem"} color="var(--noir)" />
-          </div>
-          <div className="iconeShuffleLoop">
-            <RxLoop size={"2rem"} color="var(--noir)" />
-          </div>
+        <div className="playbar__inner" onClick={handleClick}>
+          <section className="playbar__inner__left">
+            <div className="iconeShuffleLoop">
+              <BsShuffle size={"2rem"} color="var(--noir)" />
+            </div>
+            <div className="iconeShuffleLoop">
+              <RxLoop size={"2rem"} color="var(--noir)" />
+            </div>
 
-          <div className="playbar__inner__left__cover">
-            <img
-              src={songInfo.coverUrl ? songInfo.coverUrl : urlImg}
-              alt="cover"
-            />
-          </div>
-          <div className="playbar__inner__left__info">
-            <span>{songInfo.title}</span>
-            <span>{songInfo.artist}</span>
-          </div>
-        </section>
-        <section className="playbar__inner__center">
-          <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
-
-          {isPaused ? (
-            <>
-              <FaPlayCircle
-                onClick={handlePlayPause}
-                size={"4rem"}
-                color="var(--blanc)"
+            <div className="playbar__inner__left__cover">
+              <img
+                src={songInfo.coverUrl ? songInfo.coverUrl : urlImg}
+                alt="cover"
               />
-            </>
-          ) : (
-            <>
-              <FaPauseCircle
-                onClick={handlePlayPause}
-                size={"4rem"}
-                color="var(--blanc)"
-              />
-            </>
-          )}
-          <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
-        </section>
-        <section className="playbar__inner__right">
-          <Coeur />
-          <CgAdd size={"3.5rem"} color="var(--blanc)" />
+            </div>
+            <div className="playbar__inner__left__info">
+              <span>{songInfo.title}</span>
+              <span>{songInfo.artist}</span>
+            </div>
+          </section>
+          <section className="playbar__inner__center">
+            <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
 
-          {isMuted ? (
-            <IoVolumeMute
+            {isPaused ? (
+              <>
+                <FaPlayCircle
+                  onClick={handlePlayPause}
+                  size={"4rem"}
+                  color="var(--blanc)"
+                />
+              </>
+            ) : (
+              <>
+                <FaPauseCircle
+                  onClick={handlePlayPause}
+                  size={"4rem"}
+                  color="var(--blanc)"
+                />
+              </>
+            )}
+            <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
+          </section>
+          <section className="playbar__inner__right">
+            <Coeur />
+            <CgAdd
               size={"3.5rem"}
               color="var(--blanc)"
-              onClick={handleMute}
+              onClick={() => setSelectorActif(!selectorActif)}
             />
-          ) : volume <= 0 && !isMuted ? (
-            <IoVolumeOff
-              size={"3.5rem"}
-              color="var(--blanc)"
-              onClick={handleMute}
-            />
-          ) : volume < 0.5 && !isMuted ? (
-            <IoVolumeLow
-              size={"3.5rem"}
-              color="var(--blanc)"
-              onClick={handleMute}
-            />
-          ) : volume < 0.75 && !isMuted ? (
-            <IoVolumeMedium
-              size={"3.5rem"}
-              color="var(--blanc)"
-              onClick={handleMute}
-            />
-          ) : (
-            volume >= 0.75 && (
-              <IoVolumeHigh
+
+            {isMuted ? (
+              <IoVolumeMute
                 size={"3.5rem"}
                 color="var(--blanc)"
                 onClick={handleMute}
               />
-            )
-          )}
-          <div className="volume">
-            <div
-              className="progress"
-              style={{
-                width: `calc(${volume * 100}% + ${15 - volume * 15}px)`,
-              }}
-            ></div>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolume}
-              disabled={!isReady}
-            />
-          </div>
-        </section>
+            ) : volume <= 0 && !isMuted ? (
+              <IoVolumeOff
+                size={"3.5rem"}
+                color="var(--blanc)"
+                onClick={handleMute}
+              />
+            ) : volume < 0.5 && !isMuted ? (
+              <IoVolumeLow
+                size={"3.5rem"}
+                color="var(--blanc)"
+                onClick={handleMute}
+              />
+            ) : volume < 0.75 && !isMuted ? (
+              <IoVolumeMedium
+                size={"3.5rem"}
+                color="var(--blanc)"
+                onClick={handleMute}
+              />
+            ) : (
+              volume >= 0.75 && (
+                <IoVolumeHigh
+                  size={"3.5rem"}
+                  color="var(--blanc)"
+                  onClick={handleMute}
+                />
+              )
+            )}
+            <div className="volume">
+              <div
+                className="progress"
+                style={{
+                  width: `calc(${volume * 100}% + ${15 - volume * 15}px)`,
+                }}
+              ></div>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolume}
+                disabled={!isReady}
+              />
+            </div>
+          </section>
 
-        <TeteDeLecturePlaybar />
-      </div>
-    </motion.aside>
+          <TeteDeLecturePlaybar />
+        </div>
+      </motion.aside>
+    </>
   );
 };
 

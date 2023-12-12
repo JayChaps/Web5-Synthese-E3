@@ -1,0 +1,186 @@
+.playlistSelector {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 5000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    width: 100%;
+    height: calc(100% - 184px);
+
+    padding: 2rem 1rem;
+
+    background-color: rgba(34, 44, 50, 0.979);
+    overflow-y: scroll;
+
+    transform: translate(-50%, -0);
+
+    @include breakpoint-min(1024) {
+        top: 80px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--grisFonce);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        border: 0px solid #ffffff;
+    }
+
+    & > .playlistSelector__header {
+        position: relative;
+
+        display: grid;
+        grid-template-columns: 1fr auto;
+        place-items: center;
+
+        width: 100%;
+
+        padding: 0.5rem 1rem;
+
+        & > h2 {
+            margin: 0;
+            padding: 0;
+            color: var(--blanc);
+
+            @include h3;
+        }
+    }
+    & .outer {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    & .playlistSelector__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5rem;
+
+        width: 80%;
+        max-width: 768px;
+
+        padding: 0.5rem 1rem;
+
+        & > ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+
+            width: 100%;
+
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: var(--grisFonce);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #f8f8f8;
+                border-radius: 10px;
+                border: 0px solid #ffffff;
+            }
+
+            & > li {
+                position: relative;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 100%;
+
+                list-style: none;
+                @include navbouton;
+                text-align: center;
+                color: var(--blanc);
+                font-size: 1.2em;
+                font-weight: 500;
+
+            
+
+                user-select: none;
+                &:hover > svg {
+                    opacity: 1;
+                }
+
+                & > svg {
+                    position: absolute;
+                    right: 0;
+                    opacity: 0;
+                    user-select: none;
+
+                    transition: all 0.1s ease-in-out;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    width: 100%;
+                    height: 2px;
+                    background-color: var(--noir);
+                    opacity: 0.4;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+
+                    width: 100%;
+                    height: 2px;
+                    background-color: var(--noir);
+                    opacity: 0.4;
+                }
+                & > button {
+                    width: 100%;
+                    height: 100%;
+
+                    padding: 0.5rem 0;
+
+                    border: none;
+                    background-color: transparent;
+                    border-radius: 2rem;
+
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        background-color: var(--noir);
+                    }
+                }
+            }
+        }
+
+        & > .playlist__recherche {
+            position: static;
+            
+ 
+
+            transform: none;
+
+
+        }
+    }
+}
