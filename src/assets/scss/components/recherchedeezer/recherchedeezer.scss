@@ -48,15 +48,14 @@
 
             overflow: hidden;
 
-
-            & .titrestroke{
+            & .titrestroke {
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 z-index: 10;
 
                 transform: translate(-50%, -50%);
-               
+
                 -webkit-text-fill-color: transparent;
                 -webkit-text-stroke-color: var(--blanc);
                 -webkit-text-stroke-width: 1.5px;
@@ -66,38 +65,42 @@
                 font-size: 100%;
                 @include h5;
 
-                opacity: .5;
+                opacity: 0.5;
             }
 
             cursor: pointer;
             &:hover {
-                & .imgrecherche{
-                   & img{
-                    transform: scale(1.1);
-                   }
-                }
-            }
-
-            &:has(.playlistSelector) {
-                gap: 0;
-
-                & > .boutons {
-                    display: none;
+                & .imgrecherche {
+                    & img {
+                        transform: scale(1.1);
+                    }
                 }
             }
 
             & .playlistSelector {
-                position: relative;
-                z-index: 50;
+                position: fixed;
+                top: 0;
+                left: 50%;
+                z-index: 50000;
 
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
-                height: 100%;
-                background-color: var(--grisFonce);
+                gap: 1rem;
 
+                width: 100%;
+                height: calc(100% - 184px);
+
+                padding: 2rem 1rem;
+
+                background-color: rgba(34, 44, 50, 0.979);
                 overflow-y: scroll;
+
+                transform: translate(-50%, -0);
+
+                @include breakpoint-min(1024) {
+                    top: 80px;
+                }
 
                 &::-webkit-scrollbar {
                     width: 8px;
@@ -128,72 +131,26 @@
                         margin: 0;
                         padding: 0;
                         color: var(--blanc);
-                    }
 
-                    & .outer {
-                        position: absolute;
-                        top: 50%;
-                        right: 0;
-
-                        width: 2rem;
-                        height: 2rem;
-
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        padding: 0;
-
-                        background-color: transparent;
-
-                        transform: translateY(-50%);
-
-                        &:hover {
-                            & ::after,
-                            & ::before {
-                                background-color: var(--mauve) !important;
-                            }
-                        }
-
-                        & .inner {
-                            position: relative;
-                            width: 100%;
-                            text-align: center;
-                            &:before,
-                            &:after {
-                                content: "";
-
-                                position: absolute;
-                                left: 0;
-
-                                height: 2px;
-                                width: inherit;
-
-                                background: var(--rose);
-                                border-radius: 2px;
-                                transition: all 0.1s ease-in;
-                            }
-
-                            &:before {
-                                top: 50%;
-                                left: 50%;
-                                transform: translate(-50%, -50%) rotate(45deg);
-                            }
-
-                            &:after {
-                                bottom: 50%;
-                                left: 50%;
-                                transform: translate(-50%, 50%) rotate(-45deg);
-                            }
-                        }
+                        @include h3;
                     }
                 }
+                & .outer {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                }
+
                 & .playlistSelector__body {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    gap: 0.8rem;
+                    gap: 5rem;
+
+                    width: 80%;
+                    max-width: 768px;
+
                     padding: 0.5rem 1rem;
 
                     & > ul {
@@ -204,6 +161,22 @@
                         gap: 0.5rem;
 
                         width: 100%;
+
+                        overflow-y: scroll;
+
+                        &::-webkit-scrollbar {
+                            width: 8px;
+                        }
+        
+                        &::-webkit-scrollbar-track {
+                            background: var(--grisFonce);
+                        }
+        
+                        &::-webkit-scrollbar-thumb {
+                            background-color: #f8f8f8;
+                            border-radius: 10px;
+                            border: 0px solid #ffffff;
+                        }
 
                         & > li {
                             position: relative;
@@ -221,7 +194,10 @@
                             font-size: 1.2em;
                             font-weight: 500;
 
-                            &:has(button:hover) > svg {
+                        
+
+                            user-select: none;
+                            &:hover > svg {
                                 opacity: 1;
                             }
 
@@ -265,6 +241,7 @@
 
                                 border: none;
                                 background-color: transparent;
+                                border-radius: 2rem;
 
                                 transition: all 0.1s ease-in-out;
 
@@ -277,36 +254,12 @@
 
                     & > .playlist__recherche {
                         position: static;
-
-                        width: 100%;
-                        height: 2rem;
+                        
+             
 
                         transform: none;
 
-                        & > .lesplaylists__playlist__recherche__inner {
-                            gap: 0.2rem;
 
-                            width: 100%;
-                            height: 100%;
-
-                            padding: 0.2rem 1rem 0.2rem 0.5rem;
-
-                            & > svg {
-                                cursor: pointer;
-                                transition: all 0.1s ease-in-out;
-                                &:hover {
-                                    color: var(--mauve) !important;
-                                    fill: var(--mauve);
-                                }
-                            }
-                            & > div {
-                                & > input {
-                                    font-size: 1em;
-                                    font-weight: 400;
-                                    letter-spacing: -1px;
-                                }
-                            }
-                        }
                     }
                 }
             }
