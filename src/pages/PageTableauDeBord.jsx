@@ -10,7 +10,7 @@ import SectionListesdeLecture from "../components/tableaudebord/listesdelectures
 const PageTableauDeBord = () => {
   
     return (
-      <div className="tableau-de-bord">
+      <main className="tableau-de-bord">
         <SectionTitre />
         <div className="sous-titre">
         <SectionSousTitre />
@@ -24,7 +24,7 @@ const PageTableauDeBord = () => {
         </div>
         <SectionPopulaires />
         <SectionListesdeLecture />
-      </div>
+      </main>
     );
   };
 
