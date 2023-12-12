@@ -6,7 +6,13 @@ import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
 import { CgAdd } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
-import { IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh, IoVolumeMute } from "react-icons/io5";
+import {
+  IoVolumeOff,
+  IoVolumeLow,
+  IoVolumeMedium,
+  IoVolumeHigh,
+  IoVolumeMute,
+} from "react-icons/io5";
 import { motion, useAnimation } from "framer-motion";
 
 import { useAudio, useAudioProgress } from "../../context/audiotim";
@@ -19,14 +25,8 @@ import Coeur from "../Coeur/Coeur";
 import TeteDeLecturePlaybar from "./TeteDeLecturePlaybar";
 
 const Playbar = () => {
-  const {
-    isPaused,
-    changeSource,
-    isReady,
-    togglePause,
-    volume,
-    changeVolume,
-  } = useAudio();
+  const { isPaused, changeSource, isReady, togglePause, volume, changeVolume } =
+    useAudio();
 
   // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
 
@@ -34,8 +34,6 @@ const Playbar = () => {
 
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
-
-  
 
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
@@ -49,8 +47,6 @@ const Playbar = () => {
     togglePause();
     console.log(songInfo);
   };
-
-
 
   const { addToFavorites } = useFavorites();
 
@@ -88,8 +84,6 @@ const Playbar = () => {
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
-
-  
   return (
     <motion.aside
       className="playbar"
@@ -99,8 +93,7 @@ const Playbar = () => {
     >
       {isFullbarOpen && (
         <>
-          <PlaybarFull
-          >
+          <PlaybarFull>
             <div className="outer" onClick={() => setIsFullbarOpen(false)}>
               <div className="inner">
                 <label>Retour</label>
