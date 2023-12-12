@@ -84,6 +84,7 @@ const Playbar = () => {
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
+  console.log(songInfo);
   return (
     <motion.aside
       className="playbar"
