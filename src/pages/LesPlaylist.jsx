@@ -26,6 +26,11 @@ const LesPlaylist = () => {
     playlist, setPlaylist,
     selectedSong, setSelectedSong } = useContext(PlaylistsContext);
 
+  // Récupération des playlists
+  useEffect(() => {
+    fetchPlaylists();
+  }, []);
+
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowDimensions(window.innerWidth);
@@ -34,11 +39,6 @@ const LesPlaylist = () => {
     return () => {
       window.removeEventListener("resize", () => { });
     };
-  }, []);
-
-  // Récupération des playlists
-  useEffect(() => {
-    fetchPlaylists();
   }, []);
 
   const JouerLaChanson = (song) => {
@@ -55,63 +55,63 @@ const LesPlaylist = () => {
   };
 
 
-  return (
-    <main className="lesplaylists">
-      <SliderPlaylists />
-      {/* ... Reste du JSX ... */}
-      {playlists.map((playlist) => (
-        <section className="lesplaylists__playlist" key={playlist.id}>
-          {/* ... */}
-          <ItemPlaylist
-            playlist = {playlist}
-            name = {playlist.name}
-          />
-          <div className="lesplaylists__playlist__inner__chansons__chansons">
-            {playlist.songs.map((song, index) => (
-              <ItemChansons
-                key={song.id}
-                index={index + 1} // numéro de la chanson
-                img={song.coverUrl} // url de l'image
-                title={song.title} // titre de la chanson
-                artist={song.artist.name} // artiste
-                album={song.album.title} // album
-                duration={song.duration} // durée
-                onPlay={() => handlePlaySong(song)} // Fonction pour jouer la chanson
-                onDelete={() => removeSongFromPlaylist(playlist.id, song)} // Fonction pour supprimer la chanson
-              />
-            ))}
-          </div>
-          {/* ... */}
-          <CgRemove onClick={() => deletePlaylist(playlist.id)} className="delete-playlist-icon" />
-          {/* ... */}
-        </section>
-      ))}
-      {/* ... Reste du JSX ... */}
-    </main>
-  );
-
   // return (
-  //   <div className="lesplaylists">
+  //   <main className="lesplaylists">
   //     <SliderPlaylists />
-  //     {/* ... autres éléments de l'interface utilisateur */}
+  //     {/* ... Reste du JSX ... */}
   //     {playlists.map((playlist) => (
-  //       <div key={playlist.id}>
-  //         <h2>{playlist.name}</h2>
-  //         {/* Bouton pour supprimer une playlist */}
-  //         <button onClick={() => handleDeletePlaylist(playlist.id)}>Supprimer la playlist</button>
-  //         {/* Affichage des chansons */}
-  //         {playlist.songs.map((song, index) => (
-  //           <div key={song.id}>
-  //             {/* Affichez les détails de la chanson ici */}
-  //             <button onClick={() => JouerLaChanson(song)}>Lire</button>
-  //             <button onClick={() => handleDeleteSong(playlist.id, song)}>Supprimer</button>
-  //           </div>
-  //         ))}
-  //       </div>
+  //       <section className="lesplaylists__playlist" key={playlist.id}>
+  //         {/* ... */}
+  //         <ItemPlaylist
+  //           playlist = {playlist}
+  //           name = {playlist.name}
+  //         />
+  //         <div className="lesplaylists__playlist__inner__chansons__chansons">
+  //           {playlist.songs.map((song, index) => (
+  //             <ItemChansons
+  //               key={song.id}
+  //               index={index + 1} // numéro de la chanson
+  //               img={song.coverUrl} // url de l'image
+  //               title={song.title} // titre de la chanson
+  //               artist={song.artist.name} // artiste
+  //               album={song.album.title} // album
+  //               duration={song.duration} // durée
+  //               onPlay={() => handlePlaySong(song)} // Fonction pour jouer la chanson
+  //               onDelete={() => removeSongFromPlaylist(playlist.id, song)} // Fonction pour supprimer la chanson
+  //             />
+  //           ))}
+  //         </div>
+  //         {/* ... */}
+  //         <CgRemove onClick={() => deletePlaylist(playlist.id)} className="delete-playlist-icon" />
+  //         {/* ... */}
+  //       </section>
   //     ))}
-  //     {/* ... autres éléments de l'interface utilisateur */}
-  //   </div>
+  //     {/* ... Reste du JSX ... */}
+  //   </main>
   // );
+
+  return (
+    <div className="lesplaylists">
+      <SliderPlaylists />
+      {/* ... autres éléments de l'interface utilisateur */}
+      {playlists.map((playlist) => (
+        <div key={playlist.id}>
+          <h2>{playlist.name}</h2>
+          {/* Bouton pour supprimer une playlist */}
+          <button onClick={() => handleDeletePlaylist(playlist.id)}>Supprimer la playlist</button>
+          {/* Affichage des chansons */}
+          {playlist.songs.map((song, index) => (
+            <div key={song.id}>
+              {/* Affichez les détails de la chanson ici */}
+              <button onClick={() => JouerLaChanson(song)}>Lire</button>
+              <button onClick={() => handleDeleteSong(playlist.id, song)}>Supprimer</button>
+            </div>
+          ))}
+        </div>
+      ))}
+      {/* ... autres éléments de l'interface utilisateur */}
+    </div>
+  );
 
   // return (
   //   <div className="lesplaylists">
