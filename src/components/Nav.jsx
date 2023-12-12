@@ -60,13 +60,13 @@ const Nav = () => {
     color: "var(--blanc)",
   };
 
-  useEffect(() => {
-    // This function will be called whenever the location changes
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }, [location]);
+  // useEffect(() => {
+  //   // This function will be called whenever the location changes
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth"
+  //   });
+  // }, [location]);
   
 
   return (

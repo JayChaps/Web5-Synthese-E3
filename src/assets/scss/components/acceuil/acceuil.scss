@@ -10,13 +10,19 @@
   
   .scroll-progress-container {
     position: fixed;
-    top: 20px;
+    top: 120px;
     left: 20px;
+    z-index: 1000000;
+
+
+    @include breakpoint-min(1024) {
+      top: 100px;
+  }
   }
   
   .scroll-progress-svg {
     position: relative;
-    z-index: -10000;
+    z-index: 1000000;
     width: 100px;
     height: 100px;
     fill: none;
@@ -24,5 +30,6 @@
     stroke-width: 1;
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
+  
   }
   

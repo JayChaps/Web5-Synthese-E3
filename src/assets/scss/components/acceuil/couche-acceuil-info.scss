@@ -16,6 +16,11 @@
     }
   }
 
+.quote-acceuil{
+    font-weight: 700;
+}
+
+
 .containerinfo1{
     @include breakpoint-min(1200) {
         display: flex;
@@ -140,62 +145,58 @@
 }
 
 
-.container-info-couche1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    width: 300px;
-    height: 300px;
-    background-color: var(--mauve);
-    border-radius: 40px;
-    border-bottom-left-radius: 90px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.container-info-couche1,
+.container-info-couche2,
+.container-info-couche3 {
+  position: relative;
 
-    @include breakpoint-min(1200) {
-        width: 600px;
-       }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    border-radius: inherit; /* Use the same border radius as the container */
+    pointer-events: none;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  width: 300px;
+  height: 300px;
+  background-color: var(--mauve);
+  border-radius: 40px;
+  border-bottom-left-radius: 90px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+
+  @include breakpoint-min(1200) {
+    width: 600px;
+
+    &:before {
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+  }
 }
 
-.container-info-couche2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    width: 300px;
-    height: 300px;
-    background-color: var(--mauve);
-    border-radius: 40px;
-    border-bottom-right-radius: 90px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-    @include breakpoint-min(1200) {
-        width: 600px;
-       }
-}
-
-.container-info-couche3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    width: 300px;
-    height: 300px;
-    background-color: var(--mauve);
-    border-radius: 40px;
-    border-bottom-left-radius: 90px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    @include breakpoint-min(1200) {
-        width: 600px;
-       }
-
-}
 
 .info-couche1{
     @include p;
     text-align: center;
     color: var(--blanc);
+    z-index: 10000;
 
     @include breakpoint-min(1200) {
         padding: 20px;
