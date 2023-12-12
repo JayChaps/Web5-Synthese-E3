@@ -12,15 +12,25 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
   const [champNomActif, setChampNomActif] = useState(false);
 
   const { handlePlaySong } = useContext(SongInfoContext);
-  const { createNewPlaylist, deletePlaylist, 
-    addToPlaylist, removeSongFromPlaylist, 
-    newPlaylistName, setNewPlaylistName, 
-    selectedPlaylistId, setSelectedPlaylistId,
-    fetchPlaylists, fetchPlaylist, 
-    playlists, setPlaylists, 
-    playlist, setPlaylist,
-    selectedSong, setSelectedSong,
-    createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
+  const {
+    createNewPlaylist,
+    deletePlaylist,
+    addToPlaylist,
+    removeSongFromPlaylist,
+    newPlaylistName,
+    setNewPlaylistName,
+    selectedPlaylistId,
+    setSelectedPlaylistId,
+    fetchPlaylists,
+    fetchPlaylist,
+    playlists,
+    setPlaylists,
+    playlist,
+    setPlaylist,
+    selectedSong,
+    setSelectedSong,
+    createNewPlaylistAndAddSong,
+  } = useContext(PlaylistsContext);
 
   const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
   const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
@@ -36,10 +46,12 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
     if (shouldFetchPlaylists) {
       fetchPlaylists();
       setShouldFetchPlaylists(false);
-      console.log("useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true")
+      console.log(
+        "useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true"
+      );
     }
     // }, [newPlaylistName, createNewPlaylist, estActif]);
-    }, [shouldFetchPlaylists]);
+  }, [shouldFetchPlaylists]);
   // }, []);
 
   // useEffect(() => {
@@ -63,11 +75,13 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
 
   return (
     <div className="playlistSelector">
-      <div className="playlistSelector__header">
-        <h2>Playlists</h2>
-        <div className="outer" onClick={() => setActif(false)}>
-          <div className="inner"></div>
+      <div className="outer" onClick={() => setActif(false)}>
+        <div className="inner">
+          <label>Retour</label>
         </div>
+      </div>
+      <div className="playlistSelector__header">
+        <h2>Mes playlists</h2>
       </div>
       <div className="playlistSelector__body">
         <CreerPlaylistInput
