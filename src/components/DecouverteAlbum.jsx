@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 import { motion } from "framer-motion";
 import { SongInfoContext } from "../context/SongInfoContext";
+import { FaPlayCircle } from "react-icons/fa";
 
 const DecouverteAlbum = () => {
   const { idAlbum } = useParams();
@@ -77,10 +78,10 @@ const DecouverteAlbum = () => {
 
       <motion.div initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
         <h1 className="title-chansons">Titres:</h1>
-        <div className="decouverte-songs">
+        <motion.div className="decouverte-songs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}>
           {songs.length > 0 &&
             songs.map((song, id) => (
-              <motion.div className="song" key={id} initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+              <motion.div className="song" key={id} initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1 }} >
                 <div className="list">
                   <h2 className="titre-chanson-position">{song.track_position}</h2>
                 </div>
@@ -99,14 +100,19 @@ const DecouverteAlbum = () => {
                               </div>
                             )
                           )}
-                          <button onClick={() => handlePlaySong(track[id])}>Lire</button>
+                          <FaPlayCircle
+                            size={"3rem"}
+                            color="var(--blanc)"
+                            onClick={() => handlePlaySong(track[id])}
+                            className="bouton-play-chanson-album"
+                         />
                         </>
                       )}
                   </div>
                 </div>
               </motion.div>
             ))}
-        </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

@@ -3,6 +3,10 @@
     padding: 20px;
     color: var(--blanc);
     z-index: 2;
+
+    @include breakpoint-min(640) {
+      @include h4;
+  }
 }
 
 .container-albums-populaires{
