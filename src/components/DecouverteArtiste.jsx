@@ -1,6 +1,6 @@
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 import { FaPlayCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
@@ -15,7 +15,7 @@ const DecouverteArtiste = () => {
   const [albums, setAlbums] = useState([]);
   const nom = "";
   const { idArtist } = useParams();
-    const { handlePlaySong } = useContext(SongInfoContext);
+  const { handlePlaySong } = useContext(SongInfoContext);
   const controls = useAnimation();
 
   const topRelatedArtist = () => {
@@ -64,7 +64,7 @@ const DecouverteArtiste = () => {
   useEffect(() => {
     topSongs();
     topRelatedArtist();
-
+    allAlbums();
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const threshold = window.innerHeight * 0.1;
@@ -90,7 +90,7 @@ const DecouverteArtiste = () => {
 
   return (
     <div>
-       <h1 className="titre-decouverte3" initial={{ opacity: 1, y: 50 }} animate={controls}>
+      <h1 className="titre-decouverte3" initial={{ opacity: 1, y: 50 }} animate={controls}>
         Populaire
       </h1>
       <h1 className="titre-decouverte" initial={{ opacity: 1, y: 50 }} animate={controls}>
@@ -101,21 +101,44 @@ const DecouverteArtiste = () => {
       </h1>
 
       <div className="containertest">
-      {popularSongs.map((data, id) => (
-        <motion.div
-          className="topSongs"
-          key={id}
-          initial={{ opacity: 0, y: 50 }}
-          animate={controls}
-          whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
-        >
-          <img src={data.album.cover} alt="" className="img-populaire" />
-          <h2 className="titre-populaire">{data.title}</h2>
-          <FaPlayCircle size={"3rem"} color="var(--blanc)" className="play-icon-decouverte" />
-        </motion.div>
+        {popularSongs.map((data, id) => {
+          console.log(data);
+          return (
+            <motion.div
+              className="topSongs"
+              key={id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={controls}
+              whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
+              onClick={() => handlePlaySong(data)}
+            >
+              <img src={data.album.cover} alt="" className="img-populaire" />
+              <h2 className="titre-populaire">{data.title}</h2>
+              <FaPlayCircle size={"3rem"} color="var(--blanc)" className="play-icon-decouverte" />
+            </motion.div>
 
-))}
-</div>
+          )
+        }
+        )
+
+        }
+      </div>
+      <h1>Discographie</h1>
+      <div className="albums">
+        {
+          albums.map((data, id) => {
+            return (
+              <Link to={`/album/${data.id}`} key={id}>
+                <div className="album">
+                  <img src={data.cover} alt="" />
+                  <h2>{data.title}</h2>
+                </div>
+              </Link>
+            )
+          }
+          )
+        }
+      </div>
 
       <motion.h1 className="titre-fans" initial={{ opacity: 0, y: 50 }} animate={controls}>
         Les fans aiment aussi:
@@ -123,20 +146,22 @@ const DecouverteArtiste = () => {
 
       <motion.div className="relatedArtist" initial={{ opacity: 0, y: 50 }} animate={controls}>
         {relatedArtist.map((data, id) => (
-          <motion.div
-            className="container-decouvertes"
-            key={id}
-            initial={{ opacity: 0, y: 50 }}
-            animate={controls}
-            whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
-          >
-            <div className="artistes-decouvertes">
-              <img src={data.picture} alt="" className="img-decouverte" />
-              <h2 className="titre-chanteur2">{data.name}</h2>
-              <h2 className="titre-chanteur">{data.name}</h2>
-              <h2 className="titre-chanteur3">{data.name}</h2>
-            </div>
-          </motion.div>
+          <Link to={`/artist/${data.id}`} key={id}>
+            <motion.div
+              className="container-decouvertes"
+              key={id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={controls}
+              whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
+            >
+              <div className="artistes-decouvertes">
+                <img src={data.picture} alt="" className="img-decouverte" />
+                <h2 className="titre-chanteur2">{data.name}</h2>
+                <h2 className="titre-chanteur">{data.name}</h2>
+                <h2 className="titre-chanteur3">{data.name}</h2>
+              </div>
+            </motion.div>
+          </Link>
         ))}
       </motion.div>
     </div>
