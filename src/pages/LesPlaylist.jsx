@@ -50,7 +50,9 @@ const LesPlaylist = () => {
     fetchPlaylists, fetchPlaylist,
     playlists, setPlaylists,
     playlist, setPlaylist,
-    selectedSong, setSelectedSong } = useContext(PlaylistsContext);
+    selectedSong, setSelectedSong,
+    createNewPlaylistAndAddSong, 
+    clickedPlaylist, setClickedPlaylist } = useContext(PlaylistsContext);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -81,6 +83,20 @@ const LesPlaylist = () => {
     deletePlaylist(playlistId);
   };
 
+  const [creator, setCreator] = useState("");
+  const [plName, setPlName] = useState("NomPlaylist");
+
+
+  useEffect(() => {
+    if (clickedPlaylist) {
+      fetchPlaylist(clickedPlaylist.id);
+      setCreator(clickedPlaylist.creatorName);
+      setPlName(clickedPlaylist.name);
+      console.log(clickedPlaylist);
+    }
+
+  }, [clickedPlaylist]);
+
 
   return (
     <motion.div
@@ -99,10 +115,10 @@ const LesPlaylist = () => {
         >
           <div className="titreplaylist">
             <div className="titreinner">
-              <h1>NomPlaylist</h1>
-              <h1>NomPlaylist</h1>
-              <h1>NomPlaylist</h1>
-              <h1>NomPlaylist</h1>
+              <h1>{plName}</h1>
+              <h1>{plName}</h1>
+              <h1>{plName}</h1>
+              <h1>{plName}</h1>
             </div>
           </div>
           <motion.section
@@ -114,7 +130,7 @@ const LesPlaylist = () => {
               <div>
                 <img src={urlImg} alt="" />
               </div>
-              <span>Nicolas Lauzon</span>
+              <span>{creator}</span>
             </div>
             <div className="lesplaylists__infos__icones__icones">
               <FaPen size={"1rem"} color="var(--noir)" />
@@ -160,30 +176,54 @@ const LesPlaylist = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <AnimatedItem>
+
+            {clickedPlaylist.songs.map((song, index) => (
+              <>
+              <AnimatedItem>
+                <ItemChansons
+                  key={index}
+                  song={song}
+                  index={index}
+                  handleDeleteSong={handleDeleteSong}
+                  playlistId={playlist.id}
+                  JouerLaChanson={JouerLaChanson}
+                  />
+              </AnimatedItem>
+              </>
+            ))}
+
+            {/* <AnimatedItem>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.1}>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.2}>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.3}>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.4}>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.5}>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.6}>
               <ItemChansons />
             </AnimatedItem>
+
             <AnimatedItem delay={0.7}>
               <ItemChansons />
-            </AnimatedItem>
+            </AnimatedItem> */}
+
           </motion.div>
         </motion.section>
 

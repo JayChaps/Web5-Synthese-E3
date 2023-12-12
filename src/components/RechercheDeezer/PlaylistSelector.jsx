@@ -12,25 +12,15 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
   const [champNomActif, setChampNomActif] = useState(false);
 
   const { handlePlaySong } = useContext(SongInfoContext);
-  const {
-    createNewPlaylist,
-    deletePlaylist,
-    addToPlaylist,
-    removeSongFromPlaylist,
-    newPlaylistName,
-    setNewPlaylistName,
-    selectedPlaylistId,
-    setSelectedPlaylistId,
-    fetchPlaylists,
-    fetchPlaylist,
-    playlists,
-    setPlaylists,
-    playlist,
-    setPlaylist,
-    selectedSong,
-    setSelectedSong,
-    createNewPlaylistAndAddSong,
-  } = useContext(PlaylistsContext);
+  const { createNewPlaylist, deletePlaylist, 
+    addToPlaylist, removeSongFromPlaylist, 
+    newPlaylistName, setNewPlaylistName, 
+    selectedPlaylistId, setSelectedPlaylistId,
+    fetchPlaylists, fetchPlaylist, 
+    playlists, setPlaylists, 
+    playlist, setPlaylist,
+    selectedSong, setSelectedSong,
+    createNewPlaylistAndAddSong, } = useContext(PlaylistsContext);
 
   const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
   const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
