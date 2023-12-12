@@ -76,6 +76,7 @@ const Profil = () => {
           <div className="nomcompte">
             <h1>{userName}</h1>
             <h2>{user.email}</h2>
+        <img src={user.photoURL} alt="" />
           </div>
         </AnimatedItem>
 
