@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const Footer = ({ classe }) => {
   const urlLogo = "/src/assets/img/svg/logo.svg";
@@ -11,13 +11,11 @@ const Footer = ({ classe }) => {
         </div>
         <ul className="nav">
           <li className="home">
-            <Link to="home" spy={true} smooth={true} duration={500}>
-              Accueil
-            </Link>
+            <Link to="/home">Accueil</Link>
           </li>
 
           <li className="playlists">
-            <Link to="playlist">Playlist</Link>
+            <Link to="/playlist">Playlist</Link>
           </li>
 
           <li className="profil">
@@ -25,7 +23,7 @@ const Footer = ({ classe }) => {
           </li>
 
           <li className="search">
-            <Link to="search">Recherche</Link>
+            <Link to="/search">Recherche</Link>
           </li>
         </ul>
 
