@@ -16,8 +16,6 @@ import PlaybarFull from "./PlaybarFull";
 import { PlaylistsContext } from "../../context/playlistsContext";
 import Coeur from "../Coeur/Coeur";
 
-
-
 const Playbar = () => {
   const {
     play,
@@ -43,18 +41,16 @@ const Playbar = () => {
   const controls = useAnimation();
 
   useEffect(() => {
-    controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
-  }, []);
+    controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
+  }, [controls]);
 
   const handlePlayPause = () => {
     togglePause();
     console.log(songInfo);
   };
 
-
-
   const handleMouseDown = (e) => {
-    e.preventDefault(); // Empêcher le comportement de sélection du texte ou autre
+    e.preventDefault();
     setIsDragging(true);
     handleProgressChange(e);
   };
@@ -70,6 +66,7 @@ const Playbar = () => {
       handleProgressChange(e);
     }
   };
+
   const handleProgressChange = (e) => {
     const progressBar = e.currentTarget;
     const progressBarRect = progressBar.getBoundingClientRect();
@@ -77,24 +74,12 @@ const Playbar = () => {
     changeProgress(Math.min(Math.max(newProgress, 0), 1));
   };
 
-
   const { addToFavorites } = useFavorites();
 
-  // Fonction pour ajouter la chanson aux favoris
   const handleAddToFavorites = () => {
     addToFavorites(songInfo);
-
-    // addToFavorites({
-    //   id: songInfo.id,
-    //   title: songInfo.title,
-    //   artist: songInfo.artist,
-    //   coverUrl: songInfo.coverUrl,
-    // });
-    console.log("Song added to favorites : " + songInfo.title);
+    console.log("Song added to favorites: " + songInfo.title);
   };
-
-
-
 
   const handleClick = (e) => {
     if (e.target.classList.contains("playbar__inner")) {
@@ -128,7 +113,7 @@ const Playbar = () => {
   return (
     <motion.aside
       className="playbar"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: "100%" }}
       animate={controls}
       onClick={handleClick}
     >
@@ -151,7 +136,7 @@ const Playbar = () => {
         </>
       )}
 
-<div className="playbar__inner" onClick={handleClick}>
+      <div className="playbar__inner" onClick={handleClick}>
         <section className="playbar__inner__left">
           <div className="iconeShuffleLoop">
             <BsShuffle size={"2rem"} color="var(--noir)" />
@@ -194,7 +179,6 @@ const Playbar = () => {
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
-          {/* <BiHeart size={"3.5rem"} color="var(--rose)" onClick={handleAddToFavorites} /> */}
           <Coeur />
           <CgAdd size={"3.5rem"} color="var(--blanc)" />
 
@@ -235,8 +219,7 @@ const Playbar = () => {
             <div
               className="progress"
               style={{
-                width: `
-                calc(${volume * 100}% + ${15 - volume * 15}px)`,
+                width: `calc(${volume * 100}% + ${15 - volume * 15}px)`,
               }}
             ></div>
             <input
@@ -250,8 +233,7 @@ const Playbar = () => {
             />
           </div>
         </section>
-        <section className="playbar__inner__center__progress"
-        >
+        <section className="playbar__inner__center__progress">
           <span>
             0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
             {(progress * duration).toFixed(0)}
