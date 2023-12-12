@@ -89,6 +89,6 @@
     }
 }
 
-main:has(aside .playbarfull) > div{
+main:has(aside .playbarfull) > main{
     display: none !important;
 }
