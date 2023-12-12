@@ -20,6 +20,7 @@ const PageTableauDeBord = () => {
         <SectionAutreSousTitre />
         <SectionAutreSousTitre />
         <SectionAutreSousTitre />
+        <SectionAutreSousTitre />
         </div>
         <SectionPopulaires />
         <SectionListesdeLecture />

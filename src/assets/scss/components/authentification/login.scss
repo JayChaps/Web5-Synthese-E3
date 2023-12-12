@@ -10,6 +10,12 @@
   font-size: 1.125rem;
 }
 
+@mixin breakpoint-min($screen) {
+  @media (min-width: #{$screen}px) {
+    @content;
+  }
+}
+
 .logo-google {
   width: 30px;
   height: 30px;

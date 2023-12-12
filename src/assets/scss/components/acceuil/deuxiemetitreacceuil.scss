@@ -1,7 +1,25 @@
+@mixin h1 {
+    font-family: "Gotham";
+    font-weight: 900;
+    font-size: 5.625rem;
+  }
+
 @mixin h3 {
     font-family: "Gotham";
     font-weight: 900;
     font-size: 3rem;
+  }
+
+  @mixin h4 {
+    font-family: "Gotham";
+    font-weight: 500;
+    font-size: 2.25rem;
+  }
+
+  @mixin h5 {
+    font-family: "Gotham";
+    font-weight: 500;
+    font-size: 1.1rem;
   }
 
   @mixin p {
@@ -10,10 +28,19 @@
     font-size: 1.125rem;
   }
 
+  @mixin breakpoint-min($screen) {
+    @media (min-width: #{$screen}px) {
+      @content;
+    }
+  }
+
 .deuxiemetitres-container {
     margin-top: 100px;
     text-align: center;
     
+
+    
+
     .titre-haut{
         @include h3;
         color: var(--blanc);
@@ -21,11 +48,21 @@
         -webkit-text-stroke-color: var(--rose);
         -webkit-text-stroke-width: 1.5px;
         line-height: 1px;
+
+        @include breakpoint-min(1024) {
+            @include h1;
+            margin: 5px;
+           }
     }
     .titre-milieu{
         @include h3;
         color: var(--noir);
         padding: 15px;
+
+        @include breakpoint-min(1024) {
+            @include h1;
+            margin: 5px;
+           }
     }
     .titre-bas{
         @include h3;
@@ -34,6 +71,11 @@
         -webkit-text-stroke-color: var(--rose);
         -webkit-text-stroke-width: 1.5px;
         line-height: 1px;
+
+        @include breakpoint-min(1024) {
+            @include h1;
+            margin: 5px;
+           }
     }
 
 }
@@ -54,7 +96,15 @@
         text-align: center;
         padding: 20px;
         color: var(--blanc);
+
+        @include breakpoint-min(1024) {
+            @include h4;
+           }
     }
+
+    @include breakpoint-min(1024) {
+        width: 800px;
+       }
 }
 
 .container-info{
