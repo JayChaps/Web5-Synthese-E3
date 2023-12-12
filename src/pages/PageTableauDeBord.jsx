@@ -10,16 +10,20 @@ import SectionListesdeLecture from "../components/tableaudebord/listesdelectures
 const PageTableauDeBord = () => {
   
     return (
-      <div>
+      <main className="tableau-de-bord">
         <SectionTitre />
+        <div className="sous-titre">
         <SectionSousTitre />
         <SectionSousTitre />
+        </div>
+        <div className="sous-sous-titre">
         <SectionAutreSousTitre />
         <SectionAutreSousTitre />
         <SectionAutreSousTitre />
+        </div>
         <SectionPopulaires />
         <SectionListesdeLecture />
-      </div>
+      </main>
     );
   };
 

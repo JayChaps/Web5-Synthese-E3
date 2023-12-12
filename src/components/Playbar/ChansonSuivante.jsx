@@ -1,7 +1,9 @@
 import React from "react";
 import { BiHeart } from "react-icons/bi";
-import { GrSubtractCircle } from "react-icons/gr";
+import { CgRemove } from "react-icons/cg";
+import Coeur from "../Coeur/Coeur";
 
+  <CgRemove size={"2rem"} color="var(--noir)" />
 const ChansonSuivante = () => {
   return (
     <article className="chansonsuivante">
@@ -11,8 +13,8 @@ const ChansonSuivante = () => {
         </div>
 
         <div className="chansonsuivante__icones">
-          <BiHeart size={"2.2rem"} color="var(--rose)" />
-          <GrSubtractCircle size={"2rem"} color="var(--noir)" />
+          <Coeur />
+          <CgRemove size={"2rem"} color="var(--blanc)" />
         </div>
 
         <div className="chansonsuivante__info">

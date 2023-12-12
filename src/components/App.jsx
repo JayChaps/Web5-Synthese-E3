@@ -11,14 +11,19 @@ import LayoutAuth from "./LayoutAuth";
 import RechercheDeezer from "../pages/RechercheDeezer";
 import PageTableauDeBord from "../pages/PageTableauDeBord";
 import PageAuthentification from '../pages/PageAuthentification';
+import Acceuil from "../components/PageAcceuil/Acceuil";
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from "react";
 import Playlist from "../pages/Playlist";
+import LesPlaylist from "../pages/LesPlaylist";
 import { AudioProvider, useAudio } from "../context/audiotim";
 import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
-import DecouverteAlbum from "./DecouverteAlbum";
+import DecouverteAlbum from './DecouverteAlbum';
+import { FavoritesProvider } from "../context/FavoritesContext";
+import { PlaybarProvider } from "../context/playbarContext";
+
 
 const Routes = () => {
     const { isConnected, loading } = useAuth();
@@ -31,8 +36,13 @@ const Routes = () => {
             children: [
                 {
                     index: true,
-                    element: <Navigate to="/" replace />,
+                    element: <Acceuil />,
+        },
+        {
+          path: 'authentification',
+          element: <PageAuthentification />,
                 },
+
             ],
         },
         isConnected && {
@@ -43,10 +53,10 @@ const Routes = () => {
                     index: true,
                     element: <Navigate to="/profil" />,
                 },
-                // {
-                //   path: "home",
-                //   element: <PageTableauDeBord />,
-                // },
+                {
+                  path: "home",
+                  element: <PageTableauDeBord />,
+                },
                 {
                     path: "profil",
                     element: <Profil />,
@@ -57,11 +67,10 @@ const Routes = () => {
                 },
                 {
                     path: "playlist",
-                    element: <Playlist />,
-                },
-                {
-                    path: 'authentification',
-                    element: <PageAuthentification />,
+                    element: <LesPlaylist />,
+        },
+        {
+          element: <LesPlaylist />,
                 },
                 {
                     path: "artist",
@@ -94,15 +103,19 @@ const Routes = () => {
 };
 
 const App = () => {
-    return (
-        <AudioProvider>
-            <PlaylistsProvider>
-                <AuthProvider>
-                    <Routes />
-                </AuthProvider>
-            </PlaylistsProvider>
-        </AudioProvider>
-    );
+  return (
+    <FavoritesProvider>
+      <AudioProvider>
+        <PlaylistsProvider>
+          <PlaybarProvider>
+            <AuthProvider>
+              <Routes />
+            </AuthProvider>
+          </PlaybarProvider>
+        </PlaylistsProvider>
+      </AudioProvider>
+    </FavoritesProvider>
+  );
 };
 
 export default App;

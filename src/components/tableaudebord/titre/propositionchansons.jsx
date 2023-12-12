@@ -10,8 +10,8 @@ const PropositionChansons = () => {
         <img src="src\assets\jpg\placeholder.jpg" alt="Song Image" />
       </div>
       <div className="center">
-        <h2 className="song-name">Chanson</h2>
-        <p className="artist-name">Artiste</p>
+        <h2 className="song-name">Money</h2>
+        <p className="artist-name">Pink Floyd</p>
       </div>
       <div className="right">
         <BiHeart size={"1.2rem"} color="var(--blanc)" className="like-icon" />

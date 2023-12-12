@@ -9,9 +9,10 @@ export const useSongInfo = () => useContext(SongInfoContext);
 
 const SongInfoProvider = ({ children }) => {
     const [songInfo, setSongInfo] = useState({
+        id: '',
         title: '',
         artist: '',
-        coverUrl: ''
+        coverUrl: '',
     });
     const { changeSource } = useAudio();
 
@@ -25,9 +26,10 @@ const SongInfoProvider = ({ children }) => {
         console.log(song);
         changeSource(song.preview); // Définit la source de la chanson
         updateSongInfo({
+            id: song.id,
             title: song.title,
             artist: song.artist.name,
-            coverUrl: song.album.cover
+            coverUrl: song.album.cover,
         });
     };
 

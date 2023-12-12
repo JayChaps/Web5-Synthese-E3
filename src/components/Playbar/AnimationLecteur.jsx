@@ -1,55 +1,79 @@
-import React, { useEffect, useRef } from "react";
-import * as THREE from "three";
+import React, { useEffect, useState } from "react";
+import { useAudioVisual } from "../../context/audiotim";
 
 const AnimationLecteur = () => {
-  // const music = "src/assets/song/titanium-170190.mp3";
-  const listener = new THREE.AudioListener();
-  const sound = new THREE.Audio(listener);
-  const analyser = new THREE.AudioAnalyser(sound, 32);
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+  const audio = useAudioVisual();
 
-  const frequence1Ref = useRef();
-  const frequence2Ref = useRef();
-  const frequence3Ref = useRef();
-  const frequence4Ref = useRef();
-  const frequence5Ref = useRef();
-  const frequence6Ref = useRef();
+  // Nombre de points par ligne
+  const numPoints = 16;
 
-  const linesRef = useRef();
+  // Utilisez l'état (state) pour gérer les points dynamiquement pour chaque ligne
+  const [lines, setLines] = useState(
+    Array.from({ length: 8 }, () => {
+      return Array.from({ length: numPoints }, (_, index) => ({
+        x: index * (windowDimensions.width / (numPoints - 1)),
+
+        y: 0,
+      }));
+    })
+  );
 
   useEffect(() => {
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-    const audioLoader = new THREE.AudioLoader();
-    audioLoader.load(music, function (buffer) {
-      sound.setBuffer(buffer);
-      sound.setLoop(true);
-      sound.setVolume(0.5);
-    });
-
-    window.addEventListener("click", () => {
-      if (sound.isPlaying) {
-        sound.pause();
-      } else {
-        sound.play();
-      }
-    });
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("click", () => {
-        if (sound.isPlaying) {
-          sound.pause();
-        } else {
-          sound.play();
-        }
-      });
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-  return <div className="animationLecteur"></div>;
+
+  // Utilisez useEffect pour mettre à jour les lignes lorsque les données audio changent
+  useEffect(() => {
+    // En supposant que "audio" est un tableau de valeurs
+    // Mettez à jour l'état des lignes avec les nouvelles données audio
+    setLines((prevLines) =>
+      prevLines.map((line, lineIndex) => {
+        return line.map((point, pointIndex) => {
+          // Modifiez ici les propriétés du point en fonction de vos données audio
+          return {
+            ...point,
+            y: 
+            Math.sin((pointIndex + 1) *10) *
+            (audio[lineIndex * numPoints + pointIndex] || 0),
+          
+          };
+        });
+      })
+    );
+  }, [audio]);
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+  return (
+    <div className="animationLecteur">
+      <div className="animationcontainer">
+        <svg preserveAspectRatio="none" viewBox={`0 0 ${windowDimensions.width} 1`}>
+          {lines.map((line, lineIndex) => (
+            <polyline
+              key={lineIndex}
+              points={line.map((point) => `${point.x},${point.y}`).join(" ")}
+              style={{ strokeWidth: "1", fill: "none" }}
+            />
+          ))}
+        </svg>
+      </div>
+    </div>
+  );
 };
 
 export default AnimationLecteur;

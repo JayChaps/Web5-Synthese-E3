@@ -25,6 +25,13 @@ const ChansonsSuivantes = () => {
         <ChansonSuivante />
         <ChansonSuivante />
         <ChansonSuivante />
+        <ChansonSuivante />
+        <ChansonSuivante />
+        <ChansonSuivante />
+        <ChansonSuivante />
+        <ChansonSuivante />
+        <ChansonSuivante />
+        <ChansonSuivante />
       </Glider>
     </section>
   );

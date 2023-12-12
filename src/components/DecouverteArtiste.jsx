@@ -1,14 +1,20 @@
 import { useParams,  Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 import { useEffect, useState,useContext } from "react";
-import '../css/DecouverteArtiste.css'
+import { FaPlayCircle } from "react-icons/fa";
+import { CgAdd } from "react-icons/cg";
+import "../assets/scss/components/decouverte/decouverteartiste.scss";
+import PlaylistSelector from "./RechercheDeezer/PlaylistSelector";
 import { SongInfoContext } from '../context/SongInfoContext';
 
+
+
 const DecouverteArtiste = () => {
-    const [popularSongs, setPopularSongs] = useState([]);
-    const [relatedArtist, setRelatedArtist] = useState([]);
-    const [albums, setAlbums] = useState([]);
-    const { idArtist } = useParams();
+  const [selectorActif, setSelectorActif] = useState(false);
+  const [popularSongs, setPopularSongs] = useState([]);
+  const [relatedArtist, setRelatedArtist] = useState([]);
+  const nom = "";
+  const { idArtist } = useParams();
     const { handlePlaySong } = useContext(SongInfoContext);
 
 

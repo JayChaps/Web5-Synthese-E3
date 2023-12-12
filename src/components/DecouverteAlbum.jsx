@@ -1,7 +1,6 @@
 import { useEffect, useState,useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
-import '../css/DecouverteAlbum.css';
 import { SongInfoContext } from '../context/SongInfoContext';
 
 const DecouverteAlbum = () => {
@@ -20,8 +19,22 @@ const DecouverteAlbum = () => {
             const data = await resp.json();
             setSongs(data.data || []);
             console.log(data.data)
+            console.log(data.data)
 
             let tempContributors = {};
+            let tracksTemp = [];
+
+            // const tracksPromise = data.data.map(track => {
+            //     return fetchJsonp(`https://api.deezer.com/track/${track.id}?output=jsonp`)
+            //     .then(response => response.json())
+            // });
+
+            // Promise.all(tracksPromise).then(results => {
+            //     console.log(results);
+            // });
+
+
+
             let tracksTemp = [];
 
             // const tracksPromise = data.data.map(track => {
@@ -69,6 +82,7 @@ const DecouverteAlbum = () => {
             <div className="decouverte-album">
                 <div>
                     <h1>Album : {album.title}</h1>
+                    <h1>Album : {album.title}</h1>
                     {album.cover && <img src={album.cover_big} alt="image de l'album" />}
                 </div>
 
@@ -86,6 +100,31 @@ const DecouverteAlbum = () => {
             <div>
                 <h1>Titres</h1>
                 <div className="decouverte-songs">
+                    {songs.length > 0 && songs.map((song, id) => {
+                        // console.log(song);
+                        return (
+                            <div className="song" key={id}>
+                                <div className="list">
+                                    <h2>{song.track_position}</h2>
+                                </div>
+                                <div className="songInfos">
+                                    <h3>{song.title}</h3>
+                                    <div className="nom">
+                                   
+                                        {
+                                            contributorsByTrack[song.id] && 
+                                            
+                                            contributorsByTrack[song.id] && (
+                                                <>
+                                                    {contributorsByTrack[song.id].map((contributor, contributorId) => (
+                                                        <div className="feature-div" key={contributorId}>
+                                                            <Link to={`/artist/${contributor.id}`}>
+                                                                <h2 className="feature">{contributor.name},</h2>
+                                                            </Link>
+                                                        </div>
+                                                    ))}
+                                                    <button onClick={() => handlePlaySong(track[id])}>Lire</button>
+                                                </>
                     {songs.length > 0 && songs.map((song, id) => {
                         // console.log(song);
                         return (

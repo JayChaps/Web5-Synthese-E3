@@ -20,6 +20,7 @@ const LecteurAudio = () => {
         if (isReady) {
             const initialSong = "URL_DE_VOTRE_PREMIERE_CHANSON";
             changeSource(initialSong);
+            console.Log("useEffect lecteurAudio")
         }
     }, [isReady, changeSource]);
 

@@ -1,0 +1,28 @@
+@import "titreacceuil.scss";
+@import "couche-acceuil-info.scss";
+@import "deuxiemetitreacceuil.scss";
+
+
+.acceuil {
+    position: relative;
+    padding-top: 30px;
+  }
+  
+  .scroll-progress-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .scroll-progress-svg {
+    position: relative;
+    z-index: -10000;
+    width: 100px;
+    height: 100px;
+    fill: none;
+    stroke: var(--mauve);
+    stroke-width: 1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+  

@@ -1,0 +1,95 @@
+.coeur input {
+  position: absolute;
+  
+
+  height: 0;
+  width: 0;
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+// ----------------------------------------------------
+// Container
+// ----------------------------------------------------
+.coeur {
+  position: relative;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  
+  margin: 0 !important;
+  width: 50px;
+  height: 50px;
+  
+  transition: 100ms;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+// ----------------------------------------------------
+// Coeur
+// ----------------------------------------------------
+.checkmark {
+  top: 0;
+  left: 0;
+
+  height: 2em;
+  width: 2em;
+
+  transition: 100ms;
+  animation: dislike_effect 400ms ease;
+}
+
+// ----------------------------------------------------
+// Coeur liké
+// ----------------------------------------------------
+.coeur input:checked ~ .checkmark path {
+  fill: var(--rose);
+  stroke-width: 0;
+}
+
+// ----------------------------------------------------
+// Animation
+// ----------------------------------------------------
+.coeur input:checked ~ .checkmark {
+  animation: like_effect 400ms ease;
+}
+
+// ----------------------------------------------------
+// Animation like
+// ----------------------------------------------------
+@keyframes like_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+// ----------------------------------------------------
+// Animation dislike
+// ----------------------------------------------------
+@keyframes dislike_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

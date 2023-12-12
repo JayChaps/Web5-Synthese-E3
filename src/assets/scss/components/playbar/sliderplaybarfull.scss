@@ -29,7 +29,7 @@
         z-index: 1;
         width: 100%;
         aspect-ratio: 1;
-        background-color: #dad4df;
+        background-color: var(--gris);
         border-radius: 50%;
 
         & .radial-slider__input {
@@ -48,7 +48,7 @@
             &::-moz-range-thumb {
                 -webkit-appearance: none;
                 appearance: none;
-                background-color: #000000;
+                background-color: var(--noir);
                 //clip-path: polygon(0 46%, 100% 45%, 100% 60%, 0 61%)
                 height: 100%;
                 width: 50%;
@@ -59,7 +59,7 @@
             &::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 appearance: none;
-                background-color: #000000;
+                background-color: var(--noir);
                 //clip-path: polygon(0 46%, 100% 45%, 100% 60%, 0 61%)
                 height: 100%;
                 width: 50%;
@@ -133,7 +133,11 @@
 
                 border-radius: 50%;
 
-                background-color: #46344e;
+                background-color: var(--rose);
+
+                transition: background-color 0.1s ease-in-out;
+
+
 
                 user-select: none;
                 // & .radial-slider__thumb-shadow {

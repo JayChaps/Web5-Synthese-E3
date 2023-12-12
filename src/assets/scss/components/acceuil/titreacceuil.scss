@@ -1,13 +1,13 @@
 @mixin h3 {
     font-family: "Gotham";
     font-weight: 900;
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
 
 @mixin h4 {
     font-family: "Gotham";
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: 2.25rem;
   }
 
   @mixin h5 {
@@ -20,7 +20,7 @@
   @mixin p {
     font-family: "Gotham";
     font-weight: 500;
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 
 
@@ -30,109 +30,132 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
     margin-bottom: 60px;
     width: 400px;
-    height: 250px;
+    height: 300px;
     background-color: var(--rose);
-    border-radius: 20px;
+    border-radius: 40px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   
     .content-container-acceuil {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-around;
       height: 100%;
+    }
+
+
+    .text-container{
+      text-align: center;
+      margin-left: 50px;
     }
   
     .image-container-acceuil {
       width: 60px;
       height: 80%;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
   
-      img {
-        width: 100%;
-        height: auto;
-        border-radius: 20%;
+      .img-acceuil {
+        transform: scale(4);
+        margin-left: 60px;
       }
     }
-  
-    .text-container {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center; // Center the titles vertically
-  
-      .titre-acceuil {
-        @include h4;
-        width: 250px;
+
+
+    .titre-acceuil {
+        @include h3;
+        width: 2px;
         color: var(--blanc);
-        margin-bottom: 10px; // Add margin between titles
+        margin: 0;
+        margin-top: 35px;
       }
   
       .soustitre-acceuil {
         @include h5;
         color: var(--mauve);
+        margin: 0;
+        margin-bottom: 15px;
       }
-    }
+    
   
+
+    
+      
+    }
     .button-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; // Center the buttons vertically
+      justify-content: center;
+      margin-left: 50px;
   
       button {
-        width: 100px;
+        width: 175px;
         height: 40px;
         margin-top: 10px;
         border-radius: 20px;
         background-color: var(--mauve);
         border: none;
         cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
   
-      .button-acceuil-inscription,
       .button-acceuil-connexion {
         @include p;
         color: var(--blanc);
+        margin-top: 10px;
+      }
+
+      .button-acceuil-inscription{
+        @include p;
+        color: var(--mauve);
+        background-color: var(--blanc);
         margin-top: 5px;
       }
+      
     }
-    
-}
 
 .welcome-container {
-    text-align: center;
-    margin-bottom: 20px; // Adjust the spacing between titles and round-section
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 0.8rem;
+
+  overflow: hidden;
 
     .big-title {
       @include h3;
       color: var(--noir);
       margin-bottom: 10px;
-    }
-
-    .small-title {
-      @include h5;
-      color: var(--noir);
-    }
-
+      text-align: center;
+    } 
     .big-title-displaced {
         @include h3;
         margin-bottom: 10px;
         color: white;
-        text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: var(--rose);
+        -webkit-text-stroke-width: 1.5px;
       }
     
       .big-title-displaced2 {
         @include h3;
         margin-bottom: 10px;
         color: white;
-        text-shadow: 2px 2px var(--rose), -2px -2px var(--rose), 2px -2px var(--rose), -2px 2px var(--rose);
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: var(--rose);
+        -webkit-text-stroke-width: 1.5px;
       }
       
+      
+  }
+  
+  .small-title {
+    @include h5;
+    color: var(--noir);
+    text-align: center;
   }
   
