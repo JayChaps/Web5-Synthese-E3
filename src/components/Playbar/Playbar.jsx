@@ -278,7 +278,7 @@ const Playbar = () => {
               <div className="draggable"></div>
             </div>
           </div>
-          <span>0:{duration.toFixed(0)}</span>
+          <span>0:{duration < 0 ? "00" : duration.toFixed(0) }</span>
         </section>
       </div>
     </motion.aside>
