@@ -80,38 +80,68 @@
 
 }
 
-.deuxiemetitres-info{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 400px;
-    margin: 50px;
-    border-radius: 50px;
-    background-color: var(--rose);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.deuxiemetitres-info {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+  margin: 50px;
+  border-radius: 50px;
+  background-color: var(--rose);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 
-    p{
-        @include p;
-        text-align: center;
-        padding: 20px;
-        color: var(--blanc);
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    pointer-events: none;
+    transform: translateY(0);
+    transition: transform 0.3s ease-out;
+  }
 
-        @include breakpoint-min(1024) {
-            @include h4;
-           }
-    }
+  &.sticky:before {
+    transform: translateY(-100%);
+  }
+
+  p {
+    @include p;
+    text-align: center;
+    padding: 20px;
+    color: var(--blanc);
+    z-index: 10000;
 
     @include breakpoint-min(1024) {
-        width: 800px;
-       }
+      @include h4;
+    }
+  }
+
+  @include breakpoint-min(1024) {
+    width: 800px;
+  }
 }
+
+  
+  
+  
 
 .container-info{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
+
 
 .lignes-nico{
     text-align: center;

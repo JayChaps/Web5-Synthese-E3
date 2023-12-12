@@ -45,7 +45,8 @@ const CoucheAcceuil1 = () => {
       </div>
       <div className="container-info-couche1">
         <div className="info-couche1">
-          <p>Listes de lectures optimisées pour une expérience musicale fluide.</p>
+          <p>“Listes de lectures optimisées pour une expérience musicale fluide. ”</p>
+          <p className="quote-acceuil">-Nicodito lauzone</p>
         </div>
       </div>
 
@@ -62,7 +63,8 @@ const CoucheAcceuil1 = () => {
       </div>
       <div className="container-info-couche2">
         <div className="info-couche1">
-          <p>Recherche musicale précise, rapide et intuitive.</p>
+          <p>“Recherche musicale précise, rapide et intuitive. ”</p>
+          <p className="quote-acceuil">-papavince</p>
         </div>
       </div>
 
@@ -79,7 +81,8 @@ const CoucheAcceuil1 = () => {
       </div>
       <div className="container-info-couche3">
         <div className="info-couche1">
-          <p>Qualité studio inégalée.</p>
+          <p>“Qualité studio inégalée. ”</p>
+          <p className="quote-acceuil">-mommykevy</p>
         </div>
       </div>
 
