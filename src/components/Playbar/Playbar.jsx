@@ -16,17 +16,14 @@ import PlaybarFull from "./PlaybarFull";
 import { PlaylistsContext } from "../../context/playlistsContext";
 import { PlaybarContext } from "../../context/playbarContext";
 import Coeur from "../Coeur/Coeur";
+import TeteDeLecturePlaybar from "./TeteDeLecturePlaybar";
 
 const Playbar = () => {
   const {
-    play,
-    pause,
     isPaused,
     changeSource,
     isReady,
-    stop,
     togglePause,
-    duration,
     volume,
     changeVolume,
   } = useAudio();
@@ -37,13 +34,13 @@ const Playbar = () => {
 
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
-  const [isDragging, setIsDragging] = useState(false);
+
   
-  const { progress, changeProgress } = useAudioProgress();
+
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
   const controls = useAnimation();
-
+  console.log(songInfo);
   useEffect(() => {
     controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
   }, [controls]);
@@ -53,30 +50,7 @@ const Playbar = () => {
     console.log(songInfo);
   };
 
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-    handleProgressChange(e);
-  };
 
-  const handleMouseUp = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    e.preventDefault();
-    if (isDragging) {
-      handleProgressChange(e);
-    }
-  };
-
-  const handleProgressChange = (e) => {
-    const progressBar = e.currentTarget;
-    const progressBarRect = progressBar.getBoundingClientRect();
-    const newProgress = (e.pageX - progressBarRect.left) / progressBarRect.width;
-    changeProgress(Math.min(Math.max(newProgress, 0), 1));
-  };
 
   const { addToFavorites } = useFavorites();
 
@@ -126,9 +100,6 @@ const Playbar = () => {
       {isFullbarOpen && (
         <>
           <PlaybarFull
-            songInfo={songInfo}
-            progress={progress}
-            duration={duration}
           >
             <div className="outer" onClick={() => setIsFullbarOpen(false)}>
               <div className="inner">
@@ -137,7 +108,7 @@ const Playbar = () => {
             </div>
           </PlaybarFull>
           <div className="cover">
-            <img src={urlImg} alt="" />
+            <img src={songInfo.coverUrl} alt="" />
           </div>
         </>
       )}
@@ -239,29 +210,8 @@ const Playbar = () => {
             />
           </div>
         </section>
-        <section className="playbar__inner__center__progress">
-          <span>
-            0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
-            {(progress * duration).toFixed(0)}
-          </span>{" "}
-          <div
-            className="playbar__inner__center__progress__bar"
-            onClick={handleProgressChange}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseUp}
-            onMouseUp={handleMouseUp}
-            style={{ width: `${(duration / duration) * 100}%` }}
-          >
-            <div
-              className="playbar__inner__center__progress__bar__inner"
-              style={{ width: `${progress * 100}%` }}
-            >
-              <div className="draggable"></div>
-            </div>
-          </div>
-          <span>0:{duration.toFixed(0)}</span>
-        </section>
+
+        <TeteDeLecturePlaybar />
       </div>
     </motion.aside>
   );

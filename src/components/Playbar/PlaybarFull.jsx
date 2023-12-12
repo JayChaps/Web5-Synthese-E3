@@ -3,6 +3,7 @@ import AnimationLecteur from "./AnimationLecteur";
 import ChansonsSuivantes from "./ChansonsSuivantes";
 import SliderPlaybarFull from "./SliderPlaybarFull";
 import { motion, useAnimation } from "framer-motion";
+import TempsPlaybarfull from "./TempsPlaybarfull";
 
 const PlaybarFull = ({ children }) => {
   const controls = useAnimation();
@@ -47,10 +48,7 @@ const PlaybarFull = ({ children }) => {
         <ChansonsSuivantes />
         <SliderPlaybarFull />
         <AnimationLecteur />
-        <div className="temps">
-          <span>0:00</span>
-          <span>0:30</span>
-        </div>
+        <TempsPlaybarfull />
       </div>
     </motion.div>
   );
