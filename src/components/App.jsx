@@ -1,16 +1,16 @@
 import {
-    Navigate,
-    RouterProvider,
-    createBrowserRouter,
-    useNavigate,
-    Link,
-    Outlet,
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+  Link,
+  Outlet,
 } from "react-router-dom";
 import Layout from "./Layout";
 import LayoutAuth from "./LayoutAuth";
 import RechercheDeezer from "../pages/RechercheDeezer";
 import PageTableauDeBord from "../pages/PageTableauDeBord";
-import PageAuthentification from '../pages/PageAuthentification';
+import PageAuthentification from "../pages/PageAuthentification";
 import Acceuil from "../components/PageAcceuil/Acceuil";
 import { AuthProvider, useAuth } from "../context/auhContext";
 import { useEffect, useState } from "react";
@@ -20,101 +20,99 @@ import { AudioProvider, useAudio } from "../context/audiotim";
 import { PlaylistsProvider } from "../context/playlistsContext";
 import Profil from "./Profil";
 import DecouverteArtiste from "./DecouverteArtiste";
-import DecouverteAlbum from './DecouverteAlbum';
+import DecouverteAlbum from "./DecouverteAlbum";
 import { FavoritesProvider } from "../context/FavoritesContext";
 import { PlaybarProvider } from "../context/playbarContext";
 
-
 const Routes = () => {
-    const { isConnected, loading } = useAuth();
-    if (loading) return <div>loading...</div>;
+  const { isConnected, loading } = useAuth();
+  if (loading) return <div>loading...</div>;
 
-    const routes = [
-        !isConnected && {
-            path: "",
-            element: <Layout />,
-            children: [
-                {
-                    index: true,
-                    element: <Acceuil />,
+  const routes = [
+    !isConnected && {
+      path: "",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Acceuil />,
         },
         {
-          path: 'authentification',
+          path: "authentification",
           element: <PageAuthentification />,
-                },
-
-            ],
         },
-        isConnected && {
-            path: "",
-            element: <LayoutAuth />,
-            children: [
-                {
-                    index: true,
-                    element: <Navigate to="/profil" />,
-                },
-                {
-                  path: "home",
-                  element: <PageTableauDeBord />,
-                },
-                {
-                    path: "profil",
-                    element: <Profil />,
-                },
-                {
-                    path: "search",
-                    element: <RechercheDeezer />,
-                },
-                {
-                    path: "playlist",
-                    element: <LesPlaylist />,
+      ],
+    },
+    isConnected && {
+      path: "",
+      element: <LayoutAuth />,
+      children: [
+        {
+          index: true,
+          element: <Navigate to="/profil" />,
+        },
+        {
+          path: "home",
+          element: <PageTableauDeBord />,
+        },
+        {
+          path: "profil",
+          element: <Profil />,
+        },
+        {
+          path: "search",
+          element: <RechercheDeezer />,
+        },
+        {
+          path: "playlist",
+          element: <LesPlaylist />,
         },
         {
           element: <LesPlaylist />,
-                },
-                {
-                    path: "artist",
-                    element: <Outlet />,
-                    children: [
-                        {
-                            path: ":idArtist",
-                            element: <DecouverteArtiste />,
-                        },
-                    ],
-                },
-                {
-                    path: 'album',
-                    element: <Outlet/>,
-                    children:[
-                        {
-                            path:':idAlbum',
-                            element:<DecouverteAlbum/>,
-                        }
-                    ]
-                }
-            ],
         },
         {
-            path: "*",
-            element: <Navigate to="/" replace />,
+          path: "artist",
+          element: <Outlet />,
+          children: [
+            {
+              path: ":idArtist",
+              element: <DecouverteArtiste />,
+            },
+          ],
         },
-    ];
-    return <RouterProvider router={createBrowserRouter(routes)} />;
+        {
+          path: "album",
+          element: <Outlet />,
+          children: [
+            {
+              path: ":idAlbum",
+              element: <DecouverteAlbum />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      path: "*",
+      element: <Navigate to="/" replace />,
+    },
+  ];
+  return <RouterProvider router={createBrowserRouter(routes)} />;
 };
 
 const App = () => {
   return (
-    <FavoritesProvider>
-      <AudioProvider>
-        <PlaylistsProvider>
-          <PlaybarProvider>
-            <AuthProvider>
+    <AuthProvider>
+      <FavoritesProvider>
+        <AudioProvider>
+          <PlaylistsProvider>
+            <PlaybarProvider>
               <Routes />
-            </AuthProvider>
-          </PlaybarProvider>
-        </PlaylistsProvider>
-      </AudioProvider>
-    </FavoritesProvider>
+            </PlaybarProvider>
+          </PlaylistsProvider>
+        </AudioProvider>
+      </FavoritesProvider>
+    </AuthProvider>
   );
 };
 
