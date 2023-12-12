@@ -158,6 +158,7 @@
     width: 300px;
     height: 300px;
     margin-bottom: 30px;
+    margin: 15px;
     border-radius: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -206,6 +207,252 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px; 
 }
+
+.titre-discographie{
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  color: var(--mauve);
+  @include h2;
+}
+
+.albums{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px; 
+}
+
+.album {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
+.img-discographie {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.album-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.album:hover .album-overlay {
+  opacity: 1;
+}
+
+.sous-titre-discographie {
+  margin: 0;
+  color: var(--blanc);
+  @include h3;
+  font-size: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.album-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.album-link:hover {
+  text-decoration: underline;
+}
+
+
+
+.decouverte-album {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  @include breakpoint-min(1024) {
+    // padding-left: 200px;
+    // padding-top: 100px;
+    flex-direction: none;
+    align-items: none;
+   }
+}
+
+
+.album-title-big{
+  @include h2;
+  color: var(--blanc);
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-color: var(--rose);
+  -webkit-text-stroke-width: 1.5px;
+      
+}
+
+.decouverte-album img {
+  width: 150%;
+  max-width: 400px; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+
+  @include breakpoint-min(768) {
+    max-width: 500px;
+    left: 0;
+   }
+}
+
+
+.decouverte-artist {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.decouverte-artist img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.decouverte-artist h1 {
+  @include h4;
+  margin: 0;
+}
+
+
+.decouverte-songs {
+  width: 100%;
+
+}
+
+.title-chansons{
+  @include h2;
+  margin: 0px 40px 40px 0px;
+  text-align: center;
+  
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+  // margin-left: 100px;
+  background-color: var(--rose);
+  border-radius: 10px;
+
+  background: linear-gradient(
+      to bottom,
+      rgba(126, 53, 227, 1) 0%,
+      rgb(252, 85, 113) 100%
+    );
+}
+
+.titre-chanson-position{
+  color: var(--blanc);
+  padding-left: 15px;
+
+  @include breakpoint-min(768) {
+    // padding-left: 200px;
+    // padding-top: 100px;
+    flex-direction: none;
+    align-items: none;
+    padding: 50px;
+    margin-bottom: 50px;
+   }
+}
+
+.titre-chanson-speciale{
+  color: var(--blanc);
+  @include h4;
+  margin-right: 10px;
+  margin-top: 20px;
+
+  @include breakpoint-min(1024) {
+    @include h2;
+    margin: 20px 20px 0px 0px;
+   }
+}
+
+.list {
+  flex: 0 0 30px;
+}
+
+.list h2 {
+  @include h4;
+  margin: 0;
+  text-align: center;
+}
+
+.songInfos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.songInfos h3 {
+  @include h3;
+  margin: 0;
+}
+
+.nom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.feature-div {
+  margin-right: 5px;
+  margin-bottom: 10px;
+  
+}
+
+.feature {
+  @include h5;
+  margin: 0;
+  color: var(--mauve);
+}
+
+button {
+  padding: 5px 10px;
+  background-color: var(--mauve);
+  color: var(--blanc);
+  @include h5;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: var(--mauve); 
+}
+
+.artiste-name{
+  color: var(--grisFonce);
+  padding-bottom: 80px;
+}
+
+.artiste-profil-img{
+  margin-top: 30px;
+}
+
+
+
 
 
 
