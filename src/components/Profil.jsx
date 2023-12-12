@@ -32,6 +32,7 @@ const Profil = () => {
   const { user, googleSignIn, logOut } = useAuth();
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [defaultColors, setDefaultColors] = useState({});
+  const [currentTheme, setCurrentTheme] = useState("theme1");
   const userName = user?.displayName || "No name available";
   const [showPickers, setShowPickers] = useState({
     rose: false,
@@ -70,16 +71,31 @@ const Profil = () => {
   };
 
   const handleChangeComplete = (colorName, color) => {
-    setColors(prevColors => ({
-      ...prevColors,
-      [colorName]: color.hex
-    }));
-    document.documentElement.style.setProperty(`--${colorName}Default`, color.hex);
+    if (currentTheme === "theme2") {
+      setColors(prevColors => ({
+        ...prevColors,
+        [colorName]: color.hex
+      }));
+      document.documentElement.style.setProperty(`--${colorName}Default`, color.hex);
+    }
+  };
+  const handleThemeSelection = (themeName) => {
+    setCurrentTheme(themeName);
+    if (themeName === "theme1") {
+      // Appliquer les couleurs par défaut pour le thème 1
+      Object.keys(defaultColors).forEach(colorName => {
+        document.documentElement.style.setProperty(`--${colorName}Default`, defaultColors[colorName]);
+      });
+    } else if (themeName === "theme2") {
+      // Appliquer les couleurs choisies pour le thème 2
+      Object.keys(colors).forEach(colorName => {
+        document.documentElement.style.setProperty(`--${colorName}Default`, colors[colorName]);
+      });
+    }
   };
 
   const handleTheme = () => {
     setIsThemeOpen(!isThemeOpen);
-    console.log(isThemeOpen);
   };
 
   return (
@@ -96,10 +112,10 @@ const Profil = () => {
               className={isThemeOpen ? "open selecttheme" : "selecttheme"}
               onClick={handleTheme}
             >
-              <span>Votre thème</span>
+              <span>{currentTheme === "theme1" ? "Thème 1" : "Thème 2"}</span>
               <ul name="theme" id="theme" className="themes">
-                <li value="theme1">Thème 1</li>
-                <li value="theme2">Thème 2</li>
+                <li value="theme1" onClick={()=>handleThemeSelection("theme1")}>Thème 1</li>
+                <li value="theme2" onClick={()=>handleThemeSelection("theme2")}>Thème 2</li>
               </ul>
             </div>
           </AnimatedItem>
@@ -117,8 +133,9 @@ const Profil = () => {
         </div>
       </header>
       <div className="bodyprofil">
-      {Object.keys(showPickers).map((colorName) => (
-          <div key={colorName} style={{ position: 'relative', marginBottom: '0px' }}>
+      {currentTheme === "theme2" && Object.keys(showPickers).map((colorName) => (
+          // Afficher seulement si theme2 est sélectionné
+          <div key={colorName} style={{ position: 'relative', marginBottom: '10px' }}>
             <div
               style={{ backgroundColor: colors[colorName], width: '100px', height: '100px' }}
               onClick={() => handleColorClick(colorName)}
@@ -126,7 +143,7 @@ const Profil = () => {
               {colorName.charAt(0).toUpperCase() + colorName.slice(1)} Default
             </div>
             {showPickers[colorName] && (
-              <div style={{ position: 'relative',  bottom: '100px', left: '100px' }}>
+              <div style={{ position: 'absolute', zIndex: 10, bottom: '100%', left: '0' }}>
                 <ChromePicker
                   color={colors[colorName]}
                   onChangeComplete={(color) => handleChangeComplete(colorName, color)}
