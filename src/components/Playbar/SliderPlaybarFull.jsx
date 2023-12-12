@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const SliderPlaybarFul = ({ progress, duration }) => {
+const SliderPlaybarFul = () => {
   const [value, setValue] = useState(0);
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
