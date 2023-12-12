@@ -1,26 +1,88 @@
-.tableau-de-bord{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+// .tableau-de-bord{
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+// }
 
 .sous-titre{
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  max-width: 900px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 30px;
 }
 
 .containersectionsoustitre{
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 20px;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 20px auto;
     height: 200px;
     width: 200px;
     border-radius: 20px;
-  
+
+    
+    @include breakpoint-min(640) {
+      width: 250px;
+      height: 250px;
+    }
+    
+    @include breakpoint-min(1024) {
+      width: 350px;
+      height: 350px;
+    }
+    
+    @include breakpoint-min(1200) {
+      width: 500px;
+      height: 500px;
+    }
+    
+    .soustitre-image{
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      
+    
+      img{
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         border-radius: 30px;
+      }
+    }
+  .play-icon-sous-titre {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 15px;
+      z-index: 300000;
+
+      .icon-sous-titre{
+        margin: 3px;
+
+        @include breakpoint-min(640) {
+          transform: scale(1.2);
+          margin: 10px;
+        }
+
+        @include breakpoint-min(768) {
+          transform: scale(1.3);
+        }
+
+        @include breakpoint-min(1024) {
+          transform: scale(1.4);
+        }
+
+        @include breakpoint-min(1200) {
+          margin: 30px;
+          transform: scale(1.5);
+        }
+      }
+    }
 }
 
 .titresectionsoustitre{
@@ -30,29 +92,8 @@
     color: var(--grisFonce);
     z-index: 2;
 
+    @include breakpoint-min(1200) {
+      @include h3;
+    }
 }
 
-.play-icon-sous-titre {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 15px;
-    z-index: 3;
-  }
-
-  .soustitre-image{
-    position: absolute;
-    // z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    
-
-    img{
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-       border-radius: 30px;
-    }
-  }

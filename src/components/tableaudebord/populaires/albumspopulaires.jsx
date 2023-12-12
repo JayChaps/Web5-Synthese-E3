@@ -25,6 +25,7 @@ const Albumspopulaires = () => {
   }, [controls]);
 
   return (
+    <div className="container-complet-albums">
     <motion.section
       className="container-albums-populaires"
       initial={{ opacity: 0, x: -50 }}
@@ -37,7 +38,7 @@ const Albumspopulaires = () => {
       <div>
         <FaPlayCircle
           size={"3rem"}
-          color="var(--noir)"
+          color="var(--blanc)"
           className="play-icon-populaires"
         />
       </div>
@@ -49,6 +50,31 @@ const Albumspopulaires = () => {
         />
       </div>
     </motion.section>
+    <motion.section
+      className="container-albums-populaires"
+      initial={{ opacity: 0, x: -50 }}
+      animate={controls}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <div>
+        <h2 className="titrealbumspopulaire">Chanson/Album</h2>
+      </div>
+      <div>
+        <FaPlayCircle
+          size={"3rem"}
+          color="var(--blanc)"
+          className="play-icon-populaires"
+        />
+      </div>
+      <div className="image-container">
+        <img
+          src="src\assets\img\jpg\placeholder.jpg"
+          alt="populaires"
+          className="cover-mask"
+        />
+      </div>
+    </motion.section>
+    </div>
   );
 };
 

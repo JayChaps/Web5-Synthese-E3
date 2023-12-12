@@ -4,13 +4,58 @@
     font-size: 1.125rem;
   }
 
+  @mixin h4 {
+    font-family: "Gotham";
+    font-weight: 500;
+    font-size: 2rem;
+  }
 
+  @mixin breakpoint-min($screen) {
+    @media (min-width: #{$screen}px) {
+      @content;
+    }
+  }
+
+.containerinfo1{
+    @include breakpoint-min(1200) {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 150px;
+       }
+    
+
+}
+
+.containerinfo2{
+    @include breakpoint-min(1200) {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 150px;
+       }
+    
+
+}
+
+.containerinfo3{
+    @include breakpoint-min(1200) {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 150px;
+       }
+    
+
+}
 
 .container-icon-couche1{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 40px;
+
 }
 
 .section1{
@@ -106,6 +151,10 @@
     border-radius: 40px;
     border-bottom-left-radius: 90px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    @include breakpoint-min(1200) {
+        width: 600px;
+       }
 }
 
 .container-info-couche2{
@@ -119,6 +168,10 @@
     border-radius: 40px;
     border-bottom-right-radius: 90px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    @include breakpoint-min(1200) {
+        width: 600px;
+       }
 }
 
 .container-info-couche3{
@@ -132,12 +185,22 @@
     border-radius: 40px;
     border-bottom-left-radius: 90px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    @include breakpoint-min(1200) {
+        width: 600px;
+       }
+
 }
 
 .info-couche1{
     @include p;
     text-align: center;
     color: var(--blanc);
+
+    @include breakpoint-min(1200) {
+        padding: 20px;
+        @include h4;
+       }
 }
 
 

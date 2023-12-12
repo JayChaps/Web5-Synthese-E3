@@ -10,7 +10,7 @@ const sectionpopulaires = () => {
             <div>
                 <h1 className="titrepopulaires">Populaires</h1>
             </div>
-
+            
             <AlbumsPopulaires />
             <AlbumsPopulaires />
             <AlbumsPopulaires />

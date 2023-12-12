@@ -33,6 +33,7 @@ const CoucheAcceuil1 = () => {
       animate={controls}
       transition={{ duration: 0.25 }}
     >
+      <div className="containerinfo1">
       <div className="container-icon-couche1">
         <div className="section1">
           <div className="sous-section1">
@@ -47,6 +48,9 @@ const CoucheAcceuil1 = () => {
           <p>Listes de lectures optimisées pour une expérience musicale fluide.</p>
         </div>
       </div>
+
+      </div>
+      <div className="containerinfo2">
       <div className="container-icon-couche1">
         <div className="section2">
           <div className="sous-section2">
@@ -61,6 +65,9 @@ const CoucheAcceuil1 = () => {
           <p>Recherche musicale précise, rapide et intuitive.</p>
         </div>
       </div>
+
+      </div>
+      <div className="containerinfo3">
       <div className="container-icon-couche1">
         <div className="section3">
           <div className="sous-section3">
@@ -74,6 +81,8 @@ const CoucheAcceuil1 = () => {
         <div className="info-couche1">
           <p>Qualité studio inégalée.</p>
         </div>
+      </div>
+
       </div>
     </motion.section>
   );

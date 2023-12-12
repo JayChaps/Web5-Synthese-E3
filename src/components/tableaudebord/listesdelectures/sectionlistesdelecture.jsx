@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ListesdeLecture from "../listesdelectures/listesdelecture";
+import ItemPlaylist from "../../Playlist/ItemPlaylist";
 
 const sectionlistesdelecture = () => {
   
@@ -8,10 +8,16 @@ const sectionlistesdelecture = () => {
         <section>
             <div>
                 <h1 className="titre-listesdelecture">Mes listes de lecture</h1>
-                <ListesdeLecture />
-                <ListesdeLecture />
-                <ListesdeLecture />
-                <ListesdeLecture />
+
+                <div className="itemplaylist-tdb">
+                <ItemPlaylist/>
+                <ItemPlaylist/>
+                <ItemPlaylist/>
+                <ItemPlaylist/>
+                <ItemPlaylist/>
+                <ItemPlaylist/>
+                </div>
+                
             </div>
         </section>
     );

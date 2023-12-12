@@ -41,9 +41,64 @@
     @include h2;
     text-align: center;
     color: var(--mauve);
-    padding: 70px 50px 50px 50px;
+    position: relative;
+
+    &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 100px;
+    background-color: var(--mauve);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    border-radius: 10px;
+
+    @include breakpoint-min(640) {
+        width: 200px;
+
+    }
+
+    @include breakpoint-min(768) {
+        width: 250px;
+    }
+
+    @include breakpoint-min(1080) {
+        width: 450px;
+    }
+  }
+
+  &::before {
+    left: -60px;
+  }
+
+  &::after {
+    right: -60px; 
+  }
 }
 
+.titre-decouverte2{
+    @include h3;
+    text-align: center;
+    color: var(--mauve);
+    padding-top: 15px;
+    color: white;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: var(--rose);
+        -webkit-text-stroke-width: 1.25px;
+}
+
+.titre-decouverte3{
+    @include h3;
+    text-align: center;
+    color: var(--mauve);
+    padding-top: 30px;
+    color: white;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: var(--rose);
+        -webkit-text-stroke-width: 1.25px;
+}
 
 .topSongs {
     display: flex;
@@ -51,25 +106,41 @@
     align-items: center;
     gap: 20px;
     padding: 20px;
-    margin: 30px;
-    background-color: var(--rose);
+    // margin: 30px auto;
+    width: 80%;
+    max-width: 300px;
+    background-color: var(--mauve);
     border-radius: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  
     .img-populaire {
-        width: 100px;
-        height: 100px;
-        border-radius: 30px;
-        object-fit: cover;
+      width: 100px;
+      height: 100px;
+      border-radius: 30px;
+      object-fit: cover;
     }
-    
+  
     .titre-populaire {
-        text-align: center;
-        @include h5;
-        color: var(--blanc);
-        max-width: 150px;
+      text-align: center;
+      @include h5;
+      color: var(--blanc);
+      max-width: 150px;
     }
-}
+  
+  }
+  
+  .containertest{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 30px;
+
+    // & > *:last-child{
+        
+    // }
+  }
+  
 
 .container-decouvertes{
     display: flex;

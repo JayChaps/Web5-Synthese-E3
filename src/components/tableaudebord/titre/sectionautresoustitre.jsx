@@ -27,12 +27,14 @@ const SectionAutresoustitre = () => {
   return (
     <motion.section className="containersectionautresoustitre" variants={containerVariants} initial="hidden" animate="visible">
       <motion.div>
-        <motion.FaPlayCircle
+        <motion.div
           size={"2rem"}
           color="var(--noir)"
           className="play-icon-autre-sous-titre"
           variants={iconVariants}
-        />
+        >
+          <FaPlayCircle size={"2rem"} color="var(--noir)" className="icon-autre-sous-titre"/>
+        </motion.div>
         <motion.h4 className="titresectionautresoustitre" variants={titleVariants}>
           Titre album
         </motion.h4>
