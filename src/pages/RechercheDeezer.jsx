@@ -12,17 +12,10 @@ import {
     getDocs,
     addDoc,
 } from "firebase/firestore";
-// import { useAudio } from "../context/audiotim";
-import { SongInfoContext } from "../context/SongInfoContext";
-// import { useSongInfo } from "../context/SongInfoContext";
-import { PlaylistsContext } from "../context/playlistsContext";
-import { PlaylistSelector } from "../components/RechercheDeezer/PlaylistSelector";
-
-import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
 
 import { CgAdd } from "react-icons/cg";
 import { FaPlayCircle } from "react-icons/fa";
-import RechercheDeezerInput from "../components/RechercheDeezer/RechercheInput";
+import RechercheInput from "../components/RechercheDeezer/RechercheInput";
 import { PlaylistSelector } from "../components/RechercheDeezer/PlaylistSelector";
 import { SongInfoContext } from "../context/SongInfoContext";
 import { PlaylistsContext } from "../context/playlistsContext";
@@ -48,6 +41,7 @@ const RechercheDeezer = () => {
 
     const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
     const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
+
 
     const searchFilters = ["artist", "album", "track"]
 
@@ -116,7 +110,7 @@ const RechercheDeezer = () => {
       transition={{ duration: 0.5 }}
       className="deezer"
     >
-      <Link to="/" className="outer">
+      <Link onClick={handleBack} className="outer">
         <div className="inner">
           <label>Retour</label>
         </div>
@@ -128,13 +122,14 @@ const RechercheDeezer = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <RechercheDeezerInput
+          <RechercheInput
             autoFocus={true}
             value={searchTerm}
             handleInputChange={handleInputChange}
             handleSearch={handleSearch}
             placeholder={"Que voulez-vous écouter ?"}
             icone={"search"}
+            
           />
         </motion.div>
       </div>
