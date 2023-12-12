@@ -4,7 +4,7 @@ import SliderPlaylists from "./Playlist/SliderPlaylists";
 import ItemChansons from "./Playlist/ItemChansons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ChromePicker } from 'react-color';
+import { AlphaPicker, BlockPicker, ChromePicker, CirclePicker, CompactPicker, GithubPicker, HuePicker, PhotoshopPicker, SketchPicker, SwatchesPicker, TwitterPicker } from 'react-color';
 
 const AnimatedItem = ({ children, delay = 0.3 }) => {
   const controls = useAnimation();
@@ -31,12 +31,50 @@ const AnimatedItem = ({ children, delay = 0.3 }) => {
 const Profil = () => {
   const { user, googleSignIn, logOut } = useAuth();
   const [isThemeOpen, setIsThemeOpen] = useState(false);
-  const [color, setColor] = useState('#fff'); // State for the color picker
+  const [defaultColors, setDefaultColors] = useState({});
   const userName = user?.displayName || "No name available";
+  const [showPickers, setShowPickers] = useState({
+    rose: false,
+    mauve: false,
+    blanc: false,
+    gris: false,
+    grisFonce: false,
+    noir: false
+  });
+  const [colors, setColors] = useState({
+    rose: '#fc5571',
+    mauve: '#7e35e3',
+    blanc: '#f8f8f8',
+    gris: '#9b9b9b',
+    grisFonce: '#222c32',
+    noir: '#050625'
+  });
 
-  const handleChangeComplete = (color) => {
-    setColor(color.hex);
-    document.documentElement.style.setProperty('--background-color', color.hex);
+  useEffect(() => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    setDefaultColors({
+      rose: rootStyles.getPropertyValue('--roseDefault').trim(),
+      mauve: rootStyles.getPropertyValue('--mauveDefault').trim(),
+      blanc: rootStyles.getPropertyValue('--blancDefault').trim(),
+      gris: rootStyles.getPropertyValue('--grisDefault').trim(),
+      grisFonce: rootStyles.getPropertyValue('--grisFonceDefault').trim(),
+      noir: rootStyles.getPropertyValue('--noirDefault').trim(),
+    });
+  }, []);
+
+  const handleColorClick = (colorName) => {
+    setShowPickers(prevState => ({
+      ...prevState,
+      [colorName]: !prevState[colorName]
+    }));
+  };
+
+  const handleChangeComplete = (colorName, color) => {
+    setColors(prevColors => ({
+      ...prevColors,
+      [colorName]: color.hex
+    }));
+    document.documentElement.style.setProperty(`--${colorName}Default`, color.hex);
   };
 
   const handleTheme = () => {
@@ -79,15 +117,25 @@ const Profil = () => {
         </div>
       </header>
       <div className="bodyprofil">
-        <div>
-          <ChromePicker
-            color={color}
-            onChangeComplete={handleChangeComplete}
-          />
-          <div style={{ backgroundColor: 'var(--background-color)', width: '100px', height: '100px' }}>
-            Preview
+      {Object.keys(showPickers).map((colorName) => (
+          <div key={colorName} style={{ position: 'relative', marginBottom: '0px' }}>
+            <div
+              style={{ backgroundColor: colors[colorName], width: '100px', height: '100px' }}
+              onClick={() => handleColorClick(colorName)}
+            >
+              {colorName.charAt(0).toUpperCase() + colorName.slice(1)} Default
+            </div>
+            {showPickers[colorName] && (
+              <div style={{ position: 'relative',  bottom: '100px', left: '100px' }}>
+                <ChromePicker
+                  color={colors[colorName]}
+                  onChangeComplete={(color) => handleChangeComplete(colorName, color)}
+                />
+                <button onClick={() => handleColorClick(colorName)}>Fermer</button>
+              </div>
+            )}
           </div>
-        </div>
+        ))}
         <AnimatedItem delay={0.2}>
           <div className="nomcompte">
             <h1>{userName}</h1>
