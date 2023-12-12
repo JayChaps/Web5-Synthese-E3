@@ -100,6 +100,7 @@
             justify-content: space-between;
 
             height: 100%;
+            width: 80%;
             user-select: none;
             @include breakpoint-min(1024) {
                 justify-self: end;
@@ -245,6 +246,8 @@
                 overflow: hidden;
                 & .titreinner {
                     position: absolute;
+                    top: 0;
+                    left: 0;
                     z-index: 5;
 
                     display: flex;
@@ -281,7 +284,7 @@
                         font-family: "Gotham";
                         font-weight: 900;
                         font-size: calc(5.5vw);
-                        // letter-spacing: 0.1rem;
+                        white-space: nowrap;
 
                         -webkit-text-fill-color: var(--rose);
                         -webkit-text-stroke-color: var(--blanc);
