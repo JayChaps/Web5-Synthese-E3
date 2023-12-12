@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AnimationLecteur from "./AnimationLecteur";
 import ChansonsSuivantes from "./ChansonsSuivantes";
 import SliderPlaybarFull from "./SliderPlaybarFull";
 import { motion, useAnimation } from "framer-motion";
 import TempsPlaybarfull from "./TempsPlaybarfull";
+import { SongInfoContext } from "../../context/SongInfoContext";
 
 const PlaybarFull = ({ children }) => {
   const controls = useAnimation();
+
+  const { songInfo, updateSongInfo } = useContext(SongInfoContext);
 
   useEffect(() => {
     controls.start({
@@ -41,9 +44,9 @@ const PlaybarFull = ({ children }) => {
           variants={infoChansonVariants}
         >
           {/* Redirection album */}
-          <motion.h2 className="titreChanson">Titre</motion.h2>
+          <motion.h2 className="titreChanson">{songInfo.title}</motion.h2>
           {/* redirection découvert artiste */}
-          <motion.h2 className="artisteChanson">Artiste</motion.h2>
+          <motion.h2 className="artisteChanson">{songInfo.artist}</motion.h2>
         </motion.section>
         <ChansonsSuivantes />
         <SliderPlaybarFull />
