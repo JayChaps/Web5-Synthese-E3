@@ -232,53 +232,48 @@ const Profil = () => {
       </header>
       <div className="bodyprofil">
         {currentTheme === "theme2" && (
-          <div className="color-picker-container">
-            {Object.keys(showPickers).map((colorName) => (
-              // Afficher seulement si theme2 est sélectionné
-              <div
-                key={colorName}
-                style={{ position: "relative", marginBottom: "10px" }}
-              >
-                <div
-                  style={{
-                    backgroundColor: colors[colorName],
-                    width: "100px",
-                    height: "100px",
-                  }}
-                  onClick={() => handleColorClick(colorName)}
-                >
-                  {colorName.charAt(0).toUpperCase() + colorName.slice(1)} (
-                  {colors[colorName]})
-                </div>
-                {showPickers[colorName] && (
+          <section className="sectioncouleur">
+            <div className="color-picker-container">
+              <div className="inner">
+                {Object.keys(showPickers).map((colorName) => (
+                  // Afficher seulement si theme2 est sélectionné
                   <div
+                    key={colorName}
                     style={{
-                      position: "absolute",
-                      zIndex: 10,
-                      bottom: "100%",
-                      left: "0",
+                      backgroundColor: colors[colorName],
                     }}
                   >
-                    <ChromePicker
-                      color={colors[colorName]}
-                      onChangeComplete={(color) =>
-                        handleChangeComplete(colorName, color)
-                      }
-                    />
-                    <button onClick={() => handleColorClick(colorName)}>
-                      Fermer
-                    </button>
+                    <div onClick={() => handleColorClick(colorName)}>
+                      <span>
+                        {colorName.charAt(0).toUpperCase() + colorName.slice(1)}
+                      </span>
+                      <span>{colors[colorName]}</span>
+                    </div>
+
+                    {showPickers[colorName] && (
+                      <div>
+                        <ChromePicker
+                          color={colors[colorName]}
+                          onChangeComplete={(color) =>
+                            handleChangeComplete(colorName, color)
+                          }
+                        />
+                        <button onClick={() => handleColorClick(colorName)}>
+                          Fermer
+                        </button>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+            {currentTheme === "theme2" ? (
+              <button onClick={saveColorsToFirebase}>
+                Enregistrer les changements
+              </button>
+            ) : null}
+          </section>
         )}
-        {currentTheme === "theme2" ? (
-          <button onClick={saveColorsToFirebase}>
-            Enregistrer les changements
-          </button>
-        ) : null}
         <AnimatedItem delay={0.2}>
           <div className="nomcompte">
             <h1>{userName}</h1>

@@ -5,10 +5,7 @@
     flex-direction: column;
     gap: 4rem;
 
-    @include breakpoint-min(640) {
-        gap: 6rem;
-    }
-user-select: none;
+    user-select: none;
     & .chansonsaimees,
     .playlists {
         @include breakpoint-min(640) {
@@ -43,9 +40,8 @@ user-select: none;
                 }
 
                 & article .info .icones svg:nth-child(2) {
-
                     transition: color 0.1s ease-in-out;
-                    &:hover{
+                    &:hover {
                         color: var(--mauve) !important;
                     }
                 }
