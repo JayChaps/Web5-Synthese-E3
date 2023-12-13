@@ -44,7 +44,7 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
           <img src={coverImg} alt="" />
           <FaPlayCircle 
             size={"2rem"} 
-            color="var(--noir)" 
+            color="var(--blanc)"
             onClick={() => JouerLaChanson(song)}
           />
         </div>

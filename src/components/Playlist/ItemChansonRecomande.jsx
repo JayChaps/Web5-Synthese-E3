@@ -10,7 +10,7 @@ const ItemChansonRecomande = ({ premier = false }) => {
     <article className={premier? "premier recommande":"recommande"}>
         <div className="chansoncover">
           <img src={urlImg} alt="" />
-          <FaPlayCircle size={"2rem"} color="var(--noir)" />
+          <FaPlayCircle size={"2rem"} color="var(--blanc)" />
         </div>
         <div className="infoschansons">
           <span>Titre</span>
