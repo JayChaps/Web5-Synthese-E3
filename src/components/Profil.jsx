@@ -52,35 +52,40 @@ const Profil = () => {
     noir: false
   });
 
+  
   const userName = user?.displayName || "No name available";
-
+  
   useEffect(() => {
     if (user?.uid) {
-      fetchUserColors();
+      fetchUserColors(currentTheme);
     }
   }, [user?.uid]);
-
+  
   useEffect(() => {
     const savedTheme = localStorage.getItem('selectedTheme') || "theme1";
     setCurrentTheme(savedTheme);
-
-    if (savedTheme === "theme2") {
-      fetchUserColors();
-    } else {
-      applyColors(defaultColors);
+    if (user?.uid) {
+      if (savedTheme === "theme2") {
+        fetchUserColors(savedTheme);
+      } else {
+        applyColors(defaultColors);
+      }
     }
-  }, []);
+  }, [user?.uid]);
 
-  const fetchUserColors = async () => {
+  
+
+  const fetchUserColors = async (savedTheme) => {
     const userColorsRef = doc(db, "userColors", user?.uid);
     const docSnap = await getDoc(userColorsRef);
 
-    if (docSnap.exists()) {
+    if (docSnap.exists() && savedTheme === "theme2") {
       const fetchedColors = docSnap.data().colors;
       setColors(fetchedColors);
       applyColors(fetchedColors);
+      console.log("--------------------")
     } else {
-      applyColors(defaultColors); // Appliquer les couleurs par défaut si aucune couleur personnalisée n'est trouvée
+      applyColors(defaultColors);
     }
   };
 
@@ -115,6 +120,7 @@ const Profil = () => {
     if (themeName === "theme1") {
       applyColors(defaultColors);
     } else if (themeName === "theme2") {
+      fetchUserColors(themeName);
       applyColors(colors);
     }
   };
@@ -130,7 +136,7 @@ const Profil = () => {
       logOut();
     }
     handleThemeSelection("theme1");
-    localStorage.setItem('selectedTheme', "theme1");
+    localStorage.setItem('selectedTheme', "theme1")
   };
   
 
