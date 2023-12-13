@@ -16,26 +16,9 @@ const SliderPlaybarFul = () => {
   } = useAudio();
   const { progress, changeProgress } = useAudioProgress();
   const [isDragging, setIsDragging] = useState(false);
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-    handleProgressChange(e);
-  };
-  const handleMouseUp = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    e.preventDefault();
-    if (isDragging) {
-      handleProgressChange(e);
-    }
-  };
   const handleProgressChange = (e) => {
-    const progressBar = e.currentTarget;
-
-    changeProgress(Math.min(Math.max(progressBar.value, 0), 1));
+    const newProgress = e.target.value / 100; // Convertir en valeur de 0-1
+    changeProgress(newProgress);
   };
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -107,18 +90,13 @@ const SliderPlaybarFul = () => {
     <section className="sliderplaybarfull">
       <div className="radial-slider">
         <input
-          className="radial-slider__input"
-          style={sliderStyle}
-          type="range"
-          min="0"
-          max="100"
-          step="0.1"
-          value={progress}
-          onClick={handleProgressChange}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseUp}
-          onMouseUp={handleMouseUp}
+         style={sliderStyle}
+         className="radial-slider__input"
+         type="range"
+         min="0"
+         max="100"
+         value={progress * 100}
+         onChange={handleProgressChange}
         />
 
         <div className="radial-slider__tail" style={tailStyle}>
