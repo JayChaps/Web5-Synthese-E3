@@ -81,6 +81,11 @@ const PlaylistsProvider = ({ children }) => {
 
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
             setSelectedPlaylist(docRef); // Sélectionne la nouvelle playlist
+            setClickedPlaylist(docRef); // Sélectionne la nouvelle playlist
+
+            // Mettre à jour l'état des playlists avec la nouvelle playlist
+            setPlaylists([...playlists, { id: docRef.id, name: name, songs: [] }]); 
+
             setNewPlaylistName(''); // Reset le nom après création
         }
 
@@ -137,6 +142,7 @@ const PlaylistsProvider = ({ children }) => {
                 }
                 return playlist;
             }));
+
         }
 
         console.log("removeSongFromPlaylist() done");
