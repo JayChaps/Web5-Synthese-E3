@@ -85,7 +85,7 @@ const LesPlaylist = () => {
   useEffect(() => {
     fetchPlaylists();
     // }, [newPlaylistName, createNewPlaylist, estActif]);
-  }, []);
+  }, [setNewPlaylistName]);
 
   const JouerLaChanson = (song) => {
     setSelectedSong(song);
