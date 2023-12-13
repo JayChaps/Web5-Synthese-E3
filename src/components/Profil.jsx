@@ -298,7 +298,7 @@ const Profil = () => {
             </div>
 
             <div className="lesplaylists__playlist__inner__chansons__chansons">
-              <AnimatedItem>
+              {/* <AnimatedItem>
                 <ItemChansons />
               </AnimatedItem>
               <AnimatedItem delay={0.1}>
@@ -324,7 +324,7 @@ const Profil = () => {
               </AnimatedItem>
               <AnimatedItem delay={0.8}>
                 <ItemChansons />
-              </AnimatedItem>
+              </AnimatedItem> */}
             </div>
           </div>
         </AnimatedItem>
