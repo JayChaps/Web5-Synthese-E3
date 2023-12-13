@@ -203,7 +203,7 @@ const Profil = () => {
       logOut();
     }
     handleThemeSelection("theme1");
-    localStorage.setItem('selectedTheme', "theme1");
+    localStorage.setItem('selectedTheme', "theme1")
   };
   
 
