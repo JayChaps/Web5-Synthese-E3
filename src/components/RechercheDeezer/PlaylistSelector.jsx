@@ -23,7 +23,7 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
     createNewPlaylistAndAddSong, } = useContext(PlaylistsContext);
 
   const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
-  const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
+  const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(true);
 
   const ajouter = (id) => {
     setSelectedPlaylistId(id);
