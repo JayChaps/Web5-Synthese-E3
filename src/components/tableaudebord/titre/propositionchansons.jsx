@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { BiHeart } from "react-icons/bi";
 import fetchJsonp from "fetch-jsonp";
+import Coeur from "../../Coeur/Coeur";
 
 const PropositionChansons = ({ albumId }) => {
   const [songs, setSongs] = useState([]);
@@ -28,7 +29,7 @@ const PropositionChansons = ({ albumId }) => {
   }, [albumId]);
 
   return (
-    <>
+    <section className="prop">
       {songs.map((song, index) => (
         <section key={index} className="propositionchansons">
           <div className="left">
@@ -39,12 +40,12 @@ const PropositionChansons = ({ albumId }) => {
             <p className="artist-name">{song.artist.name}</p>
           </div>
           <div className="right">
-            <BiHeart size={"1.2rem"} color="var(--blanc)" className="like-icon" />
+            <Coeur />
             <FaPlayCircle size={"1.2rem"} color="var(--blanc)" className="add-icon" />
           </div>
         </section>
       ))}
-    </>
+    </section>
   );
 };
 

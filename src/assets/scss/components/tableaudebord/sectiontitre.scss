@@ -5,39 +5,42 @@
 .containersectiontitre {
   position: relative;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2em 10px 20px 20px;
+  margin: 0 auto;
+  padding-right: 3em ;
   height: 300px;
-  width: 430px;
+  width: 80%;
+  max-width: 1024px;
   background: linear-gradient(
       to top,
       var(--rose) 0%,
       var(--mauve) 100%
     );
   border-radius: 20px;
-  overflow-y: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 
-  @include breakpoint-min(640) {
-    width: 500px;
-  }
+  
+  // @include breakpoint-min(640) {
+  //   width: 500px;
+  // }
 
-  @include breakpoint-min(768) {
-    width: 600px;
-  }
+  // @include breakpoint-min(768) {
+  //   width: 600px;
+  // }
 
-  @include breakpoint-min(1024) {
-    width: 700px;
-  }
+  // @include breakpoint-min(1024) {
+  //   width: 700px;
+  // }
 
   @include breakpoint-min(1200) {
-    width: 1450px;
-    height: 500px;
-    margin-top: 40px;
     border-radius: 50px;
   }
-
+.prop{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem ;
+}
   .content {
     position: relative;
     z-index: 1;
@@ -47,19 +50,23 @@
 
     color: var(--blanc);
     height: 100%;
-
+    padding: 3em ;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
     &::-webkit-scrollbar {
       width: 8px;
-    }
+  }
 
-    &::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
       background: var(--grisFonce);
-    }
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--rose);
+  &::-webkit-scrollbar-thumb {
+      background-color: #f8f8f8;
       border-radius: 10px;
-    }
+      border: 0px solid #ffffff;
+  }
 
     .titresectiontitre2 {
       position: relative;
@@ -81,12 +88,14 @@
     .small-image {
       position: absolute;
       padding: 10px;
-      bottom: 0;
+      top: 0;
       right: 0;
       width: 200px;
-      height: 200px;
+      aspect-ratio: 1;
       background-size: cover;
       // z-index: 1;
+
+      transform: translateX(20%) translateY(-20%) !important;
 
       img {
         width: 200px;
