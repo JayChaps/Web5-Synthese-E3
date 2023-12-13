@@ -20,7 +20,7 @@ import { motion, useAnimation } from "framer-motion";
 
 import { useAudio, useAudioProgress } from "../../context/audiotim";
 import { SongInfoContext } from "../../context/SongInfoContext";
-import { useFavorites } from "../../context/FavoritesContext";
+import { FavoritesContext } from "../../context/FavoritesContext";
 import PlaybarFull from "./PlaybarFull";
 import { PlaylistsContext } from "../../context/playlistsContext";
 import { PlaybarContext } from "../../context/playbarContext";
@@ -50,6 +50,9 @@ const Playbar = () => {
     handleNextSong, handlePreviousSong } = useContext(SoloPlaylistContext);
 
 
+  const { favorites, setFavorites, addToFavorites } = useContext(FavoritesContext);
+
+
   useEffect(() => {
     controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
   }, [controls]);
@@ -71,11 +74,11 @@ const Playbar = () => {
     togglePause();
   };
 
-  const { addToFavorites } = useFavorites();
+  // const { addToFavorites } = useFavorites();
 
   const handleAddToFavorites = () => {
+    console.log("Song added to favorites: ", songInfo.id);
     addToFavorites(songInfo);
-    console.log("Song added to favorites: " + songInfo.title);
   };
 
   const handleClick = (e) => {
@@ -120,26 +123,30 @@ const Playbar = () => {
   }, [currentSong, handlePlaySong]);
 
 
+  const ajouterUneChansonDansSesFavorites = (infos) => {
+    console.log("imagine que tu ajoutes une chanson dans tes favorites", infos);
+  }
 
-  useEffect(() => {
-    console.log("OMG CURRENT SONG CHANGED", currentSong);
-  }, [currentSong]);
 
-  useEffect(() => {
-    console.log("OMG SONG INFO CHANGED", songInfo);
-  }, [songInfo]);
+  // useEffect(() => {
+  //   console.log("OMG CURRENT SONG CHANGED", currentSong);
+  // }, [currentSong]);
 
-  useEffect(() => {
-    console.log("OMG NEXT SONG CHANGED", nextSong);
-  }, [nextSong]);
+  // useEffect(() => {
+  //   console.log("OMG SONG INFO CHANGED", songInfo);
+  // }, [songInfo]);
 
-  useEffect(() => {
-    console.log("OMG PREVIOUS SONG CHANGED", previousSong);
-  }, [previousSong]);
+  // useEffect(() => {
+  //   console.log("OMG NEXT SONG CHANGED", nextSong);
+  // }, [nextSong]);
 
-  useEffect(() => {
-    console.log("OMG PLAY PAUSE CHANGED", isPaused);
-  }, [isPaused]);
+  // useEffect(() => {
+  //   console.log("OMG PREVIOUS SONG CHANGED", previousSong);
+  // }, [previousSong]);
+
+  // useEffect(() => {
+  //   console.log("OMG PLAY PAUSE CHANGED", isPaused);
+  // }, [isPaused]);
 
 
 
@@ -219,7 +226,9 @@ const Playbar = () => {
             />
           </section>
           <section className="playbar__inner__right">
-            <Coeur />
+            <Coeur 
+              // handleAddToFavorites={handleAddToFavorites}
+            />
             <CgAdd
               size={"3.5rem"}
               color="var(--blanc)"

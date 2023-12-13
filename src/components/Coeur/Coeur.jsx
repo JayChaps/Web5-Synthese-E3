@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SongInfoContext, useSongInfo } from "../../context/SongInfoContext";
+import { FavoritesContext } from "../../context/FavoritesContext";
 
-const Coeur = ({ isLiked = true }) => {
+const Coeur = ({ isLiked = true, handleAddToFavorites }) => {
+
+
+  const { songInfo, updateSongInfo, handlePlaySong } = useContext(SongInfoContext);
+
+  const { favorites, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
+
+  const handleLikeClick = (song) => {
+    
+    const isFavorited = favorites.some(fav => fav.id === song.id);
+    if (isFavorited) {
+        removeFromFavorites(song);
+      } else {
+          addToFavorites(song);
+      }
+  };
+
+
   return (
-    <label className="coeur">
+    <label className="coeur"
+      // onClick={() => handleAddToFavorites()}
+      onClick={() => handleLikeClick(songInfo)}
+    >
       {/* checked={isLiked} */}
     <input type="checkbox" />
     <div className="checkmark">
