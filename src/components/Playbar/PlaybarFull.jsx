@@ -1,15 +1,41 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import AnimationLecteur from "./AnimationLecteur";
 import ChansonsSuivantes from "./ChansonsSuivantes";
 import SliderPlaybarFull from "./SliderPlaybarFull";
 import { motion, useAnimation } from "framer-motion";
 import TempsPlaybarfull from "./TempsPlaybarfull";
 import { SongInfoContext } from "../../context/SongInfoContext";
+import fetchJsonp from "fetch-jsonp";
+import { PlaybarContext } from "../../context/playbarContext";
 
 const PlaybarFull = ({ children }) => {
   const controls = useAnimation();
 
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
+  const [track, setTrack] = useState([]);
+  const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
+
+  const trackSongInfo = () => {
+    if(songInfo !== "") {
+    const url = `https://api.deezer.com/track/${songInfo.id}?&output=jsonp`;
+
+    fetchJsonp(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setTrack(data || []);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la recherche:", error);
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (songInfo.id !== "") {
+      trackSongInfo();
+    }
+  }, [songInfo]);
 
   useEffect(() => {
     controls.start({
@@ -28,6 +54,12 @@ const PlaybarFull = ({ children }) => {
     },
   };
 
+  const toggleBar = () => {
+    if(isFullbarOpen) {
+      setIsFullbarOpen(false)
+    }
+  };
+
   return (
     <motion.div
       className="playbarfull"
@@ -43,10 +75,15 @@ const PlaybarFull = ({ children }) => {
           animate="visible"
           variants={infoChansonVariants}
         >
-          {/* Redirection album */}
-          <motion.h2 className="titreChanson">{songInfo.title}</motion.h2>
-          {/* redirection découvert artiste */}
-          <motion.h2 className="artisteChanson">{songInfo.artist}</motion.h2>
+          {
+            track && track.album && track.artist && (
+              <>
+                <Link to={`/album/${track.album.id}`} onClick={toggleBar}><motion.h2 className="titreChanson">{songInfo.title}</motion.h2></Link>
+                <Link to={`/artist/${track.artist.id}`} onClick={toggleBar}><motion.h2 className="artisteChanson">{songInfo.artist}</motion.h2></Link>
+              </>
+            )
+          }
+
         </motion.section>
         <ChansonsSuivantes />
         <SliderPlaybarFull />

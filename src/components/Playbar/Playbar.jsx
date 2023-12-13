@@ -34,7 +34,9 @@ const Playbar = () => {
   const [selectorActif, setSelectorActif] = useState(false);
   // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
 
+
   const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
+
 
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
@@ -48,6 +50,7 @@ const Playbar = () => {
   }, [controls]);
 
   const trackSongInfo = () => {
+    if(songInfo !== "") {
     const url = `https://api.deezer.com/track/${songInfo.id}?&output=jsonp`;
 
     fetchJsonp(url)
@@ -58,6 +61,7 @@ const Playbar = () => {
       .catch((error) => {
         console.error("Erreur lors de la recherche:", error);
       });
+    }
   };
 
   const handlePlayPause = () => {
@@ -145,8 +149,15 @@ const Playbar = () => {
               />
             </div>
             <div className="playbar__inner__left__info">
-              <span>{songInfo.title}</span>
-              <span>{songInfo.artist}</span>
+              {
+                track && track.album && track.artist && (
+                <>
+                  <Link to={`/album/${track.album.id}`}><span>{songInfo.title}</span></Link>
+                  <Link to={`/artist/${track.artist.id}`}><span>{songInfo.artist}</span></Link>
+                </>
+                )
+              }
+
             </div>
           </section>
           <section className="playbar__inner__center">
