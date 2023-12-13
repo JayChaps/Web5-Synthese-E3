@@ -24,7 +24,7 @@ const Nav = () => {
     { name: "Vos playlists", url: "/playlist" },
   ];
 
-  const logoUrl = "../../src/assets/img/svg/logo.svg";
+  const logoUrl = "src/assets/img/svg/logo.svg";
   console.log(links);
 
   const handleSearch = (e) => {
