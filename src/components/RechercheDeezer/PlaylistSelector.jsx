@@ -37,7 +37,7 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
       fetchPlaylists();
       setShouldFetchPlaylists(false);
       console.log(
-        "useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true"
+        
       );
     }
     // }, [newPlaylistName, createNewPlaylist, estActif]);

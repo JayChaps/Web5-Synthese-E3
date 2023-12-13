@@ -7,7 +7,7 @@ import { PlaylistsContext } from "../../context/playlistsContext";
 
 
 
-const ItemPlaylist = ({ playlist, name, songs }) => {
+const ItemPlaylist = ({ playlist}) => {
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
   const [covers, setCovers] = useState([]);

@@ -6,20 +6,12 @@ import ItemPlaylistFirst from "./ItemPlaylistFirst";
 import { useContext, useEffect } from "react";
 import { PlaylistsContext } from "../../context/playlistsContext";
 
-const SliderPlaylists = () => {
+const SliderPlaylists = ({playlists}) => {
   const settings = {
     slidesToShow: 4,
     draggable: true,
   };
 
-  const { createNewPlaylist, deletePlaylist, 
-    addToPlaylist, removeSongFromPlaylist, 
-    newPlaylistName, setNewPlaylistName, 
-    selectedPlaylistId, setSelectedPlaylistId,
-    fetchPlaylists, fetchPlaylist, 
-    playlists, setPlaylists, 
-    playlist, setPlaylist,
-    selectedSong, setSelectedSong } = useContext(PlaylistsContext);
 
   // useEffect(() => {
   //   fetchPlaylists();
