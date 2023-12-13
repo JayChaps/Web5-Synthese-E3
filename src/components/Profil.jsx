@@ -33,16 +33,9 @@ const AnimatedItem = ({ children, delay = 0.3 }) => {
 const Profil = () => {
   const { user, googleSignIn, logOut } = useAuth();
   const [isThemeOpen, setIsThemeOpen] = useState(false);
-  const [defaultColors, setDefaultColors] = useState({
-    rose: '#fc5571',
-    mauve: '#7e35e3',
-    blanc: '#f8f8f8',
-    gris: '#9b9b9b',
-    grisFonce: '#222c32',
-    noir: '#050625'
-  });
+  const [defaultColors, setDefaultColors] = useState({});
   const [currentTheme, setCurrentTheme] = useState("theme1");
-  const [colors, setColors] = useState(defaultColors);
+  const userName = user?.displayName || "No name available";
   const [showPickers, setShowPickers] = useState({
     rose: false,
     mauve: false,
@@ -136,7 +129,6 @@ const Profil = () => {
   };
 
   const handleChangeComplete = (colorName, color) => {
-    setColors(prev => ({ ...prev, [colorName]: color.hex }));
     if (currentTheme === "theme2") {
       setColors((prevColors) => ({
         ...prevColors,
@@ -148,9 +140,7 @@ const Profil = () => {
       );
     }
   };
-
   const handleThemeSelection = async (themeName) => {
-    localStorage.setItem('selectedTheme', themeName);
     setCurrentTheme(themeName);
     setIsThemeOpen(false);
 
@@ -196,24 +186,20 @@ const Profil = () => {
     setIsThemeOpen(!isThemeOpen);
   };
 
-  const handleButtonClick = () => {
-    if (user === null) {
-      googleSignIn();
-    } else {
-      logOut();
-    }
-    handleThemeSelection("theme1");
-    localStorage.setItem('selectedTheme', "theme1")
-  };
-  
-
-
   return (
-    <motion.div className="profil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <motion.div
+      className="profil"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <header>
         <div className="boutonsprofil">
           <AnimatedItem>
-            <div onClick={handleThemeToggle} className={isThemeOpen ? "open selecttheme" : "selecttheme"}>
+            <div
+              className={isThemeOpen ? "open selecttheme" : "selecttheme"}
+              onClick={handleTheme}
+            >
               <span>{currentTheme}</span>
               <ul name="theme" id="theme" className="themes">
                 <li
@@ -231,17 +217,16 @@ const Profil = () => {
               </ul>
             </div>
           </AnimatedItem>
-          <AnimatedItem delay={0.1}>
 
+          <AnimatedItem delay={0.1}>
             <div className="button-container">
               <button
-                onClick={handleButtonClick}
-                className="button-acceuil-connexion">
+                onClick={user === null ? googleSignIn : logOut}
+                className="button-acceuil-connexion"
+              >
                 {user === null ? "Se connecter avec Google" : "Se déconnecter"}
               </button>
             </div>
-
-
           </AnimatedItem>
         </div>
       </header>
@@ -313,7 +298,7 @@ const Profil = () => {
             </div>
 
             <div className="lesplaylists__playlist__inner__chansons__chansons">
-              {/* <AnimatedItem>
+              <AnimatedItem>
                 <ItemChansons />
               </AnimatedItem>
               <AnimatedItem delay={0.1}>
@@ -339,7 +324,7 @@ const Profil = () => {
               </AnimatedItem>
               <AnimatedItem delay={0.8}>
                 <ItemChansons />
-              </AnimatedItem> */}
+              </AnimatedItem>
             </div>
           </div>
         </AnimatedItem>
