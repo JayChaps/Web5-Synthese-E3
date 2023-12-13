@@ -31,7 +31,36 @@
 
             display: grid;
             grid-template-columns:
-                2rem
+                1rem
+                0.2rem
+                5rem
+                0.5rem
+                1fr
+                0.5rem
+                1fr
+                0.5rem
+                1fr
+                0.5rem
+                72px
+                0.5rem;
+
+            // width: 100%;
+            max-width: 1024px;
+
+            padding: 0 1rem 0.5em;
+            margin-bottom: 1em;
+            
+            font-family: "Gotham";
+            font-size: 0.8rem;
+            color: var(--gris);
+            font-weight: 400;
+            user-select: none;
+            
+            @include breakpoint-min(640) {
+                padding: 0 3rem 0.5em;
+
+                grid-template-columns:
+                1rem
                 0.5rem
                 5rem
                 1rem
@@ -43,18 +72,7 @@
                 1rem
                 72px
                 0.5rem;
-
-            // width: 100%;
-            max-width: 1024px;
-
-            padding: 0 3rem 0.5em;
-            margin-bottom: 1em;
-
-            font-family: "Gotham";
-            font-size: 0.8rem;
-            color: var(--gris);
-            font-weight: 400;
-            user-select: none;
+            }
             &:after {
                 content: "";
 

@@ -1,3 +1,9 @@
+@mixin h1 {
+  font-family: "Gotham";
+  font-weight: 900;
+  font-size: 5.625rem;
+}
+
 @mixin h2 {
   font-family: "Gotham";
   font-weight: 700;
@@ -30,6 +36,10 @@
   text-align: center;
   position: relative;
   z-index: 2;
+
+  @include breakpoint-min(1200) {
+    @include h1;
+   }
 }
 
 .login-title2,
@@ -41,6 +51,10 @@
   -webkit-text-stroke: 2px white;
   position: relative;
   z-index: 1; 
+
+  @include breakpoint-min(1200) {
+    @include h1;
+   }
 }
 
 
@@ -51,6 +65,10 @@
   transform: translateX(-50%);
   margin-top: -5px;
   z-index: 0;
+
+  @include breakpoint-min(1200) {
+    display: none;
+   }
 }
 
 .login {
@@ -80,6 +98,7 @@
   overflow: hidden;
   position: relative;
   z-index: 2;
+
 }
 
 .login-button {
@@ -95,4 +114,8 @@
   margin-top: 100px;
   z-index: 2;
   border: 1px white solid;
+
+  @include breakpoint-min(1200) {
+    margin: 100px auto;
+   }
 }

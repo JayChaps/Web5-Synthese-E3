@@ -1,22 +1,55 @@
 import React, { useEffect, useState } from "react";
+import { useAudio, useAudioProgress } from "../../context/audiotim";
 
 const SliderPlaybarFul = () => {
-  const [value, setValue] = useState(0);
+  const {
+    play,
+    pause,
+    isPaused,
+    changeSource,
+    isReady,
+    stop,
+    togglePause,
+    duration,
+    volume,
+    changeVolume,
+  } = useAudio();
+  const { progress, changeProgress } = useAudioProgress();
+  const [isDragging, setIsDragging] = useState(false);
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    handleProgressChange(e);
+  };
+  const handleMouseUp = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    e.preventDefault();
+    if (isDragging) {
+      handleProgressChange(e);
+    }
+  };
+  const handleProgressChange = (e) => {
+    const progressBar = e.currentTarget;
+
+    changeProgress(Math.min(Math.max(progressBar.value, 0), 1));
+  };
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
-
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const mathValue = value <= 50 ? 50 - value : value - 50;
-
+  const mathValue =
+    progress * 100 <= 50 ? 50 - progress * 100 : progress * 100 - 50;
   const width = windowDimensions.width < 800 ? windowDimensions.width : 800;
   const heightSlider = 40; // Meme valeur que dans le css(height: 20px)
   const widthSliderknob = 30;
@@ -24,15 +57,13 @@ const SliderPlaybarFul = () => {
   const cos = mathValue / 100;
 
   const opposite = Math.sin(Math.acos(cos)) * radius * 2;
-  const smoothAddition = (value, limit) => {
-    const smoothFactor = Math.abs(value - 50) / 100;
-    return smoothFactor * limit;
-  };
+  // const smoothAddition = (value, limit) => {
+  //   const smoothFactor = Math.abs(value - 50) / 100;
+  //   return smoothFactor * limit;
+  // };
 
-  console.log(smoothAddition(value, 50));
-  // degré fonctionne pas avec les cosinus
   const degree =
-    value <= 50
+    progress * 100 <= 50
       ? Math.acos(cos) * (180 / Math.PI)
       : 180 - Math.acos(cos) * (180 / Math.PI);
 
@@ -46,11 +77,11 @@ const SliderPlaybarFul = () => {
     transform: `translateY(calc(${
       -opposite * 0.85 +
       (width + heightSlider) * 0.85 -
-      heightSlider/2 -
+      heightSlider / 2 -
       widthSliderknob / 2
     }px - 50%
       )) translateX(calc(${
-        (value / 100) * (width * 0.85 - widthSliderknob) -
+        ((progress * 100) / 100) * (width * 0.85 - widthSliderknob) -
         radius * 0.85 +
         widthSliderknob / 2
       }px))`,
@@ -60,7 +91,7 @@ const SliderPlaybarFul = () => {
       -opposite * 0.85 +
       (width + heightSlider) * 0.85 -
       heightSlider +
-      widthSliderknob /4
+      widthSliderknob / 4
     }px - 50%)) translateX(-50%)`,
   };
 
@@ -81,9 +112,13 @@ const SliderPlaybarFul = () => {
           type="range"
           min="0"
           max="100"
-          step="0.25"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          step="0.1"
+          value={progress}
+          onClick={handleProgressChange}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseUp}
+          onMouseUp={handleMouseUp}
         />
 
         <div className="radial-slider__tail" style={tailStyle}>

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
 import Playbar from "./Playbar/Playbar";
 import { SongInfoProvider } from "../context/SongInfoContext";
-import Footer from "./footer/footer";
+import Footer from "./Footer/Footer";
 
 const LayoutAuth = () => {
   return (

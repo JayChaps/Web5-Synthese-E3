@@ -8,6 +8,11 @@
         width: 100%;
         height: 100%;
 
+        & .outer{
+            top: 2rem;
+            right: 2rem;
+        }
+
 
         & .temps{
             position: absolute;
@@ -71,8 +76,10 @@
             & .titreChanson {
                 @include h2;
 
-                padding: 0;
+                padding: 0 4rem 0 0;
                 margin: 0;
+
+                line-height: 1em;
 
                 color: var(--mauve);
             }

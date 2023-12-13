@@ -7,7 +7,13 @@ import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
 import { CgAdd } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
-import { IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh, IoVolumeMute } from "react-icons/io5";
+import {
+  IoVolumeOff,
+  IoVolumeLow,
+  IoVolumeMedium,
+  IoVolumeHigh,
+  IoVolumeMute,
+} from "react-icons/io5";
 import { motion, useAnimation } from "framer-motion";
 
 import { useAudio, useAudioProgress } from "../../context/audiotim";
@@ -17,8 +23,7 @@ import PlaybarFull from "./PlaybarFull";
 import { PlaylistsContext } from "../../context/playlistsContext";
 import { PlaybarContext } from "../../context/playbarContext";
 import Coeur from "../Coeur/Coeur";
-
-
+import TeteDeLecturePlaybar from "./TeteDeLecturePlaybar";
 
 const Playbar = () => {
   const {
@@ -39,66 +44,26 @@ const Playbar = () => {
   
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
-  const [isDragging, setIsDragging] = useState(false);
-  
-  const { progress, changeProgress } = useAudioProgress();
+
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
   const controls = useAnimation();
-
+  console.log(songInfo);
   useEffect(() => {
-    controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
-  }, []);
+    controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
+  }, [controls]);
 
   const handlePlayPause = () => {
     togglePause();
     console.log(songInfo);
   };
 
-
-
-  const handleMouseDown = (e) => {
-    e.preventDefault(); // Empêcher le comportement de sélection du texte ou autre
-    setIsDragging(true);
-    handleProgressChange(e);
-  };
-
-  const handleMouseUp = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    e.preventDefault();
-    if (isDragging) {
-      handleProgressChange(e);
-    }
-  };
-  const handleProgressChange = (e) => {
-    const progressBar = e.currentTarget;
-    const progressBarRect = progressBar.getBoundingClientRect();
-    const newProgress = (e.pageX - progressBarRect.left) / progressBarRect.width;
-    changeProgress(Math.min(Math.max(newProgress, 0), 1));
-  };
-
-
   const { addToFavorites } = useFavorites();
 
-  // Fonction pour ajouter la chanson aux favoris
   const handleAddToFavorites = () => {
     addToFavorites(songInfo);
-
-    // addToFavorites({
-    //   id: songInfo.id,
-    //   title: songInfo.title,
-    //   artist: songInfo.artist,
-    //   coverUrl: songInfo.coverUrl,
-    // });
-    console.log("Song added to favorites : " + songInfo.title);
+    console.log("Song added to favorites: " + songInfo.title);
   };
-
-
-
 
   const handleClick = (e) => {
     if (e.target.classList.contains("playbar__inner")) {
@@ -129,22 +94,17 @@ const Playbar = () => {
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
-
-  
+  console.log(songInfo);
   return (
     <motion.aside
       className="playbar"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: "100%" }}
       animate={controls}
       onClick={handleClick}
     >
       {isFullbarOpen && (
         <>
-          <PlaybarFull
-            songInfo={songInfo}
-            progress={progress}
-            duration={duration}
-          >
+          <PlaybarFull>
             <div className="outer" onClick={() => setIsFullbarOpen(false)}>
               <div className="inner">
                 <label>Retour</label>
@@ -152,12 +112,12 @@ const Playbar = () => {
             </div>
           </PlaybarFull>
           <div className="cover">
-            <img src={urlImg} alt="" />
+            <img src={songInfo.coverUrl} alt="" />
           </div>
         </>
       )}
 
-<div className="playbar__inner" onClick={handleClick}>
+      <div className="playbar__inner" onClick={handleClick}>
         <section className="playbar__inner__left">
           <div className="iconeShuffleLoop">
             <BsShuffle size={"2rem"} color="var(--noir)" />
@@ -200,7 +160,6 @@ const Playbar = () => {
           <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
         </section>
         <section className="playbar__inner__right">
-          {/* <BiHeart size={"3.5rem"} color="var(--rose)" onClick={handleAddToFavorites} /> */}
           <Coeur />
           <CgAdd size={"3.5rem"} color="var(--blanc)" />
 
@@ -241,8 +200,7 @@ const Playbar = () => {
             <div
               className="progress"
               style={{
-                width: `
-                calc(${volume * 100}% + ${15 - volume * 15}px)`,
+                width: `calc(${volume * 100}% + ${15 - volume * 15}px)`,
               }}
             ></div>
             <input
@@ -256,30 +214,8 @@ const Playbar = () => {
             />
           </div>
         </section>
-        <section className="playbar__inner__center__progress"
-        >
-          <span>
-            0:{(progress * duration).toFixed(0) < 10 ? "0" : ""}
-            {(progress * duration).toFixed(0)}
-          </span>{" "}
-          <div
-            className="playbar__inner__center__progress__bar"
-            onClick={handleProgressChange}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseUp}
-            onMouseUp={handleMouseUp}
-            style={{ width: `${(duration / duration) * 100}%` }}
-          >
-            <div
-              className="playbar__inner__center__progress__bar__inner"
-              style={{ width: `${progress * 100}%` }}
-            >
-              <div className="draggable"></div>
-            </div>
-          </div>
-          <span>0:{duration < 0 ? "00" : duration.toFixed(0) }</span>
-        </section>
+
+        <TeteDeLecturePlaybar />
       </div>
     </motion.aside>
   );

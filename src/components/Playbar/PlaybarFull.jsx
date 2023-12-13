@@ -1,42 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AnimationLecteur from "./AnimationLecteur";
 import ChansonsSuivantes from "./ChansonsSuivantes";
 import SliderPlaybarFull from "./SliderPlaybarFull";
 import { motion, useAnimation } from "framer-motion";
+import TempsPlaybarfull from "./TempsPlaybarfull";
+import { SongInfoContext } from "../../context/SongInfoContext";
 
 const PlaybarFull = ({ children }) => {
   const controls = useAnimation();
+
+  const { songInfo, updateSongInfo } = useContext(SongInfoContext);
 
   useEffect(() => {
     controls.start({
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeInOut" },
     });
   }, [controls]);
+
+  const infoChansonVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeInOut" },
+    },
+  };
 
   return (
     <motion.div
       className="playbarfull"
-      initial={{ opacity: 0, y: 50, scale: 0.8 }}
+      style={{ overflow: "hidden" }}
+      initial={{ opacity: 0, y: "100%" }}
       animate={controls}
     >
       <div className="playbarfull__inner">
         {children}
-        <section className="infoChanson">
+        <motion.section
+          className="infoChanson"
+          initial="hidden"
+          animate="visible"
+          variants={infoChansonVariants}
+        >
           {/* Redirection album */}
-          <h2 className="titreChanson">Titre</h2>
+          <motion.h2 className="titreChanson">{songInfo.title}</motion.h2>
           {/* redirection découvert artiste */}
-          <h2 className="artisteChanson">Artiste</h2>
-        </section>
+          <motion.h2 className="artisteChanson">{songInfo.artist}</motion.h2>
+        </motion.section>
         <ChansonsSuivantes />
         <SliderPlaybarFull />
         <AnimationLecteur />
-        <div className="temps">
-          <span>0:00</span>
-          <span>0:30</span>
-        </div>
+        <TempsPlaybarfull />
       </div>
     </motion.div>
   );

@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-scroll";
 
 const Footer = ({ classe }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef(null);
+
+  const handleScroll = () => {
+    const footerTop = footerRef.current.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    setIsVisible(footerTop < windowHeight);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const urlLogo = "/src/assets/img/svg/logo.svg";
+
   return (
-    <footer className={classe + " accueil"}>
+    <footer className={`${classe} ${isVisible ? "visible" : ""} accueil`} ref={footerRef}>
       <div className="footerinner">
-        <div className="logo">
+      <div className="logo">
           <img src={urlLogo} alt="" />
         </div>
         <ul className="nav">
           <li className="home">
-            <Link to="home" spy={true} smooth={true} duration={500}>
-              Accueil
-            </Link>
+            <Link to="/home">Accueil</Link>
           </li>
 
           <li className="playlists">
-            <Link to="playlist">Playlist</Link>
+            <Link to="/playlist">Playlist</Link>
           </li>
 
           <li className="profil">
@@ -25,7 +41,7 @@ const Footer = ({ classe }) => {
           </li>
 
           <li className="search">
-            <Link to="search">Recherche</Link>
+            <Link to="/search">Recherche</Link>
           </li>
         </ul>
 

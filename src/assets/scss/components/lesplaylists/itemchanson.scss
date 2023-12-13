@@ -7,14 +7,18 @@
     width: 100%;
     max-width: 1024px;
 
-    padding: 0 3rem;
+    padding: 0 1rem;
+
+    @include breakpoint-min(640) {
+        padding: 0 3rem 0.5em;
+    }
 
     & > div:nth-child(odd) article > div:nth-child(2) {
         background-color: #ebebeb;
     }
     & article {
         display: grid;
-        grid-template-columns: 2rem auto;
+        grid-template-columns: 1rem auto;
         align-items: center;
 
         font-family: "Gotham";
@@ -44,6 +48,27 @@
         & > .info {
             display: grid;
             grid-template-columns:
+                0.2rem
+                5rem
+                0.5rem
+                1fr
+                0.5rem
+                1fr
+                0.5rem
+                1fr
+                0.5rem
+                72px
+                0.5rem;
+
+            grid-auto-rows: auto;
+
+            padding: 0.4rem 0;
+
+            border-radius: 1.4rem;
+            
+
+            @include breakpoint-min(640){
+                grid-template-columns:
                 0.5rem
                 5rem
                 1rem
@@ -55,13 +80,7 @@
                 1rem
                 72px
                 0.5rem;
-
-            grid-auto-rows: auto;
-
-            padding: 0.4rem 0;
-
-            border-radius: 1.4rem;
-
+            }
             & > * {
                 align-self: center;
             }
@@ -164,15 +183,13 @@ section.recommande {
     margin-inline: 3rem;
 
 
-    & > div{
-            
-    }
-
-    @include breakpoint-min(1024) {
+    @include breakpoint-min(768) {
         display: grid;
 
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: auto;
+
+
 
         & > div:first-child {
             grid-area: 1/1/5/2 !important;
@@ -268,14 +285,30 @@ section.recommande {
             grid-area: 4/2/5/3;
         }
 
-        & > :nth-child(odd) article{
-            background-color: #ebebeb;
-        }
+    }
+    & > :nth-child(odd) article{
+        background-color: #ebebeb;
     }
 
     & .recommande {
         display: grid;
         grid-template-columns:
+        0.2rem
+        5rem
+        0.5rem
+        1fr
+        0.5rem
+        1fr
+        0.5rem
+        1fr
+        0.5rem
+        72px
+        0.5rem;
+
+        padding: 0.4rem 0;
+
+        @include breakpoint-min(640){
+            grid-template-columns:
             0.5rem
             5rem
             1rem
@@ -287,8 +320,7 @@ section.recommande {
             1rem
             72px
             0.5rem;
-
-        padding: 0.4rem 0;
+        }
 
         &:nth-child(even) {
             background-color: #ebebeb;
