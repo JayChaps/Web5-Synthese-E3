@@ -33,12 +33,12 @@ const Playbar = () => {
 
   const [selectorActif, setSelectorActif] = useState(false);
   // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
-  
+
   const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
-  
+
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
-  const [track , setTrack] = useState([]);
+  const [track, setTrack] = useState([]);
 
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
@@ -101,7 +101,7 @@ const Playbar = () => {
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
   useEffect(() => {
-    if(songInfo.id !=="") {
+    if (songInfo.id !== "") {
       trackSongInfo();
     }
   }, [songInfo]);
@@ -124,7 +124,7 @@ const Playbar = () => {
               </div>
             </PlaybarFull>
             <div className="cover">
-              <img src={track.album.cover_xl} alt="" />
+              <img src={track.album ? track.album.cover_xl : urlImg} alt="" />
             </div>
           </>
         )}
