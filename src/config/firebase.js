@@ -19,14 +19,14 @@ import { getFirestore } from 'firebase/firestore';
 // };
 
     // Le mien :
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCO3LanYtBbIbp64UKSEETMqhHagJOP75w",
-//     authDomain: "web5-synthese-temp.firebaseapp.com",
-//     projectId: "web5-synthese-temp",
-//     storageBucket: "web5-synthese-temp.appspot.com",
-//     messagingSenderId: "413401273592",
-//     appId: "1:413401273592:web:17a7a8d6703dff495d970d"
-// };
+const firebaseConfig = {
+    apiKey: "AIzaSyCO3LanYtBbIbp64UKSEETMqhHagJOP75w",
+    authDomain: "web5-synthese-temp.firebaseapp.com",
+    projectId: "web5-synthese-temp",
+    storageBucket: "web5-synthese-temp.appspot.com",
+    messagingSenderId: "413401273592",
+    appId: "1:413401273592:web:17a7a8d6703dff495d970d"
+};
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,14 +34,14 @@ import { getFirestore } from 'firebase/firestore';
 
 //TEst
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCE4VOxdEkz0A2xjA6OZi9t8M9og6i7tfU",
-  authDomain: "test-web-5-b157d.firebaseapp.com",
-  projectId: "test-web-5-b157d",
-  storageBucket: "test-web-5-b157d.appspot.com",
-  messagingSenderId: "790446844844",
-  appId: "1:790446844844:web:ac9190cce27e4318a1a809"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCE4VOxdEkz0A2xjA6OZi9t8M9og6i7tfU",
+//   authDomain: "test-web-5-b157d.firebaseapp.com",
+//   projectId: "test-web-5-b157d",
+//   storageBucket: "test-web-5-b157d.appspot.com",
+//   messagingSenderId: "790446844844",
+//   appId: "1:790446844844:web:ac9190cce27e4318a1a809"
+// };
 
 // Initialize Firebase
 
