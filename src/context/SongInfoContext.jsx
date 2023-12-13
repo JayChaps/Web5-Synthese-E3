@@ -13,6 +13,7 @@ const SongInfoProvider = ({ children }) => {
         title: '',
         artist: '',
         coverUrl: '',
+        album: [],
     });
     const { changeSource } = useAudio();
 
@@ -29,7 +30,9 @@ const SongInfoProvider = ({ children }) => {
             id: song.id,
             title: song.title,
             artist: song.artist.name,
-            coverUrl: song.album.cover,
+            coverUrl: song.album.cover_big,
+            album: song.album,
+            artistId: song.artist,
         });
     };
 

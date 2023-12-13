@@ -5,11 +5,16 @@ import SliderPlaybarFull from "./SliderPlaybarFull";
 import { motion, useAnimation } from "framer-motion";
 import TempsPlaybarfull from "./TempsPlaybarfull";
 import { SongInfoContext } from "../../context/SongInfoContext";
+import { Link } from "react-router-dom";
 
 const PlaybarFull = ({ children }) => {
   const controls = useAnimation();
 
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
+  const { id, title, artist, coverUrl, albumId, artistId } = songInfo;
+  const theAlbumId = albumId.id;
+  const theArtistId = artistId.id;
+
 
   useEffect(() => {
     controls.start({
@@ -44,9 +49,15 @@ const PlaybarFull = ({ children }) => {
           variants={infoChansonVariants}
         >
           {/* Redirection album */}
-          <motion.h2 className="titreChanson">{songInfo.title}</motion.h2>
+          {/* <Link to={`/album/${theAlbumId}`}> */}
+            <motion.h2 className="titreChanson">{title}</motion.h2>
+          {/* </Link> */}
+
           {/* redirection découvert artiste */}
-          <motion.h2 className="artisteChanson">{songInfo.artist}</motion.h2>
+
+          {/* <Link to={`/artist/${theArtistId}`}> */}
+          <motion.h2 className="artisteChanson">{artist}</motion.h2>
+          {/* </Link> */}
         </motion.section>
         <ChansonsSuivantes />
         <SliderPlaybarFull />
