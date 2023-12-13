@@ -59,6 +59,7 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
       createNewPlaylistAndAddSong(newPlaylistName, theSong);
       setChampNomActif(false);
       setShouldFetchPlaylists(true);
+      setActif(false);
     }
   };
 
