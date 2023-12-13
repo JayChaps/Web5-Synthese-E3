@@ -5,8 +5,6 @@ import Footer from "./footer/Footer";
 const Layout = () => {
   return (
     <div className="interfacedeux interface">
-      <Nav />
-
       <main>
         <Outlet />
       </main>
