@@ -23,6 +23,8 @@ import DecouverteArtiste from "./DecouverteArtiste";
 import DecouverteAlbum from "./DecouverteAlbum";
 import { FavoritesProvider } from "../context/FavoritesContext";
 import { PlaybarProvider } from "../context/playbarContext";
+import { SoloPlaylistProvider } from "../context/soloPlaylistContext";
+import { SongInfoProvider } from "../context/SongInfoContext";
 
 const Routes = () => {
   const { isConnected, loading } = useAuth();
@@ -106,9 +108,13 @@ const App = () => {
       <FavoritesProvider>
         <AudioProvider>
           <PlaylistsProvider>
-            <PlaybarProvider>
-              <Routes />
-            </PlaybarProvider>
+            <SongInfoProvider>
+              <SoloPlaylistProvider>
+                <PlaybarProvider>
+                  <Routes />
+                </PlaybarProvider>
+              </SoloPlaylistProvider>
+            </SongInfoProvider>
           </PlaylistsProvider>
         </AudioProvider>
       </FavoritesProvider>

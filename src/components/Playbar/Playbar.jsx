@@ -1,3 +1,4 @@
+// Playbar.jsx :
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaPlayCircle } from "react-icons/fa";
@@ -26,6 +27,7 @@ import { PlaybarContext } from "../../context/playbarContext";
 import Coeur from "../Coeur/Coeur";
 import TeteDeLecturePlaybar from "./TeteDeLecturePlaybar";
 import PlaylistSelector from "../RechercheDeezer/PlaylistSelector";
+import { SoloPlaylistContext } from "../../context/soloPlaylistContext";
 
 const Playbar = () => {
   const { isPaused, changeSource, isReady, togglePause, volume, changeVolume } =
@@ -40,9 +42,14 @@ const Playbar = () => {
   const [lastVolume, setLastVolume] = useState(0.5);
   const [track , setTrack] = useState([]);
 
-  const { songInfo, updateSongInfo } = useContext(SongInfoContext);
+  const { songInfo, updateSongInfo, handlePlaySong } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
   const controls = useAnimation();
+
+  const { currentSong, previousSong, nextSong,
+    handleNextSong, handlePreviousSong } = useContext(SoloPlaylistContext);
+
+
   useEffect(() => {
     controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
   }, [controls]);
@@ -105,6 +112,38 @@ const Playbar = () => {
       trackSongInfo();
     }
   }, [songInfo]);
+
+  useEffect(() => {
+    if (currentSong && currentSong.id) {
+      handlePlaySong(currentSong);
+    }
+  }, [currentSong, handlePlaySong]);
+
+
+
+  useEffect(() => {
+    console.log("OMG CURRENT SONG CHANGED", currentSong);
+  }, [currentSong]);
+
+  useEffect(() => {
+    console.log("OMG SONG INFO CHANGED", songInfo);
+  }, [songInfo]);
+
+  useEffect(() => {
+    console.log("OMG NEXT SONG CHANGED", nextSong);
+  }, [nextSong]);
+
+  useEffect(() => {
+    console.log("OMG PREVIOUS SONG CHANGED", previousSong);
+  }, [previousSong]);
+
+  useEffect(() => {
+    console.log("OMG PLAY PAUSE CHANGED", isPaused);
+  }, [isPaused]);
+
+
+
+
   return (
     <>
       {selectorActif && <PlaylistSelector setActif={setSelectorActif} />}
@@ -150,7 +189,11 @@ const Playbar = () => {
             </div>
           </section>
           <section className="playbar__inner__center">
-            <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
+            <BiSolidSkipNextCircle 
+              size={"3rem"} 
+              color="var(--blanc)" 
+              onClick={handlePreviousSong}
+            />
 
             {isPaused ? (
               <>
@@ -169,7 +212,11 @@ const Playbar = () => {
                 />
               </>
             )}
-            <BiSolidSkipNextCircle size={"3rem"} color="var(--blanc)" />
+            <BiSolidSkipNextCircle 
+              size={"3rem"} 
+              color="var(--blanc)" 
+              onClick={handleNextSong}
+            />
           </section>
           <section className="playbar__inner__right">
             <Coeur />

@@ -87,10 +87,10 @@ const LesPlaylist = () => {
     // }, [newPlaylistName, createNewPlaylist, estActif]);
   }, [setNewPlaylistName]);
 
-  const JouerLaChanson = (song) => {
-    setSelectedSong(song);
-    handlePlaySong(song);
-  };
+  // const JouerLaChanson = (song) => {
+  //   setSelectedSong(song);
+  //   handlePlaySong(song);
+  // };
 
   const handleDeleteSong = (playlistId, song) => {
     removeSongFromPlaylist(playlistId, song);
@@ -214,7 +214,7 @@ const LesPlaylist = () => {
                     index={index}
                     handleDeleteSong={handleDeleteSong}
                     playlistId={clickedPlaylist.id}
-                    JouerLaChanson={JouerLaChanson}
+                    // JouerLaChanson={JouerLaChanson}
                   />
                 </AnimatedItem>
               ))
