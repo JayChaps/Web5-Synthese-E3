@@ -12,8 +12,8 @@ const DecouverteArtiste = () => {
   const [selectorActif, setSelectorActif] = useState(false);
   const [popularSongs, setPopularSongs] = useState([]);
   const [relatedArtist, setRelatedArtist] = useState([]);
+  const [artist, setArtist] = useState([]);
   const [albums, setAlbums] = useState([]);
-  const nom = "";
   const { idArtist } = useParams();
   const { handlePlaySong } = useContext(SongInfoContext);
   const controls = useAnimation();
@@ -50,17 +50,24 @@ const DecouverteArtiste = () => {
   const topSongs = () => {
     setPopularSongs([]);
     const url = `https://api.deezer.com/artist/${idArtist}/top?&output=jsonp`;
-
+  
     fetchJsonp(url)
       .then((resp) => resp.json())
       .then((data) => {
         setPopularSongs(data.data || []);
+        console.log(data.data);
+        setArtist([]);
+        fetchJsonp(`https://api.deezer.com/artist/${data.data[0].artist.id}?&output=jsonp`)
+          .then((response) => response.json())
+          .then((artistData) => {
+            setArtist(artistData);
+            console.log(artistData); // Moved inside the correct scope
+          });
       })
       .catch((error) => {
         console.error("Erreur lors de la recherche:", error);
       });
   };
-
   useEffect(() => {
     topSongs();
     topRelatedArtist();
@@ -100,10 +107,13 @@ const DecouverteArtiste = () => {
       <h1 className="titre-decouverte2" initial={{ opacity: 1, y: 50 }} animate={controls}>
         Populaire
       </h1>
+      <div>
+        <img src={artist.picture_xl} alt="" className="img-decouverte" />
+        <h1>{artist.name}</h1>
+      </div>
 
       <div className="containertest">
         {popularSongs.map((data, id) => {
-          console.log(data);
           return (
             <motion.div
               className="topSongs"
@@ -123,7 +133,7 @@ const DecouverteArtiste = () => {
       <h1 className="titre-discographie">Discographie</h1>
       <motion.div className="albums" initial={{ opacity: 0, y: 50 }} animate={controlsAlbums}>
         {albums.map((data, id) => {
-          return(
+          return (
             <Link to={`/album/${data.id}`} key={id} className="album-link">
               <div className="album">
                 <img src={data.cover_xl} alt="" className="img-discographie" />
@@ -132,7 +142,8 @@ const DecouverteArtiste = () => {
                 </div>
               </div>
             </Link>
-          )})}
+          )
+        })}
       </motion.div>
 
       <motion.h1 className="titre-fans" initial={{ opacity: 0, y: 50 }} animate={controls}>
@@ -141,8 +152,7 @@ const DecouverteArtiste = () => {
 
       <motion.div className="relatedArtist" initial={{ opacity: 0, y: 50 }} animate={controls}>
         {relatedArtist.map((data, id) => {
-          console.log(data)
-          return(
+          return (
             <Link to={`/artist/${data.id}`} key={id}>
               <motion.div
                 className="container-decouvertes"
@@ -159,7 +169,8 @@ const DecouverteArtiste = () => {
                 </div>
               </motion.div>
             </Link>
-          )})}
+          )
+        })}
       </motion.div>
     </div>
   );
