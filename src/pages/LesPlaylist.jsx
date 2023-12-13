@@ -1,3 +1,4 @@
+// LesPlaylist.jsx :
 import React, { useContext, useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa6";
 import { GrSubtractCircle } from "react-icons/gr";
@@ -219,8 +220,8 @@ const LesPlaylist = () => {
       </AnimatedItem>
     ))
   ) : (
-    
-    <p>Aucune chanson dans la playlist</p>
+  
+    <p>Pas de chansons dans la liste de lecture.</p>
   )}
 </motion.div>
         </motion.section>
