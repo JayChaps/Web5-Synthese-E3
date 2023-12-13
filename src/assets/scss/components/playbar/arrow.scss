@@ -6,6 +6,8 @@
     transform: translate(-50%, -50%);
 
     &:hover{
-        transform: translate(-50%, -50%) !important;  
+        transform: translate(-50%, -50%) scale(1.1) !important;  
+        color: var(--rose) !important;
+        fill: var(--rose) !important;
     }
 }
