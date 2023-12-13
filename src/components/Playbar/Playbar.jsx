@@ -7,6 +7,7 @@ import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
 import { CgAdd } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
+import fetchJsonp from "fetch-jsonp";
 import {
   IoVolumeOff,
   IoVolumeLow,
@@ -37,18 +38,30 @@ const Playbar = () => {
   
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
+  const [track , setTrack] = useState([]);
 
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
   const controls = useAnimation();
-  console.log(songInfo);
   useEffect(() => {
     controls.start({ opacity: 1, y: 0, transition: { duration: 1 } });
   }, [controls]);
 
+  const trackSongInfo = () => {
+    const url = `https://api.deezer.com/track/${songInfo.id}?&output=jsonp`;
+
+    fetchJsonp(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setTrack(data || []);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la recherche:", error);
+      });
+  };
+
   const handlePlayPause = () => {
     togglePause();
-    console.log(songInfo);
   };
 
   const { addToFavorites } = useFavorites();
@@ -87,7 +100,11 @@ const Playbar = () => {
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
-  console.log(songInfo);
+  useEffect(() => {
+    if(songInfo.id !=="") {
+      trackSongInfo();
+    }
+  }, [songInfo]);
   return (
     <>
       {selectorActif && <PlaylistSelector setActif={setSelectorActif} />}
@@ -107,7 +124,7 @@ const Playbar = () => {
               </div>
             </PlaybarFull>
             <div className="cover">
-              <img src={songInfo.coverUrl} alt="" />
+              <img src={track.album.cover_xl} alt="" />
             </div>
           </>
         )}
