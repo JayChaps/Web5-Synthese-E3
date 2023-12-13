@@ -159,8 +159,8 @@
     height: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0) 100%
+      var(--rose) 0%,
+      var(--mauve) 100%
     );
     border-radius: inherit; /* Use the same border radius as the container */
     pointer-events: none;
@@ -183,8 +183,8 @@
     &:before {
       background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.4) 0%,
-        rgba(0, 0, 0, 0) 100%
+        var(--rose) 0%,
+        var(--mauve) 100%
       );
     }
   }
