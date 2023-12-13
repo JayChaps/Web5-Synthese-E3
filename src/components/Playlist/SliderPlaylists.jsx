@@ -6,12 +6,11 @@ import ItemPlaylistFirst from "./ItemPlaylistFirst";
 import { useContext, useEffect } from "react";
 import { PlaylistsContext } from "../../context/playlistsContext";
 
-const SliderPlaylists = ({playlists}) => {
+const SliderPlaylists = ({ playlists }) => {
   const settings = {
     slidesToShow: 4,
     draggable: true,
   };
-
 
   // useEffect(() => {
   //   fetchPlaylists();
@@ -31,19 +30,18 @@ const SliderPlaylists = ({playlists}) => {
 
         {/* faire boucle ici */}
 
-        {
-          playlists &&
-        playlists.map((playlist) => {
-          return (
-            <ItemPlaylist 
-            key = {playlist.id}
-            playlist = {playlist}
-            name = {playlist.name}
-            songs = {playlist.songs}
-            />
-          )
-          // console.log("playlist dans SliderPlaylists: ", playlist);
-        })}
+        {playlists &&
+          playlists.map((playlist) => {
+            return (
+              <ItemPlaylist
+                key={playlist.id}
+                playlist={playlist}
+                name={playlist.name}
+                songs={playlist.songs}
+              />
+            );
+            // console.log("playlist dans SliderPlaylists: ", playlist);
+          })}
 
         {/* <ItemPlaylist />
         <ItemPlaylist />

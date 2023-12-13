@@ -83,11 +83,7 @@ const LesPlaylist = () => {
   // }, [fetchPlaylists]);
 
   useEffect(() => {
-    const data = async () => {
-      await fetchPlaylists();
-    };
-
-    data();
+    fetchPlaylists();
     // }, [newPlaylistName, createNewPlaylist, estActif]);
   }, []);
 
@@ -137,7 +133,7 @@ const LesPlaylist = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <SliderPlaylists playlists={playlists}/>
+      <SliderPlaylists playlists={playlists} />
 
       <header>
         <motion.section
