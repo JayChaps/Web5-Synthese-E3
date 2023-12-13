@@ -1,5 +1,5 @@
 // playlistsContext.jsx :
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { auth, db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc, getDoc, deleteDoc, updateDoc, arrayRemove } from "firebase/firestore";
 
@@ -12,6 +12,7 @@ const PlaylistsProvider = ({ children }) => {
     const [playlists, setPlaylists] = useState([]);
     const [newPlaylistName, setNewPlaylistName] = useState('');
     const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
+    const [selectedPlaylist, setSelectedPlaylist] = useState([]);
     const [selectedSong, setSelectedSong] = useState("");
 
     const [clickedPlaylist, setClickedPlaylist] = useState([]);
@@ -20,7 +21,7 @@ const PlaylistsProvider = ({ children }) => {
     // const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
 
     // Récupération des playlists
-    const fetchPlaylists = async () => {
+    const fetchPlaylists = useCallback (async () => {
 
         // Récupération du uuid 
         const userId = auth.currentUser.uid;
@@ -50,7 +51,7 @@ const PlaylistsProvider = ({ children }) => {
         // const querySnapshot = await getDocs(collection(db, "playlists"));
         // setPlaylists(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         console.log("fetchPlaylists() done");
-    };
+    }, []);
 
     // Récupération d'une playlist
     const fetchPlaylist = async (targetId) => {
@@ -79,6 +80,7 @@ const PlaylistsProvider = ({ children }) => {
             });
 
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
+            setSelectedPlaylist(docRef); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
         }
 
@@ -160,6 +162,7 @@ const PlaylistsProvider = ({ children }) => {
             });
 
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
+            setSelectedPlaylist(docRef); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
             console.log("Playlist created and song added!");
         }
@@ -193,6 +196,7 @@ const PlaylistsProvider = ({ children }) => {
                                             addToPlaylist, removeSongFromPlaylist, 
                                             newPlaylistName, setNewPlaylistName, 
                                             selectedPlaylistId, setSelectedPlaylistId,
+                                            selectedPlaylist, setSelectedPlaylist,
                                             fetchPlaylists, fetchPlaylist, 
                                             playlists, setPlaylists, 
                                             playlist, setPlaylist,
