@@ -45,34 +45,31 @@
   max-width: 1200px;
   margin: 0 auto;
 
-
-  @include breakpoint-min(900){
-
+  @include breakpoint-min(900) {
     &::before,
     &::after {
       content: "";
-    position: absolute;
-    height: 10px;
-    width: 25%;
-    background-color: var(--mauve);
-    top: 50%;
-    
-    transform: translateY(-50%);
-    z-index: 1000;
-    border-radius: 10px;
-    
+      position: absolute;
+      height: 10px;
+      width: 25%;
+      background-color: var(--mauve);
+      top: 50%;
+
+      transform: translateY(-50%);
+      z-index: 1000;
+      border-radius: 10px;
+    }
+
+    &::before {
+      left: 5%;
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      right: 5%;
+      transform: translateY(-50%);
+    }
   }
-  
-  &::before {
-    left: 5%;
-    transform: translateY(-50%);
-  }
-  
-  &::after {
-    right: 5%;
-    transform: translateY(-50%);
-  }
-}
 }
 
 .titre-decouverte2 {
@@ -84,8 +81,6 @@
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-color: var(--rose);
   -webkit-text-stroke-width: 1.25px;
-
-
 }
 
 .titre-decouverte3 {
@@ -110,7 +105,9 @@
   background-color: var(--mauve);
   border-radius: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  & svg{
+    cursor: pointer;
+  }
   .img-populaire {
     width: 100px;
     height: 100px;
@@ -308,6 +305,14 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+
+  & a {
+    cursor: pointer;
+    text-decoration: none;
+    &:hover h1{
+      color: var(--rose);
+    }
+  }
 }
 
 .decouverte-artist img {
@@ -352,15 +357,12 @@
   margin: 0 auto;
   @include breakpoint-min(1024) {
     padding: 20px;
-
   }
-
-  background: linear-gradient(
-    to bottom,
-    rgba(126, 53, 227, 1) 0%,
-    rgb(252, 85, 113) 100%
-  );
-
+  user-select: none;
+  background: linear-gradient(to bottom, rgba(126, 53, 227, 1) 0%, rgb(252, 85, 113) 100%);
+  & svg {
+    cursor: pointer;
+  }
   .titre-chanson-position {
     color: var(--blanc);
     padding-left: 15px;
@@ -383,8 +385,7 @@
       text-decoration: none;
 
       &:hover {
-
-        & h2{
+        & h2 {
           transition: all 0.1s ease-in-out;
           color: var(--blanc);
         }
@@ -421,7 +422,7 @@
   }
 }
 
-.titre-chanson-speciale{
+.titre-chanson-speciale {
   @include h5;
   color: white;
 
@@ -431,7 +432,6 @@
     @include h3;
   }
 }
-
 
 .artiste-name {
   color: var(--grisFonce);
