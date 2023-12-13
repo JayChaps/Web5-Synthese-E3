@@ -87,7 +87,9 @@ const ItemChansons = ({ song, handleDeleteSong, index }) => {
         </div>
 
         <div className="icones">
-          <Coeur />
+          <Coeur 
+            songToAdd={song}
+          />
           <CgRemove size={"2rem"} color="var(--noir)" 
             onClick={() => handleDeleteSong(clickedPlaylist.id, song)}
           />

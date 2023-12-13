@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { auth, db, incrementValue } from '../config/firebase';
-import { getDoc, setDoc, updateDoc, doc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { getDoc, setDoc, updateDoc, doc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore';
 
 const FavoritesContext = createContext();
 

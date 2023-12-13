@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SongInfoContext, useSongInfo } from "../../context/SongInfoContext";
 import { FavoritesContext } from "../../context/FavoritesContext";
 
-const Coeur = ({ isLiked = true, handleAddToFavorites }) => {
+const Coeur = ({ isLiked = true, handleAddToFavorites, songToAdd }) => {
 
 
   const { songInfo, updateSongInfo, handlePlaySong } = useContext(SongInfoContext);
@@ -23,7 +23,7 @@ const Coeur = ({ isLiked = true, handleAddToFavorites }) => {
   return (
     <label className="coeur"
       // onClick={() => handleAddToFavorites()}
-      onClick={() => handleLikeClick(songInfo)}
+      onClick={() => handleLikeClick(songToAdd)}
     >
       {/* checked={isLiked} */}
     <input type="checkbox" />

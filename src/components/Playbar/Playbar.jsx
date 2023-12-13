@@ -228,6 +228,7 @@ const Playbar = () => {
           <section className="playbar__inner__right">
             <Coeur 
               // handleAddToFavorites={handleAddToFavorites}
+              songToAdd = {track}
             />
             <CgAdd
               size={"3.5rem"}
