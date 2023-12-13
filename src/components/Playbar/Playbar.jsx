@@ -41,7 +41,6 @@ const Playbar = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
   const [track, setTrack] = useState([]);
-  const [track, setTrack] = useState([]);
 
   const { songInfo, updateSongInfo } = useContext(SongInfoContext);
   const { selectedSong, setSelectedSong } = useContext(PlaylistsContext);
