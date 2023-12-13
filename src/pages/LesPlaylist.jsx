@@ -1,4 +1,3 @@
-// LesPlaylist.jsx :
 import React, { useContext, useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa6";
 import { GrSubtractCircle } from "react-icons/gr";
@@ -203,56 +202,27 @@ const LesPlaylist = () => {
             <span className="chansons__infos__duree">Durée</span>
           </div>
           <motion.div
-            className="lesplaylists__playlist__inner__chansons__chansons"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            {playlist.songs.map((song, index) => {
-              return (
-                <AnimatedItem key={song.id}>
-                  <ItemChansons
-                    song={song}
-                    index={index}
-                    handleDeleteSong={handleDeleteSong}
-                    playlistId={clickedPlaylist.id}
-                    JouerLaChanson={JouerLaChanson}
-                  />
-                </AnimatedItem>
-              );
-            })}
-
-            {/* <AnimatedItem>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.1}>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.2}>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.3}>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.4}>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.5}>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.6}>
-                <ItemChansons />
-              </AnimatedItem>
-
-              <AnimatedItem delay={0.7}>
-                <ItemChansons />
-              </AnimatedItem> */}
-          </motion.div>
+  className="lesplaylists__playlist__inner__chansons__chansons"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+>
+  {playlist && playlist.songs ? (
+    playlist.songs.map((song, index) => (
+      <AnimatedItem key={song.id}>
+        <ItemChansons
+          song={song}
+          index={index}
+          handleDeleteSong={handleDeleteSong}
+          playlistId={clickedPlaylist.id}
+          JouerLaChanson={JouerLaChanson}
+        />
+      </AnimatedItem>
+    ))
+  ) : (
+    
+    <p>Aucune chanson dans la playlist</p>
+  )}
+</motion.div>
         </motion.section>
 
         <div className="separateur">
