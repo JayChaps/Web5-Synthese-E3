@@ -17,6 +17,7 @@ const DecouverteArtiste = () => {
   const { idArtist } = useParams();
   const { handlePlaySong } = useContext(SongInfoContext);
   const controls = useAnimation();
+  const controlsAlbums = useAnimation();
 
   const topRelatedArtist = () => {
     setRelatedArtist([]);
@@ -60,7 +61,6 @@ const DecouverteArtiste = () => {
       });
   };
 
-
   useEffect(() => {
     topSongs();
     topRelatedArtist();
@@ -71,6 +71,7 @@ const DecouverteArtiste = () => {
 
       if (scrollPosition > threshold) {
         controls.start({ opacity: 1, y: 0 });
+        controlsAlbums.start({ opacity: 1, y: 0 });
       }
     };
 
@@ -79,7 +80,7 @@ const DecouverteArtiste = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [idArtist, controls]);
+  }, [idArtist, controls, controlsAlbums]);
 
   const handlePlaylistSelector = (song) => {
     setSelectorActif(!selectorActif);
@@ -116,29 +117,22 @@ const DecouverteArtiste = () => {
               <h2 className="titre-populaire">{data.title}</h2>
               <FaPlayCircle size={"3rem"} color="var(--blanc)" className="play-icon-decouverte" />
             </motion.div>
-
-          )
-        }
-        )
-
-        }
+          );
+        })}
       </div>
-      <h1>Discographie</h1>
-      <div className="albums">
-        {
-          albums.map((data, id) => {
-            return (
-              <Link to={`/album/${data.id}`} key={id}>
-                <div className="album">
-                  <img src={data.cover} alt="" />
-                  <h2>{data.title}</h2>
-                </div>
-              </Link>
-            )
-          }
-          )
-        }
-      </div>
+      <h1 className="titre-discographie">Discographie</h1>
+      <motion.div className="albums" initial={{ opacity: 0, y: 50 }} animate={controlsAlbums}>
+        {albums.map((data, id) => (
+          <Link to={`/album/${data.id}`} key={id} className="album-link">
+            <div className="album">
+              <img src={data.cover} alt="" className="img-discographie" />
+              <div className="album-overlay">
+                <h2 className="sous-titre-discographie">{data.title}</h2>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </motion.div>
 
       <motion.h1 className="titre-fans" initial={{ opacity: 0, y: 50 }} animate={controls}>
         Les fans aiment aussi:

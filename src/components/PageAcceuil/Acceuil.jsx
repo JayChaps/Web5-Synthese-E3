@@ -1,4 +1,3 @@
-// Acceuil.jsx
 import React, { useEffect, useState } from "react";
 import TitreAcceuil from "../PageAcceuil/titreacceuil";
 import CoucheInfo1 from "../PageAcceuil/couche-acceuil-info";

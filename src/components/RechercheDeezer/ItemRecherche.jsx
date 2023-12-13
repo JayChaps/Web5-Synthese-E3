@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { CgAdd } from "react-icons/cg";
 import { FaPlayCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -31,6 +32,8 @@ const ItemRecherche = ({ result }) => {
   const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
   const { handlePlaySong } = useContext(SongInfoContext);
   const [selectorActif, setSelectorActif] = useState(false);
+  const controls = useAnimation();
+
   const handlePlaylistSelector = (song) => {
     setShouldFetchPlaylist(true);
     setSelectorActif(!selectorActif);
@@ -45,10 +48,23 @@ const ItemRecherche = ({ result }) => {
       setShouldFetchPlaylists(false);
       console.log("useEffect fetchPlaylist");
     }
-    // }, [newPlaylistName, playlists, createNewPlaylist]);
   }, [shouldFetchPlaylists]);
+
+  const startAnimation = async () => {
+    await controls.start({ opacity: 1, y: 0, scale: 1 });
+  };
+
+  useEffect(() => {
+    startAnimation();
+  }, []);
+
   return (
-    <li>
+    <motion.li
+      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+      animate={controls}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05, boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)" }}
+    >
       <h4 className="titrestroke">{result.title}</h4>
       <div className="infos">
         <h2>{result.title}</h2>
@@ -57,10 +73,11 @@ const ItemRecherche = ({ result }) => {
         </Link>
       </div>
       <div className="imgrecherche">
-        <img
+        <motion.img
           onClick={() => handlePlaySong(result)}
           src={result.album.cover}
           alt={`Couverture de l'album ${result.album.title}`}
+          whileHover={{ scale: 1.05 }}
         />
       </div>
       <div className="boutons">
@@ -82,7 +99,7 @@ const ItemRecherche = ({ result }) => {
           theSong={result}
         />
       )}
-    </li>
+    </motion.li>
   );
 };
 

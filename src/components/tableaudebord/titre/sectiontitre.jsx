@@ -37,7 +37,7 @@ const SectionTitre = () => {
         <motion.h1 className="titresectiontitre1" variants={titleVariants2}>Titre album</motion.h1>
         <motion.h1 className="titresectiontitre2" variants={titleVariants}>Titre album</motion.h1>
         <motion.h1 className="titresectiontitre3" variants={titleVariants2}>Titre album</motion.h1>
-        <motion.div className="small-image" variants={imageVariants}><img src="src\assets\jpg\placeholder.jpg" alt="" /></motion.div>
+        <motion.div className="small-image" variants={imageVariants}><img src="src\assets\img\jpg\placeholder.jpg" alt="cover" /></motion.div>
         <PropositionChansons />
         <PropositionChansons />
         <PropositionChansons />
