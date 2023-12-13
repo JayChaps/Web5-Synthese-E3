@@ -35,10 +35,9 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
 
   useEffect(() => {
     if (shouldFetchPlaylists) {
-      const data = async () => {
+     
       fetchPlaylists();
-      };
-      data();
+    
       setShouldFetchPlaylists(false);
       console.log(
         "useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true"

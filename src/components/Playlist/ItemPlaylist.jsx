@@ -75,7 +75,7 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
       }
 
       if (songs.length > 3) {
-        setFirstCov(songs[0].album.album.cover);
+        setFirstCov(songs[0].album.cover);
         setSecondCov(songs[1].album.cover);
         setThirdCov(songs[2].album.cover);
         setFourthCov(songs[3].album.cover);
