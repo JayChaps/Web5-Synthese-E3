@@ -49,16 +49,23 @@ const SoloPlaylistProvider = ({ children }) => {
     };
 
     const handleNextSong = () => {
-        if (currentIndex < songsInPlaylist.length - 1) {
-            setCurrentIndex(currentIndex + 1);
+        let newIndex = currentIndex + 1;
+        if (newIndex >= songsInPlaylist.length) {
+            newIndex = 0; // Loop back to the start if at the end
         }
+        setCurrentIndex(newIndex);
+        setCurrentSong(songsInPlaylist[newIndex]);
     };
-
+    
     const handlePreviousSong = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
+        let newIndex = currentIndex - 1;
+        if (newIndex < 0) {
+            newIndex = songsInPlaylist.length - 1; // Loop back to the end if at the start
         }
+        setCurrentIndex(newIndex);
+        setCurrentSong(songsInPlaylist[newIndex]);
     };
+    
 
     return (
         <SoloPlaylistContext.Provider

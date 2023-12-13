@@ -23,14 +23,16 @@ const SongInfoProvider = ({ children }) => {
 
     // Fonction pour jouer une chanson
     const handlePlaySong = (song) => {
-        console.log(song);
-        changeSource(song.preview); // Définit la source de la chanson
-        updateSongInfo({
-            id: song.id,
-            title: song.title,
-            artist: song.artist.name,
-            coverUrl: song.album.cover,
-        });
+        if (songInfo.id !== song.id) {
+            console.log(song);
+            changeSource(song.preview); // Définit la source de la chanson
+            updateSongInfo({
+                id: song.id,
+                title: song.title,
+                artist: song.artist.name,
+                coverUrl: song.album.cover,
+            });
+        }
     };
 
     return (
