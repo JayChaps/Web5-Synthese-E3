@@ -53,7 +53,7 @@ import { Link } from "react-router-dom";
           </Link>
         </div>
 
-        <div className="album">
+        <div className="albumplaylist">
           <span>{albumTitle}</span>
         </div>
 
