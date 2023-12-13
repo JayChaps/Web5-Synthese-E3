@@ -69,16 +69,16 @@ const RechercheDeezer = () => {
         const encodedSearchTerm = encodeURIComponent(searchTerm);
         const url = `https://api.deezer.com/search?q=${filter}:\"${encodedSearchTerm}\"&output=jsonp`;
 
-    fetchJsonp(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResults(data.data || []);
-        console.log(data.data);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la recherche:", error);
-      });
-  };
+        fetchJsonp(url)
+            .then((response) => response.json())
+            .then((data) => {
+                setSearchResults(data.data || []);
+                console.log(data.data);
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la recherche:", error);
+            });
+    };
 
     // useEffect(() => {
     //     console.log("SelectedSong: "+ {selectedSong});
