@@ -122,16 +122,17 @@ const DecouverteArtiste = () => {
       </div>
       <h1 className="titre-discographie">Discographie</h1>
       <motion.div className="albums" initial={{ opacity: 0, y: 50 }} animate={controlsAlbums}>
-        {albums.map((data, id) => (
-          <Link to={`/album/${data.id}`} key={id} className="album-link">
-            <div className="album">
-              <img src={data.cover} alt="" className="img-discographie" />
-              <div className="album-overlay">
-                <h2 className="sous-titre-discographie">{data.title}</h2>
+        {albums.map((data, id) => {
+          return(
+            <Link to={`/album/${data.id}`} key={id} className="album-link">
+              <div className="album">
+                <img src={data.cover_xl} alt="" className="img-discographie" />
+                <div className="album-overlay">
+                  <h2 className="sous-titre-discographie">{data.title}</h2>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          )})}
       </motion.div>
 
       <motion.h1 className="titre-fans" initial={{ opacity: 0, y: 50 }} animate={controls}>
@@ -139,24 +140,26 @@ const DecouverteArtiste = () => {
       </motion.h1>
 
       <motion.div className="relatedArtist" initial={{ opacity: 0, y: 50 }} animate={controls}>
-        {relatedArtist.map((data, id) => (
-          <Link to={`/artist/${data.id}`} key={id}>
-            <motion.div
-              className="container-decouvertes"
-              key={id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={controls}
-              whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
-            >
-              <div className="artistes-decouvertes">
-                <img src={data.picture} alt="" className="img-decouverte" />
-                <h2 className="titre-chanteur2">{data.name}</h2>
-                <h2 className="titre-chanteur">{data.name}</h2>
-                <h2 className="titre-chanteur3">{data.name}</h2>
-              </div>
-            </motion.div>
-          </Link>
-        ))}
+        {relatedArtist.map((data, id) => {
+          console.log(data)
+          return(
+            <Link to={`/artist/${data.id}`} key={id}>
+              <motion.div
+                className="container-decouvertes"
+                key={id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={controls}
+                whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
+              >
+                <div className="artistes-decouvertes">
+                  <img src={data.picture_xl} alt="" className="img-decouverte" />
+                  <h2 className="titre-chanteur2">{data.name}</h2>
+                  <h2 className="titre-chanteur">{data.name}</h2>
+                  <h2 className="titre-chanteur3">{data.name}</h2>
+                </div>
+              </motion.div>
+            </Link>
+          )})}
       </motion.div>
     </div>
   );

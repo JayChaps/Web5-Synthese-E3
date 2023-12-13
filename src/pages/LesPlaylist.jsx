@@ -39,6 +39,7 @@ import ItemPlaylist from "../components/Playlist/ItemPlaylist";
 
 const LesPlaylist = () => {
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+  const [playlist2, setPlaylist2] = useState({});
 
   const { handlePlaySong } = useContext(SongInfoContext);
   const {
@@ -84,7 +85,8 @@ const LesPlaylist = () => {
 
   useEffect(() => {
     fetchPlaylists();
-  }, [fetchPlaylists]);
+    // }, [newPlaylistName, createNewPlaylist, estActif]);
+  }, [setNewPlaylistName]);
 
   const JouerLaChanson = (song) => {
     setSelectedSong(song);
@@ -132,7 +134,7 @@ const LesPlaylist = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <SliderPlaylists />
+      <SliderPlaylists playlists={playlists} />
 
       <header>
         <motion.section
@@ -153,7 +155,6 @@ const LesPlaylist = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            
             <div className="lesplaylistcompte">
               <div>
                 <img src={urlImg} alt="" />
@@ -168,15 +169,14 @@ const LesPlaylist = () => {
           </motion.section>
         </motion.section>
 
-        {
-          playlists && playlists.length > 0 &&
+        {playlists && playlists.length > 0 && (
           <div className="coverplaylist">
             <img src={urlImg} alt="" />
             <img src={urlImg} alt="" />
             <img src={urlImg} alt="" />
             <img src={urlImg} alt="" />
           </div>
-        }
+        )}
       </header>
 
       <motion.section
@@ -203,27 +203,26 @@ const LesPlaylist = () => {
             <span className="chansons__infos__duree">Durée</span>
           </div>
           <motion.div
-  className="lesplaylists__playlist__inner__chansons__chansons"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
->
-  {playlist && playlist.songs ? (
-    playlist.songs.map((song, index) => (
-      <AnimatedItem key={song.id}>
-        <ItemChansons
-          song={song}
-          index={index}
-          handleDeleteSong={handleDeleteSong}
-          playlistId={clickedPlaylist.id}
-          JouerLaChanson={JouerLaChanson}
-        />
-      </AnimatedItem>
-    ))
-  ) : (
-  
-    <p>Pas de chansons dans la liste de lecture.</p>
-  )}
-</motion.div>
+            className="lesplaylists__playlist__inner__chansons__chansons"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {clickedPlaylist && clickedPlaylist.songs ? (
+              clickedPlaylist.songs.map((song, index) => (
+                <AnimatedItem key={song.id}>
+                  <ItemChansons
+                    song={song}
+                    index={index}
+                    handleDeleteSong={handleDeleteSong}
+                    playlistId={clickedPlaylist.id}
+                    JouerLaChanson={JouerLaChanson}
+                  />
+                </AnimatedItem>
+              ))
+            ) : (
+              <p>Aucune chanson dans la playlist</p>
+            )}
+          </motion.div>
         </motion.section>
 
         <div className="separateur">

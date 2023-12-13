@@ -23,18 +23,21 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
     createNewPlaylistAndAddSong, } = useContext(PlaylistsContext);
 
   const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
-  const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
+  const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(true);
 
   const ajouter = (id) => {
     setSelectedPlaylistId(id);
     addToPlaylist(theSong);
     setChampNomActif(false);
     setActif(false);
+    setShouldFetchPlaylist(true);
   };
 
   useEffect(() => {
     if (shouldFetchPlaylists) {
+     
       fetchPlaylists();
+    
       setShouldFetchPlaylists(false);
       console.log(
         "useEffect fetchPlaylists avec un S pcq shouldFetchPlaylists est true"
@@ -55,6 +58,8 @@ export const PlaylistSelector = ({ estActif, setActif, theSong }) => {
     if (newPlaylistName !== "") {
       createNewPlaylistAndAddSong(newPlaylistName, theSong);
       setChampNomActif(false);
+      setShouldFetchPlaylists(true);
+      setActif(false);
     }
   };
 

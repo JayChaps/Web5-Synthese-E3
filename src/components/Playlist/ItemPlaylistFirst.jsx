@@ -20,7 +20,9 @@ const ItemPlaylistFirst = () => {
     createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
 
   const handleCreateNewPlaylist = () => {
+    if (newPlaylistName !== "") {
     createNewPlaylist(newPlaylistName);
+    }
   }
 
   return (

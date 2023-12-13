@@ -44,7 +44,7 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
           <img src={coverImg} alt="" />
           <FaPlayCircle 
             size={"2rem"} 
-            color="var(--noir)" 
+            color="var(--blanc)"
             onClick={() => JouerLaChanson(song)}
           />
         </div>
@@ -72,7 +72,7 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
         <div className="icones">
           <Coeur />
           <CgRemove size={"2rem"} color="var(--noir)" 
-            onClick={() => handleDeleteSong(clickedPlaylist.id, song.id)}
+            onClick={() => handleDeleteSong(clickedPlaylist.id, song)}
           />
         </div>
       </div>
