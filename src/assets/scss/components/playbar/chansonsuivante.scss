@@ -1,5 +1,6 @@
 .chansonssuivantes {
-    // position: absolute;
+    position: relative;
+    z-index: 1000;
     right: 0;
 
     width: calc(100vw - 20px);

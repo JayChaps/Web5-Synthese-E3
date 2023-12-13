@@ -204,12 +204,16 @@
 
           user-select: none;
 
-          & > span {
-            cursor: pointer;
-            &:hover {
+          & > a {
+            text-decoration: none;
+            &:hover span {
               color: var(--mauve);
             }
-            transition: color 0.1s ease-in-out;
+            & > span {
+              transition: color 0.1s ease-in-out;
+
+              cursor: pointer;
+            }
           }
 
           &::after {
@@ -251,7 +255,6 @@
       }
 
       &.playbar__inner__right {
-
         z-index: 200;
 
         grid-area: 1 / 3 / 2 / 4;
@@ -268,8 +271,8 @@
           }
         }
 
-        & > .coeur{
-          .checkmark{
+        & > .coeur {
+          .checkmark {
             width: 3rem;
             height: 3rem;
           }
@@ -379,7 +382,7 @@
               width: 100%;
               height: 20px;
               cursor: pointer;
-              
+
               border-radius: 1rem;
             }
 
@@ -404,7 +407,7 @@
               width: 100%;
               height: 20px;
               cursor: pointer;
-              
+
               border-radius: 1rem;
             }
 
@@ -481,16 +484,15 @@ section.playbar__inner__center__progress {
   border-radius: 1rem;
   background-color: var(--gris);
 
-  &:hover{
-    .draggable{
+  &:hover {
+    .draggable {
       opacity: 1 !important;
     }
 
-    & .playbar__inner__center__progress__bar__inner::after{
+    & .playbar__inner__center__progress__bar__inner::after {
       background: linear-gradient(to right, var(--mauve) 0%, var(--rose) 100%) !important;
     }
   }
-
 
   & .playbar__inner__center__progress__bar__inner {
     position: absolute;
