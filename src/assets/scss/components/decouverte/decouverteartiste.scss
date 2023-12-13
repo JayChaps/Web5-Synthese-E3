@@ -354,7 +354,7 @@
 
   width: 80%;
   max-width: 1500px;
-  margin: 0 auto;
+
   @include breakpoint-min(1024) {
     padding: 20px;
   }
