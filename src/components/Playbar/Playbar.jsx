@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import { FaPlayCircle } from "react-icons/fa";
 import { FaPauseCircle } from "react-icons/fa";
 import { BiSolidSkipNextCircle } from "react-icons/bi";
@@ -31,9 +32,9 @@ const Playbar = () => {
 
   const [selectorActif, setSelectorActif] = useState(false);
   // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
-
+  
   const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
-
+  
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
 
