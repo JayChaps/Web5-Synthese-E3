@@ -17,7 +17,6 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
       const coversArray = songs.slice(0, 4).map((song) => song.album?.cover || urlImg);
       setCovers(coversArray);
     } else {
-      // Handle the case where no songs are available
       setCovers([urlImg, urlImg, urlImg, urlImg]);
     }
   }, [songs]);
