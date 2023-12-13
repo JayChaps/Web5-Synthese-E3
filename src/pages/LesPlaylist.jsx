@@ -169,7 +169,7 @@ const LesPlaylist = () => {
         </motion.section>
 
         {
-          playlists && playlists.length > 0 &&
+          // playlist.songs[0].album.cover &&
           <div className="coverplaylist">
             <img src={urlImg} alt="" />
             <img src={urlImg} alt="" />
