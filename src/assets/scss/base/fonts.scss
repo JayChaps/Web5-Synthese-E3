@@ -1,20 +1,20 @@
 @font-face {
   font-family: "Gotham";
-
-  src: url("/src/assets/fonts/Gotham-Ultra.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Ultra.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-Ultra.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Ultra.woff2") format("woff2");
+  src: url("src/assets/fonts/Gotham-Ultra.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Ultra.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Ultra.otf") format("opentype");
+  src: url("../../fonts/Gotham-Ultra.woff") format("woff");
+  src: url("../../fonts/Gotham-Ultra.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-UltraItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-UltraItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-UltraItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-UltraItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-UltraItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-UltraItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-UltraItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-UltraItalic.woff2") format("woff2");
   font-weight: 900;
   font-style: italic;
 }
@@ -23,145 +23,145 @@
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-Black.otf");
-  src: url("/src/assets/fonts/Gotham-Black.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Black.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Black.woff2") format("woff2");
+  src: url("../../fonts/Gotham-Black.otf");
+  src: url("../../fonts/Gotham-Black.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Black.woff") format("woff");
+  src: url("../../fonts/Gotham-Black.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-BlackItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-BlackItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-BlackItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-BlackItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-BlackItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-BlackItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-BlackItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-BlackItalic.woff2") format("woff2");
   font-weight: 800;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-Bold.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Bold.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-Bold.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Bold.woff2") format("woff2");
+  src: url("../../fonts/Gotham-Bold.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Bold.otf") format("opentype");
+  src: url("../../fonts/Gotham-Bold.woff") format("woff");
+  src: url("../../fonts/Gotham-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-BoldItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-BoldItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-BoldItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-BoldItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-BoldItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-BoldItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-BoldItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-Book.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Book.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Book.woff2") format("woff2");
+  src: url("../../fonts/Gotham-Book.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Book.woff") format("woff");
+  src: url("../../fonts/Gotham-Book.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-BookItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-BookItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-BookItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-BookItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-BookItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-BookItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-BookItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-BookItalic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-Light.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Light.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-Light.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Light.woff2") format("woff2");
+  src: url("../../fonts/Gotham-Light.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Light.otf") format("opentype");
+  src: url("../../fonts/Gotham-Light.woff") format("woff");
+  src: url("../../fonts/Gotham-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-LightItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-LightItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-LightItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-LightItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-LightItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-LightItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-LightItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-LightItalic.woff2") format("woff2");
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-Medium.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Medium.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-Medium.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Medium.woff2") format("woff2");
+  src: url("../../fonts/Gotham-Medium.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Medium.otf") format("opentype");
+  src: url("../../fonts/Gotham-Medium.woff") format("woff");
+  src: url("../../fonts/Gotham-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-MediumItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-MediumItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-MediumItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-MediumItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-MediumItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-MediumItalic.woff2") format("woff2");
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-Thin.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-Thin.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-Thin.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-Thin.woff2") format("woff2");
+  src: url("../../fonts/Gotham-Thin.ttf") format("truetype");
+  src: url("../../fonts/Gotham-Thin.otf") format("opentype");
+  src: url("../../fonts/Gotham-Thin.woff") format("woff");
+  src: url("../../fonts/Gotham-Thin.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-ThinItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-ThinItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-ThinItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-ThinItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-ThinItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-ThinItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-ThinItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-ThinItalic.woff2") format("woff2");
   font-weight: 100;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-UltraItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-UltraItalic.otf") format("opentype");
   font-weight: 900;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-XLight.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-XLight.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-XLight.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-XLight.woff2") format("woff2");
+  src: url("../../fonts/Gotham-XLight.ttf") format("truetype");
+  src: url("../../fonts/Gotham-XLight.otf") format("opentype");
+  src: url("../../fonts/Gotham-XLight.woff") format("woff");
+  src: url("../../fonts/Gotham-XLight.woff2") format("woff2");
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Gotham";
-  src: url("/src/assets/fonts/Gotham-XLightItalic.ttf") format("truetype");
-  src: url("/src/assets/fonts/Gotham-XLightItalic.otf") format("opentype");
-  src: url("/src/assets/fonts/Gotham-XLightItalic.woff") format("woff");
-  src: url("/src/assets/fonts/Gotham-XLightItalic.woff2") format("woff2");
+  src: url("../../fonts/Gotham-XLightItalic.ttf") format("truetype");
+  src: url("../../fonts/Gotham-XLightItalic.otf") format("opentype");
+  src: url("../../fonts/Gotham-XLightItalic.woff") format("woff");
+  src: url("../../fonts/Gotham-XLightItalic.woff2") format("woff2");
   font-weight: 200;
   font-style: italic;
 }
