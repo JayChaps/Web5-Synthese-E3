@@ -206,8 +206,8 @@ const LesPlaylist = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            {playlist && playlist.songs ? (
-              playlist.songs.map((song, index) => (
+            {clickedPlaylist && clickedPlaylist.songs ? (
+              clickedPlaylist.songs.map((song, index) => (
                 <AnimatedItem key={song.id}>
                   <ItemChansons
                     song={song}

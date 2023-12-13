@@ -72,7 +72,7 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
         <div className="icones">
           <Coeur />
           <CgRemove size={"2rem"} color="var(--noir)" 
-            onClick={() => handleDeleteSong(clickedPlaylist.id, song.id)}
+            onClick={() => handleDeleteSong(clickedPlaylist.id, song)}
           />
         </div>
       </div>
