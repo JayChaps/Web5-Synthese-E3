@@ -143,10 +143,10 @@ const LesPlaylist = () => {
         >
           <div className="titreplaylist">
             <div className="titreinner">
-              <h1>{plName ? plName : "Créez votre playlist !"}</h1>
-              <h1>{plName ? plName : "Créez votre playlist !"}</h1>
-              <h1>{plName ? plName : "Créez votre playlist !"}</h1>
-              <h1>{plName ? plName : "Créez votre playlist !"}</h1>
+              <h1>{plName}</h1>
+              <h1>{plName}</h1>
+              <h1>{plName}</h1>
+              <h1>{plName}</h1>
             </div>
           </div>
           <motion.section

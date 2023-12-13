@@ -8,13 +8,12 @@
         width: 100%;
         height: 100%;
 
-        & .outer{
+        & .outer {
             top: 2rem;
             right: 2rem;
         }
 
-
-        & .temps{
+        & .temps {
             position: absolute;
             bottom: 120px;
             display: flex;
@@ -55,47 +54,57 @@
             display: flex;
             flex-direction: column;
 
-            padding: 1rem 1rem 0 3rem;
+            padding: 2rem 1rem 0 3rem;
 
             width: 100%;
 
             @include breakpoint-min(768) {
-                padding: 1rem 1rem 0 4rem;
+                padding: 2rem 1rem 0 4rem;
             }
 
             @include breakpoint-min(1024) {
-                padding: 1rem 1rem 0 6rem;
+                padding: 3rem 1rem 0 6rem;
             }
 
             @include breakpoint-min(1200) {
                 width: calc(58vw - 20px);
                 margin-left: auto;
-                padding: 1rem 0 0 0;
+                padding:3rem 0 0 0;
             }
 
-            & .titreChanson {
-                @include h2;
+            & a {
+                text-decoration: none;
 
-                padding: 0 4rem 0 0;
-                margin: 0;
+                &:hover h2{
+                    color: var(--rose)
+                }
+                & .titreChanson {
+                    @include h2;
 
-                line-height: 1em;
+                    padding: 0 4rem 0 0;
+                    margin: 0;
 
-                color: var(--mauve);
-            }
+                    line-height: 1em;
 
-            & .artisteChanson {
-                @include h4;
+                    color: var(--mauve);
 
-                padding: 0;
-                margin: 0;
-
-                color: var(--gris);
+                    transition: all 0.1s ease-in-out;
+                }
+                
+                & .artisteChanson {
+                    @include h4;
+                    
+                    padding: 0;
+                    margin: 0;
+                    
+                    color: var(--gris);
+                    transition: all 0.1s ease-in-out;
+                }
             }
         }
     }
 }
 
-main:has(aside .playbarfull) > main{
+main:has(aside .playbarfull) > main {
     display: none !important;
 }
