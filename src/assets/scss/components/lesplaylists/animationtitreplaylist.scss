@@ -1,13 +1,13 @@
 .titreplaylist{
 
-    & .titreinner > h1:nth-child(3) {
+    & .titreinner  {
         animation: animationtitre1;
         animation-duration: 10s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
     }
 
-    & .titreinner > h1:not(:nth-child(3)) {
+    & .titreinner {
         animation: animationtitre;
         animation-duration: 10s;
         animation-iteration-count: infinite;
