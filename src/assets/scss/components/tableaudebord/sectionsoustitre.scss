@@ -4,7 +4,7 @@
 //   flex-direction: column;
 // }
 
-.sous-titre{
+.sous-titre {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -15,90 +15,89 @@
   }
 }
 
-.containersectionsoustitre{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    margin: 20px auto;
-    height: 200px;
-    width: 200px;
-    border-radius: 20px;
+.containersectionsoustitre {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 20px auto;
+  height: 200px;
+  width: 200px;
+  border-radius: 20px;
 
-    
-    @include breakpoint-min(640) {
-      width: 250px;
-      height: 250px;
-    }
-    
-    @include breakpoint-min(1024) {
-      width: 350px;
-      height: 350px;
-    }
-    
-    @include breakpoint-min(1200) {
-      width: 500px;
-      height: 500px;
-      justify-content: center;
-    }
-    
-    .soustitre-image{
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
+  @include breakpoint-min(640) {
+    width: 250px;
+    height: 250px;
+  }
+
+  @include breakpoint-min(1024) {
+    width: 350px;
+    height: 350px;
+  }
+
+  @include breakpoint-min(1200) {
+    width: 500px;
+    height: 500px;
+    justify-content: center;
+  }
+
+  .soustitre-image {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.4);
+
+    img {
       width: 100%;
       height: 100%;
-      
-    
-      img{
-         width: 100%;
-         height: 100%;
-         object-fit: cover;
-         border-radius: 30px;
-      }
+      object-fit: cover;
+      border-radius: 30px;
     }
+  }
+
   .play-icon-sous-titre {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 15px;
-      z-index: 300000;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 15px;
+    z-index: 300000;
 
-      .icon-sous-titre{
-        margin: 3px;
+    .icon-sous-titre {
+      margin: 3px;
 
-        @include breakpoint-min(640) {
-          transform: scale(1.2);
-          margin: 10px;
-        }
+      @include breakpoint-min(640) {
+        transform: scale(1.2);
+        margin: 10px;
+      }
 
-        @include breakpoint-min(768) {
-          transform: scale(1.3);
-        }
+      @include breakpoint-min(768) {
+        transform: scale(1.3);
+      }
 
-        @include breakpoint-min(1024) {
-          transform: scale(1.4);
-        }
+      @include breakpoint-min(1024) {
+        transform: scale(1.4);
+      }
 
-        @include breakpoint-min(1200) {
-          margin: 30px;
-          transform: scale(1.5);
-        }
+      @include breakpoint-min(1200) {
+        margin: 30px;
+        transform: scale(1.5);
       }
     }
-}
+  }
 
-.titresectionsoustitre{
+  .titresectionsoustitre {
     position: relative;
     @include h4;
     padding: 10px;
-    color: var(--grisFonce);
+    color: var(--blanc);
     z-index: 2;
 
     @include breakpoint-min(1200) {
       @include h3;
     }
+  }
 }
-

@@ -1,67 +1,71 @@
-.titrealbumspopulaire{
-    @include p;
-    padding: 20px;
-    color: var(--blanc);
-    z-index: 2;
+.titrealbumspopulaire {
+  @include h5;
+  padding: 20px;
+  color: var(--blanc);
+  z-index: 2;
+  max-width: 160px;
 
-    @include breakpoint-min(640) {
-      @include h4;
+  @include breakpoint-min(640) {
+    max-width: 340px;
+    @include h4;
   }
 }
 
-.container-albums-populaires{
-    position: relative;
-    display: inline;
-    height: 200px;
-    width: 200px;
-    background-color: var(--grisFonce);
-    border-radius: 20px;
-    margin-bottom: 50px;
+.container-albums-populaires {
+  position: relative;
+  min-height: 200px;
+  width: 200px;
+  background: linear-gradient(
+      to top,
+      var(--rose) 0%,
+      var(--mauve) 100%
+    );
+  border-radius: 20px;
+  margin-bottom: 20px;
 
-    @include breakpoint-min(640) {
-      width: 300px;
-      height: 300px;
+  @include breakpoint-min(640) {
+    width: 300px;
+    min-height: 300px;
   }
+}
+
+.container-complet-albums {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  margin: auto;
 
   @include breakpoint-min(1200) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
     margin: 50px;
-    width: 400px;
-    height: 400px;
+  }
 }
-    
-}
-
-
-.container-complet-albums{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding-top: 30px;
-}
-
-
 
 .image-container {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 0;
-    padding-top: 100%;
-  }
-  
-  .cover-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-  }
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-top: 100%;
+  border-bottom-left-radius: 190px;
+  border-bottom-right-radius: 700px;
+}
 
-  .play-icon-populaires{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
+.cover-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-icon-populaires {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
 }

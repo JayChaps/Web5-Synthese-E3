@@ -27,6 +27,7 @@ import Coeur from "../Coeur/Coeur";
 import TeteDeLecturePlaybar from "./TeteDeLecturePlaybar";
 import PlaylistSelector from "../RechercheDeezer/PlaylistSelector";
 
+
 const Playbar = () => {
   const { isPaused, changeSource, isReady, togglePause, volume, changeVolume } =
     useAudio();

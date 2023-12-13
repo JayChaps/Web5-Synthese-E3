@@ -5,9 +5,11 @@
     width: 60%;
     margin: 10px;
     padding: 1rem;
+    margin-bottom: 20px;
     background-color: var(--noir);
     align-items: center;
-  
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     .left {
       display: flex;
       align-items: center;
@@ -15,8 +17,9 @@
   
       img {
         margin-left: 5px;
-        width: 25px;
-        height: 25px;
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
         object-fit: cover;
         border-radius: 5px;
       }
@@ -35,12 +38,14 @@
         @include p;
         font-weight: bold;
         margin: auto 0;
+        margin-right: 10px;
       }
   
       .artist-name {
         @include psmaller;
         color: var(--grisClair);
         margin: auto 0;
+        margin-right: 10px;
       }
   
       .play-icon-propositions {
