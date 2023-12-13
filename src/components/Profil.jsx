@@ -147,7 +147,7 @@ const Profil = () => {
         <div className="boutonsprofil">
           <AnimatedItem>
             <div onClick={handleThemeToggle} className={isThemeOpen ? "open selecttheme" : "selecttheme"}>
-              <span>{currentTheme}</span>
+              <span>{currentTheme == "theme1" ? "Thème 1" : "Thème 2"}</span>
               <ul name="theme" id="theme" className="themes">
                 <li
                   value="theme1"
