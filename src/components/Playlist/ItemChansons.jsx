@@ -57,7 +57,7 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
           </Link>
         </div>
 
-        <div className="album">
+        <div className="albumplaylist">
           <span>{albumTitle}</span>
         </div>
 

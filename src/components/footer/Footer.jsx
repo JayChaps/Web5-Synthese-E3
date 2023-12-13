@@ -49,10 +49,9 @@ const Footer = ({ classe }) => {
           <ul>
             <li>
               <div>
-                <span>Vincent Lizot</span>
+                <span>Vincent Lizotte</span>
                 <span>Développeur</span>
                 <span>Front-End/Artiste</span>
-                <span>8 ans</span>
               </div>
             </li>
             <li>
@@ -64,14 +63,14 @@ const Footer = ({ classe }) => {
             </li>
             <li>
               <div>
-                <span>Jérémy Chat</span>
+                <span>Jérémy Chaput</span>
                 <span>Développeur</span>
                 <span>Front-End/Logique</span>
               </div>
             </li>
             <li>
               <div>
-                <span>Kevin Le</span>
+                <span>Kevin Le Bihan</span>
                 <span>Développeur</span>
                 <span>Front-End/Logique</span>
               </div>

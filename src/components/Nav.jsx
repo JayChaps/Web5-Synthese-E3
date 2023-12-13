@@ -82,7 +82,7 @@ const Nav = () => {
       <ul className="nav">
         <li className="nav__logo">
           <Link to="/home" onClick={toggleBar}>
-            <img src={logoUrl} alt="Logo" />
+            <img src="src/assets/img/svg/logo.svg" alt="Logo" />
           </Link>
         </li>
         <li

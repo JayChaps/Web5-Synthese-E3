@@ -17,7 +17,7 @@ const ItemChansonRecomande = ({ premier = false }) => {
           <span>Artiste</span>
         </div>
 
-        <div className="album">
+        <div className="albumlaylist">
           <span>Album</span>
         </div>
 

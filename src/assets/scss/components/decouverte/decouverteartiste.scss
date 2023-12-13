@@ -41,37 +41,34 @@
   color: var(--mauve);
   position: relative;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    height: 10px;
-    width: 100px;
-    background-color: var(--mauve);
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-    border-radius: 10px;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
 
-    @include breakpoint-min(640) {
-      width: 200px;
+  @include breakpoint-min(900) {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 10px;
+      width: 25%;
+      background-color: var(--mauve);
+      top: 50%;
+
+      transform: translateY(-50%);
+      z-index: 1000;
+      border-radius: 10px;
     }
 
-    @include breakpoint-min(768) {
-      width: 250px;
+    &::before {
+      left: 5%;
+      transform: translateY(-50%);
     }
 
-    @include breakpoint-min(1080) {
-      width: 450px;
+    &::after {
+      right: 5%;
+      transform: translateY(-50%);
     }
-  }
-
-  &::before {
-    left: -60px;
-  }
-
-  &::after {
-    right: -60px;
   }
 }
 
@@ -108,7 +105,9 @@
   background-color: var(--mauve);
   border-radius: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  & svg{
+    cursor: pointer;
+  }
   .img-populaire {
     width: 100px;
     height: 100px;
@@ -306,6 +305,14 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+
+  & a {
+    cursor: pointer;
+    text-decoration: none;
+    &:hover h1{
+      color: var(--rose);
+    }
+  }
 }
 
 .decouverte-artist img {
@@ -320,6 +327,11 @@
 }
 
 .decouverte-songs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   width: 100%;
 }
 
@@ -340,17 +352,17 @@
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 
+  width: 80%;
+  max-width: 1500px;
+  margin: 0 auto;
   @include breakpoint-min(1024) {
     padding: 20px;
-    width: 1500px;
   }
-
-  background: linear-gradient(
-    to bottom,
-    rgba(126, 53, 227, 1) 0%,
-    rgb(252, 85, 113) 100%
-  );
-
+  user-select: none;
+  background: linear-gradient(to bottom, rgba(126, 53, 227, 1) 0%, rgb(252, 85, 113) 100%);
+  & svg {
+    cursor: pointer;
+  }
   .titre-chanson-position {
     color: var(--blanc);
     padding-left: 15px;
@@ -369,6 +381,16 @@
     flex-wrap: wrap;
     align-items: center;
 
+    & a {
+      text-decoration: none;
+
+      &:hover {
+        & h2 {
+          transition: all 0.1s ease-in-out;
+          color: var(--blanc);
+        }
+      }
+    }
     .feature-div {
       margin-right: 5px;
 
@@ -400,17 +422,16 @@
   }
 }
 
-.titre-chanson-speciale{
+.titre-chanson-speciale {
   @include h5;
   color: white;
 
   @include breakpoint-min(1024) {
     margin-top: 30px;
     margin-left: 70px;
-    @include h2;
+    @include h3;
   }
 }
-
 
 .artiste-name {
   color: var(--grisFonce);
