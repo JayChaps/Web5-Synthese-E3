@@ -31,7 +31,9 @@ const SliderPlaylists = ({playlists}) => {
 
         {/* faire boucle ici */}
 
-        {playlists.map((playlist) => {
+        {
+          playlists &&
+        playlists.map((playlist) => {
           return (
             <ItemPlaylist 
             key = {playlist.id}

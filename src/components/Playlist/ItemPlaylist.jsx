@@ -12,24 +12,23 @@ const ItemPlaylist = ({ playlist}) => {
 
   const [covers, setCovers] = useState([]);
 
-  useEffect(() => {
-    if (songs && songs.length > 0) {
-      const coversArray = songs.slice(0, 4).map((song) => song.album?.cover || urlImg);
-      setCovers(coversArray);
-    } else {
-      setCovers([urlImg, urlImg, urlImg, urlImg]);
-    }
-  }, [songs]);
-
   const click = (e) => {
     e.preventDefault();
     setClickedPlaylist(playlist);
   };
 
+  useEffect(() => {
+    if (playlist.songs.length > 0) {
+      const covers = playlist.songs.map((song) => song.cover);
+      setCovers(covers);
+    }
+  }
+  , [playlist]);
+
   return (
     <article className="itemplaylist">
       <div className="wrapperitem">
-        <h3>{name}</h3>
+        <h3>{}</h3>
         {covers.map((cover, index) => (
           <img key={index} src={cover} alt={`Cover ${index + 1}`} />
         ))}
