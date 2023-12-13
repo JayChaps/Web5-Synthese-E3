@@ -21,10 +21,10 @@ const SliderPlaylists = () => {
     playlist, setPlaylist,
     selectedSong, setSelectedSong } = useContext(PlaylistsContext);
 
-  useEffect(() => {
-    fetchPlaylists();
-    console.log(playlists);
-  } , []);
+  // useEffect(() => {
+  //   fetchPlaylists();
+  //   console.log(playlists);
+  // } , []);
 
   return (
     <section className="sliderplaylist">

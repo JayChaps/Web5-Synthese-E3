@@ -1,3 +1,4 @@
+// ItemChansons.jsx :
 import React, { useContext, useEffect } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { CgRemove } from "react-icons/cg";
@@ -23,6 +24,11 @@ import { Link } from "react-router-dom";
     console.log(song);
   }, [song]);
 
+  const coverImg = song.album.cover ? song.album.cover : urlImg;
+  const songTitle = song.title ? song.title : "Titre inconnu";
+  const artistName = song.artist.name ? song.artist.name : "Artiste inconnu";
+  const albumTitle = song.album.title ? song.album.title : "Album inconnu";
+
 
   return (
     <article>
@@ -31,7 +37,7 @@ import { Link } from "react-router-dom";
       </div>
       <div className="info">
         <div className="chansoncover">
-          <img src={song.album.cover} alt="" />
+          <img src={coverImg} alt="" />
           <FaPlayCircle 
             size={"2rem"} 
             color="var(--noir)" 
@@ -48,7 +54,7 @@ import { Link } from "react-router-dom";
         </div>
 
         <div className="album">
-          <span>{song.album.title}</span>
+          <span>{albumTitle}</span>
         </div>
 
         <div className="duree">

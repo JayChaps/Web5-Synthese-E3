@@ -7,7 +7,7 @@ import { PlaylistsContext } from "../../context/playlistsContext";
 
 
 
-const ItemPlaylist = ({key, playlist, name, songs}) => {
+const ItemPlaylist = ({playlist, name, songs}) => {
 
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
 
@@ -27,15 +27,14 @@ const ItemPlaylist = ({key, playlist, name, songs}) => {
     addToPlaylist, removeSongFromPlaylist, 
     newPlaylistName, setNewPlaylistName, 
     selectedPlaylistId, setSelectedPlaylistId,
-    fetchPlaylists, fetchPlaylist, 
+    fetchPlaylists, fetchPlaylist,
+                    setPlaylist, 
     playlists, setPlaylists, 
     selectedSong, setSelectedSong,
     createNewPlaylistAndAddSong, 
     clickedPlaylist, setClickedPlaylist } = useContext(PlaylistsContext);
   
   
-  
-
   useEffect(() => {
     if (playlist && songs) {
       const firstSong = theSongsArray[0];
@@ -72,11 +71,15 @@ const ItemPlaylist = ({key, playlist, name, songs}) => {
   const click = (e) => {
     e.preventDefault();
     console.log("click " + playlist.id);
+    // setPlaylist(playlist);
     setClickedPlaylist(playlist);
-    console.log("clickedPlaylist " + clickedPlaylist)
+    console.log(playlist);
+    // console.log("clickedPlaylist " + clickedPlaylist)
   };
 
-
+  useEffect(() => {
+    console.log("clickedPlaylist " + clickedPlaylist)
+  }, [clickedPlaylist]);
   
   return (
     <article className="itemplaylist">
