@@ -4,9 +4,9 @@ import SliderPlaylists from "./Playlist/SliderPlaylists";
 import ItemChansons from "./Playlist/ItemChansons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {ChromePicker} from 'react-color';
+import { ChromePicker } from 'react-color';
 import { db } from '../config/firebase'; // Importez votre instance de base de données
-import { doc, setDoc,getDoc } from "firebase/firestore"; 
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const AnimatedItem = ({ children, delay = 0.3 }) => {
   const controls = useAnimation();
@@ -33,9 +33,16 @@ const AnimatedItem = ({ children, delay = 0.3 }) => {
 const Profil = () => {
   const { user, googleSignIn, logOut } = useAuth();
   const [isThemeOpen, setIsThemeOpen] = useState(false);
-  const [defaultColors, setDefaultColors] = useState({});
+  const [defaultColors, setDefaultColors] = useState({
+    rose: '#fc5571',
+    mauve: '#7e35e3',
+    blanc: '#f8f8f8',
+    gris: '#9b9b9b',
+    grisFonce: '#222c32',
+    noir: '#050625'
+  });
   const [currentTheme, setCurrentTheme] = useState("theme1");
-  const userName = user?.displayName || "No name available";
+  const [colors, setColors] = useState(defaultColors);
   const [showPickers, setShowPickers] = useState({
     rose: false,
     mauve: false,
@@ -44,166 +51,114 @@ const Profil = () => {
     grisFonce: false,
     noir: false
   });
-  const [colors, setColors] = useState({
-    rose: '#fc5571',
-    mauve: '#7e35e3',
-    blanc: '#f8f8f8',
-    gris: '#9b9b9b',
-    grisFonce: '#222c32',
-    noir: '#050625'
-  });
-  const saveColorsToFirebase = async () => {
-    try {
-        // Remplacez 'userId' par l'identifiant de l'utilisateur actuel
-        const userColorsRef = doc(db, "userColors", user?.uid); 
 
-        await setDoc(userColorsRef, {
-            colors: colors // 'colors' est l'objet contenant les couleurs choisies
-        });
-    } catch (error) {
-        console.error("Error writing document: ", error);
+  const userName = user?.displayName || "No name available";
+
+  useEffect(() => {
+    if (user?.uid) {
+      fetchUserColors();
     }
-};
+  }, [user?.uid]);
 
-useEffect(() => {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('selectedTheme') || "theme1";
+    setCurrentTheme(savedTheme);
+
+    if (savedTheme === "theme2") {
+      fetchUserColors();
+    } else {
+      applyColors(defaultColors);
+    }
+  }, []);
+
   const fetchUserColors = async () => {
-    if (!user?.uid) return;
-
     const userColorsRef = doc(db, "userColors", user?.uid);
     const docSnap = await getDoc(userColorsRef);
 
     if (docSnap.exists()) {
       const fetchedColors = docSnap.data().colors;
-      // Mettre à jour les couleurs
       setColors(fetchedColors);
-      // Vérifier si le thème 2 est actif
-      checkCurrentTheme(fetchedColors);
+      applyColors(fetchedColors);
     } else {
-      console.log("No such document!");
+      applyColors(defaultColors); // Appliquer les couleurs par défaut si aucune couleur personnalisée n'est trouvée
     }
   };
 
-  fetchUserColors();
-}, [user?.uid]);
-
-  useEffect(() => {
-    const rootStyles = getComputedStyle(document.documentElement);
-    setDefaultColors({
-      rose: rootStyles.getPropertyValue('--roseDefault').trim(),
-      mauve: rootStyles.getPropertyValue('--mauveDefault').trim(),
-      blanc: rootStyles.getPropertyValue('--blancDefault').trim(),
-      gris: rootStyles.getPropertyValue('--grisDefault').trim(),
-      grisFonce: rootStyles.getPropertyValue('--grisFonceDefault').trim(),
-      noir: rootStyles.getPropertyValue('--noirDefault').trim(),
-    });
-  }, []);
-
-  const checkIfDefaultColors = () => {
-    return Object.keys(defaultColors).every(colorName => {
-      const currentColor = getComputedStyle(document.documentElement).getPropertyValue(`--${colorName}`).trim();
-      return defaultColors[colorName] === currentColor;
-    });
-  };
-  
-  const checkCurrentTheme = (fetchedColors) => {
-    const isDefaultTheme = Object.keys(defaultColors).every(colorName => {
-      return fetchedColors[colorName] === defaultColors[colorName];
-    });
-
-    setCurrentTheme(isDefaultTheme ? "theme1" : "theme2");
+  const saveColorsToFirebase = async () => {
+    const userColorsRef = doc(db, "userColors", user?.uid);
+    await setDoc(userColorsRef, { colors });
+    applyColors(colors);
   };
 
-  useEffect(() => {
-    // Mettre à jour le thème actuel en fonction de la comparaison des couleurs
-    const isDefault = checkIfDefaultColors();
-    setCurrentTheme(isDefault ? "theme1" : "theme2");
-  }, [colors, defaultColors]);
+  const applyColors = (newColors) => {
+    Object.keys(newColors).forEach(colorName => {
+      document.documentElement.style.setProperty(`--${colorName}`, newColors[colorName]);
+    });
+  };
 
   const handleColorClick = (colorName) => {
-    setShowPickers(prevState => ({
-      ...prevState,
-      [colorName]: !prevState[colorName]
-    }));
+    setShowPickers(prev => ({ ...prev, [colorName]: !prev[colorName] }));
   };
 
   const handleChangeComplete = (colorName, color) => {
+    setColors(prev => ({ ...prev, [colorName]: color.hex }));
     if (currentTheme === "theme2") {
-      setColors(prevColors => ({
-        ...prevColors,
-        [colorName]: color.hex
-      }));
-      document.documentElement.style.setProperty(`--${colorName}Default`, color.hex);
-    }
-  };
-  const handleThemeSelection = async (themeName) => {
-    setCurrentTheme(themeName);
-    setIsThemeOpen(false);
-  
-    if (themeName === "theme1") {
-      // Appliquer les couleurs par défaut pour le thème 1
-      Object.keys(defaultColors).forEach(colorName => {
-        document.documentElement.style.setProperty(`--${colorName}`, defaultColors[colorName]);
-      });
-    } else if (themeName === "theme2") {
-      // Tenter de charger les couleurs personnalisées pour le thème 2
-      try {
-        const userColorsRef = doc(db, "userColors", user?.uid);
-        const docSnap = await getDoc(userColorsRef);
-  
-        if (docSnap.exists()) {
-          const fetchedColors = docSnap.data().colors;
-          Object.keys(fetchedColors).forEach(colorName => {
-            // Mettre à jour les variables CSS globales pour le thème 2
-            document.documentElement.style.setProperty(`--${colorName}`, fetchedColors[colorName]);
-            setColors(prevColors => ({
-              ...prevColors,
-              [colorName]: fetchedColors[colorName]
-            }));
-          });
-        } else {
-          console.log("No custom colors found for theme 2. Using default colors.");
-        }
-      } catch (error) {
-        console.error("Error fetching document: ", error);
-      }
+      document.documentElement.style.setProperty(`--${colorName}`, color.hex);
     }
   };
 
-  const handleTheme = () => {
+  const handleThemeSelection = async (themeName) => {
+    localStorage.setItem('selectedTheme', themeName);
+    setCurrentTheme(themeName);
+    setIsThemeOpen(false);
+
+    if (themeName === "theme1") {
+      applyColors(defaultColors);
+    } else if (themeName === "theme2") {
+      applyColors(colors);
+    }
+  };
+
+  const handleThemeToggle = () => {
     setIsThemeOpen(!isThemeOpen);
   };
 
+  const handleButtonClick = () => {
+    if (user === null) {
+      googleSignIn();
+    } else {
+      logOut();
+    }
+    handleThemeSelection("theme1");
+    localStorage.setItem('selectedTheme', "theme1");
+  };
+  
+
+
   return (
-    <motion.div
-      className="profil"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div className="profil" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <header>
         <div className="boutonsprofil">
           <AnimatedItem>
-            <div
-              className={isThemeOpen ? "open selecttheme" : "selecttheme"}
-              onClick={handleTheme}
-            >
+            <div onClick={handleThemeToggle} className={isThemeOpen ? "open selecttheme" : "selecttheme"}>
               <span>{currentTheme}</span>
               <ul name="theme" id="theme" className="themes">
-                <li value="theme1" onClick={()=>handleThemeSelection("theme1")}>Thème 1</li>
-                <li value="theme2" onClick={()=>handleThemeSelection("theme2")}>Thème 2</li>
+                <li value="theme1" onClick={() => handleThemeSelection("theme1")}>Thème 1</li>
+                <li value="theme2" onClick={() => handleThemeSelection("theme2")}>Thème 2</li>
               </ul>
             </div>
           </AnimatedItem>
-
           <AnimatedItem delay={0.1}>
+
             <div className="button-container">
               <button
-                onClick={user === null ? googleSignIn : logOut}
-                className="button-acceuil-connexion"
-              >
+                onClick={handleButtonClick}
+                className="button-acceuil-connexion">
                 {user === null ? "Se connecter avec Google" : "Se déconnecter"}
               </button>
             </div>
+
+
           </AnimatedItem>
         </div>
       </header>
@@ -229,7 +184,7 @@ useEffect(() => {
           </div>
         ))}
         {
-            currentTheme === "theme2" ? <button onClick={saveColorsToFirebase}>Enregistrer les changements</button> : null
+          currentTheme === "theme2" ? <button onClick={saveColorsToFirebase}>Enregistrer les changements</button> : null
         }
         <AnimatedItem delay={0.2}>
           <div className="nomcompte">
