@@ -26,7 +26,7 @@ const ItemChansons = () => {
           </Link>
         </div>
 
-        <div className="album">
+        <div className="albumplaylist">
           <span>Album</span>
         </div>
 
