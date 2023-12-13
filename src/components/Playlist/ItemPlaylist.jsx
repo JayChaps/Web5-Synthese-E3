@@ -19,24 +19,16 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
   const [fourthCov, setFourthCov] = useState("");
 
   const {
-    createNewPlaylist,
-    deletePlaylist,
-    addToPlaylist,
-    removeSongFromPlaylist,
-    newPlaylistName,
-    setNewPlaylistName,
-    selectedPlaylistId,
-    setSelectedPlaylistId,
-    fetchPlaylists,
-    fetchPlaylist,
+    createNewPlaylist, deletePlaylist,
+    addToPlaylist, removeSongFromPlaylist,
+    newPlaylistName, setNewPlaylistName,
+    selectedPlaylistId, setSelectedPlaylistId,
+    fetchPlaylists, fetchPlaylist,
     setPlaylist,
-    playlists,
-    setPlaylists,
-    selectedSong,
-    setSelectedSong,
+    playlists, setPlaylists,
+    selectedSong, setSelectedSong,
     createNewPlaylistAndAddSong,
-    clickedPlaylist,
-    setClickedPlaylist,
+    clickedPlaylist, setClickedPlaylist,
   } = useContext(PlaylistsContext);
 
   useEffect(() => {
@@ -95,7 +87,7 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
     console.log("click " + playlist.id);
     // setPlaylist(playlist);
     setClickedPlaylist(playlist);
-    console.log(playlist);
+    console.log(playlist.songs);
     // console.log("clickedPlaylist " + clickedPlaylist)
   };
 
