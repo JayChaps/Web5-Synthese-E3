@@ -142,7 +142,7 @@
                 }
             }
 
-            & .album {
+            & .albumplaylist {
                 grid-column: 6/7;
             }
 
@@ -232,7 +232,7 @@ section.recommande {
                     }
                 }
 
-                & .albumlaylist {
+                & .albumplaylist {
                     display: none !important;
                 }
 
@@ -403,7 +403,7 @@ section.recommande {
             }
         }
 
-        & .albumlaylist {
+        & .albumplaylist {
             grid-column: 6/7;
         }
 
