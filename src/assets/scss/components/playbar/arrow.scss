@@ -1,0 +1,11 @@
+.arrowPlaybar{
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+
+    transform: translate(-50%, -50%);
+
+    &:hover{
+        transform: translate(-50%, -50%) !important;  
+    }
+}

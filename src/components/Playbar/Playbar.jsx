@@ -7,6 +7,7 @@ import { BsShuffle } from "react-icons/bs";
 import { RxLoop } from "react-icons/rx";
 import { CgAdd } from "react-icons/cg";
 import { BiHeart } from "react-icons/bi";
+import { FaArrowCircleUp } from "react-icons/fa";
 import fetchJsonp from "fetch-jsonp";
 import {
   IoVolumeOff,
@@ -34,9 +35,7 @@ const Playbar = () => {
   const [selectorActif, setSelectorActif] = useState(false);
   // const [isFullbarOpen, setIsFullbarOpen] = useState(false);
 
-
   const { isFullbarOpen, setIsFullbarOpen } = useContext(PlaybarContext);
-
 
   const [isMuted, setIsMuted] = useState(false);
   const [lastVolume, setLastVolume] = useState(0.5);
@@ -50,17 +49,17 @@ const Playbar = () => {
   }, [controls]);
 
   const trackSongInfo = () => {
-    if(songInfo !== "") {
-    const url = `https://api.deezer.com/track/${songInfo.id}?&output=jsonp`;
+    if (songInfo !== "") {
+      const url = `https://api.deezer.com/track/${songInfo.id}?&output=jsonp`;
 
-    fetchJsonp(url)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setTrack(data || []);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la recherche:", error);
-      });
+      fetchJsonp(url)
+        .then((resp) => resp.json())
+        .then((data) => {
+          setTrack(data || []);
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la recherche:", error);
+        });
     }
   };
 
@@ -76,11 +75,9 @@ const Playbar = () => {
   };
 
   const handleClick = (e) => {
-    if (e.target.classList.contains("playbar__inner")) {
+
       setIsFullbarOpen(!isFullbarOpen);
-    } else {
-      return;
-    }
+
   };
 
   const handleVolume = (e) => {
@@ -116,7 +113,6 @@ const Playbar = () => {
         className="playbar"
         initial={{ opacity: 0, y: "100%" }}
         animate={controls}
-        onClick={handleClick}
       >
         {isFullbarOpen && (
           <>
@@ -133,7 +129,16 @@ const Playbar = () => {
           </>
         )}
 
-        <div className="playbar__inner" onClick={handleClick}>
+        <div className="playbar__inner">
+          {
+            !isFullbarOpen &&
+            <FaArrowCircleUp
+            className="arrowPlaybar"
+            size={"3rem"}
+            color="var(--rose)"
+            onClick={() => setIsFullbarOpen(!isFullbarOpen)}
+            />
+          }
           <section className="playbar__inner__left">
             <div className="iconeShuffleLoop">
               <BsShuffle size={"2rem"} color="var(--noir)" />
@@ -149,15 +154,16 @@ const Playbar = () => {
               />
             </div>
             <div className="playbar__inner__left__info">
-              {
-                track && track.album && track.artist && (
+              {track && track.album && track.artist && (
                 <>
-                  <Link to={`/album/${track.album.id}`}><span>{songInfo.title}</span></Link>
-                  <Link to={`/artist/${track.artist.id}`}><span>{songInfo.artist}</span></Link>
+                  <Link to={`/album/${track.album.id}`}>
+                    <span>{songInfo.title}</span>
+                  </Link>
+                  <Link to={`/artist/${track.artist.id}`}>
+                    <span>{songInfo.artist}</span>
+                  </Link>
                 </>
-                )
-              }
-
+              )}
             </div>
           </section>
           <section className="playbar__inner__center">
