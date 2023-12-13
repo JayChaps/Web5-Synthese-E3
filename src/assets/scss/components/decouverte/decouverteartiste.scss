@@ -1,3 +1,5 @@
+@import "header.scss";
+
 @mixin breakpoint-min($screen) {
   @media (min-width: #{$screen}px) {
     @content;

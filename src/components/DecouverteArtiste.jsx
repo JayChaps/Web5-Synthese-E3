@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 import { FaPlayCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
-import "../assets/scss/components/decouverte/decouverteartiste.scss";
+
 import PlaylistSelector from "./RechercheDeezer/PlaylistSelector";
 import { SongInfoContext } from "../context/SongInfoContext";
 
@@ -107,7 +107,7 @@ const DecouverteArtiste = () => {
       <h1 className="titre-decouverte2" initial={{ opacity: 1, y: 50 }} animate={controls}>
         Populaire
       </h1>
-      <div>
+      <div className="nicHeaderArtiste">
         <img src={artist.picture_xl} alt="" className="img-decouverte" />
         <h1>{artist.name}</h1>
       </div>

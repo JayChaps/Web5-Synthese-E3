@@ -1,0 +1,35 @@
+.nicHeaderArtiste {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 4rem 1rem;
+
+    margin: 0 auto;
+    max-width: 1024px;
+
+    @include breakpoint-min(768) {
+        gap: 4rem;
+    }
+    & > img {
+        width: 30%;
+
+        border-radius: 50%;
+    }
+
+    & h1{
+        @include h3;
+        margin: 0;
+        color: var((--rose));
+
+        @include breakpoint-min(640 )
+        {
+            @include h2;
+        }
+
+        @include breakpoint-min(768)
+        {
+            @include h1;
+        }
+    }
+}
