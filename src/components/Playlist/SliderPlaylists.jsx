@@ -1,3 +1,4 @@
+// SliderPlaylists.jsx :
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
 import ItemPlaylist from "./ItemPlaylist";
@@ -20,10 +21,10 @@ const SliderPlaylists = () => {
     playlist, setPlaylist,
     selectedSong, setSelectedSong } = useContext(PlaylistsContext);
 
-  useEffect(() => {
-    fetchPlaylists();
-    console.log(playlists);
-  } , []);
+  // useEffect(() => {
+  //   fetchPlaylists();
+  //   console.log(playlists);
+  // } , []);
 
   return (
     <section className="sliderplaylist">
@@ -39,12 +40,14 @@ const SliderPlaylists = () => {
         {/* faire boucle ici */}
 
         {playlists.map((playlist) => {
-          <>
+          return (
             <ItemPlaylist 
-              playlist = {playlist}
-              name = {playlist.name}
+            key = {playlist.id}
+            playlist = {playlist}
+            name = {playlist.name}
+            songs = {playlist.songs}
             />
-          </>
+          )
           // console.log("playlist dans SliderPlaylists: ", playlist);
         })}
 

@@ -57,7 +57,8 @@ const AuthProvider = ({ children }) => {
             await setDoc(userRef, {
                 uid: user.uid,
                 email: user.email,
-                playlistsIds: []
+                playlistsIds: [],
+                username : user.displayName,
             });
         }
 

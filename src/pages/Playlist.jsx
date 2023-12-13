@@ -17,7 +17,8 @@ const Playlist = () => {
             fetchPlaylists, fetchPlaylist, 
             playlists, setPlaylists, 
             playlist, setPlaylist,
-            selectedSong, setSelectedSong } = useContext(PlaylistsContext);
+            selectedSong, setSelectedSong,
+            createNewPlaylistAndAddSong, } = useContext(PlaylistsContext);
 
     // Récupération des playlists
     useEffect(() => {

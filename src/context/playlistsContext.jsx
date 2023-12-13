@@ -1,5 +1,5 @@
 // playlistsContext.jsx :
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { auth, db } from "../config/firebase";
 import { collection, setDoc, doc, arrayUnion, getDocs, addDoc, getDoc, deleteDoc, updateDoc, arrayRemove } from "firebase/firestore";
 
@@ -12,12 +12,16 @@ const PlaylistsProvider = ({ children }) => {
     const [playlists, setPlaylists] = useState([]);
     const [newPlaylistName, setNewPlaylistName] = useState('');
     const [selectedPlaylistId, setSelectedPlaylistId] = useState("");
+    const [selectedPlaylist, setSelectedPlaylist] = useState([]);
     const [selectedSong, setSelectedSong] = useState("");
+
+    const [clickedPlaylist, setClickedPlaylist] = useState([]);
+
     // const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
     // const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
 
     // Récupération des playlists
-    const fetchPlaylists = async () => {
+    const fetchPlaylists = useCallback (async () => {
 
         // Récupération du uuid 
         const userId = auth.currentUser.uid;
@@ -47,12 +51,12 @@ const PlaylistsProvider = ({ children }) => {
         // const querySnapshot = await getDocs(collection(db, "playlists"));
         // setPlaylists(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         console.log("fetchPlaylists() done");
-    };
+    }, []);
 
     // Récupération d'une playlist
-    const fetchPlaylist = async () => {
-        const querySnapshot = await getDocs(collection(db, "playlists"));
-        setPlaylist(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    const fetchPlaylist = async (targetId) => {
+        const querySnapshot = await getDoc(doc(db, "playlists", targetId));
+        setPlaylist(querySnapshot.data());
 
         console.log("fetchPlaylist() done");
     };
@@ -76,6 +80,7 @@ const PlaylistsProvider = ({ children }) => {
             });
 
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
+            setSelectedPlaylist(docRef); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
         }
 
@@ -141,11 +146,13 @@ const PlaylistsProvider = ({ children }) => {
     const createNewPlaylistAndAddSong = async (name, song) => {
         if (newPlaylistName.trim() !== '') {
             const userId = auth.currentUser.uid;
+            const userName = auth.currentUser.displayName;
             // Création de la nouvelle playlist
             const docRef = await addDoc(collection(db, "playlists"), {
                 name: name,
                 songs: [song],
                 createdBy: userId,
+                creatorName: userName,
             });
 
             // Mise à jour du document de l'utilisateur pour inclure l'ID de la nouvelle playlist
@@ -155,6 +162,7 @@ const PlaylistsProvider = ({ children }) => {
             });
 
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
+            setSelectedPlaylist(docRef); // Sélectionne la nouvelle playlist
             setNewPlaylistName(''); // Reset le nom après création
             console.log("Playlist created and song added!");
         }
@@ -188,11 +196,13 @@ const PlaylistsProvider = ({ children }) => {
                                             addToPlaylist, removeSongFromPlaylist, 
                                             newPlaylistName, setNewPlaylistName, 
                                             selectedPlaylistId, setSelectedPlaylistId,
+                                            selectedPlaylist, setSelectedPlaylist,
                                             fetchPlaylists, fetchPlaylist, 
                                             playlists, setPlaylists, 
                                             playlist, setPlaylist,
                                             selectedSong, setSelectedSong,
-                                            createNewPlaylistAndAddSong }}>
+                                            createNewPlaylistAndAddSong,
+                                            clickedPlaylist, setClickedPlaylist }}>
             {children}
         </PlaylistsContext.Provider>
     );
