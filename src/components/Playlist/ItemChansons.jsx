@@ -42,6 +42,7 @@ const ItemChansons = ({ song, handleDeleteSong, index }) => {
     handlePlaySong(song);
     setCurrentSong(song);
     handleAllThreeSongs(song, index);
+    console.log("Tabarnak", song);
   };
   
 
