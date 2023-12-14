@@ -35,6 +35,7 @@
   text-align: center;
   color: var(--mauve);
   padding: 50px;
+  user-select: none;
 }
 
 .titre-decouverte {
@@ -46,7 +47,7 @@
   overflow: hidden;
   max-width: 1200px;
   margin: 0 auto;
-
+  user-select: none;
   @include breakpoint-min(900) {
     &::before,
     &::after {
@@ -83,6 +84,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-color: var(--rose);
   -webkit-text-stroke-width: 1.25px;
+  user-select: none;
 }
 
 .titre-decouverte3 {
@@ -94,6 +96,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-color: var(--rose);
   -webkit-text-stroke-width: 1.25px;
+  user-select: none;
 }
 
 .topSongs {
@@ -131,6 +134,8 @@
   flex-wrap: wrap;
   gap: 2rem;
   padding-top: 30px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .container-decouvertes {
@@ -208,6 +213,7 @@
   padding-bottom: 80px;
   color: var(--mauve);
   @include h2;
+  user-select: none;
 }
 
 .albums {

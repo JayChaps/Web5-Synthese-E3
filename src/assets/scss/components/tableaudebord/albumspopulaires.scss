@@ -4,7 +4,7 @@
   color: var(--blanc);
   z-index: 2;
   max-width: 160px;
-
+  user-select: none;
   @include breakpoint-min(640) {
     max-width: 340px;
     @include h4;
