@@ -1,5 +1,4 @@
 // ChansonSuivante.jsx :
-import React, { useContext } from "react";
 import React, { useContext, useEffect, useState } from "react";
 import { BiHeart } from "react-icons/bi";
 import { CgRemove } from "react-icons/cg";
@@ -35,13 +34,6 @@ const ChansonSuivante = ({ song }) => {
       trackSongInfo();
     }
   }, [songInfo]);
-
-  const { handlePlaySong } = useContext(SongInfoContext);
-
-  const { selectedSong, setSelectedSong, } = useContext(PlaylistsContext);
-
-  const { currentIndex, setCurrentIndex, 
-          currentSong, setCurrentSong } = useContext(SoloPlaylistContext);
 
   const coverImg = song.album.cover ? song.album.cover : "src/assets/img/jpg/placeholder.jpg";
 
