@@ -6,7 +6,8 @@ import { CgRemove } from "react-icons/cg";
 import { PlaylistsContext } from "../../context/playlistsContext";
 
 const ItemPlaylist = ({ playlist, name, songs }) => {
-  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "/src/assets/img/jpg/placeholder.jpg"
+  
 
   const [laFirstSong, setLaFirstSong] = useState({});
   const [laSecondSong, setLaSecondSong] = useState({});

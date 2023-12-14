@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useAuth } from "../context/auhContext";
 import SliderPlaylists from "./Playlist/SliderPlaylists";
 import ItemChansons from "./Playlist/ItemChansons";
@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { ChromePicker } from 'react-color';
 import { db } from '../config/firebase'; // Importez votre instance de base de données
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import { PlaylistsContext } from "../context/playlistsContext";
 
 const AnimatedItem = ({ children, delay = 0.3 }) => {
   const controls = useAnimation();
@@ -51,6 +52,8 @@ const Profil = () => {
     grisFonce: false,
     noir: false,
   });
+
+  const { playlists } = useContext(PlaylistsContext);
 
   
   const userName = user?.displayName || "No name available";
@@ -235,7 +238,7 @@ const Profil = () => {
             <div className="soustitreprofil">
               <h3>Mes playlists</h3>
             </div>
-            <SliderPlaylists />
+            <SliderPlaylists playlists={playlists} />
           </div>
         </AnimatedItem>
 

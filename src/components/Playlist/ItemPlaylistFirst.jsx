@@ -17,11 +17,13 @@ const ItemPlaylistFirst = () => {
     playlists, setPlaylists,
     playlist, setPlaylist,
     selectedSong, setSelectedSong,
-    createNewPlaylistAndAddSong } = useContext(PlaylistsContext);
+    createNewPlaylistAndAddSong,
+    clickedPlaylist, setClickedPlaylist, } = useContext(PlaylistsContext);
 
-  const handleCreateNewPlaylist = () => {
+  const handleCreateNewPlaylist = (e) => {
     if (newPlaylistName !== "") {
-    createNewPlaylist(newPlaylistName);
+      e.preventDefault();
+      createNewPlaylist(newPlaylistName);
     }
   }
 
@@ -32,7 +34,9 @@ const ItemPlaylistFirst = () => {
           placeholder={"Créer une playlist"}
           autoFocus={false}
         />
-        <CgAdd size={"4rem"} color="var(--blanc)" onClick={handleCreateNewPlaylist}/>
+        {/* <Link to="/playlist" > */}
+          <CgAdd size={"4rem"} color="var(--blanc)" onClick={handleCreateNewPlaylist}/>
+        {/* </Link> */}
       </div>
     </article>
   );
