@@ -6,7 +6,7 @@ import { CgRemove } from "react-icons/cg";
 import { PlaylistsContext } from "../../context/playlistsContext";
 
 const ItemPlaylist = ({ playlist, name, songs }) => {
-  const urlImg = "/src/assets/img/jpg/placeholder.jpg"
+  const urlImg = "src/assets/img/jpg/placeholder.jpg"
   
 
   const [laFirstSong, setLaFirstSong] = useState({});
@@ -37,8 +37,9 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
   } = useContext(PlaylistsContext);
 
   useEffect(() => {
-    console.log(playlist);
-    if (songs) {
+
+    console.log(songs.length != 0);
+    if (songs.length != 0) {
       setLaFirstSong(songs[0]);
 
       if (songs.length === 2) {
@@ -78,6 +79,7 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
         setFourthCov(songs[3].album.cover_big);
       }
     } else {
+      console.log("pas de songs");
       setFirstCov(urlImg);
       setSecondCov(urlImg);
       setThirdCov(urlImg);
