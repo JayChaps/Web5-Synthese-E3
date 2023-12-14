@@ -7,7 +7,7 @@ const PetitsPoints = () => {
   return (
     <section>
         <div className="composante-petits-points">
-            <img src="src\assets\png\PatternCercle.png" alt="" />
+            <img src="https://imgur.com/Ugukfgk.png" alt="" />
         </div>
     </section>
   );
