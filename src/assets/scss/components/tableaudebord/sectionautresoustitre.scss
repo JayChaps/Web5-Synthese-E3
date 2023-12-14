@@ -3,9 +3,13 @@
     justify-content: center;
     flex-wrap: wrap;
     padding-top: 30px;
-    padding: 50px;
+    // padding: 50px;
     max-width: 1650px;
     margin: auto;
+
+    @include breakpoint-min(640) {
+      padding: 50px;
+    }
 }
 
 .containersectionautresoustitre{
@@ -37,10 +41,12 @@
 
 .titresectionautresoustitre{
     position: relative;
-    @include p;
-    padding: 10px;
-    color: var(--grisFonce);
+    @include h5;
+    font-weight: 700;
+    padding: 20px;
+    color: var(--blanc);
     z-index: 2;
+    text-align: center;
 
     @include breakpoint-min(1200) {
         @include h4;
@@ -52,9 +58,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin: 10px;
+    margin: 15px;
     z-index: 3;
-
+    cursor: pointer;
 }
 
 .icon-autre-sous-titre{
@@ -76,6 +82,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    filter: brightness(0.4);
 
     img{
        width: 100%;

@@ -34,8 +34,31 @@ const DeuxiemeTitreAcceuil = () => {
         <h1 className="titre-milieu">Lecteur audio</h1>
         <h1 className="titre-bas">Lecteur audio</h1>
       </motion.div>
-      <div>
-        <h1 className="lignes-nico">Lignes à Nico ici</h1>
+      <div className="lignes-a-nico">
+      <svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 415.57 73.47">
+  <g id="Calque_1-2" data-name="Calque 1">
+    <polyline class="cls-3" 
+    stroke="#fc5571"
+    fill="none"
+    stroke-miterlimit="10"
+    stroke-width="1.69px"
+    
+    points=".36 55.95 93.01 12.28 146.88 60.72 216.55 1.16 279.4 65.48 350.48 13.86 415.14 51.98"/>
+    <polyline class="cls-2"
+    stroke="#7e35e3"
+    fill="none"
+    stroke-miterlimit="10"
+    stroke-width="1.69px"
+     points=".36 59.3 93.01 15.62 146.88 64.06 216.55 4.5 279.4 68.83 350.48 17.21 415.14 55.33"/>
+    <polyline class="cls-1" 
+    stroke="#222c32"
+    fill="none"
+    stroke-miterlimit="10"
+    stroke-width="1.69px"
+    
+    points=".36 62.82 93.01 19.14 146.88 67.58 216.55 8.03 279.4 72.35 350.48 20.73 415.14 58.85"/>
+  </g>
+</svg>
       </div>
       <div className="container-info">
         <div className="deuxiemetitres-info">

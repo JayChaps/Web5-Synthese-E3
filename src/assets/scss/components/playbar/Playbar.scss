@@ -5,6 +5,7 @@
 @import "sliderplaybarfull.scss";
 @import "arrow.scss";
 
+
 .playbar {
   display: grid;
   grid-template-rows: 1fr auto;
@@ -36,7 +37,6 @@
 
     & img {
       position: absolute;
-      // top: 50%;
       left: 50%;
 
       width: 150%;
@@ -367,7 +367,7 @@
 
               height: 20px;
               border-radius: 50%;
-              background: var(--grisFonce);
+              background-color: var(--grisFonce);
               opacity: 0;
 
               transition:
@@ -549,3 +549,4 @@ section.playbar__inner__center__progress {
     }
   }
 }
+

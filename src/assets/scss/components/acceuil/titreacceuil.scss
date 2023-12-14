@@ -39,7 +39,11 @@
     margin-bottom: 100px;
     width: 400px;
     height: 300px;
-    background-color: var(--rose);
+    background: linear-gradient(
+      to top,
+      var(--rose) 0%,
+      var(--mauve) 100%
+    );
     border-radius: 40px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

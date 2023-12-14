@@ -13,7 +13,7 @@ const TitreAcceuil = () => {
   };
 
   return (
-    <motion.section initial={{ opacity: 0, y: -50 }} animate={containerControls} onLoad={animateContainer}>
+    <motion.section initial={{ opacity: 1, y: -50 }} animate={containerControls} onLoad={animateContainer}>
       <motion.div className="round-section">
         <div className="content-container-acceuil">
           <div className="image-container-acceuil">
@@ -33,17 +33,17 @@ const TitreAcceuil = () => {
         </div>
       </motion.div>
       <motion.div className="welcome-container">
-        <motion.h1 className="big-title-displaced" initial={{ opacity: 0, x: -50 }} animate={titleControls}>
+        <motion.h1 className="big-title-displaced" initial={{ opacity: 1, x: -50 }} animate={titleControls}>
           Bienvenue!
         </motion.h1>
-        <motion.h1 className="big-title" initial={{ opacity: 0, x: -50 }} animate={titleControls}>
+        <motion.h1 className="big-title" initial={{ opacity: 1, x: -50 }} animate={titleControls}>
           Bienvenue!
         </motion.h1>
-        <motion.h1 className="big-title-displaced2" initial={{ opacity: 0, x: -50 }} animate={titleControls}>
+        <motion.h1 className="big-title-displaced2" initial={{ opacity: 1, x: -50 }} animate={titleControls}>
           Bienvenue!
         </motion.h1>
       </motion.div>
-      <motion.h2 className="small-title" initial={{ opacity: 0 }} animate={{ opacity: 1, y: 0 }}>
+      <motion.h2 className="small-title" initial={{ opacity: 1 }} animate={{ opacity: 1, y: 0 }}>
         Voici ce qu'Apollon a à offrir:
       </motion.h2>
     </motion.section>

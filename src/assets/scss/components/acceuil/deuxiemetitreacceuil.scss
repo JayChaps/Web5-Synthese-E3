@@ -147,3 +147,22 @@
     text-align: center;
     margin: 75px;
 }
+
+.lignes-a-nico{
+  margin-top: 100px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  @include breakpoint-min(1024) {
+    margin-top: 200px;
+  margin-bottom: 150px;
+  }
+
+  & svg{
+    width: 100vw;
+    // max-width: 2000px;
+  }
+}
