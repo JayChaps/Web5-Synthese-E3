@@ -99,13 +99,13 @@ const DecouverteArtiste = () => {
   return (
     <div>
       <h1 className="titre-decouverte3" initial={{ opacity: 1, y: 50 }} animate={controls}>
-        Populaire
+        Artiste
       </h1>
       <h1 className="titre-decouverte" initial={{ opacity: 1, y: 50 }} animate={controls}>
         Populaire
       </h1>
       <h1 className="titre-decouverte2" initial={{ opacity: 1, y: 50 }} animate={controls}>
-        Populaire
+        Artiste
       </h1>
       <div className="nicHeaderArtiste">
         <img src={artist.picture_xl} alt="" className="img-decouverte" />
