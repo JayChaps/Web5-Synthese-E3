@@ -30,7 +30,9 @@ const ItemRecherche = ({ result }) => {
 
   const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
   const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
-  const { handlePlaySong } = useContext(SongInfoContext);
+
+  const { handlePlaySong, handlePlaySongRecherche, songInfo } = useContext(SongInfoContext);
+
   const [selectorActif, setSelectorActif] = useState(false);
   const controls = useAnimation();
 
@@ -58,6 +60,15 @@ const ItemRecherche = ({ result }) => {
     startAnimation();
   }, []);
 
+
+  const faireJouer = (laChanson) => {
+    handlePlaySong(laChanson);
+    setSelectedSong(laChanson);
+    
+    console.log("Je te jure que je vais me tuer", laChanson);
+  };
+
+
   return (
     <>
       {selectorActif && (
@@ -82,7 +93,8 @@ const ItemRecherche = ({ result }) => {
         </div>
         <div className="imgrecherche">
           <motion.img
-            onClick={() => handlePlaySong(result)}
+            // onClick={() => handlePlaySong(result)}
+            onClick={() => faireJouer(result)}
             src={result.album.cover}
             alt={`Couverture de l'album ${result.album.title}`}
             whileHover={{ scale: 1.05 }}
@@ -97,7 +109,8 @@ const ItemRecherche = ({ result }) => {
           <FaPlayCircle
             size={"2rem"}
             color="var(--blanc)"
-            onClick={() => handlePlaySong(result)}
+            // onClick={() => handlePlaySong(result)}
+            onClick={() => faireJouer(result)}
           />
         </div>
       </motion.li>
