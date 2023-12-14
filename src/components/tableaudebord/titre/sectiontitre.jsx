@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaPlayCircle } from "react-icons/fa";
-import PropositionChansons from "../titre/PropositionChansons";
+import PropositionChansons from "../titre/propositionchansons";
 import fetchJsonp from "fetch-jsonp";
 
 const SectionTitre = () => {
