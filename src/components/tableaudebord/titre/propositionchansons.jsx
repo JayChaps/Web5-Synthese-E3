@@ -23,7 +23,7 @@ const PropositionChansons = ({ albumId }) => {
         const albumData = await albumResp.json();
         setAlbum(albumData || {});
       } catch (error) {
-        console.error("Error fetching album data:", error);
+        console.error("Erreur info album:", error);
       }
     };
 

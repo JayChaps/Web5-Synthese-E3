@@ -1,4 +1,3 @@
-// LesPlaylist.jsx :
 import React, { useContext, useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa6";
 import { GrSubtractCircle } from "react-icons/gr";
@@ -95,6 +94,7 @@ const LesPlaylist = () => {
   };
 
   return (
+    
     <motion.div
       className="lesplaylists"
       initial={{ opacity: 0 }}
@@ -214,7 +214,7 @@ const LesPlaylist = () => {
             <ItemChansonRecomande premier={true} />
           </AnimatedItem>
           <AnimatedItem delay={0.1}>
-            <ItemChansonRecomande />
+            <ItemChansonRecomande/>
           </AnimatedItem>
           <AnimatedItem delay={0.2}>
             <ItemChansonRecomande />
