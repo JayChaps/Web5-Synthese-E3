@@ -17,6 +17,12 @@ const PlaylistsProvider = ({ children }) => {
 
     const [clickedPlaylist, setClickedPlaylist] = useState([]);
 
+    const [firstBigCov, setFirstBigCov] = useState("");
+    const [secondBigCov, setSecondBigCov] = useState("");
+    const [thirdBigCov, setThirdBigCov] = useState("");
+    const [fourthBigCov, setFourthBigCov] = useState("");
+
+
     // const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
     // const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
 
@@ -65,12 +71,14 @@ const PlaylistsProvider = ({ children }) => {
     const createNewPlaylist = async (name) => {
         if (newPlaylistName.trim() !== '') {
             const userId = auth.currentUser.uid;
+            const userName = auth.currentUser.displayName;
             console.log("userId: "+userId);
             // Création de la nouvelle playlist
             const docRef = await addDoc(collection(db, "playlists"), {
                 name: name,
                 songs: [],
                 createdBy: userId,
+                creatorName: userName,
             });
 
             // Mise à jour du document de l'utilisateur pour inclure l'ID de la nouvelle playlist
@@ -81,6 +89,11 @@ const PlaylistsProvider = ({ children }) => {
 
             setSelectedPlaylistId(docRef.id); // Sélectionne la nouvelle playlist
             setSelectedPlaylist(docRef); // Sélectionne la nouvelle playlist
+            setClickedPlaylist(docRef); // Sélectionne la nouvelle playlist
+
+            // Mettre à jour l'état des playlists avec la nouvelle playlist
+            setPlaylists([...playlists, { id: docRef.id, name: name, songs: [] }]); 
+
             setNewPlaylistName(''); // Reset le nom après création
         }
 
@@ -137,6 +150,7 @@ const PlaylistsProvider = ({ children }) => {
                 }
                 return playlist;
             }));
+
         }
 
         console.log("removeSongFromPlaylist() done");
@@ -202,7 +216,11 @@ const PlaylistsProvider = ({ children }) => {
                                             playlist, setPlaylist,
                                             selectedSong, setSelectedSong,
                                             createNewPlaylistAndAddSong,
-                                            clickedPlaylist, setClickedPlaylist }}>
+                                            clickedPlaylist, setClickedPlaylist,
+                                            firstBigCov, setFirstBigCov,
+                                            secondBigCov, setSecondBigCov,
+                                            thirdBigCov, setThirdBigCov,
+                                            fourthBigCov, setFourthBigCov, }}>
             {children}
         </PlaylistsContext.Provider>
     );

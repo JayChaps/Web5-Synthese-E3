@@ -7,12 +7,15 @@ import Coeur from "../Coeur/Coeur";
 import { PlaylistsContext } from "../../context/playlistsContext";
 import { SongInfoContext } from "../../context/SongInfoContext";
 import { Link } from "react-router-dom";
+import { SoloPlaylistContext } from "../../context/soloPlaylistContext";
 
-const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
+// const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
+const ItemChansons = ({ song, handleDeleteSong, index }) => {
 
   const urlImg = "src/assets/img/jpg/placeholder.jpg";
 
   const { handlePlaySong } = useContext(SongInfoContext);
+
   const { createNewPlaylist, deletePlaylist,
     addToPlaylist, removeSongFromPlaylist,
     newPlaylistName, setNewPlaylistName,
@@ -24,15 +27,29 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
     createNewPlaylistAndAddSong, 
     clickedPlaylist, setClickedPlaylist } = useContext(PlaylistsContext);
 
+  const { previousSong, setPreviousSong,
+    currentSong, setCurrentSong,
+    nextSong, setNextSong,
+    handleNextSong, handlePreviousSong,
+    handleAllThreeSongs } = useContext(SoloPlaylistContext);	
+
   useEffect(() => {
     console.log(song);
   }, [song]);
+
+  const JouerLaChanson = (song, index) => {
+    setSelectedSong(song);
+    handlePlaySong(song);
+    setCurrentSong(song);
+    handleAllThreeSongs(song, index);
+    console.log("Tabarnak", song);
+  };
+  
 
   const coverImg = song.album.cover ? song.album.cover : urlImg;
   const songTitle = song.title ? song.title : "Titre inconnu";
   const artistName = song.artist.name ? song.artist.name : "Artiste inconnu";
   const albumTitle = song.album.title ? song.album.title : "Album inconnu";
-
 
   return (
     <article>
@@ -45,7 +62,7 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
           <FaPlayCircle 
             size={"2rem"} 
             color="var(--blanc)"
-            onClick={() => JouerLaChanson(song)}
+            onClick={() => JouerLaChanson(song, index)}
           />
         </div>
         <div className="infoschansons">
@@ -70,7 +87,9 @@ const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
         </div>
 
         <div className="icones">
-          <Coeur />
+          <Coeur 
+            songToAdd={song}
+          />
           <CgRemove size={"2rem"} color="var(--noir)" 
             onClick={() => handleDeleteSong(clickedPlaylist.id, song)}
           />

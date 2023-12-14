@@ -1,5 +1,5 @@
 // SongInfoContext.js :
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { useAudio } from './audiotim';
 
 // Créer le contexte
@@ -21,20 +21,42 @@ const SongInfoProvider = ({ children }) => {
         setSongInfo(info);
     };
 
+    
     // Fonction pour jouer une chanson
     const handlePlaySong = (song) => {
-        console.log(song);
-        changeSource(song.preview); // Définit la source de la chanson
-        updateSongInfo({
-            id: song.id,
-            title: song.title,
-            artist: song.artist.name,
-            coverUrl: song.album.cover,
-        });
+
+        // Logs whatever called this function
+        console.log('handlePlaySong called');
+        
+        if (songInfo.id !== song.id) {
+            console.log(song);
+            changeSource(song.preview); // Définit la source de la chanson
+            updateSongInfo({
+                id: song.id,
+                title: song.title,
+                artist: song.artist.name,
+                coverUrl: song.album.cover,
+            });
+        }
+
+    };
+
+    // Fonction pour jouer une chanson mais dans le recherche maybe
+    const handlePlaySongRecherche = (song) => {
+        // if (songInfo.id !== song.id) {
+            console.log(song);
+            changeSource(song.preview); // Définit la source de la chanson
+            updateSongInfo({
+                id: song.id,
+                title: song.title,
+                artist: song.artist.name,
+                coverUrl: song.album.cover,
+            });
+        // }
     };
 
     return (
-        <SongInfoContext.Provider value={{ songInfo, updateSongInfo, handlePlaySong }}>
+        <SongInfoContext.Provider value={{ songInfo, updateSongInfo, handlePlaySong, handlePlaySongRecherche }}>
             {children}
         </SongInfoContext.Provider>
     );

@@ -1,60 +1,97 @@
-import React, { createContext, useContext, useState } from 'react';
-import { auth, db } from '../config/firebase';
-import { getDoc, setDoc, updateDoc, doc, arrayUnion, increment } from 'firebase/firestore';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { auth, db, incrementValue } from '../config/firebase';
+import { getDoc, setDoc, updateDoc, doc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore';
 
 const FavoritesContext = createContext();
 
-export const FavoritesProvider = ({ children }) => {
+const FavoritesProvider = ({ children }) => {
+
     const [favorites, setFavorites] = useState([]);
+
+    const increment = incrementValue(1);
+    const decrement = incrementValue(-1);
+
+    const fetchFavorites = async () => {
+        if (!auth.currentUser) return;
+
+        const userId = auth.currentUser.uid;
+        const userRef = doc(db, 'users', userId);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setFavorites(userData.favorites);
+        }
+    };
 
     const addToFavorites = async (song) => {
         if (!auth.currentUser) return;
 
         const userId = auth.currentUser.uid;
         const userRef = doc(db, 'users', userId);
-        const songId = String(song.id); // Assurez-vous que l'objet song contient un champ 'id'.
-        console.log("songId: "+songId);
+        const songId = song.id;
         const likesRef = doc(db, 'likes', songId);
 
-        // Ajout de la chanson aux favoris de l'utilisateur
+        // Check if the song is already in favorites
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists() && userDoc.data().favorites.some(fav => fav.id === song.id)) {
+            console.log("Song already in favorites", userDoc.data().favorites.some(fav => fav.id));
+            return; // Exit if already in favorites
+        }
+
+        // Add song to favorites and increment likes
         await updateDoc(userRef, {
             favorites: arrayUnion(song)
         });
 
-        // Vérifier si le document de la chanson existe déjà dans 'likes'
         const likesDoc = await getDoc(likesRef);
         if (!likesDoc.exists()) {
-            // Créer le document avec 'likesAmount' initialisé à 1
-            await setDoc(likesRef, {
-                ...song, // Copie les informations de la chanson
-                likesAmount: 1
-            });
+            await setDoc(likesRef, { ...song, likesAmount: 1 });
         } else {
-            // Incrémenter 'likesAmount'
-            await updateDoc(likesRef, {
-                likesAmount: increment(1)
-            });
+            await updateDoc(likesRef, { likesAmount: increment });
         }
 
-        // Mettre à jour le state si nécessaire
-        setFavorites((prevFavorites) => [...prevFavorites, song]);
+        setFavorites(prev => [...prev, song]);
     };
+
+
+
+    const removeFromFavorites = async (song) => {
+        if (!auth.currentUser) return;
+
+        const userId = auth.currentUser.uid;
+        const userRef = doc(db, 'users', userId);
+        const songId = song.id;
+        const likesRef = doc(db, 'likes', songId);
+
+        // Remove song from favorites and decrement likes
+        await updateDoc(userRef, {
+            favorites: arrayRemove(song)
+        });
+
+        const likesDoc = await getDoc(likesRef);
+        if (likesDoc.exists()) {
+            await updateDoc(likesRef, { likesAmount: decrement });
+        }
+        
+        setFavorites(prev => prev.filter(fav => fav.id !== song.id));
+    };
+
+    useEffect(() => {
+        fetchFavorites();
+    }, [addToFavorites, removeFromFavorites]);
 
     return (
         <FavoritesContext.Provider value={{
-            favorites,
-            setFavorites,
-            addToFavorites
+            favorites, setFavorites,
+            addToFavorites, removeFromFavorites
         }}>
             {children}
         </FavoritesContext.Provider>
     );
 };
 
-export const useFavorites = () => {
-    return useContext(FavoritesContext);
-};
-
+export { FavoritesContext, FavoritesProvider }
 
 
 

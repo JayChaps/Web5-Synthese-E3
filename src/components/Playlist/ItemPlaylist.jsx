@@ -6,7 +6,8 @@ import { CgRemove } from "react-icons/cg";
 import { PlaylistsContext } from "../../context/playlistsContext";
 
 const ItemPlaylist = ({ playlist, name, songs }) => {
-  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "/src/assets/img/jpg/placeholder.jpg"
+  
 
   const [laFirstSong, setLaFirstSong] = useState({});
   const [laSecondSong, setLaSecondSong] = useState({});
@@ -29,6 +30,10 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
     selectedSong, setSelectedSong,
     createNewPlaylistAndAddSong,
     clickedPlaylist, setClickedPlaylist,
+    firstBigCov, setFirstBigCov,
+    secondBigCov, setSecondBigCov,
+    thirdBigCov, setThirdBigCov,
+    fourthBigCov, setFourthBigCov, 
   } = useContext(PlaylistsContext);
 
   useEffect(() => {
@@ -47,30 +52,30 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
       }
 
       if (songs.length == 1) {
-        setFirstCov(songs[0].album.cover);
-        setSecondCov(songs[0].album.cover);
-        setThirdCov(songs[0].album.cover);
-        setFourthCov(songs[0].album.cover);
+        setFirstCov(songs[0].album.cover_big);
+        setSecondCov(songs[0].album.cover_big);
+        setThirdCov(songs[0].album.cover_big);
+        setFourthCov(songs[0].album.cover_big);
       }
       if (songs.length == 2) {
-        setFirstCov(songs[0].album.cover);
-        setSecondCov(songs[1].album.cover);
-        setThirdCov(songs[0].album.cover);
-        setFourthCov(songs[1].album.cover);
+        setFirstCov(songs[0].album.cover_big);
+        setSecondCov(songs[1].album.cover_big);
+        setThirdCov(songs[0].album.cover_big);
+        setFourthCov(songs[1].album.cover_big);
       }
 
       if (songs.length == 3) {
-        setFirstCov(songs[0].album.cover);
-        setSecondCov(songs[1].album.cover);
-        setThirdCov(songs[2].album.cover);
-        setFourthCov(songs[0].album.cover);
+        setFirstCov(songs[0].album.cover_big);
+        setSecondCov(songs[1].album.cover_big);
+        setThirdCov(songs[2].album.cover_big);
+        setFourthCov(songs[0].album.cover_big);
       }
 
       if (songs.length > 3) {
-        setFirstCov(songs[0].album.cover);
-        setSecondCov(songs[1].album.cover);
-        setThirdCov(songs[2].album.cover);
-        setFourthCov(songs[3].album.cover);
+        setFirstCov(songs[0].album.cover_big);
+        setSecondCov(songs[1].album.cover_big);
+        setThirdCov(songs[2].album.cover_big);
+        setFourthCov(songs[3].album.cover_big);
       }
     } else {
       setFirstCov(urlImg);
@@ -89,6 +94,12 @@ const ItemPlaylist = ({ playlist, name, songs }) => {
     setClickedPlaylist(playlist);
     console.log(playlist.songs);
     // console.log("clickedPlaylist " + clickedPlaylist)
+
+    setFirstBigCov(firstCov);
+    setSecondBigCov(secondCov);
+    setThirdBigCov(thirdCov);
+    setFourthBigCov(fourthCov);
+
   };
 
   return (
