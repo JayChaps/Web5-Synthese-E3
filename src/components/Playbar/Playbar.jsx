@@ -110,7 +110,7 @@ const Playbar = () => {
     }
   };
 
-  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "https://i.imgur.com/xaJK7nC.jpg";
 
   useEffect(() => {
     if (songInfo.id !== "") {

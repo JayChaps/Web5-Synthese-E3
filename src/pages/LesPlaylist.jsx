@@ -38,7 +38,7 @@ import ItemPlaylist from "../components/Playlist/ItemPlaylist";
 import { SoloPlaylistContext } from "../context/soloPlaylistContext";
 
 const LesPlaylist = () => {
-  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "https://i.imgur.com/xaJK7nC.jpg";
   const [playlist2, setPlaylist2] = useState({});
 
   const { handlePlaySong } = useContext(SongInfoContext);

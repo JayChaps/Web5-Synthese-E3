@@ -7,7 +7,7 @@ import { PlaylistsContext } from "../../context/playlistsContext";
 
 const ItemPlaylistFirst = () => {
     
-  const urlImg = "/src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "https://i.imgur.com/xaJK7nC.jpg";
 
   const { createNewPlaylist, deletePlaylist,
     addToPlaylist, removeSongFromPlaylist,

@@ -12,7 +12,7 @@ import { SoloPlaylistContext } from "../../context/soloPlaylistContext";
 // const ItemChansons = ({ song, handleDeleteSong, JouerLaChanson, index }) => {
 const ItemChansons = ({ song, handleDeleteSong, index }) => {
 
-  const urlImg = "src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "https://i.imgur.com/xaJK7nC.jpg";
 
   const { handlePlaySong } = useContext(SongInfoContext);
 

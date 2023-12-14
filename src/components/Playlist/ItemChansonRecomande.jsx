@@ -5,7 +5,7 @@ import { BiHeart } from "react-icons/bi";
 import Coeur from "../Coeur/Coeur";
 
 const ItemChansonRecomande = ({ premier = false }) => {
-  const urlImg = "src/assets/img/jpg/placeholder.jpg";
+  const urlImg = "https://i.imgur.com/xaJK7nC.jpg";
   return (
     <article className={premier? "premier recommande":"recommande"}>
         <div className="chansoncover">
