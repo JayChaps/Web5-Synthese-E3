@@ -143,10 +143,12 @@ const LesPlaylist = () => {
         >
           <div className="titreplaylist">
             <div className="titreinner">
-              <h1>{plName}</h1>
-              <h1>{plName}</h1>
-              <h1>{plName}</h1>
-              <h1>{plName}</h1>
+              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
+              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
+
+              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
+
+              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
             </div>
           </div>
           <motion.section
@@ -158,7 +160,7 @@ const LesPlaylist = () => {
               <div>
                 <img src={urlImg} alt="" />
               </div>
-              <span>{creator}</span>
+              <span>Créateur</span>
             </div>
             <div className="lesplaylists__infos__icones__icones">
               <FaPen size={"1rem"} color="var(--noir)" />
@@ -168,14 +170,12 @@ const LesPlaylist = () => {
           </motion.section>
         </motion.section>
 
-        {playlists && playlists.length > 0 && (
-          <div className="coverplaylist">
-            <img src={urlImg} alt="" />
-            <img src={urlImg} alt="" />
-            <img src={urlImg} alt="" />
-            <img src={urlImg} alt="" />
-          </div>
-        )}
+        <div className="coverplaylist">
+          <img src={urlImg} alt="" />
+          <img src={urlImg} alt="" />
+          <img src={urlImg} alt="" />
+          <img src={urlImg} alt="" />
+        </div>
       </header>
 
       <motion.section

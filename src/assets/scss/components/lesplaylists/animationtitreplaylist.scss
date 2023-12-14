@@ -6,13 +6,6 @@
         animation-iteration-count: infinite;
         animation-timing-function: linear;
     }
-
-    & .titreinner {
-        animation: animationtitre;
-        animation-duration: 10s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-    }
 }
 
 
@@ -20,19 +13,22 @@
     0% {
         opacity: 0;
         left: 0;
+        transform: none;
     }
     2% {
         opacity: 1;
     }
     80% {
         left: 0;
+        transform: none;
     }
     90% {
         opacity: 1;
     }
     100% {
-        left: -100%; 
+        left: 0; 
         opacity: 0;
+        transform: translateX(-100%);
     }
 }
 @keyframes animationtitre {
