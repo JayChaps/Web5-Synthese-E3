@@ -342,7 +342,10 @@
   gap: 20px;
   width: 100%;
 }
-
+.decouverte-songs-container{
+  width: 80%;
+  max-width: 1024px;
+}
 .title-chansons {
   @include h2;
   margin: 0px 40px 40px 0px;

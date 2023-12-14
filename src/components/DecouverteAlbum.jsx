@@ -76,7 +76,9 @@ const DecouverteAlbum = () => {
         </div>
       </motion.div>
 
-      <motion.div initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+      <motion.div 
+        className="decouverte-songs-container"
+      initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
         {/* <h1 className="title-chansons">Titres:</h1> */}
         <motion.div className="decouverte-songs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}>
           {songs.length > 0 &&
