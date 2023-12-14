@@ -1,17 +1,28 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db, incrementValue } from '../config/firebase';
 import { getDoc, setDoc, updateDoc, doc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore';
 
 const FavoritesContext = createContext();
 
 const FavoritesProvider = ({ children }) => {
+
     const [favorites, setFavorites] = useState([]);
 
     const increment = incrementValue(1);
     const decrement = incrementValue(-1);
 
+    const fetchFavorites = async () => {
+        if (!auth.currentUser) return;
 
+        const userId = auth.currentUser.uid;
+        const userRef = doc(db, 'users', userId);
+        const userDoc = await getDoc(userRef);
 
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setFavorites(userData.favorites);
+        }
+    };
 
     const addToFavorites = async (song) => {
         if (!auth.currentUser) return;
@@ -23,8 +34,8 @@ const FavoritesProvider = ({ children }) => {
 
         // Check if the song is already in favorites
         const userDoc = await getDoc(userRef);
-        if (userDoc.exists() && userDoc.data().favorites.some(favSong => favSong.id === song.id)) {
-            console.log("Song already in favorites");
+        if (userDoc.exists() && userDoc.data().favorites.some(fav => fav.id === song.id)) {
+            console.log("Song already in favorites", userDoc.data().favorites.some(fav => fav.id));
             return; // Exit if already in favorites
         }
 
@@ -48,7 +59,7 @@ const FavoritesProvider = ({ children }) => {
 
         const userId = auth.currentUser.uid;
         const userRef = doc(db, 'users', userId);
-        const songId = String(song.id);
+        const songId = song.id.toString();
         const likesRef = doc(db, 'likes', songId);
 
         // Remove song from favorites and decrement likes
@@ -56,16 +67,17 @@ const FavoritesProvider = ({ children }) => {
             favorites: arrayRemove(song)
         });
 
-        await updateDoc(likesRef, { likesAmount: decrement });
-
         const likesDoc = await getDoc(likesRef);
-        if (likesDoc.exists() && likesDoc.data().likesAmount <= 0) {
-            await deleteDoc(likesRef);
+        if (likesDoc.exists()) {
+            await updateDoc(likesRef, { likesAmount: decrement });
         }
-
+        
         setFavorites(prev => prev.filter(fav => fav.id !== song.id));
     };
 
+    useEffect(() => {
+        fetchFavorites();
+    }, [addToFavorites, removeFromFavorites]);
 
     return (
         <FavoritesContext.Provider value={{

@@ -1,21 +1,31 @@
-import React, { useContext } from "react";
-import { SongInfoContext, useSongInfo } from "../../context/SongInfoContext";
+import React, { useContext, useEffect, useState } from "react";
 import { FavoritesContext } from "../../context/FavoritesContext";
 
-const Coeur = ({ isLiked = true, handleAddToFavorites, songToAdd }) => {
-
-
-  const { songInfo, updateSongInfo, handlePlaySong } = useContext(SongInfoContext);
+const Coeur = ({ songToAdd }) => {
 
   const { favorites, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
 
-  const handleLikeClick = (song) => {
-    
-    const isFavorited = favorites.some(fav => fav.id === song.id);
-    if (isFavorited) {
-        removeFromFavorites(song);
+ // After 1 second of loading, a new const "theId" is created with the value of the song id
+  const [theId, setTheId] = useState(1);
+  useEffect(() => {
+    setTimeout(() => {
+      setTheId(songToAdd.id);
+    }, 200);
+    console.log("theId", theId);
+  }, [songToAdd]);
+  
+  const [isFavorited, setIsFavorited] = useState(true);
+
+  useEffect(() => {
+    setIsFavorited(favorites.some(fav => fav.id === theId));
+  }, [favorites, theId]);
+
+  const handleLikeClick = () => {
+    // isFavorited = favorites.some(fav => fav.id === songToAdd.id);
+    if (!isFavorited && songToAdd) {
+        removeFromFavorites(songToAdd);
       } else {
-          addToFavorites(song);
+        addToFavorites(songToAdd);
       }
   };
 
@@ -23,10 +33,14 @@ const Coeur = ({ isLiked = true, handleAddToFavorites, songToAdd }) => {
   return (
     <label className="coeur"
       // onClick={() => handleAddToFavorites()}
-      onClick={() => handleLikeClick(songToAdd)}
+      onClick={() => handleLikeClick()}
     >
       {/* checked={isLiked} */}
-    <input type="checkbox" />
+    <input 
+      type="checkbox" 
+      checked={isFavorited} 
+      readOnly 
+    />
     <div className="checkmark">
       <svg viewBox="0 0 256 256">
         <rect fill="none" height="256" width="256"></rect>

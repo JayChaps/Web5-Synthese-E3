@@ -120,7 +120,7 @@ const Playbar = () => {
     if (currentSong && currentSong.id) {
       handlePlaySong(currentSong);
     }
-  }, [currentSong, handlePlaySong]);
+  }, [currentSong]);
 
 
   const ajouterUneChansonDansSesFavorites = (infos) => {
@@ -227,7 +227,6 @@ const Playbar = () => {
           </section>
           <section className="playbar__inner__right">
             <Coeur 
-              // handleAddToFavorites={handleAddToFavorites}
               songToAdd = {track}
             />
             <CgAdd

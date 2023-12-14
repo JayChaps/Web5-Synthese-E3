@@ -31,7 +31,7 @@ const ItemRecherche = ({ result }) => {
   const [shouldFetchPlaylist, setShouldFetchPlaylist] = useState(false);
   const [shouldFetchPlaylists, setShouldFetchPlaylists] = useState(false);
 
-  const { handlePlaySong, handlePlaySongRecherche } = useContext(SongInfoContext);
+  const { handlePlaySong, handlePlaySongRecherche, songInfo } = useContext(SongInfoContext);
 
   const [selectorActif, setSelectorActif] = useState(false);
   const controls = useAnimation();
@@ -62,8 +62,9 @@ const ItemRecherche = ({ result }) => {
 
 
   const faireJouer = (laChanson) => {
-    handlePlaySongRecherche(laChanson);
+    handlePlaySong(laChanson);
     setSelectedSong(laChanson);
+    
     console.log("Je te jure que je vais me tuer", laChanson);
   };
 
