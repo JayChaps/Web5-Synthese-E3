@@ -125,34 +125,6 @@ const Playbar = () => {
   }, [currentSong]);
 
 
-  const ajouterUneChansonDansSesFavorites = (infos) => {
-    console.log("imagine que tu ajoutes une chanson dans tes favorites", infos);
-  }
-
-
-  // useEffect(() => {
-  //   console.log("OMG CURRENT SONG CHANGED", currentSong);
-  // }, [currentSong]);
-
-  // useEffect(() => {
-  //   console.log("OMG SONG INFO CHANGED", songInfo);
-  // }, [songInfo]);
-
-  // useEffect(() => {
-  //   console.log("OMG NEXT SONG CHANGED", nextSong);
-  // }, [nextSong]);
-
-  // useEffect(() => {
-  //   console.log("OMG PREVIOUS SONG CHANGED", previousSong);
-  // }, [previousSong]);
-
-  // useEffect(() => {
-  //   console.log("OMG PLAY PAUSE CHANGED", isPaused);
-  // }, [isPaused]);
-
-
-
-
   return (
     <>
       {selectorActif && <PlaylistSelector setActif={setSelectorActif} />}

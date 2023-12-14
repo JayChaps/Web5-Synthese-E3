@@ -130,7 +130,6 @@ const PlaylistsProvider = ({ children }) => {
         const playlistSnapshot = await getDoc(playlistRef);
         if (playlistSnapshot.exists()) {
             const playlistData = playlistSnapshot.data();
-            console.log("Bonjour"+playlistData);
 
             // Filtrer les chansons pour exclure celle que vous souhaitez supprimer
             const newSongs = (playlistData.songs || []).filter((s) => s.id !== song.id);
