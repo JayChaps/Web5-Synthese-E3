@@ -89,12 +89,10 @@ const LesPlaylist = () => {
     setCreator(clickedPlaylist.creatorName);
   }, [clickedPlaylist]);
 
-
   const faireJouer = (laChanson) => {
     handlePlaySong(laChanson);
     setSelectedSong(laChanson);
   };
-
 
   return (
     <motion.div
