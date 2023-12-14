@@ -40,27 +40,35 @@ const ChansonsSuivantes = () => {
     const [nextSongs, setNextSongs] = useState([]); // Array of songs in the playlist
 
     useEffect(() => {
-      setNextSongs(currentIndex < songsInPlaylist.length - 1
-        ? songsInPlaylist.slice(currentIndex + 1) : []);
-      console.log("nextSongs", nextSongs)
+      if (songsInPlaylist) {
+        setNextSongs(currentIndex < songsInPlaylist.length - 1
+          ? songsInPlaylist.slice(currentIndex + 1) : []);
+          console.log("nextSongs", nextSongs)
+      }
     }, [currentIndex, songsInPlaylist]);
 
 
-  return (
-    <section className="chansonssuivantes">
-      <Glider {...settings}>
-        
-        {nextSongs.map((song, index) => (
-          <ChansonSuivante
-            key={index}
-            song={song}
-          />
-        ))}
+  if (!nextSongs) {
+    return <div className="nosong"> 
+      <p>Il n'y a pas de chanson suivante</p> 
+    </div>;
+  } else {
+    return (
+      <section className="chansonssuivantes">
+        <Glider {...settings}>
+          
+          {nextSongs.map((song, index) => (
+            <ChansonSuivante
+              key={index}
+              song={song}
+            />
+          ))}
 
 
-      </Glider>
-    </section>
-  );
+        </Glider>
+      </section>
+    );
+  };
 };
 
 export default ChansonsSuivantes;
