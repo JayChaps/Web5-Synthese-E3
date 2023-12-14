@@ -35,7 +35,9 @@ const ChansonSuivante = ({ song }) => {
     }
   }, [songInfo]);
 
-  const coverImg = song.album.cover ? song.album.cover : "src/assets/img/jpg/placeholder.jpg";
+  const coverImg = song.album.cover
+    ? song.album.cover
+    : "src/assets/img/jpg/placeholder.jpg";
 
   const songTitle = song.title ? song.title : "Titre inconnu";
   const artistName = song.artist.name ? song.artist.name : "Artiste inconnu";
@@ -47,7 +49,8 @@ const ChansonSuivante = ({ song }) => {
   };
 
   return (
-    <article className="chansonsuivante"
+    <article
+      className="chansonsuivante"
       // onClick={() => faireJouer(song)}
     >
       <div className="chansonsuivante__inner">
@@ -60,11 +63,15 @@ const ChansonSuivante = ({ song }) => {
         </div>
 
         <div className="chansonsuivante__info">
-          <span>{songTitle}</span>
           {track.artist && (
-            <Link to={`/artist/${track.artist.id}`} onClick={toggleBar}>
-              <span>{artistName}</span>
-            </Link>
+            <>
+              <Link to={`/album/${song.album.id}`} onClick={toggleBar}>
+                <span>{songTitle}</span>
+              </Link>
+              <Link to={`/artist/${track.artist.id}`} onClick={toggleBar}>
+                <span>{artistName}</span>
+              </Link>
+            </>
           )}
         </div>
       </div>
