@@ -36,12 +36,14 @@ const AnimatedItem = ({ children, delay = 0.3 }) => {
 import { PlaylistsContext } from "../context/playlistsContext";
 import { SongInfoContext } from "../context/SongInfoContext";
 import ItemPlaylist from "../components/Playlist/ItemPlaylist";
+import { SoloPlaylistContext } from "../context/soloPlaylistContext";
 
 const LesPlaylist = () => {
   const urlImg = "/src/assets/img/jpg/placeholder.jpg";
   const [playlist2, setPlaylist2] = useState({});
 
   const { handlePlaySong } = useContext(SongInfoContext);
+
   const { createNewPlaylist, deletePlaylist,
           addToPlaylist, removeSongFromPlaylist,
           newPlaylistName, setNewPlaylistName,
@@ -57,6 +59,8 @@ const LesPlaylist = () => {
           secondBigCov, setSecondBigCov,
           thirdBigCov, setThirdBigCov,
           fourthBigCov, setFourthBigCov, } = useContext(PlaylistsContext);
+
+  const { firstSong, setFirstSong, } = useContext(SoloPlaylistContext);
 
   useEffect(() => {
     fetchPlaylists();
@@ -78,12 +82,19 @@ const LesPlaylist = () => {
 
   const [creator, setCreator] = useState("");
   const [plName, setPlName] = useState("NomPlaylist");
-  const [defaultPlaylist, setDefaultPlaylist] = useState([]);
+  // const firstSongOfPlaylist = playlist?.songs[0];
 
   useEffect(() => {
     setPlName(clickedPlaylist.name);
     setCreator(clickedPlaylist.creatorName);
   }, [clickedPlaylist]);
+
+
+  const faireJouer = (laChanson) => {
+    handlePlaySong(laChanson);
+    setSelectedSong(laChanson);
+  };
+
 
   return (
     <motion.div
@@ -126,7 +137,11 @@ const LesPlaylist = () => {
               <div className="lesplaylists__infos__icones__icones">
                 <FaPen size={"1rem"} color="var(--noir)" />
                 <CgRemove size={"1rem"} color="var(--noir)" />
-                <FaPlayCircle size={"2rem"} color="var(--noir)" />
+                <FaPlayCircle 
+                size={"2rem"} 
+                color="var(--noir)" 
+                onClick={() => faireJouer(firstSong)}
+                />
               </div>
             </motion.section>
           </motion.section>

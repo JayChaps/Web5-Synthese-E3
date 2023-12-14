@@ -64,8 +64,6 @@ const ItemRecherche = ({ result }) => {
   const faireJouer = (laChanson) => {
     handlePlaySong(laChanson);
     setSelectedSong(laChanson);
-    
-    console.log("Je te jure que je vais me tuer", laChanson);
   };
 
 

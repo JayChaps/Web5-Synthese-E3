@@ -23,6 +23,7 @@ const SoloPlaylistProvider = ({ children }) => {
     // Make an array of the song in the clickedPlaylist/selectedPlaylist/whatever
     // in order to be able to play them as a queue
 
+    const [firstSong, setFirstSong] = useState({}); // The first song in the playlist
     const [previousSong, setPreviousSong] = useState({});
     const [currentSong, setCurrentSong] = useState({});
     const [nextSong, setNextSong] = useState({});
@@ -66,6 +67,11 @@ const SoloPlaylistProvider = ({ children }) => {
         setCurrentSong(songsInPlaylist[newIndex]);
     };
     
+    useEffect(() => {
+        if (songsInPlaylist) {
+            setFirstSong(songsInPlaylist[0]);
+        }
+    }, [songsInPlaylist]);
 
     return (
         <SoloPlaylistContext.Provider
@@ -75,7 +81,8 @@ const SoloPlaylistProvider = ({ children }) => {
                     songsInPlaylist, setSongsInPlaylist, 
                     nextSong, setNextSong,
                     handleNextSong, handlePreviousSong,
-                    handleAllThreeSongs}}>
+                    handleAllThreeSongs,
+                    firstSong, setFirstSong}}>
             {children}
         </SoloPlaylistContext.Provider>
     );
