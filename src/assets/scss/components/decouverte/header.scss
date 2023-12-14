@@ -21,7 +21,7 @@
         @include h3;
         margin: 0;
         color: var((--rose));
-
+        user-select: none;
         @include breakpoint-min(640 )
         {
             @include h2;
