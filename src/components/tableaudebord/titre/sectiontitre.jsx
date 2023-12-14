@@ -39,7 +39,7 @@ const SectionTitre = () => {
         const resp = await fetchJsonp(url);
         const data = await resp.json();
     
-        // Check if the response contains valid data
+        
         if (data && data.title && data.cover_big) {
           setAlbumData({ id: randomAlbumId, data });
         } else {

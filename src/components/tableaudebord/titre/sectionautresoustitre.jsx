@@ -45,7 +45,7 @@ const SectionAutresoustitre = () => {
     visible: { opacity: 1, scale: 1, transition: { delay: 0.2, duration: 0.8, ease: 'easeInOut' } },
   };
 
-  const albumLink = `/album/${randomAlbum?.id}`; // Adjust this based on your API response structure
+  const albumLink = `/album/${randomAlbum?.id}`;
 
   return (
     <motion.section className="containersectionautresoustitre" variants={containerVariants} initial="hidden" animate="visible">

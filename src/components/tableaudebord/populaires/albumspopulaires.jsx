@@ -45,7 +45,7 @@ const Albumspopulaires = () => {
     };
   }, [controls]);
 
-  const artistLink = `/artist/${randomArtist?.id}`; // Adjust this based on your API response structure
+  const artistLink = `/artist/${randomArtist?.id}`;
 
   return (
     <div className="container-complet-albums">
