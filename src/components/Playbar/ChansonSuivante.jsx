@@ -4,7 +4,6 @@ import { BiHeart } from "react-icons/bi";
 import { CgRemove } from "react-icons/cg";
 import Coeur from "../Coeur/Coeur";
 
-  // <CgRemove size={"2rem"} color="var(--noir)" />
 const ChansonSuivante = ({song}) => {
 
   const coverImg = song.album.cover ? song.album.cover : "src/assets/img/jpg/placeholder.jpg";
