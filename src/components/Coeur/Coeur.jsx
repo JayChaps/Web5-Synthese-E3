@@ -5,7 +5,7 @@ const Coeur = ({ songToAdd }) => {
 
   const { favorites, addToFavorites, removeFromFavorites } = useContext(FavoritesContext);
 
- // After 1 second of loading, a new const "theId" is created with the value of the song id
+  // After 1 second of loading, a new const "theId" is created with the value of the song id
   const [theId, setTheId] = useState(1);
   useEffect(() => {
     setTimeout(() => {
@@ -17,31 +17,30 @@ const Coeur = ({ songToAdd }) => {
   const [isFavorited, setIsFavorited] = useState(true);
 
   useEffect(() => {
-    setIsFavorited(favorites.some(fav => fav.id === theId));
+    setIsFavorited(favorites?.some(fav => fav.id === theId));
   }, [favorites, theId]);
 
   const handleLikeClick = () => {
-    // isFavorited = favorites.some(fav => fav.id === songToAdd.id);
+    setIsFavorited(!isFavorited);
     if (!isFavorited && songToAdd) {
-        removeFromFavorites(songToAdd);
-      } else {
-        addToFavorites(songToAdd);
-      }
+      removeFromFavorites(songToAdd);
+    } else {
+      addToFavorites(songToAdd);
+    }
   };
 
 
   return (
-    <label className="coeur"
-      // onClick={() => handleAddToFavorites()}
-      onClick={() => handleLikeClick()}
-    >
+    <label className="coeur">
       {/* checked={isLiked} */}
     <input 
       type="checkbox" 
       checked={isFavorited} 
       readOnly 
     />
-    <div className="checkmark">
+    <div className="checkmark" 
+      onClick={() => handleLikeClick()}
+    >
       <svg viewBox="0 0 256 256">
         <rect fill="none" height="256" width="256"></rect>
         <path

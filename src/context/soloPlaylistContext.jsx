@@ -69,11 +69,13 @@ const SoloPlaylistProvider = ({ children }) => {
 
     return (
         <SoloPlaylistContext.Provider
-            value={{ previousSong, setPreviousSong, 
-                    currentSong, setCurrentSong, 
+            value={{previousSong, setPreviousSong, 
+                    currentSong, setCurrentSong,
+                    currentIndex, setCurrentIndex,
+                    songsInPlaylist, setSongsInPlaylist, 
                     nextSong, setNextSong,
                     handleNextSong, handlePreviousSong,
-                    handleAllThreeSongs }}>
+                    handleAllThreeSongs}}>
             {children}
         </SoloPlaylistContext.Provider>
     );

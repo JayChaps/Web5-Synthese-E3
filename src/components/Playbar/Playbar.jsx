@@ -181,7 +181,7 @@ const Playbar = () => {
             <FaArrowCircleUp
             className="arrowPlaybar"
             size={"3rem"}
-            color="var(--rose)"
+            color="var(--noir)"
             onClick={() => setIsFullbarOpen(!isFullbarOpen)}
             />
           }

@@ -29,7 +29,7 @@ const FavoritesProvider = ({ children }) => {
 
         const userId = auth.currentUser.uid;
         const userRef = doc(db, 'users', userId);
-        const songId = song.id.toString();
+        const songId = song.id;
         const likesRef = doc(db, 'likes', songId);
 
         // Check if the song is already in favorites
@@ -54,12 +54,14 @@ const FavoritesProvider = ({ children }) => {
         setFavorites(prev => [...prev, song]);
     };
 
+
+
     const removeFromFavorites = async (song) => {
         if (!auth.currentUser) return;
 
         const userId = auth.currentUser.uid;
         const userRef = doc(db, 'users', userId);
-        const songId = song.id.toString();
+        const songId = song.id;
         const likesRef = doc(db, 'likes', songId);
 
         // Remove song from favorites and decrement likes
