@@ -135,24 +135,28 @@
                     content: "";
                     position: absolute;
                     top: 0;
-                    left: 0;
+                    left: 50%;
 
-                    width: 100%;
+                    width: 90%;
                     height: 2px;
                     background-color: var(--noir);
                     opacity: 0.4;
+
+                    transform: translateX(-50%);
                 }
 
                 &::after {
                     content: "";
                     position: absolute;
                     bottom: 0;
-                    left: 0;
+                    left: 50%;
 
-                    width: 100%;
+                    width: 90%;
                     height: 2px;
                     background-color: var(--noir);
                     opacity: 0.4;
+
+                    transform: translateX(-50%);
                 }
                 & > button {
                     width: 100%;
