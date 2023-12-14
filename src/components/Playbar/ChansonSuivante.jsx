@@ -44,9 +44,7 @@ const ChansonSuivante = ({ song }) => {
           currentSong, setCurrentSong } = useContext(SoloPlaylistContext);
 
   const coverImg = song.album.cover ? song.album.cover : "src/assets/img/jpg/placeholder.jpg";
-  const coverImg = song.album.cover
-    ? song.album.cover
-    : "src/assets/img/jpg/placeholder.jpg";
+
   const songTitle = song.title ? song.title : "Titre inconnu";
   const artistName = song.artist.name ? song.artist.name : "Artiste inconnu";
 
