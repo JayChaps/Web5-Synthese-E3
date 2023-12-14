@@ -37,7 +37,7 @@ function Login() {
       <motion.h1 className="login-title4" variants={titleVariants4}>Connexion</motion.h1>
       <main className="button-wrapper">
         <button className="login-button" onClick={user === null ? googleSignIn : logOut}>
-          <img src="src\assets\png\google-logo.png" alt="" className='logo-google'/>
+          <img src="https://imgur.com/yM0urc1.png" alt="" className='logo-google'/>
           {user === null ? "Se connecter avec Google" : "Se déconnecter"}
         </button>
       </main>

@@ -17,7 +17,7 @@ const TitreAcceuil = () => {
       <motion.div className="round-section">
         <div className="content-container-acceuil">
           <div className="image-container-acceuil">
-            <img className="img-acceuil" src="src\assets\png\img-acceuil.png" alt="Placeholder" />
+            <img className="img-acceuil" src="https://imgur.com/iVJQT6L.png" alt="Placeholder" />
           </div>
           <div className="container-texte-boutons">
             <div className="text-container">
