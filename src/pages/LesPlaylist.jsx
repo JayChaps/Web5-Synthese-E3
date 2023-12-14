@@ -143,12 +143,13 @@ const LesPlaylist = () => {
         >
           <div className="titreplaylist">
             <div className="titreinner">
-              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
-              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
+              <h1>{ plName ? plName : 'Votre Playlistttttttttttttttttttttttttttttttttt' }</h1>
 
-              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
+              <h1>{ plName ? plName : 'Votre Playlistttttttttttttttttttttttttttttttttt' }</h1>
 
-              <h1>Votre Playlistttttttttttttttttttttttttttttttttt</h1>
+              <h1>{ plName ? plName : 'Votre Playlistttttttttttttttttttttttttttttttttt' }</h1>
+
+              <h1>{ plName ? plName : 'Votre Playlistttttttttttttttttttttttttttttttttt' }</h1>
             </div>
           </div>
           <motion.section
