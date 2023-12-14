@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { BiHeart } from "react-icons/bi";
 import fetchJsonp from "fetch-jsonp";
 import Coeur from "../../Coeur/Coeur";
+import { Link } from "react-router-dom";
+import { SongInfoContext } from "../../../context/SongInfoContext";
 
 const PropositionChansons = ({ albumId }) => {
   const [songs, setSongs] = useState([]);
   const [album, setAlbum] = useState({});
+  const { handlePlaySong } = useContext(SongInfoContext);
 
   useEffect(() => {
     const fetchAlbumData = async () => {
@@ -24,7 +27,6 @@ const PropositionChansons = ({ albumId }) => {
       }
     };
 
-    
     fetchAlbumData();
   }, [albumId]);
 
@@ -41,7 +43,14 @@ const PropositionChansons = ({ albumId }) => {
           </div>
           <div className="right">
             <Coeur />
-            <FaPlayCircle size={"1.2rem"} color="var(--blanc)" className="add-icon" />
+            <Link to={`/artist/${song.artist.id}`}>
+              <FaPlayCircle
+                size={"1.2rem"}
+                color="var(--blanc)"
+                className="add-icon"
+                onClick={() => handlePlaySong(song)}
+              />
+            </Link>
           </div>
         </section>
       ))}

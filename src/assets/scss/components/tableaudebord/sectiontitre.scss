@@ -1,6 +1,10 @@
 
 .tableau-de-bord{
   padding-top: 40px;
+
+  @include breakpoint-min(640) {
+    padding-top: 80px;
+  }
 }
 .containersectiontitre {
   position: relative;
@@ -8,7 +12,7 @@
   margin: 0 auto;
   padding-right: 3em ;
   height: 300px;
-  width: 80%;
+  width: 90%;
   max-width: 1024px;
   background: linear-gradient(
       to top,
@@ -33,6 +37,9 @@
 
   @include breakpoint-min(1200) {
     border-radius: 50px;
+    max-width: 1450px;
+    height: 500px;
+    margin-bottom: 50px;
   }
 .prop{
   display: flex;
@@ -110,3 +117,4 @@
     }
   }
 }
+

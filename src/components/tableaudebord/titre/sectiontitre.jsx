@@ -38,7 +38,13 @@ const SectionTitre = () => {
         const url = `https://api.deezer.com/album/${randomAlbumId}?output=jsonp`;
         const resp = await fetchJsonp(url);
         const data = await resp.json();
-        setAlbumData({ id: randomAlbumId, data });
+    
+        // Check if the response contains valid data
+        if (data && data.title && data.cover_big) {
+          setAlbumData({ id: randomAlbumId, data });
+        } else {
+          console.error("Invalid data received:", data);
+        }
       } catch (error) {
         console.error("Error fetching album data:", error);
       }
@@ -51,6 +57,7 @@ const SectionTitre = () => {
   return (
     <motion.section className="containersectiontitre" variants={containerVariants} initial="hidden" animate="visible">
       <motion.div className="content">
+        
         <motion.FaPlayCircle size={"4rem"} color="var(--blanc)" className="play-icon" variants={iconVariants} />
         {albumData && (
           <>

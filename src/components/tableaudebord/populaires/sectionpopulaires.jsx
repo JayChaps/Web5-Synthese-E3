@@ -7,7 +7,7 @@ const sectionpopulaires = () => {
   return (
     <section>
       <div>
-        <h1 className="titrepopulaires">Populaires</h1>
+        <h1 className="titrepopulaires">Populaire</h1>
       </div>
       <div className="albumspopvl">
         <AlbumsPopulaires />

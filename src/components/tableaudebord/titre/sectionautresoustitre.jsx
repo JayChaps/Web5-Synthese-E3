@@ -10,11 +10,9 @@ const SectionAutresoustitre = () => {
   useEffect(() => {
     const getRandomAlbum = async () => {
       try {
-       
         const resp = await fetchJsonp("https://api.deezer.com/chart/0/albums?output=jsonp");
         const data = await resp.json();
 
-       
         const randomIndex = Math.floor(Math.random() * data.data.length);
         const selectedAlbum = data.data[randomIndex];
 
@@ -47,17 +45,21 @@ const SectionAutresoustitre = () => {
     visible: { opacity: 1, scale: 1, transition: { delay: 0.2, duration: 0.8, ease: 'easeInOut' } },
   };
 
+  const albumLink = `/album/${randomAlbum?.id}`; // Adjust this based on your API response structure
+
   return (
     <motion.section className="containersectionautresoustitre" variants={containerVariants} initial="hidden" animate="visible">
       <motion.div>
-        <motion.div
-          size={"2rem"}
-          color="var(--noir)"
-          className="play-icon-autre-sous-titre"
-          variants={iconVariants}
-        >
-          <FaPlayCircle size={"2rem"} color="var(--blanc)" className="icon-autre-sous-titre" />
-        </motion.div>
+        <Link to={albumLink}>
+          <motion.div
+            size={"2rem"}
+            color="var(--noir)"
+            className="play-icon-autre-sous-titre"
+            variants={iconVariants}
+          >
+            <FaPlayCircle size={"2rem"} color="var(--blanc)" className="icon-autre-sous-titre" />
+          </motion.div>
+        </Link>
         <motion.h4 className="titresectionautresoustitre" variants={titleVariants}>
           {randomAlbum && randomAlbum.title}
         </motion.h4>

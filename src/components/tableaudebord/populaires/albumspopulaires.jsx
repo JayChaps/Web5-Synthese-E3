@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { FaPlayCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import fetchJsonp from "fetch-jsonp";
 
 const Albumspopulaires = () => {
-  const [randomAlbum, setRandomAlbum] = useState(null);
+  const [randomArtist, setRandomArtist] = useState(null);
   const controls = useAnimation();
 
   useEffect(() => {
-    const getRandomAlbum = async () => {
+    const getRandomArtist = async () => {
       try {
-        const resp = await fetchJsonp("https://api.deezer.com/chart/0/albums?output=jsonp");
+        const resp = await fetchJsonp("https://api.deezer.com/chart/0/artists?output=jsonp");
         const data = await resp.json();
 
         const randomIndex = Math.floor(Math.random() * data.data.length);
-        const selectedAlbum = data.data[randomIndex];
+        const selectedArtist = data.data[randomIndex];
 
-        setRandomAlbum(selectedAlbum);
+        setRandomArtist(selectedArtist);
       } catch (error) {
         console.error("Erreur lors de la recherche:", error);
       }
     };
 
-    getRandomAlbum();
+    getRandomArtist();
   }, []);
 
   useEffect(() => {
@@ -44,6 +45,8 @@ const Albumspopulaires = () => {
     };
   }, [controls]);
 
+  const artistLink = `/artist/${randomArtist?.id}`; // Adjust this based on your API response structure
+
   return (
     <div className="container-complet-albums">
       <motion.section
@@ -53,17 +56,19 @@ const Albumspopulaires = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div>
-          <h2 className="titrealbumspopulaire">{randomAlbum && randomAlbum.title}</h2>
+          <h2 className="titrealbumspopulaire">{randomArtist && randomArtist.name}</h2>
         </div>
         <div>
-          <FaPlayCircle
-            size={"3rem"}
-            color="var(--blanc)"
-            className="play-icon-populaires"
-          />
+          <Link to={artistLink}>
+            <FaPlayCircle
+              size={"3rem"}
+              color="var(--blanc)"
+              className="play-icon-populaires"
+            />
+          </Link>
         </div>
         <div className="image-container">
-          {randomAlbum && <img src={randomAlbum.cover_big} alt={randomAlbum.title} className="cover-mask" />}
+          {randomArtist && <img src={randomArtist.picture_big} alt={randomArtist.name} className="cover-mask" />}
         </div>
       </motion.section>
     </div>
