@@ -43,16 +43,19 @@ const SectionTitre = () => {
         if (data && data.title && data.cover_big) {
           setAlbumData({ id: randomAlbumId, data });
         } else {
-          console.error("Invalid data received:", data);
+          console.error("Mauvaise info recue:", data);
         }
       } catch (error) {
-        console.error("Error fetching album data:", error);
+        console.error("Erreur info album:", error);
       }
     };
 
    
     fetchAlbumData();
+    
   }, []);
+
+  
 
   return (
     <motion.section className="containersectiontitre" variants={containerVariants} initial="hidden" animate="visible">
